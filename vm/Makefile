@@ -14,7 +14,7 @@ ifndef CUR_PROJECT_PWD
  export CUR_PROJECT_PWD := $(shell /bin/pwd)
 endif
 
-NAME 			:= vm
+NAME 			:= corewar
 
 INCS 			:= includes
 SRCS 			:= sources
