@@ -21,6 +21,18 @@ In this game, computer programs (called "Warriors") compete in a virtual arena
 for digital supremacy. Warriors are written in a simple Assembly dialect inspired
 from "Redcode".
 
+Project
+=======
+- [ ] [**libs**](libs/)
+  - [x] [**libctype**](libs/libctype/)
+  - [x] [**liblist**](libs/liblist/)
+  - [x] [**libstr**](libs/libstr/)
+  - [ ] libprintf
+- [ ] [**Assembler**](asm/)
+- [ ] [**Virtual Machine**](vm/)
+- [ ] [**Disassembler (bonus)**](libs/liblist/)
+- [ ] Graphical User Interface
+
 Credits
 =======
 - *[42 profile](https://profile.intra.42.fr/users/igomez) - [Linkedin](https://www.linkedin.com/in/illan-gomez-821a85b0/) - [Github](https://github.com/Zoellingam)* - Gomez Illan
