@@ -30,7 +30,7 @@ Project
   - [ ] libprintf
 - [ ] [**Assembler**](asm/)
 - [ ] [**Virtual Machine**](vm/)
-- [ ] [**Disassembler (bonus)**](libs/liblist/)
+- [ ] [**Disassembler (bonus)**](disass/)
 - [ ] Graphical User Interface
 
 Credits
