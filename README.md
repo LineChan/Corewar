@@ -60,7 +60,7 @@ Project
   - [x] [**libctype**](libs/libctype/)
   - [x] [**liblist**](libs/liblist/)
   - [x] [**libstr**](libs/libstr/)
-  - [ ] libopt
+  - [x] [**libopt**](libs/libopt/) (Need unit-test)
   - [ ] libprintf
 - [ ] [**Assembler**](asm/)
 - [ ] [**Virtual Machine**](vm/)
