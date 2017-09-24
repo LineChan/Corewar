@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/22 00:23:40 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/22 20:04:12 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 #  define DEBUG_MODE 1
 # else
 #  define DEBUG_MODE 0
+# endif
+
+# ifndef EXIT_FAILURE
+#  define EXIT_FAILURE 1
+# endif
+# ifndef EXIT_SUCCESS
+#  define EXIT_SUCCESS 0
 # endif
 
 #endif

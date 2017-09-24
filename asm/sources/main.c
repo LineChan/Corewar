@@ -6,12 +6,15 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/22 08:30:03 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/22 20:03:55 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_asm.h"
+#include "op.h"
 #include <stdio.h>
+
+extern t_op		g_op_tab[17];
 
 int main(int argc, char **argv)
 {
@@ -19,6 +22,16 @@ int main(int argc, char **argv)
 	t_list			*null1;
 	t_ctype_flags	null2;
 
+	if (1 == argc)
+	{
+		fprintf(stderr, "Usage: %s <champion.cor> [...]\n", ft_strrchr(*argv, '/') + 1);
+		return (EXIT_FAILURE);
+	}
+	printf("Test: [%s]\n", g_op_tab[1].name);
+	while (0 != --argc && 0 != *++argv)
+	{
+		printf("Arg: [%d]: [%s]\n", argc, *argv);
+	}
 	if (DEBUG_MODE)
 		fprintf(stderr, "DEBUG ON\n");
 	else
@@ -29,5 +42,5 @@ int main(int argc, char **argv)
 
 	(void)argc;
 	(void)argv;
-	return (0);
+	return (EXIT_SUCCESS);
 }

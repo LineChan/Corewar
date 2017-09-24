@@ -6,7 +6,7 @@
 #    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/22 08:33:00 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/09/23 13:20:08 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,15 @@ NAME 			:= disass
 INCS 			:= includes
 SRCS 			:= sources
 DLIB 			:= $(CUR_PROJECT_PWD)/libs
+COMN			:= $(CUR_PROJECT_PWD)/common
 OBJS 			:= objs
 
-LIB  			:= 	"libstr liblist libctype"
+LIB  			:= 	libstr   \
+					liblist  \
+					libctype
 
 INCLUDES 		:= -I$(INCS)
+INCLUDES 		+= -I$(COMN)/
 INCLUDES		+= -I$(DLIB)/libstr/$(INCS)
 INCLUDES		+= -I$(DLIB)/liblist/$(INCS)
 INCLUDES		+= -I$(DLIB)/libctype/$(INCS)
@@ -34,7 +38,9 @@ LIBS 	 		+= -L $(DLIB)/libctype/ -lctype
 
 # Search source files
 C_FILES			:= $(shell find $(SRCS) -type f)
+C_FILES			+= $(shell find $(COMN) -type f -name "*.c")
 C_DIRS		 	:= $(shell find $(SRCS) -type d)
+C_DIRS			+= $(COMN)
 
 # Add to C_FLAGS
 ifeq ($(DEBUG),1)
