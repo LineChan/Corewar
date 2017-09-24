@@ -6,7 +6,7 @@
 #    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/22 08:38:09 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/09/24 21:06:30 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ ASM_DIR := "asm"
 DSM_DIR := "disass"
 
 all:
-	@make -C $(VM_DIR);
 	@make -C $(ASM_DIR);
 	@make -C $(DSM_DIR);
+	@make -C $(VM_DIR);
 
 clean:
 	@make -C $(VM_DIR) clean;

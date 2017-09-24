@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/22 20:03:27 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/24 17:08:07 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ int main(int argc, char **argv)
 	t_list			*null1;
 	t_ctype_flags	null2;
 
-	if (1 == argc)
-	{
-		fprintf(stderr, "Usage: %s <champion.cor> [...]\n", ft_strrchr(*argv, '/') + 1);
-		return (EXIT_FAILURE);
-	}
 	printf("Test: [%s]\n", g_op_tab[1].name);
 	while (0 != --argc && 0 != *++argv)
 	{

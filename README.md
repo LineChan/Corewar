@@ -60,7 +60,7 @@ Project
   - [x] [**libctype**](libs/libctype/)
   - [x] [**liblist**](libs/liblist/)
   - [x] [**libstr**](libs/libstr/)
-  - [ ] liboption
+  - [ ] libopt
   - [ ] libprintf
 - [ ] [**Assembler**](asm/)
 - [ ] [**Virtual Machine**](vm/)
