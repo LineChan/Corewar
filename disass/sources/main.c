@@ -6,41 +6,81 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/22 20:00:37 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/25 01:19:38 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "instruction.h"
 #include "ft_disass.h"
-#include "op.h"
+#include "endian.h"
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdlib.h>
 #include <stdio.h>
+
 
 extern t_op		g_op_tab[17];
 
+void	ft_read_file(t_disass *dsm, int const fd)
+{
+	read(fd, &dsm->header.magic, sizeof(dsm->header.magic));
+	if (ft_is_big_endian())
+		dsm->header.magic = ft_endian_convert_uint32(dsm->header.magic); 
+	if (COREWAR_EXEC_MAGIC != dsm->header.magic)
+	{
+		fprintf(stderr, "This is not a champion (wrong magic: %#8x instead of %d)\n", dsm->header.magic, COREWAR_EXEC_MAGIC);
+		return ;
+	}
+	read(fd, dsm->header.prog_name, sizeof(t_header) - sizeof(dsm->header.magic));
+	if (ft_is_big_endian())
+		dsm->header.prog_size = ft_endian_convert_uint32(dsm->header.prog_size);
+	printf("name: %s\ncomment: %s\nprogram size is %u bytes\n",
+		dsm->header.prog_name,
+		dsm->header.comment,
+		dsm->header.prog_size);
+	dsm->data = malloc(dsm->header.prog_size);
+	printf("final read: %ld\n", read(fd, dsm->data, dsm->header.prog_size));
+}
+
+void	ft_disass(t_disass *dsm, int const fd)
+{
+	t_instr	*ist;
+	char	*pc;
+
+	ft_read_file(dsm, fd);
+	close(fd);
+	pc = (char *)dsm->data;
+	while (dsm->header.prog_size > (pc - (char *)dsm->data))
+	{
+		ist = ft_instruction_get(pc);
+		printf("Instruction is \"%s\" -> \"%lu\"\n", ist->name, ist->instr_size);
+		pc += ist->instr_size;
+		ft_instruction_del(&ist);
+	}
+}
+
 int main(int argc, char **argv)
 {
-	t_string		*null0;
-	t_list			*null1;
-	t_ctype_flags	null2;
+	t_disass	dsm;
+	char		*file;
+	int			fd;
 
-	if (1 == argc)
-	{
-		fprintf(stderr, "Usage: %s <champion.cor> [...]\n", ft_strrchr(*argv, '/') + 1);
-		return (EXIT_FAILURE);
-	}
-	printf("Test: [%s]\n", g_op_tab[1].name);
-	while (0 != --argc && 0 != *++argv)
-	{
-		printf("Arg: [%d]: [%s]\n", argc, *argv);
-	}
-	if (DEBUG_MODE)
-		fprintf(stderr, "DEBUG ON\n");
+	dsm.opt = ft_option_new(argc, argv);
+	ft_option_add_rule(dsm.opt, "--help", OPTION_KEY_BOOL);
+	ft_option_add_rule(dsm.opt, "--source", OPTION_KEY_STRING);
+	ft_option_add_rule(dsm.opt, "--dest", OPTION_KEY_STRING);
+	ft_option_parse(dsm.opt);
+	if (0 != ft_option_find(dsm.opt, "--help"))
+		printf("Usage: ./%s \"--name=file.cor\"--dest=file.s\"\n", argv[0]);
 	else
-		fprintf(stderr, "DEBUG OFF\n");
-	(void)null0;
-	(void)null1;
-	null2 = 0;
-
-	(void)argc;
-	(void)argv;
-	return (EXIT_SUCCESS);
+	{
+		if (0 == (file = ft_option_find(dsm.opt, "--source")))
+			fprintf(stderr, "dsm.option --source is missing\n");
+		else if (-1 == (fd = open(file, O_RDONLY)))
+			fprintf(stderr, "Can't open file: \"%s\"\n", file);
+		else
+			ft_disass(&dsm, fd);
+	}
+	ft_option_del(&dsm.opt);
+	return (0);
 }
