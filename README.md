@@ -60,7 +60,7 @@ Project
   - [x] [**libctype**](libs/libctype/)
   - [x] [**liblist**](libs/liblist/)
   - [x] [**libstr**](libs/libstr/)
-  - [ ] libopt
+  - [x] [**libopt**](libs/libopt/) (Need unit-test)
   - [ ] libprintf
 - [ ] [**Assembler**](asm/)
 - [ ] [**Virtual Machine**](vm/)
@@ -69,6 +69,7 @@ Project
 
 Credits
 =======
-- *[42 profile](https://profile.intra.42.fr/users/igomez) - [Linkedin](https://www.linkedin.com/in/illan-gomez-821a85b0/) - [Github](https://github.com/Zoellingam)* - Gomez Illan
 - *[42 profile](https://profile.intra.42.fr/users/mvillemi) - [Linkedin](https://www.linkedin.com/in/mai-line-villemin-549773a5/) - [Github](https://github.com/LineChan)* - Villemin Mai Line
 - *[42 profile](https://profile.intra.42.fr/users/frenaud) - [Linkedin](https://www.linkedin.com/in/f%C3%A9licien-renaud-0bb691131/) - [Github](https://github.com/Hohenfels)* - Renaud Félicien
+- *[42 profile](https://profile.intra.42.fr/users/igomez) - [Linkedin](https://www.linkedin.com/in/illan-gomez-821a85b0/) - [Github](https://github.com/Zoellingam)* - Gomez Illan
+
