@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/27 01:36:10 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/27 01:42:50 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ t_instr		*ft_instruction_get(void const *pc)
 	st->op = *idx;
 	st->name = g_op_tab[*idx].name;
 	st->desc = g_op_tab[*idx].description;
-	st->nb_args = g_op_tab[*idx].nb_args;
+	st->nb_cycles = g_op_tab[*idx].nb_cycles;
 	st->has_index = g_op_tab[*idx].has_index;
+	st->nb_args = g_op_tab[*idx].nb_args;
 	st->args = calloc(st->nb_args, sizeof(*st->args));
-	st->instr_size += ft_instruction_set_args(st, idx, g_op_tab[*idx].param_byte);
+	st->instr_size = ft_instruction_set_args(st, idx, g_op_tab[*idx].param_byte);
 	return (st);
 }
 
