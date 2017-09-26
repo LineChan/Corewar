@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/25 01:19:38 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/27 01:23:34 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
-extern t_op		g_op_tab[17];
-
 void	ft_read_file(t_disass *dsm, int const fd)
 {
 	read(fd, &dsm->header.magic, sizeof(dsm->header.magic));
-	if (ft_is_big_endian())
-		dsm->header.magic = ft_endian_convert_uint32(dsm->header.magic); 
+	dsm->header.magic = ft_endian_convert_uint32(dsm->header.magic); 
 	if (COREWAR_EXEC_MAGIC != dsm->header.magic)
 	{
 		fprintf(stderr, "This is not a champion (wrong magic: %#8x instead of %d)\n", dsm->header.magic, COREWAR_EXEC_MAGIC);
 		return ;
 	}
 	read(fd, dsm->header.prog_name, sizeof(t_header) - sizeof(dsm->header.magic));
-	if (ft_is_big_endian())
-		dsm->header.prog_size = ft_endian_convert_uint32(dsm->header.prog_size);
-	printf("name: %s\ncomment: %s\nprogram size is %u bytes\n",
-		dsm->header.prog_name,
-		dsm->header.comment,
-		dsm->header.prog_size);
+	dsm->header.prog_size = ft_endian_convert_uint32(dsm->header.prog_size);
 	dsm->data = malloc(dsm->header.prog_size);
-	printf("final read: %ld\n", read(fd, dsm->data, dsm->header.prog_size));
+	read(fd, dsm->data, dsm->header.prog_size);
 }
 
 void	ft_disass(t_disass *dsm, int const fd)
@@ -53,7 +44,6 @@ void	ft_disass(t_disass *dsm, int const fd)
 	while (dsm->header.prog_size > (pc - (char *)dsm->data))
 	{
 		ist = ft_instruction_get(pc);
-		printf("Instruction is \"%s\" -> \"%lu\"\n", ist->name, ist->instr_size);
 		pc += ist->instr_size;
 		ft_instruction_del(&ist);
 	}
