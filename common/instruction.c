@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/27 01:42:50 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/27 08:35:33 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ t_instr		*ft_instruction_get(void const *pc)
 	uint8_t		*idx;
 
 	idx = (uint8_t *)pc;
-	st = (t_instr *)calloc(1, sizeof(t_instr));
+	st = (t_instr *)malloc(sizeof(t_instr));
 	st->op = *idx;
 	st->name = g_op_tab[*idx].name;
 	st->desc = g_op_tab[*idx].description;
 	st->nb_cycles = g_op_tab[*idx].nb_cycles;
 	st->has_index = g_op_tab[*idx].has_index;
 	st->nb_args = g_op_tab[*idx].nb_args;
-	st->args = calloc(st->nb_args, sizeof(*st->args));
+	st->args = (t_instr_args *)malloc(st->nb_args * sizeof(0[st->args]));
 	st->instr_size = ft_instruction_set_args(st, idx, g_op_tab[*idx].param_byte);
 	return (st);
 }
