@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/24 20:41:30 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/28 19:11:49 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_option_copy(char const *from, char *to)
 {
 	char	*p;
 
-	p = (char *)to;
+	p = to;
 	while (0 != (*p++ = *from++))
 		continue ;
 }

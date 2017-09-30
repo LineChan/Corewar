@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/24 20:58:50 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/29 17:26:10 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,24 @@ static int	ft_option_parse_rule(t_option *opt, int ac)
 {
 	size_t	i;
 	size_t	len;
+	char	*arg;
 	char	*sub;
 
 	i = 0;
 	sub = 0;
 	while (i < opt->rule_count)
 	{
+		arg = opt->argv[ac];
 		len = ft_option_size(opt->rule_list[i].name);
-		if (ft_option_size(opt->argv[ac]) > len && '=' == opt->argv[ac][len])
+		if (ft_option_size(arg) > len && '=' == arg[len])
 		{
-			opt->argv[ac][len] = 0;
-			sub = opt->argv[ac] + len + 1;
+			arg[len] = 0;
+			sub = arg + len + 1;
 		}
-		if (0 == ft_option_compare(opt->argv[ac], opt->rule_list[i].name))
+		if (0 == ft_option_compare(arg, opt->rule_list[i].name))
 			return (ft_option_rule(opt, ac, i, sub));
+		if (0 != sub)
+			arg[len] = '=';
 		sub = 0;
 		++i;
 	}

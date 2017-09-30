@@ -56,12 +56,12 @@ This is the program that will compile our champion and translate it to *Bytecode
 
 Project
 =======
-- [ ] [**libs**](libs/)
+- [x] [**libs**](libs/)
   - [x] [**libctype**](libs/libctype/)
   - [x] [**liblist**](libs/liblist/)
   - [x] [**libstr**](libs/libstr/)
-  - [x] [**libopt**](libs/libopt/) (Need unit-test)
-  - [ ] libprintf
+  - [x] [**libopt**](libs/libopt/)
+  - [x] [**libprintf**](libs/libprintf/)
 - [ ] [**Assembler**](asm/)
 - [ ] [**Virtual Machine**](vm/)
 - [ ] [**Disassembler (bonus)**](disass/)

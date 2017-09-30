@@ -6,16 +6,12 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/22 20:03:36 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/30 17:21:04 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_VM_H
 # define FT_VM_H
-
-# include "ft_string.h"
-# include "ft_ctype.h"
-# include "ft_list.h"
 
 # ifdef DEBUG
 #  define DEBUG_MODE 1

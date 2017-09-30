@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_vsnprintf.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:19:31 by Zoellingam       ###   ########.fr       */
+/*   Created: 2015/09/27 02:22:54 by Zoellingam        #+#    #+#             */
+/*   Updated: 2017/03/16 17:38:02 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ASM_H
-# define FT_ASM_H
+#include "ft_printf_engine.h"
+#include "ft_printf.h"
+#include "ft_string.h"
 
-# ifdef DEBUG
-#  define DEBUG_MODE 1
-# else
-#  define DEBUG_MODE 0
-# endif
+int		ft_vsnprintf(char *buf, size_t n, char const *format, va_list ap)
+{
+	size_t r;
 
-# ifndef EXIT_FAILURE
-#  define EXIT_FAILURE 1
-# endif
-# ifndef EXIT_SUCCESS
-#  define EXIT_SUCCESS 0
-# endif
-
-#endif
+	ft_printf_engine(buf, format, ap);
+	r = ft_strlen(buf);
+	if (r > n)
+		ft_memset(buf + n, 0, r - n);
+	return (r);
+}

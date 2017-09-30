@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_sprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:19:31 by Zoellingam       ###   ########.fr       */
+/*   Created: 2015/09/27 02:22:54 by Zoellingam        #+#    #+#             */
+/*   Updated: 2017/03/18 11:21:40 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ASM_H
-# define FT_ASM_H
+#include "ft_printf.h"
 
-# ifdef DEBUG
-#  define DEBUG_MODE 1
-# else
-#  define DEBUG_MODE 0
-# endif
+int		ft_sprintf(char *buf, char const *format, ...)
+{
+	va_list	ap;
+	int			n;
 
-# ifndef EXIT_FAILURE
-#  define EXIT_FAILURE 1
-# endif
-# ifndef EXIT_SUCCESS
-#  define EXIT_SUCCESS 0
-# endif
-
-#endif
+	va_start(ap, format);
+	n = ft_vsprintf(buf, format, ap);
+	va_end(ap);
+	return (n);
+}

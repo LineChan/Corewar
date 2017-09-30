@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:19:31 by Zoellingam       ###   ########.fr       */
+/*   Created: 2015/09/27 02:22:54 by Zoellingam        #+#    #+#             */
+/*   Updated: 2017/03/18 11:21:36 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ASM_H
-# define FT_ASM_H
+#include "ft_printf.h"
+#include "ft_string.h"
+#include <unistd.h>
 
-# ifdef DEBUG
-#  define DEBUG_MODE 1
-# else
-#  define DEBUG_MODE 0
-# endif
+int		ft_printf(char const *format, ...)
+{
+	char		buf[FT_PRINTF_BUFFSIZE];
+	char		*p;
+	va_list	ap;
+	int			n;
+	int			r;
 
-# ifndef EXIT_FAILURE
-#  define EXIT_FAILURE 1
-# endif
-# ifndef EXIT_SUCCESS
-#  define EXIT_SUCCESS 0
-# endif
-
-#endif
+	p = buf;
+	ft_memset((void *)buf, 0, FT_PRINTF_BUFFSIZE);
+	va_start(ap, format);
+	n = ft_vsprintf(p, format, ap);
+	va_end(ap);
+	r = write(1, buf, ft_strlen(buf));
+	if (r != n)
+		return (-1);
+	return (n);
+}

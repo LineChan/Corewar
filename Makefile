@@ -6,7 +6,7 @@
 #    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/24 21:06:30 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/09/30 17:42:58 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ fclean:
 	@make -C $(VM_DIR) fclean;
 	@make -C $(ASM_DIR) fclean;
 	@make -C $(DSM_DIR) fclean;
+	@rm -rf "trash";
 
 debug:
 	@make DEBUG=1 -C $(VM_DIR);

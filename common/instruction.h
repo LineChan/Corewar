@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/27 08:45:03 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/30 17:45:53 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ typedef struct		s_instr_args
 }					t_instr_args;
 
 /*
- * brief    Instruction struct
+ * brief    Instruction struct is a copy of g_op_tab[n] with decoded data of
+ * 			the target instruction
  *
  * +param	op			Instruction byte code (g_op_tab->numero)
- * +param	args		Instruction's argument array, determined by nb_args
+ * +param	args		Instruction's argument array, allocated with nb_args
  * +param	instr_size	Total size of the instruction
  */
 typedef struct		s_instr

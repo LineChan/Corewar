@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_disass_del.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:21:09 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/30 17:27:43 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vm.h"
-#include "ft_option.h"
-#include "ft_printf.h"
+#include "ft_disass.h"
+#include "ft_string.h"
+#include <unistd.h>
 
-int main(int argc, char **argv)
+static void	ft_disass_del_label(t_list *it)
 {
-	t_option	*opt;
+	t_label	*label;
 
-	if (DEBUG_MODE)
-		ft_fprintf(ft_stderr, "DEBUG ON\n");
-	else
-		ft_fprintf(ft_stderr, "DEBUG OFF\n");
-	opt = ft_option_new(argc, argv);
-	ft_option_add_rule(opt, "--help", OPTION_KEY_BOOL);
-	ft_option_parse(opt);
-	if (0 != ft_option_find(opt, "--help"))
-		ft_fprintf(ft_stdout, "Usage: %s [--help]\n", argv[0]);
-	ft_option_del(&opt);
-	return (EXIT_SUCCESS);
+	label = C_LABEL(it);
+	ft_memdel((void **)&label);
+}
+
+static void	ft_disass_del_instr(t_list *it)
+{
+	t_instr_node	*instr;
+
+	instr = C_INSTR(it);
+	ft_instruction_del(&instr->instr);
+	ft_memdel((void **)&instr);
+}
+
+void 		ft_disass_del(t_disass *dsm)
+{
+	close(dsm->fd_in);
+	close(dsm->fd_out);
+	ft_option_del(&dsm->opt);
+	ft_list_apply(&dsm->label_head, &ft_disass_del_label);
+	ft_list_apply(&dsm->instr_head, &ft_disass_del_instr);
 }

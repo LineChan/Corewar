@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_asm.h                                           :+:      :+:    :+:   */
+/*   ft_printf_postpadd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:19:31 by Zoellingam       ###   ########.fr       */
+/*   Created: 2015/09/27 02:35:02 by Zoellingam        #+#    #+#             */
+/*   Updated: 2016/12/20 16:28:42 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ASM_H
-# define FT_ASM_H
+#include "ft_printf_engine.h"
 
-# ifdef DEBUG
-#  define DEBUG_MODE 1
-# else
-#  define DEBUG_MODE 0
-# endif
+void	ft_printf_postpadd(char **p, size_t n, t_printf_syntax *pf)
+{
+	uint8_t	c;
 
-# ifndef EXIT_FAILURE
-#  define EXIT_FAILURE 1
-# endif
-# ifndef EXIT_SUCCESS
-#  define EXIT_SUCCESS 0
-# endif
-
-#endif
+	c = (pf->flags & FT_P_ZEROPAD) ? '0' : ' ';
+	while ((int)n < pf->width--)
+		*((*p)++) = c;
+}

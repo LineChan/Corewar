@@ -6,11 +6,12 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/24 20:42:29 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/29 17:26:23 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_option.h"
+#include <stdio.h>
 
 char		*ft_option_find(t_option *opt, char const *option_name)
 {

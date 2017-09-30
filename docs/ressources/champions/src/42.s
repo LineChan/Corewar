@@ -1,13 +1,10 @@
 .name           "42"
-.comment        "Just a basic Winner Program"
+.comment		"Just a basic Winner Program"
 
-entree:
-	live	%42;entree
+	live	%42
 	fork	%:tir
-	ld	%0,r5
+	ld		%0, r5
 	zjmp	%:bite
-
-
 
 
 tir:
@@ -17,7 +14,8 @@ tir:
 	ld	%0,r11
 
 	ld	%4,r3
-tirf:	live	%42
+tirf:
+	live	%42
 	fork	%:tirop
 	live	%742
 	sub	r3,r5,r3
@@ -32,7 +30,8 @@ tirf:	live	%42
 	ld	%0,r11
 	zjmp	%:tirf
 	
-tirop:	ld	%368,r2
+tirop:
+	ld	%368,r2
 	ld	%0,r3
 	ld	%4,r4
 	
@@ -47,7 +46,8 @@ tirb:	live	%1
 	zjmp	%:tirb
 	zjmp	%:infi
 			
-p32deb:	zjmp	%0
+p32deb:
+	zjmp	%0
 	zjmp	%0
 	zjmp	%0
 	zjmp	%0
@@ -67,19 +67,23 @@ p32deb:	zjmp	%0
 	zjmp	%0
 	zjmp	%0
 
-p32:	sub	r6,r4,r6
+p32:
+	sub	r6,r4,r6
 	add	r6,r6,r11
 	ldi	%:p32deb,r6,r7
 	sti	r7,%-510,r11	
-p32li:	live	%1
+p32li:
+	live	%1
 	ld	%0,r10
 	sti	r7,%-250,r6
 	zjmp	%-192
 
-tirvd:	zjmp	%:tirvd2
+tirvd:
+	zjmp	%:tirvd2
 		
-bite:	sti     r1,%:copie,%2   ; Pour le ld a l''entree
-        ldi     %:copie,%3,r2   ; met le ld a l''entree
+bite:
+	sti     r1,%:copie,%2   
+        ldi     %:copie,%3,r2   
         sti     r2,%:entree,%-4
         ldi     %:copie,%-1,r2
         sti     r2,%:entree,%-8
@@ -88,17 +92,17 @@ bite:	sti     r1,%:copie,%2   ; Pour le ld a l''entree
 	sti	r1,%:b0,%1
 	
 	ld	%0,r2		
-	ld	%8,r3		; prepare les fork
+	ld	%8,r3		
 	ld	%1,r4
 	ld	%0,r6
 
-b0:	live	%1		; boucle fork
+b0:	live	%1		
 	sub	r3,r4,r3
 	zjmp	%:tart
 	fork	%:b1
 	st	r5,r2
-	xor	r10,r10,r10	; pour rien
-	add	r10,r10,r10	; pour rien
+	xor	r10,r10,r10	
+	add	r10,r10,r10	
 	add	r6,r6,r6
 	ld	%0,r10
 	zjmp	%:b0
@@ -144,30 +148,25 @@ l10:	live	%1
 	zjmp	%:l0
 
 
-p1:	zjmp	%:infi
+p1:
+	zjmp	%:infi
 
-        live    %0              ; pour boucher l''entree
-copie:  ld      %1,r1
+        live    %0              
+copie:
+  ld      %1,r1
 	
 	
 tart:	sti	r1,%:p64li,%1
-	or	r2,r2,r2	; selection vers les modules
+	or	r2,r2,r2	
 	zjmp	%:p64
 	sub	r2,r4,r2
 	zjmp	%:p32
-#	sub	r2,r4,r2
-#	zjmp	%:infi
-#	sub	r2,r4,r2
-#	zjmp	%:infi
-#	sub	r2,r4,r2
-#	zjmp	%:infi
-#	sub	r2,r4,r2
-#	zjmp	%:infi
 	ld	%0,r2
 	zjmp	%:infi
 
 
-tirvd2:	zjmp	%:tirdow
+tirvd2:
+	zjmp	%:tirdow
 
 topd:	ld	%9,r3
 	sti	r3,%:fin,%-6
