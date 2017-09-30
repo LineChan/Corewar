@@ -1,4 +1,6 @@
 .name	"LDE LDE LDE"
+.comment "holy fuck lde is guud"
+
 	ld %0,r6
 	sti r1,%:suitb,%1
 	sti r1,%:suitb,%6

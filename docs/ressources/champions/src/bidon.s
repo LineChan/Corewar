@@ -1,7 +1,8 @@
 .name "bidon"
 .comment "je suis bidon"
 
-fok	%:fist
+fistweew:
+	fork %:fist
 
 fist:
 	live	%10
@@ -11,7 +12,6 @@ fist:
 	st	r1, 500
 	st	r1, 500
 	st	r1, 500
-	st	r1,
 	st	r1, 500
 	st	r1, 500
 	st	r1, 500
@@ -19,7 +19,8 @@ fist:
 	st	r1, 500
 	st	r1, 500
 	st	r1, 500
-	stu	r1, 500
+	st	r1, 500
+	st	r1, 500
 	st	r1, 500
 	st	r1, 500
 	st	r1, 500

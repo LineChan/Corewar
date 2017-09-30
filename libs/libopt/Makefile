@@ -6,7 +6,7 @@
 #    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/24 21:04:32 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/09/30 20:38:28 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ OBJS 			:= objs
 
 LIB  			:= 	""
 
-INCLUDES 		:= -I$(INCS) -I$(INCS)/private
+INCLUDES 		:= -I$(INCS)
 #INCLUDES 		+= $(shell echo "$(foreach i, $(shell echo "$(LIB)"), -I$(i)/$(INCS))")
 #LIBS 	 		:= $(shell echo "$(foreach i, $(shell echo "$(LIB)"), -L $(i) -$(shell basename $(i) | sed 's/lib/l/g'))")
 

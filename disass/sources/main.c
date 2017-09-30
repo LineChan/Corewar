@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:36:31 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/09/30 20:35:00 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,15 @@ int			main(int argc, char **argv)
 {
 	t_disass	dsm;
 
-	if (EXIT_SUCCESS == ft_init_disass(&dsm, argc, argv))
+	if (EXIT_FAILURE == ft_init_disass(&dsm, argc, argv))
 	{
-		ft_disass(&dsm);
-		ft_label_set(&dsm);
-		ft_gen(&dsm);
+		ft_disass_del(&dsm);
+		return (EXIT_FAILURE);
 	}
+	ft_disass(&dsm);
+	ft_label_set(&dsm);
+	ft_gen(&dsm);
 	ft_disass_del(&dsm);
-	return (0);
+	ft_printf("SUCCESS\n");
+	return (EXIT_SUCCESS);
 }
