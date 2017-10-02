@@ -1,0 +1,18 @@
+.name		"lololouix"
+.comment	""
+
+l_0:
+	sti		r1, %:l_1, %1
+	fork	%:l_1
+	and		r1, %2, r1
+
+l_1:
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	zjmp	%:l_1
+
+; generated ;
