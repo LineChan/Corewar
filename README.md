@@ -65,7 +65,7 @@ Project
   - [x] [**libctype**](libs/libctype/)
   - [x] [**liblist**](libs/liblist/)
   - [x] [**libstr**](libs/libstr/)
-  - [ ] [**libopt**](libs/libopt/) WARNING ```--tool=memcheck --leak-check=full```
+  - [ ] [**libopt**](libs/libopt/)
   - [x] [**libprintf**](libs/libprintf/)
 - [ ] [**Assembler**](asm/)
 - [ ] [**Virtual Machine**](vm/)
