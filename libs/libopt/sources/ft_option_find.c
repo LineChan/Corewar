@@ -6,32 +6,27 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/29 17:26:23 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 02:12:17 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_option.h"
-#include <stdio.h>
+#include "ft_string.h"
 
-char		*ft_option_find(t_option *opt, char const *option_name)
+static int	ft_option_find_name(t_list *it, void const *name)
 {
-	int	cmp;
-	int	low;
-	int mid;
-	int high;
+	t_option_list *node;
 
-	low = 0;
-	high = opt->option_count;
-	while (low < high)
-	{
-		mid = (low + high) >> 1;
-		cmp = ft_option_compare(option_name, opt->option_list[mid].name);
-		if (0 == cmp)
-			return (opt->option_list[mid].data);
-		if (0 < cmp)
-			low = mid + 1;
-		else
-			high = mid;
-	}
+	node = C_OPTION(it);
+	return (0 == ft_strcmp((char const *)name, node->name));
+}
+
+char		*ft_option_find(t_option *opt, char const *name)
+{
+	t_list	*it;
+
+	it = ft_list_find_data(&opt->option_head, (void *)name, &ft_option_find_name);
+	if (0 != it)
+		return (C_OPTION(it)->data);
 	return (0);
 }

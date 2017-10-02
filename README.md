@@ -56,15 +56,20 @@ This is the program that will compile our champion and translate it to *Bytecode
 
 Project
 =======
+- [ ] [**utilities**](common/)
+  - [x] op
+  - [x] endian
+  - [x] instruction decoder
+  - [ ] instruction encoder
 - [x] [**libs**](libs/)
   - [x] [**libctype**](libs/libctype/)
   - [x] [**liblist**](libs/liblist/)
   - [x] [**libstr**](libs/libstr/)
-  - [x] [**libopt**](libs/libopt/)
+  - [ ] [**libopt**](libs/libopt/) WARNING ```--tool=memcheck --leak-check=full```
   - [x] [**libprintf**](libs/libprintf/)
 - [ ] [**Assembler**](asm/)
 - [ ] [**Virtual Machine**](vm/)
-- [ ] [**Disassembler (bonus)**](disass/)
+- [x] [**Disassembler (bonus)**](disass/) 100% working on zaz asm.
 - [ ] Graphical User Interface
 
 Credits

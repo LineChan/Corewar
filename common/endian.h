@@ -6,33 +6,41 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/28 00:01:30 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/01 15:59:39 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENDIAN_H
 # define ENDIAN_H
 
-#include <stdint.h>
+/*
+ * brief	True if arch is big endian
+ */
+# define IS_BIG_ENDIAN		(*(unsigned short *)"\0\xff" < 0x100)
+
+/*
+ * brief	True is arch is little endian
+ */
+# define IS_LITTLE_ENDIAN	!IS_BIG_ENDIAN
 
 /*
  * brief    Bytes swap for unsigned short
  */
-uint16_t					ft_endian_convert_uint16(uint16_t val);
+unsigned short				ft_endian_convert_uint16(unsigned short val);
 
 /*
  * brief    Bytes swap for signed short
  */
-int16_t						ft_endian_convert_int16(int16_t val);
+signed short				ft_endian_convert_int16(signed short val);
 
 /*
  * brief    Bytes swap for unsigned int
  */
-uint32_t					ft_endian_convert_uint32(uint32_t val);
+unsigned int				ft_endian_convert_uint32(unsigned int val);
 
 /*
  * brief    Bytes swap for signed short
  */
-int32_t						ft_endian_convert_int32(int32_t val);
+signed int					ft_endian_convert_int32(signed int val);
 
 #endif

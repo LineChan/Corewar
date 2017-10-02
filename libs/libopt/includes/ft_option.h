@@ -6,25 +6,20 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 19:41:20 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 02:04:18 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_OPTION_H
 # define FT_OPTION_H
 
-# include <stddef.h>
-# include <stdint.h>
+# include "ft_list.h"
+#include <stdio.h>
 
 /**
  * @brief	Get size of statically allocated array
  */
 # define OPTION_SIZEOF_ARR(x)	((int)(sizeof(x) / sizeof(0[(x)])))
-
-/**
- * @brief	Assert option-name has less than 64 chars
- */
-# define OPTION_NAME_SIZE		64
 
 /**
  * @brief	Assert option-data has less than 256 chars
@@ -36,9 +31,12 @@
  */
 typedef struct		s_option_list
 {
-	char			name[OPTION_NAME_SIZE];
-	char			data[OPTION_DATA_SIZE];
+	char			*name;
+	char			*data;
+	t_list			list;
 }					t_option_list;
+
+# define C_OPTION(it)	CONTAINEROF(it, t_option_list, list)
 
 /**
  * @brief      Define options comportments
@@ -54,9 +52,12 @@ typedef enum		e_option_key
  */
 typedef struct		s_option_rule
 {
-	char			name[OPTION_NAME_SIZE + 1];
+	char			*name;
 	t_option_key	key;
+	t_list 			list;
 }					t_option_rule;
+
+# define C_RULE(it)		CONTAINEROF(it, t_option_rule, list)
 
 /**
  * @brief      Option struct
@@ -66,10 +67,8 @@ typedef struct		s_option_rule
  */
 typedef struct		s_option
 {
-	size_t			option_count;
-	t_option_list	*option_list;
-	size_t			rule_count;
-	t_option_rule	*rule_list;
+	t_list			option_head;
+	t_list			rule_head;
 	int				argc;
 	char			**argv;
 }					t_option;
@@ -108,8 +107,6 @@ void				ft_option_add_rule(t_option *opt, char const *rule, t_option_key key);
 /**
  * @brief      Find rule in rule_list
  * 
- * @details    Find operation is garanted to be O(logn)
- * 
  * @param 		opt	Option struct
  * @param 		option_name Name of the option we want the value
  *
@@ -133,23 +130,6 @@ char				*ft_option_find(t_option *opt, char const *option_name);
  * @param      opt	Valid option struct
  */
 void				ft_option_parse(t_option *opt);
-
-/**
- * @brief      Tool function faking strcmp
- */
-int					ft_option_compare(char const *s1, char const *s2);
-
-/**
- * @brief      Tool function faking strcpy
- */
-void				ft_option_copy(char const *from, char *to);
-
-/**
- * @brief      Tool function faking strlen
- */
-size_t				ft_option_size(char const *name);
-
-
 
 /* Main
 

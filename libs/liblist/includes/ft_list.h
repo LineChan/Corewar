@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/04/17 15:21:26 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 01:25:43 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,8 @@ void				ft_list_swap(t_list *node_a, t_list *node_b);
  * @return  First item found by `func`
  */
 t_list				*ft_list_find(t_list *head, int (*func)(t_list *));
+t_list				*ft_list_find_data(t_list *head, void const *data,
+										int (*func)(t_list *, void const *));
 
 /**
  * @brief Find item in list (using `prev` pointer)
@@ -118,6 +120,8 @@ t_list				*ft_list_find(t_list *head, int (*func)(t_list *));
  * @return  First item found by `func`
  */
 t_list				*ft_list_find_tail(t_list *head, int (*func)(t_list *));
+t_list				*ft_list_find_tail_data(t_list *head, void const *data,
+										int (*func)(t_list *, void const *));
 
 /**
  * @brief Count nodes in list

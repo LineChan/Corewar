@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_option_add_rule.c                               :+:      :+:    :+:   */
+/*   ft_instruction_del.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 02:07:48 by Zoellingam       ###   ########.fr       */
+/*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
+/*   Updated: 2017/10/02 01:06:22 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_option.h"
+#include "instruction.h"
 #include "ft_string.h"
-#include <stdlib.h>
 
-void	ft_option_add_rule(t_option *opt, char const *rule, t_option_key key)
+void			ft_instruction_del(t_instr **ptr)
 {
-	t_option_rule	*optrule;
-
-	optrule = (t_option_rule *)ft_calloc(1, sizeof(t_option_rule));
-	optrule->name = ft_strdup(rule);
-	optrule->key = key;
-	ft_list_add_tail(&optrule->list, &opt->rule_head);
+	if (0 != *ptr)
+	{
+		ft_memdel((void **)&(*ptr)->args.decode);
+		ft_memdel((void **)ptr);
+	}
 }

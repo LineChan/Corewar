@@ -6,7 +6,7 @@
 #    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/29 08:17:24 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/10/02 01:20:00 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,8 @@ all:
 
 $(NAME): $(O_FILES)
 	@make -C "$(DLIB)/libstr/";
-	@make -C "$(DLIB)/libopt/";
 	@make -C "$(DLIB)/liblist/";
+	@make -C "$(DLIB)/libopt/";
 	@make -C "$(DLIB)/libctype/";
 	@make -C "$(DLIB)/libprintf/";
 	@gcc $(C_FLAGS) $(INCLUDES) $(LIBS) -o $@ $(O_FILES) && $(PRINT_GREEN) $@ || exit

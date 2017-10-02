@@ -6,46 +6,42 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/27 01:36:08 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/01 16:01:12 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "endian.h"
 
-static int	ft_is_big_endian(void)
+/*
+int			ft_is_little_endian(void)
 {
-	uint32_t x;
+	union {
+		unsigned int	i;
+		unsigned char	c[4];
+	} e = { 0x01000000 };
 
-	x = 1;
-	return ((int)(((char *)&x)[0]));
+	return (0[(&e)->c]);
 }
+*/
 
-uint16_t	ft_endian_convert_uint16(uint16_t val) 
+unsigned short	ft_endian_convert_uint16(unsigned short val) 
 {
-	if (!ft_is_big_endian())
-		return (val);
     return (val << 8) | (val >> 8);
 }
 
-int16_t		ft_endian_convert_int16(int16_t val) 
+signed short	ft_endian_convert_int16(signed short val) 
 {
-	if (!ft_is_big_endian())
-		return (val);
     return (val << 8) | ((val >> 8) & 0xff);
 }
 
-uint32_t	ft_endian_convert_uint32(uint32_t val)
+unsigned int	ft_endian_convert_uint32(unsigned int val)
 {
-	if (!ft_is_big_endian())
-		return (val);
     val = ((val << 8) & 0xff00ff00) | ((val >> 8) & 0xff00ff); 
     return (val << 16) | (val >> 16);
 }
 
-int32_t		ft_endian_convert_int32(int32_t val)
+signed int		ft_endian_convert_int32(signed int val)
 {
-	if (!ft_is_big_endian())
-		return (val);
     val = ((val << 8) & 0xff00ff00) | ((val >> 8) & 0xff00ff); 
     return (val << 16) | ((val >> 16) & 0xffff);
 }

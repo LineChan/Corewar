@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 19:23:23 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 00:43:55 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define FT_DISASS_H
 
 # include "instruction.h"
+# include "endian.h"
 # include "ft_option.h"
 # include "ft_string.h"
+# include "ft_printf.h"
 # include "ft_list.h"
+# include <time.h>
 
 # ifdef DEBUG
 #  define DEBUG_MODE 1
@@ -32,7 +35,26 @@
 # endif
 
 /*
- * brief       Label structure, defined by a name and a position.
+ * @brief      Benchmark structur
+ * 
+ * 			   Calcul: (out - in) / CLOCK_PER_SECOND
+ */
+typedef struct		s_verbose
+{
+	clock_t			disass_in;
+	clock_t			disass_out;
+	clock_t			label_in;
+	clock_t			label_out;
+	clock_t			gen_in;
+	clock_t			gen_out;
+}					t_verbose;
+
+/*
+ * brief       Label structure
+ * 
+ * param	name		Numero of the label
+ * param	byte_pos	Position of the label in the file.cor (whitout header)
+ * param	list		list_node
  */
 typedef struct		s_label
 {
@@ -47,7 +69,12 @@ typedef struct		s_label
 # define C_LABEL(it)	CONTAINEROF(it, t_label, list)
 
 /*
- * brief	Instruction structure, with a byte position and a lebel reference
+ * brief	Instruction structure
+ * 
+ * param	byte_pos	Position of the instruction in the file.cor (without header)
+ * param	instr		Instruction (common/instruction.h)
+ * param	label_ref	instr->args[i] label reference
+ * param	list		list_node
  */
 typedef struct		s_instr_node
 {
@@ -75,6 +102,7 @@ typedef struct		s_instr_node
 typedef struct		s_disass
 {
 	t_option		*opt;
+	t_verbose		verbose;
 	int				fd_in;
 	int				fd_out;
 	t_header		header;
@@ -100,7 +128,11 @@ void				ft_disass_del(t_disass *dsm);
 /*
  * brief	Creates label references
  * 
- * 			Complexity O(2 * nb_instr)
+ * 			- First pass, creates label from instruction that specificaly
+ * 			  uses label as arguments.
+ * 			- Second pass, check if some instruction's argument's data
+ * 			  refer to a position where label already exist.
+ *      	This has a simplified complexity of O(2n)
  */
 void				ft_label_set(t_disass *dsm);
 

@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:45:53 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/01 22:24:10 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,43 +18,86 @@
 # include "op.h"
 
 /*
- * brief    Instruction's arguments:
+ * brief    Instruction's decoded arguments:
  *
  * param type	T_REG | T_DIR | T_IND
- * param size	Size of the current argument (1, 2 or 4 bytes)
  * param data	Data we already applied endianness and type conversion.
+ * param size	Size of the current argument (1, 2 or 4 bytes)
  */
-typedef struct		s_instr_args
+typedef struct		s_instr_decode
 {
 	t_arg_type		type;
+	int32_t			data;	
 	size_t			size;
-	int				data;
-}					t_instr_args;
+}					t_instr_decode;
+
+/*
+ * brief    Instruction's encoded arguments:
+ *
+ * param type	T_REG | T_DIR | T_IND | T_LAB
+ * param data	Data we already applied the desired conversion
+ * 				T_REG: Target 1 byte:  *(uint8_t *)&data;
+ * 				T_IND: Target 2 bytes: *(uint16_t *)&data;
+ * 				T_DIR: Target 4 bytes: *(uint32_t *)&data;
+ * 				T_LABEL:               label;
+ * param size	Size of the current argument (1, 2, 4 bytes, or the
+ * 											  actual size of the label)
+ */
+typedef struct		s_instr_encode
+{
+	t_arg_type		type;
+	uint32_t		data;
+	char			label[256];
+	size_t			size;
+}					t_instr_encode;
+
+/*
+ * brief    Instruction conversion
+ *
+ *			The conversion depends on the actual encode/decode
+ *			engine used.
+ *			ft_instruction_decode:
+ *				-> Conversion from BIG_ENDIAN to LITTLE_ENDIAN
+ *			ft_instruction_encode:
+ *				-> Conversion from LITTLE_ENDIAN to BIG_ENDIAN
+ */
+typedef union		u_instr_conv
+{
+	t_instr_decode	*decode;
+	t_instr_encode	*encode;
+}					t_instr_conv;
 
 /*
  * brief    Instruction struct is a copy of g_op_tab[n] with decoded data of
  * 			the target instruction
  *
- * +param	op			Instruction byte code (g_op_tab->numero)
- * +param	args		Instruction's argument array, allocated with nb_args
+ * +param	op			Instruction &g_op_tab[x];
+ * +param	args		Instruction's argument array, allocated with op->nb_args
  * +param	instr_size	Total size of the instruction
  */
 typedef struct		s_instr
 {
-	int				op;
-	char			*name;
-	char			*desc;
-	int				nb_cycles;
-	int				has_index;
-	size_t			nb_args;
-	t_instr_args	*args;
+	t_op			*op;
+	t_instr_conv	args;
 	size_t			instr_size;
 }					t_instr;
 
 /*
- * @brief 	Get instruction details from pc
+ * @brief 	Decode instruction from PC
+ * 
+ * 			That function assume PC is a pointer to a
+ * 			valide instruction code.
  */
-t_instr		*ft_instruction_get(void const *pc);
+t_instr		*ft_instruction_decode(void const *pc);
+
+/*
+ * @brief 	Encode instruction from a VALIDE line (ex: "live %10")
+ * 
+ *         	That function does not check any of lexical,
+ *         	syntaxical or semantical rules. It does only apply
+ *         	a `match' indexing.
+ */
+t_instr		*ft_instruction_encode(int argc, char **argv);
 
 /*
  * @brief	Delete instruction details

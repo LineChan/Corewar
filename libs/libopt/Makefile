@@ -6,7 +6,7 @@
 #    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/30 20:38:28 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/10/02 01:21:02 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,15 @@ SRCS 			:= sources
 DLIB 			:= $(CUR_PROJECT_PWD)/libs
 OBJS 			:= objs
 
-LIB  			:= 	""
+LIB  			:= 	libstr   \
+					liblist
 
 INCLUDES 		:= -I$(INCS)
-#INCLUDES 		+= $(shell echo "$(foreach i, $(shell echo "$(LIB)"), -I$(i)/$(INCS))")
-#LIBS 	 		:= $(shell echo "$(foreach i, $(shell echo "$(LIB)"), -L $(i) -$(shell basename $(i) | sed 's/lib/l/g'))")
+INCLUDES		+= -I$(DLIB)/libstr/$(INCS)
+INCLUDES		+= -I$(DLIB)/liblist/$(INCS)
+
+LIBS 	 		+= -L $(DLIB)/libstr/ -lstr
+LIBS 	 		+= -L $(DLIB)/liblist/ -llist
 
 # Search source files
 C_FILES			:= $(shell find $(SRCS) -type f)
@@ -57,18 +61,21 @@ all:
 	@make $(NAME)
 
 $(NAME): $(O_FILES)
-	$(foreach i,$(shell echo "$(LIB)"),make -C "$(i)";)
+	@make -C "$(DLIB)/libstr/";
+	@make -C "$(DLIB)/liblist/";
 	@ar rcs $@ $^ && $(PRINT_GREEN) $@ || exit
 
 $(OBJS)/%.o: %.c
 	@gcc $(C_FLAGS) $(INCLUDES) -o $@ -c $< && $(eval COUNT+=1) $(PRINT_RED) $< || exit
 
 clean:
-	$(foreach i,$(shell echo "$(LIB)"),make -C "$(i)" clean;)
+	@make -C "$(DLIB)/libstr/" clean;
+	@make -C "$(DLIB)/liblist/" clean;
 	@rm -rf $(O_FILES) $(OBJS) 2> /dev/null
 
 fclean: clean
-	$(foreach i,$(shell echo "$(LIB)"),make -C "$(i)" fclean;)
+	@make -C "$(DLIB)/libstr/" fclean;
+	@make -C "$(DLIB)/liblist/" fclean;
 	@rm -f $(NAME) $(TEST) 2> /dev/null
 
 re: fclean all

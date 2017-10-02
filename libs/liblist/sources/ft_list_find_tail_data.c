@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_option_add_rule.c                               :+:      :+:    :+:   */
+/*   ft_list_find_tail_data.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 02:07:48 by Zoellingam       ###   ########.fr       */
+/*   Created: 2015/04/02 10:47:07 by igomez            #+#    #+#             */
+/*   Updated: 2017/10/02 01:24:17 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_option.h"
-#include "ft_string.h"
-#include <stdlib.h>
+#include "ft_list.h"
 
-void	ft_option_add_rule(t_option *opt, char const *rule, t_option_key key)
+t_list	*ft_list_find_tail_data(t_list *head, void const *data,
+								int (*func)(t_list *, void const *))
 {
-	t_option_rule	*optrule;
+	t_list	*it;
 
-	optrule = (t_option_rule *)ft_calloc(1, sizeof(t_option_rule));
-	optrule->name = ft_strdup(rule);
-	optrule->key = key;
-	ft_list_add_tail(&optrule->list, &opt->rule_head);
+	it = head->prev;
+	while (it != head)
+	{
+		if (func(it, data))
+			return (it);
+		it = it->prev;
+	}
+	return (0);
 }

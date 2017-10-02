@@ -6,32 +6,26 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/29 17:26:10 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 02:08:01 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_option.h"
+#include "ft_string.h"
 #include <stdlib.h>
 
 static void	ft_option_insert(t_option *opt, char const *name, char const *data)
 {
-	int		i;
-
-	i = opt->option_count++ - 1;
-	opt->option_list = realloc(opt->option_list, opt->option_count);
-	while (i >= 0 && 0 < ft_option_compare(opt->option_list[i].name, name))
-	{
-		ft_option_copy(opt->option_list[i].name, opt->option_list[i + 1].name);
-		ft_option_copy(opt->option_list[i].data, opt->option_list[i + 1].data);
-		--i;
-	}
-	ft_option_copy(name, opt->option_list[i + 1].name);
-	ft_option_copy(data, opt->option_list[i + 1].data);
+	t_option_list	*node;
+	node = (t_option_list *)ft_memalloc(sizeof(t_option_list));
+	node->name = ft_strdup(name);
+	node->data = ft_strdup(data);
+	ft_list_add_tail(&node->list, &opt->option_head);
 }
 
-static int	ft_option_rule(t_option *opt, int ac, size_t rule, char const *sub)
+static int	ft_option_rule(t_option *opt, int ac, t_option_key key, char const *sub)
 {
-	if (opt->rule_list[rule].key == OPTION_KEY_BOOL)
+	if (key == OPTION_KEY_BOOL)
 	{
 		ft_option_insert(opt, opt->argv[ac], "true");
 		return (1);
@@ -49,28 +43,28 @@ static int	ft_option_rule(t_option *opt, int ac, size_t rule, char const *sub)
 
 static int	ft_option_parse_rule(t_option *opt, int ac)
 {
-	size_t	i;
+	t_list	*it;
 	size_t	len;
 	char	*arg;
 	char	*sub;
 
-	i = 0;
 	sub = 0;
-	while (i < opt->rule_count)
+	it = opt->rule_head.next;
+	while (it != &opt->rule_head)
 	{
 		arg = opt->argv[ac];
-		len = ft_option_size(opt->rule_list[i].name);
-		if (ft_option_size(arg) > len && '=' == arg[len])
+		len = ft_strlen(C_RULE(it)->name);
+		if (ft_strlen(arg) > len && '=' == arg[len])
 		{
 			arg[len] = 0;
 			sub = arg + len + 1;
 		}
-		if (0 == ft_option_compare(arg, opt->rule_list[i].name))
-			return (ft_option_rule(opt, ac, i, sub));
+		if (0 == ft_strcmp(arg, C_RULE(it)->name))
+			return (ft_option_rule(opt, ac, C_RULE(it)->key, sub));
 		if (0 != sub)
 			arg[len] = '=';
+		it = it->next;
 		sub = 0;
-		++i;
 	}
 	return (0);
 }
@@ -88,7 +82,7 @@ void		ft_option_parse(t_option *opt)
 		rule_jmp = ft_option_parse_rule(opt, ac);
 		if (0 == rule_jmp)
 			break ;
-		if (0 == ft_option_compare("--", opt->argv[ac]))
+		if (0 == ft_strcmp("--", opt->argv[ac]))
 		{
 			++ac;
 			break ;

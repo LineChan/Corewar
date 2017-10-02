@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/08/12 17:03:45 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 01:08:20 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
  * @return     ft_memalloc return a valid memory area cleared, or NULL.
  */
 void    	*ft_memalloc(size_t size);
+void		*ft_calloc(size_t nb, size_t size);
 
 /**
  * @brief      Erase pointer and reset to 0
