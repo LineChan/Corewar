@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 01:08:20 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/03 13:21:13 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@
 # define DETECTCHAR(x, y)	(DETECTNULL((x) ^ (y)))
 
 /**
- * \brief   Convert a byte to LIBSTR_TYPE. So 0x1a is converted to 0x1a1a1a1a
+ * \brief   Convert a byte to a LIBSTR_TYPE.
+ * 			0x1a is converted to 0x1a1a1a1a
  */
 # define LIBSTR_WORD(x)		((x) | ((x) << 8) | ((x) << 16) | ((x) << 24))
 
@@ -60,6 +61,8 @@
  */
 void    	*ft_memalloc(size_t size);
 void		*ft_calloc(size_t nb, size_t size);
+
+# define ALLOC(t, n)	(t *)ft_calloc((n), sizeof(t))
 
 /**
  * @brief      Erase pointer and reset to 0

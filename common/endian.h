@@ -6,41 +6,49 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/01 15:59:39 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/03 13:39:21 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENDIAN_H
 # define ENDIAN_H
 
+# include <stdint.h>
+# include <stddef.h>
+
 /*
  * brief	True if arch is big endian
  */
-# define IS_BIG_ENDIAN		(*(unsigned short *)"\0\xff" < 0x100)
+# define IS_BIG_ENDIAN		(*(uint16_t *)"\0\xff" < 0x100)
 
 /*
- * brief	True is arch is little endian
+ * brief	True if arch is little endian
  */
 # define IS_LITTLE_ENDIAN	!IS_BIG_ENDIAN
 
 /*
- * brief    Bytes swap for unsigned short
+ * brief	Convert data to *buf as 1, 2, or 4 bytes type.
  */
-unsigned short				ft_endian_convert_uint16(unsigned short val);
+void        ft_endian_apply_conversion(void *buf, uint32_t data, size_t n);
 
 /*
- * brief    Bytes swap for signed short
+ * brief    Bytes swap for int16_t
  */
-signed short				ft_endian_convert_int16(signed short val);
+int16_t		ft_endian_convert_int16(int16_t val);
 
 /*
- * brief    Bytes swap for unsigned int
+ * brief    Bytes swap for uint16_t
  */
-unsigned int				ft_endian_convert_uint32(unsigned int val);
+uint16_t	ft_endian_convert_uint16(uint16_t val);
 
 /*
- * brief    Bytes swap for signed short
+ * brief    Bytes swap for int32_t
  */
-signed int					ft_endian_convert_int32(signed int val);
+int32_t		ft_endian_convert_int32(int32_t val);
+
+/*
+ * brief    Bytes swap for uint32_t
+ */
+uint32_t	ft_endian_convert_uint32(uint32_t val);
 
 #endif

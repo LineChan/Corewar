@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 01:09:45 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/03 21:42:36 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 #include "ft_string.h"
 #include "ft_printf.h"
 
-static const uint8_t	g_direct_jump_table_from_instr[] =
-{
-	0, 4, 4, -1, -1, -1, 4, 4, 4, 2, 2, 2, 2, 2, 2, 2, -1
-};
+extern uint8_t	g_direct_jump_table_from_instr[17];
 
 static int	ft_instruction_get_data(size_t size, uint8_t *pc)
 {
@@ -69,6 +66,8 @@ t_instr			*ft_instruction_decode(void const *pc)
 
 	idx = (uint8_t *)pc;
 	st = (t_instr *)ft_calloc(1, sizeof(t_instr));
+	st->type = INSTR_DECODE;
+	st->bytecode = idx[1];
 	st->op = &g_op_tab[*idx];
 	st->args.decode = (t_instr_decode *)ft_calloc(st->op->nb_args, sizeof(0[st->args.decode]));
 	if (0 == st->op->param_byte)
