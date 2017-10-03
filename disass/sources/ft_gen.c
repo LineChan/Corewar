@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 00:44:23 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 00:41:29 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void		ft_gen(t_disass *dsm)
 	t_list 			*it_instr;
 	t_instr_node	*ist;
 
-	dsm->verbose.gen_in = clock();
+	ft_timer_start(&dsm->benchmark[2]);
 	/* Print header */
 	ft_fprintf(dsm->fd_out, "%s\t\t\"%s\"\n", NAME_CMD_STRING, dsm->header.prog_name);
 	ft_fprintf(dsm->fd_out, "%s\t\"%s\"\n", COMMENT_CMD_STRING, dsm->header.comment);
@@ -87,5 +87,5 @@ void		ft_gen(t_disass *dsm)
 	}
 	/* Signature */
 	ft_fprintf(dsm->fd_out, "\n; generated ;");
-	dsm->verbose.gen_out = clock();
+	ft_timer_stop(&dsm->benchmark[2]);
 }

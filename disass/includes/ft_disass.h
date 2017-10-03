@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 00:43:55 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 00:40:52 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 # include "instruction.h"
 # include "endian.h"
+# include "timer.h"
 # include "ft_option.h"
 # include "ft_string.h"
 # include "ft_printf.h"
 # include "ft_list.h"
-# include <time.h>
 
 # ifdef DEBUG
 #  define DEBUG_MODE 1
@@ -33,21 +33,6 @@
 # ifndef EXIT_SUCCESS
 #  define EXIT_SUCCESS 0
 # endif
-
-/*
- * @brief      Benchmark structur
- * 
- * 			   Calcul: (out - in) / CLOCK_PER_SECOND
- */
-typedef struct		s_verbose
-{
-	clock_t			disass_in;
-	clock_t			disass_out;
-	clock_t			label_in;
-	clock_t			label_out;
-	clock_t			gen_in;
-	clock_t			gen_out;
-}					t_verbose;
 
 /*
  * brief       Label structure
@@ -102,7 +87,7 @@ typedef struct		s_instr_node
 typedef struct		s_disass
 {
 	t_option		*opt;
-	t_verbose		verbose;
+	t_timer			benchmark[3];
 	int				fd_in;
 	int				fd_out;
 	t_header		header;

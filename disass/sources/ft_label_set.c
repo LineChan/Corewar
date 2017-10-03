@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 01:12:12 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 00:41:36 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,12 +133,12 @@ static void		ft_label_reach(t_disass *dsm)
 
 void			ft_label_set(t_disass *dsm)
 {
-	dsm->verbose.label_in = clock();
+	ft_timer_start(&dsm->benchmark[1]);
 	/* Create first label at position 0 */
 	ft_create_label(dsm, 0, 1);
 	/* 1st pass: creates labels from T_DIR */
 	ft_label_build(dsm);
 	/* 2nd pass: check if data refers to an existant label */
 	ft_label_reach(dsm);
-	dsm->verbose.label_out = clock();
+	ft_timer_stop(&dsm->benchmark[1]);
 }

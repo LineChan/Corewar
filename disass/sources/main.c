@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 02:15:42 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 00:40:34 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,9 @@ int			main(int argc, char **argv)
 	ft_gen(&dsm);
 	if (0 != ft_option_find(dsm.opt, "--benchmark"))
 	{
-		ft_printf("Disassembler:   %f\n",
-			TIMER(dsm.verbose.disass_in, dsm.verbose.disass_out));
-		ft_printf("Label Builder:  %f\n",
-			TIMER(dsm.verbose.label_in, dsm.verbose.label_out));
-		ft_printf("Code generator: %f\n",
-			TIMER(dsm.verbose.gen_in, dsm.verbose.gen_out));
+		ft_printf("Disassembler:   %f\n", ft_timer_diff(&dsm.benchmark[0]));
+		ft_printf("Label Builder:  %f\n", ft_timer_diff(&dsm.benchmark[1]));
+		ft_printf("Code generator: %f\n", ft_timer_diff(&dsm.benchmark[2]));
 	}
 	ft_disass_del(&dsm);
 	ft_printf("SUCCESS\n");
