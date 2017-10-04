@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_label_set.c                                     :+:      :+:    :+:   */
+/*   ft_disass_label.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 00:41:36 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 08:36:05 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_disass.h"
+#include "ft_string.h"
 
 /*
 ** Safe compare function that handle overflow
@@ -131,7 +132,7 @@ static void		ft_label_reach(t_disass *dsm)
 	ft_list_insertsort(&dsm->label_head, &ft_sort_label);
 }
 
-void			ft_label_set(t_disass *dsm)
+void			ft_disass_label(t_disass *dsm)
 {
 	ft_timer_start(&dsm->benchmark[1]);
 	/* Create first label at position 0 */

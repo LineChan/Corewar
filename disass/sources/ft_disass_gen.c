@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gen.c                                           :+:      :+:    :+:   */
+/*   ft_disass_gen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 00:41:29 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 08:34:52 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_disass.h"
+#include "ft_printf.h"
+#include "ft_string.h"
 
-static void	ft_gen_label(t_disass *dsm, t_instr_node *ist)
+static void	ft_disass_gen_label(t_disass *dsm, t_instr_node *ist)
 {
 	t_list	*it;
 
@@ -30,7 +32,7 @@ static void	ft_gen_label(t_disass *dsm, t_instr_node *ist)
 	}
 }
 
-static void	ft_gen_instr(t_disass *dsm, t_instr_node *ist)
+static void	ft_disass_gen_instr(t_disass *dsm, t_instr_node *ist)
 {
 	int	i;
 
@@ -65,7 +67,7 @@ static void	ft_gen_instr(t_disass *dsm, t_instr_node *ist)
 	}
 }
 
-void		ft_gen(t_disass *dsm)
+void		ft_disass_gen(t_disass *dsm)
 {
 	t_list 			*it_instr;
 	t_instr_node	*ist;
@@ -80,9 +82,9 @@ void		ft_gen(t_disass *dsm)
 	{
 		ist = C_INSTR(it_instr);
 		/* Check if a label exist at the instruction position */
-		ft_gen_label(dsm, ist);
+		ft_disass_gen_label(dsm, ist);
 		/* Print the current instruction */
-		ft_gen_instr(dsm, ist);
+		ft_disass_gen_instr(dsm, ist);
 		it_instr = it_instr->next;
 	}
 	/* Signature */

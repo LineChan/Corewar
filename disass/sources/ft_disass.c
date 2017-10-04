@@ -6,11 +6,14 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 00:41:20 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 08:29:15 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_disass.h"
+#include "ft_printf.h"
+#include "ft_string.h"
+#include "endian.h"
 #include <unistd.h>
 
 /*

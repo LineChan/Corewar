@@ -6,11 +6,12 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/02 02:09:48 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 08:29:38 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_disass.h"
+#include "ft_string.h"
 #include <unistd.h>
 
 static void	ft_disass_del_label(t_list *it)

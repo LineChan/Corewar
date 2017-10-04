@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 00:40:52 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 08:36:47 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 # define FT_DISASS_H
 
 # include "instruction.h"
-# include "endian.h"
 # include "timer.h"
+
 # include "ft_option.h"
-# include "ft_string.h"
-# include "ft_printf.h"
 # include "ft_list.h"
 
 # ifdef DEBUG
@@ -106,6 +104,14 @@ typedef struct		s_disass
 void				ft_disass(t_disass *dsm);
 
 /*
+ * brief	Init disassembler engine
+ * 			- Parse option
+ * 			- Init source stream
+ * 			- Init destination stream
+ */
+int					ft_disass_init(t_disass *dsm, int argc, char **argv);
+
+/*
  * brief	Delete disass structure
  */
 void				ft_disass_del(t_disass *dsm);
@@ -119,11 +125,11 @@ void				ft_disass_del(t_disass *dsm);
  * 			  refer to a position where label already exist.
  *      	This has a simplified complexity of O(2n)
  */
-void				ft_label_set(t_disass *dsm);
+void				ft_disass_label(t_disass *dsm);
 
 /*
  * brief	Generate destination file
  */
-void				ft_gen(t_disass *dsm);
+void				ft_disass_gen(t_disass *dsm);
 
 #endif
