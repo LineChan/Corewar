@@ -1,3 +1,19 @@
+# Roadmap
+- [ ] Week #1
+  - [ ] Etude des problématiques
+  - [ ] Etude des solutions
+  - [ ] Partage des tâches
+  - [ ] Developpement des librairies
+    - [x] **libstr** - This library implements almost all functions of *string.h* and *stdlib.h* headers. It is thought to be faster than naives replacements findable everywhere. It also implements a *std::string* like structure. No dependency.
+    - [x] **libctype** - It implements every functions of *ctype.h*. It is garanted to be fast, using lookup-tables. No dependency.
+    - [x] **liblist** - Higly inspired from [*Linux*](https://github.com/torvalds/linux/blob/master/include/linux/list.h) source code. It implements a type oblivious, easy-to-use, doubly circularly linked list. Efficient and portable, whenever we needs a list we rely on it strung up any data structure we have. No dependency.
+    - [ ] **libopt** - Still not okay with the current result of this library. It is functionnal but the implementation is soft and performanceless. Dependencies:
+      - libstr
+      - libctype
+    - [x] **libprintf** - This is a full printf replacement that supports everything that the C(89) runtime printf support, including float/double, 64-bit integers, field parameters (%*.*d stuff), etc. It also support %b (binary), %k (date), %r ([roman numerals](https://en.wikipedia.org/wiki/Roman_numerals)), and %a (adresses) conversions. Dependencies:
+      - libstr
+      - libctype
+
 # Corewar
 
 The Canadian mathematician [Alexander Keewatin Dewdney](https://en.wikipedia.org/wiki/Alexander_Dewdney) (author of "The Planiverse") first
@@ -53,24 +69,6 @@ This is the program that will compile our champion and translate it to *Bytecode
 | T_REG | **r** | 0b01 | 1 byte |
 | T_DIR | **%** | 0b10 | 2 bytes or 4 bytes |
 | T_IND | **%** or Value | 0b11 | 2 bytes |
-
-Project
-=======
-- [ ] [**utilities**](common/)
-  - [x] op
-  - [x] endian
-  - [x] instruction decoder
-  - [ ] instruction encoder
-- [x] [**libs**](libs/)
-  - [x] [**libctype**](libs/libctype/)
-  - [x] [**liblist**](libs/liblist/)
-  - [x] [**libstr**](libs/libstr/)
-  - [x] [**libopt**](libs/libopt/)
-  - [x] [**libprintf**](libs/libprintf/)
-- [ ] [**Assembler**](asm/)
-- [ ] [**Virtual Machine**](vm/)
-- [x] [**Disassembler (bonus)**](disass/) 100% working on zaz asm.
-- [ ] Graphical User Interface
 
 Credits
 =======
