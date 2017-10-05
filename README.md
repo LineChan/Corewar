@@ -8,7 +8,7 @@
     - [x] **libctype** - It implements every functions of *ctype.h*. It is garanted to be fast, using lookup-tables. No dependency.
     - [x] **liblist** - Higly inspired from [*Linux*](https://github.com/torvalds/linux/blob/master/include/linux/list.h). It implements a type oblivious, easy-to-use, doubly circularly linked list. Efficient and portable, whenever we needs a list we rely on, it strung up any data structure we have. No dependency.
     - [ ] **libopt** - Still not okay with the current result of this library. It is functionnal but the implementation is soft and performanceless. Dependencies: libstr, libctype
-    - [x] **libprintf** - This is a full printf replacement that supports everything that the C(89) runtime printf support, including float/double, 64-bit integers, field parameters (%*.*d stuff), etc. It also support %b (binary), %k (date), %r ([roman numerals](https://en.wikipedia.org/wiki/Roman_numerals)), and %a (adresses) conversions. Dependencies: libstr, libctype
+    - [x] **libprintf** - This is a full printf replacement that supports everything that the C(89) runtime printf support, including float/double, 64-bit integers, field parameters (%*.*d stuff), etc. It also support %b (binary), %t (date), %k (boolean), %r ([roman numerals](https://en.wikipedia.org/wiki/Roman_numerals)), and %a (adresses) conversions. Dependencies: libstr, libctype
 
 # Corewar
 
