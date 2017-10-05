@@ -6,7 +6,7 @@
   - [ ] Developpement des librairies
     - [x] **libstr** - This library implements almost all functions of *string.h* and *stdlib.h* headers. It is thought to be faster than naives replacements findable everywhere. It also implements a *std::string* like structure. No dependency.
     - [x] **libctype** - It implements every functions of *ctype.h*. It is garanted to be fast, using lookup-tables. No dependency.
-    - [x] **liblist** - Higly inspired from [*Linux*](https://github.com/torvalds/linux/blob/master/include/linux/list.h) source code. It implements a type oblivious, easy-to-use, doubly circularly linked list. Efficient and portable, whenever we needs a list we rely on, it strung up any data structure we have. No dependency.
+    - [x] **liblist** - Higly inspired from [*Linux*](https://github.com/torvalds/linux/blob/master/include/linux/list.h). It implements a type oblivious, easy-to-use, doubly circularly linked list. Efficient and portable, whenever we needs a list we rely on, it strung up any data structure we have. No dependency.
     - [ ] **libopt** - Still not okay with the current result of this library. It is functionnal but the implementation is soft and performanceless. Dependencies:
       - libstr
       - libctype
