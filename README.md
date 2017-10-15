@@ -1,43 +1,30 @@
-# Roadmap
-- [ ] Week #1
-  - [ ] Etude des problématiques
-  - [ ] Etude des solutions
-  - [ ] Partage des tâches
-  - [ ] Developpement des librairies
-    - [x] **libstr** - This library implements almost all functions of *string.h* and *stdlib.h* headers. It is thought to be faster than naives replacements findable everywhere. It also implements a *std::string* like structure. No dependency.
-    - [x] **libctype** - It implements every functions of *ctype.h*. It is garanted to be fast, using lookup-tables. No dependency.
-    - [x] **liblist** - Higly inspired from [*Linux*](https://github.com/torvalds/linux/blob/master/include/linux/list.h). It implements a type oblivious, easy-to-use, doubly circularly linked list. Efficient and portable, whenever we needs a list we rely on, it strung up any data structure we have. No dependency.
-    - [ ] **libopt** - Still not okay with the current result of this library. It is functionnal but the implementation is soft and performanceless. Dependencies: libstr, libctype
-    - [x] **libprintf** - This is a full printf replacement that supports everything that the C(89) runtime printf support, including float/double, 64-bit integers, field parameters (%*.*d stuff), etc. It also support %b (binary), %t (date), %k (boolean), %r ([roman numerals](https://en.wikipedia.org/wiki/Roman_numerals)), and %a (adresses) conversions. Dependencies: libstr, libctype
+# CoreWar
+* [Subject](#subject)
+* [Method](#method)
+* [Help](#help)
 
-# Corewar
+Project's follow up on [Trello](https://trello.com/b/yPI1DAHV/corewar).
+
+# Subject   :pushpin:
 
 The Canadian mathematician [Alexander Keewatin Dewdney](https://en.wikipedia.org/wiki/Alexander_Dewdney) (author of "The Planiverse") first
 introduced [Corewar](http://en.wikipedia.org/wiki/Core_War) in a series of Scientific American articles
 starting in 1984.
 
-> Core War was inspired by a story I heard some years ago about a mischievous
-> programmer at a large corporate research laboratory I shall designate X. The
-> programmer wrote an assembly-language program called Creeper that would
-> duplicate itself every time it was run. It could also spread from one
-> computer to another in the network of the X corporation. The program had no
-> function other than to perpetuate itself. Before long there were so many
-> copies of Creeper that more useful programs and data were being crowded out.
-> The growing infestation was not brought under control until someone thought
-> of fighting fire with fire. A second self-duplicating program called Reaper
-> was written.  Its purpose was to destroy copies of Creeper until it could
-> find no more and then to destroy itself. Reaper did its job, and things were
-> soon back to normal at the X lab.
-
 In this game, computer programs (called "Warriors") compete in a virtual arena
 for digital supremacy. Warriors are written in a simple Assembly dialect inspired
-from "Redcode".
+from "Redcode". 
+The arena is an enclosed system, once the Warriors are loaded into memory at a random location, each one execute one instruction in turn. The goal is to cause the processes of opposing programs to terminate so the winner is the last one to have a surviving process.
 
 ## Virtual Machine
-It is the *arena* in which our champion will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine should allow for numerous simultaneous processes. This virtual machine is known as a Memory Array Redcode Simulator.
+
+It is the *arena* where Warrior engage in combat. Obviously, the virtual machine, also know as Memory Array Redcode Simulator (*MARS*), is able to run severel processes simultaneously. 
+
+----> (work in progress) It has a process queue for each program. They all start with one process, and new processes may be added to the queue with specific instructions.
 
 ## Assembler
-This is the program that will compile our champion and translate it to *Bytecode*. This Bytecode will be directly interpreted by the Virtual Machine.
+This is the program that will compile our champion (.s extension) and translate it to *Bytecode* (.cor extension). This Bytecode will be directly interpreted by the Virtual Machine.
+
 
 ### Instructions
 | OpName | OpCode  | Arg1 | Arg2 | Arg3 | Description | Carry | Cycles |
@@ -66,7 +53,16 @@ This is the program that will compile our champion and translate it to *Bytecode
 | T_DIR | **%** | 0b10 | 2 bytes or 4 bytes |
 | T_IND | **%** or Value | 0b11 | 2 bytes |
 
-Credits
+### Libraries :books:
+- [x] **libstr** - Contains most of the functions from *string.h* and *stdlib.h*. It is thought to be faster than naives replacements findable everywhere. It also implements a *std::string* like structure.
+- [x] **libctype** - It implements every functions of *ctype.h*. It is garanted to be fast, using lookup-tables.
+- [x] **liblist** - Higly inspired from [*Linux-like linked lists*](https://github.com/torvalds/linux/blob/master/include/linux/list.h). It implements a type oblivious, easy-to-use, doubly circularly list.
+- [ ] **libopt** - Still not okay with the current result of this library. It is functionnal but the implementation is soft and performanceless. *Dependencies*: libstr, libctype *(description:  work in progress)*.
+- [x] **libprintf** - replaces the C(89) printf. Supports : 64-bit integers, float/double, field parameters
+	- *bonus* : binary and adresses conversions (%b and %a), time (%t), boolean (%k), [roman numerals](https://en.wikipedia.org/wiki/Roman_numerals) (%r). *Dependencies* : libstr, libctype.
+
+# Help
+# Credits
 =======
 - *[42 profile](https://profile.intra.42.fr/users/mvillemi) - [Linkedin](https://www.linkedin.com/in/mai-line-villemin-549773a5/) - [Github](https://github.com/LineChan)* - Villemin Mai Line
 - *[42 profile](https://profile.intra.42.fr/users/frenaud) - [Linkedin](https://www.linkedin.com/in/f%C3%A9licien-renaud-0bb691131/) - [Github](https://github.com/Hohenfels)* - Renaud Félicien
