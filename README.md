@@ -11,14 +11,14 @@ The Canadian mathematician [Alexander Keewatin Dewdney](https://en.wikipedia.org
 introduced [Corewar](http://en.wikipedia.org/wiki/Core_War) in a series of Scientific American articles
 starting in 1984.
 
-In this game, computer programs (called "Warriors") compete in a virtual arena
+In this game, computer programs (called *Warriors*) compete in a virtual arena
 for digital supremacy. Warriors are written in a simple Assembly dialect inspired
-from "Redcode". 
-The arena is an enclosed system, once the Warriors are loaded into memory at a random location, each one execute one instruction in turn. The goal is to cause the processes of opposing programs to terminate so the winner is the last one to have a surviving process.
+from *Redcode*. 
+The arena is an enclosed system, once Warriors are loaded into memory at a random location, each one execute one instruction in turn. The goal is to cause the processes of opposing programs to terminate. The winner is the last one to have a surviving process.
 
 ## Virtual Machine
 
-It is the *arena* where Warrior engage in combat. Obviously, the virtual machine, also know as Memory Array Redcode Simulator (*MARS*), is able to run severel processes simultaneously. 
+It is the *arena* where Warriors engage in combat. Obviously, the virtual machine, also know as Memory Array Redcode Simulator (*MARS*), is able to run several processes simultaneously. 
 
 ----> (work in progress) It has a process queue for each program. They all start with one process, and new processes may be added to the queue with specific instructions.
 
