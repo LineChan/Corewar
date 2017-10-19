@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_option.c                                        :+:      :+:    :+:   */
+/*   ft_vm_option.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 00:47:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/19 01:42:48 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/19 19:25:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-t_option    *ft_option(int option[], int ac, char **av)
+t_option    *ft_vm_option(int option[], int ac, char **av)
 {
   char        *tmp;
   t_option    *opt;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
+#    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/10/02 01:20:27 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/10/19 19:04:54 by mvillemi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ C_DIRS			+= $(COMN)
 ifeq ($(DEBUG),1)
 C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror -std=c89 -pedantic
 else
-C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror -std=c89 -pedantic
+C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror
 endif
 
 # Build .o files

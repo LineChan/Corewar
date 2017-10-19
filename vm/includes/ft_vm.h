@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/19 01:33:51 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/19 19:25:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 ** Personnal Libraries
 */
 
+# include "op.h"
+# include "macro.h"
 # include "ft_option.h"
 # include "ft_printf.h"
-# include "macro.h"
 # include "ft_ctype.h"
 # include "ft_string.h"
 
@@ -41,10 +42,20 @@
 # endif
 
 /*
+** Structures
+*/
+
+typedef struct      s_vm
+{
+    char            arena[MEM_SIZE + 1];
+}                   t_vm;
+
+/*
 ** Prototype
 */
 
 int         ft_atoi(char *str);
-t_option    *ft_option(int option[], int ac, char **av);
+
+t_option    *ft_vm_option(int option[], int ac, char **av);
 
 #endif
