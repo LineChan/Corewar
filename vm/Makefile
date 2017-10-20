@@ -6,7 +6,7 @@
 #    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/10/19 19:04:54 by mvillemi         ###   ########.fr        #
+#    Updated: 2017/10/20 00:06:01 by mvillemi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ C_DIRS			+= $(COMN)
 
 # Add to C_FLAGS
 ifeq ($(DEBUG),1)
-C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror -std=c89 -pedantic
+C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror
 else
 C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror
 endif
