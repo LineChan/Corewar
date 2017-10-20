@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/20 00:49:33 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/04 08:37:39 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ static int	ft_usage(void)
 
 static int	ft_init_stream(t_disass *dsm)
 {
-	char	**file;
+	char	*file;
 	int		norme;
 
 	if (0 != ft_option_find(dsm->opt, "--help"))
 		return (ft_usage());
 	norme = O_WRONLY | O_CREAT;
 	if (0 != (file = ft_option_find(dsm->opt, "--source")))
-		if (-1 != (dsm->fd_in = open(*file, O_RDONLY)))
+		if (-1 != (dsm->fd_in = open(file, O_RDONLY)))
 			if (0 != (file = ft_option_find(dsm->opt, "--dest")))
-				if (-1 == access(*file, F_OK))
-					if (-1 != (dsm->fd_out = open(*file, norme, 0644)))
+				if (-1 == access(file, F_OK))
+					if (-1 != (dsm->fd_out = open(file, norme, 0644)))
 						return (EXIT_SUCCESS);
 					else
 						ft_fprintf(ft_stderr, "Can't open dest file\n");

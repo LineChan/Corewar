@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/20 00:47:34 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 02:04:18 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@
 typedef struct		s_option_list
 {
 	char			*name;
-	size_t			nb_data;
-	char			**data;
+	char			*data;
 	t_list			list;
 }					t_option_list;
 
@@ -111,10 +110,9 @@ void				ft_option_add_rule(t_option *opt, char const *rule, t_option_key key);
  * @param 		opt	Option struct
  * @param 		option_name Name of the option we want the value
  *
- * @return     ft_option_find the valid founded data as a
- *             table NULL terminated, or NULL.
+ * @return     ft_option_find the valid founded data, or NULL.
  */
-char				**ft_option_find(t_option *opt, char const *option_name);
+char				*ft_option_find(t_option *opt, char const *option_name);
 
 /**
  * @brief      Argument parser

@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/20 01:04:51 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 02:07:45 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@ static void	ft_option_del_rule(t_list *it)
 static void	ft_option_del_opt(t_list *it)
 {
 	t_option_list	*node;
-	size_t			i;
 
 	node = C_OPTION(it);
 	ft_strdel(&node->name);
-	i = 0;
-	while (i < node->nb_data)
-		ft_strdel(&node->data[i++]);
-	ft_memdel((void **)node->data);
+	ft_strdel(&node->data);
 	ft_memdel((void **)&node);
 }
 
