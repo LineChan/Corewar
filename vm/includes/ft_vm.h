@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/20 16:30:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/20 19:13:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "ft_printf.h"
 # include "ft_ctype.h"
 # include "ft_string.h"
+# include "get_next_line.h"
 
 /*
 ** Macros
@@ -64,6 +65,6 @@ typedef struct		s_champion
 int         ft_atoi(char *str);
 
 t_option    *ft_vm_option(int option[6], int ac, char **av);
-void        ft_vm_parse_champion(int option[6], int ac, char **av);
+void        ft_vm_parse_champion(int option[6], char **av);
 
 #endif

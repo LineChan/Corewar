@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
+#    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/22 00:19:22 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/10/20 19:14:02 by mvillemi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ C_FILES			:= $(shell find $(SRCS) -type f)
 C_DIRS		 	:= $(shell find $(SRCS) -type d)
 
 # Add to C_FLAGS
-C_FLAGS		 	+= -MMD -g -Wall -Wextra -Werror -std=c89 -pedantic
+C_FLAGS		 	+= -MMD -g -Wall -Wextra -Werror
 
 # Build .o files
 O_DIRS			:= $(addprefix $(OBJS)/,$(C_DIRS))
