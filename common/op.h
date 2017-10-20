@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zaz <zaz@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2017/10/19 19:02:07 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/09/24 22:45:43 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,22 @@ typedef char	t_arg_type;
 
 typedef struct		s_header
 {
-	unsigned int		magic;
-	char						prog_name[PROG_NAME_LENGTH + 1];
-	unsigned int				prog_size;
-	char						comment[COMMENT_LENGTH + 1];
-}									t_header;
+	unsigned int	magic;
+	char			prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int	prog_size;
+	char			comment[COMMENT_LENGTH + 1];
+}					t_header;
 
 typedef struct		s_op
 {
-	char						*name;
-	int							nb_args;
-	t_arg_type			arg_types[MAX_ARGS_NUMBER];
-	int							numero;
-	int							nb_cycles;
-	char						*description;
-	int							param_byte;
-	int							has_index;
-}									t_op;
+	char			*name;
+	int				nb_args;
+	t_arg_type		arg_types[MAX_ARGS_NUMBER];
+	int				numero;
+	int				nb_cycles;
+	char			*description;
+	int				param_byte;
+	int				has_index;
+}					t_op;
 
 #endif
