@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/11 23:11:12 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/20 01:04:38 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/10/02 02:08:01 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,12 @@
 #include "ft_string.h"
 #include <stdlib.h>
 
-static void	ft_option_update(t_option_list *node, char const *data)
-{
-	char	**tmp;
-	size_t	i;
-
-	tmp = (char **)ft_memalloc((node->nb_data + 2u) * sizeof(char *));
-	i = 0;
-	while (i < node->nb_data)
-	{
-		tmp[i] = node->data[i];
-		++i;
-	}
-	tmp[i] = ft_strdup(data);
-	tmp[i + 1] = 0;
-	free(node->data);
-	node->data = tmp;
-	++node->nb_data;
-}
-
 static void	ft_option_insert(t_option *opt, char const *name, char const *data)
 {
 	t_option_list	*node;
-	t_list			*it;
-
-	it = opt->option_head.next;
-	while (it != &opt->option_head)
-	{
-		node = C_OPTION(it);
-		if (0 == ft_strcmp(node->name, name))
-		{
-			ft_option_update(node, data);
-			return ;
-		}
-		it = it->next;
-	}
 	node = (t_option_list *)ft_memalloc(sizeof(t_option_list));
 	node->name = ft_strdup(name);
-	node->nb_data = 1;
-	node->data = (char **)ft_memalloc((node->nb_data + 1u) * sizeof(char *));
-	node->data[0] = ft_strdup(data);
-	node->data[1] = 0;
+	node->data = ft_strdup(data);
 	ft_list_add_tail(&node->list, &opt->option_head);
 }
 

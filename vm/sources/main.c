@@ -3,30 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/01 22:28:35 by Zoellingam       ###   ########.fr       */
+/*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
+/*   Updated: 2017/10/20 00:05:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_option.h"
-#include "ft_printf.h"
 
-int main(int argc, char **argv)
+int main(int ac, char **av)
 {
+	int				option[3];
 	t_option	*opt;
+	t_vm		vm;
 
-	if (DEBUG_MODE)
-		ft_fprintf(ft_stderr, "DEBUG ON\n");
-	else
-		ft_fprintf(ft_stderr, "DEBUG OFF\n");
-	opt = ft_option_new(argc, argv);
-	ft_option_add_rule(opt, "--help", OPTION_KEY_BOOL);
-	ft_option_parse(opt);
-	if (0 != ft_option_find(opt, "--help"))
-		ft_fprintf(ft_stdout, "Usage: %s [--help]\n", argv[0]);
+	opt = ft_vm_option(option, ac, av);
 	ft_option_del(&opt);
 	return (EXIT_SUCCESS);
 }
