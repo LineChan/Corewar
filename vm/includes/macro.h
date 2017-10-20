@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:44 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/19 01:09:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/20 16:47:36 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define SWAP(x,y) (x ^= y ^= x ^= y)
 # define ABS(x) ((x + (x >> MASK_SIGN)) ^ (x >> MASK_SIGN))
 # define SIZEOF_TAB(x) (sizeof(x)/sizeof(x[0]))
-# define EXIT_FAIL(x) ft_printf("{RED:%s}\n",x), exit(EXIT_FAILURE)
+# define EXIT_FAIL(x) ft_printf("{red:%s}\n",x), exit(EXIT_FAILURE)
 
 /*
 ** Returns 1 if a and b have opposite signs

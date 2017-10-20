@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/20 00:05:13 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/20 16:30:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,20 @@ typedef struct      s_vm
     char            arena[MEM_SIZE + 1];
 }                   t_vm;
 
+#if 0
+typedef struct		s_champion
+{
+
+}
+#endif
+
 /*
 ** Prototype
 */
 
 int         ft_atoi(char *str);
 
-t_option    *ft_vm_option(int option[], int ac, char **av);
+t_option    *ft_vm_option(int option[6], int ac, char **av);
+void        ft_vm_parse_champion(int option[6], int ac, char **av);
 
 #endif
