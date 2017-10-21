@@ -6,18 +6,18 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 00:47:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/20 19:14:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/21 18:23:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-t_option    *ft_vm_option(int option[6], int ac, char **av)
+t_option    *ft_vm_option(int option[], int ac, char **av)
 {
   char        **tmp;
   t_option    *opt;
 
-  ft_memset((void *)option, '\0', sizeof(int) * 6);
+  ft_memset((void *)option, '\0', sizeof(int) * OPTION_MAX);
   opt = ft_option_new(ac, av);
   ft_option_add_rule(opt, "--help", OPTION_KEY_BOOL);
   ft_option_add_rule(opt, "-dump", OPTION_KEY_STRING);

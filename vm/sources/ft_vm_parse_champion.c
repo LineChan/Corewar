@@ -6,19 +6,22 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/20 19:13:56 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/21 16:50:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include <fcntl.h>
 
-/*
-** Open a champion file and attribute an order in the queue list
-** 1st parameter : option
-** 2nd parameter : list of arguments
-*/
-void ft_vm_parse_champion(int option[6], char **av)
+/**
+ * \fn void ft_vm_parse_champion (int option[], char **av)
+ * \brief Parse champions from arguments
+ *
+ * \param option
+ * \param arguments' list
+ * \return None
+ */
+void ft_vm_parse_champion(int option[], char **av)
 {
 	int		i;
 	int		given_champ;
