@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_option.c                                     :+:      :+:    :+:   */
+/*   ft_vm_parse_option.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/19 00:47:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/21 18:23:31 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/10/22 17:01:00 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/10/22 17:02:17 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-t_option    *ft_vm_option(int option[], int ac, char **av)
+/**
+ * \fn t_option *ft_vm_option (int option[], int ac, char **av)
+ * \brief Parse options
+ *
+ * \param option
+ * \param number of arguments
+ * \param arguments' list
+ * \return options' structure
+ */
+
+t_option    *ft_vm_parse_option(int option[], int ac, char **av)
 {
   char        **tmp;
   t_option    *opt;
@@ -34,19 +44,3 @@ t_option    *ft_vm_option(int option[], int ac, char **av)
 
 return (opt);
 }
-
-#if 0
-  {
-    int i = 0;
-    while (tmp[i])
-    {
-      ft_printf("tmp[%d] : '%s'\n", i, tmp[i]);
-      ++i;
-    }
-    tmp[0] ? option[1] = ft_atoi(tmp[0]);
-    option[1] = tmp
-    option[2] = ft_atoi(tmp[1]);
-    option[3] = ft_atoi(tmp[2]);
-    option[4] = ft_atoi(tmp[3]);
-  }
-  #endif

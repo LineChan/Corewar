@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/21 16:50:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/21 22:35:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
  * \brief Parse champions from arguments
  *
  * \param option
+ * \param headers
  * \param arguments' list
  * \return None
  */
+
 void ft_vm_parse_champion(int option[], char **av)
 {
 	int		i;
