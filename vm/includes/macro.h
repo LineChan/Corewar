@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:44 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/20 19:13:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/22 21:31:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 */
 # define NB_BIT 8
 # define MASK_SIGN ((sizeof(int) * NB_BIT) - 1)
+
+# define ALIGN_4(x)        (size_t)((~3) & ((x) + 3))
+# define ALIGN_8(x)        (size_t)((~7) & ((x) + 7))
 
 /*
 ** Functions

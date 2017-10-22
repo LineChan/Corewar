@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:27:35 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/22 19:16:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/22 21:31:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
  * \return None
  */
 
- void			ft_vm_read_dead_pool_comment(t_header *champion, const int fd)
+void			ft_vm_read_dead_pool_comment(t_header *champion, const int fd)
 {
-	if ((IS_NEG(read(fd, &champion->comment, COMMENT_LENGTH))))
+	if (IS_NEG(read(fd, champion->comment, ALIGN_4(sizeof(champion->comment)))))
 		EXIT_FAIL("Error : can not read comment");
 }
