@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/24 00:38:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 19:18:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@
 
 # define    OPTION_MAX 6
 # define    CHAMP_MAX 4
+# define	PC (ft_vm_pc_singleton())
 
 /*
 ** Structures
@@ -67,9 +68,18 @@ typedef struct          s_dead_pool
 	t_header	champion4;
 }						t_dead_pool;
 
+typedef struct			s_pc
+{
+	char		*champion1;
+	char		*champion2;
+	char		*champion3;
+	char		*champion4;
+}						t_pc;
+
 /*
 ** Singleton
 */
+t_pc		*ft_vm_pc_singleton(void);
 
 /*
 ** Prototype
@@ -93,10 +103,12 @@ void		ft_vm_arena(char arena[MEM_SIZE],
 										t_dead_pool *dead_pool,
 										int *nb_champion);
 void		ft_vm_arena_print(void const *data, size_t msize, size_t nb_byte);
+void		ft_vm_arena_print_pc(void);
 
 void		ft_vm_arena_upload_champion(char arena[MEM_SIZE],
 										int option[OPTION_MAX],
 										t_dead_pool *dead_pool,
 										int *nb_champion);
+void		ft_vm_arena_read_instruction(char *arena);
 
 #endif

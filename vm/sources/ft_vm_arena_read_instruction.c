@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_arena.c                                      :+:      :+:    :+:   */
+/*   ft_vm_arena_read_instruction.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
+/*   Created: 2017/10/24 19:11:11 by mvillemi          #+#    #+#             */
 /*   Updated: 2017/10/24 19:18:48 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
 
-/*
-* brief      		Set up the virtual machine
-*
-* param arena		Memory dedicated to the virtual machine
-* param option		Options' array
-* param dead_pool	Structure gatehering all the champions
-* param nb_champion	Champions number
-*/
-
-void		ft_vm_arena(char arena[MEM_SIZE],
-	 							int option[],
-								t_dead_pool *dead_pool,
-								int *nb_champion)
+void			ft_vm_arena_read_instruction(char *arena)
 {
-	ft_memset(arena, 0, MEM_SIZE);
-	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
-	ft_vm_arena_read_instruction(arena);
+	ft_vm_arena_print((void *)arena, MEM_SIZE, 64);
+	ft_vm_arena_print_pc();
+	ft_printf("op1 : %s\n", g_op_tab[0][1]);
 }

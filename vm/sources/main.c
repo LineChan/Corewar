@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/24 00:20:30 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 19:18:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int				main(int ac, char **av)
 	opt = ft_vm_parse_option(option, ac, av);
 	ft_vm_parse_champion(option, av);
 	ft_vm_read_champion(option, &dead_pool, &nb_champion);
-	//ft_print_stats(option, &dead_pool);
 	ft_vm_arena(arena, option, &dead_pool, &nb_champion);
 	ft_option_del(&opt);
 	return (EXIT_SUCCESS);
