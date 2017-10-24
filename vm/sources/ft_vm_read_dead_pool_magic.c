@@ -6,20 +6,18 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 16:48:18 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/22 21:44:29 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:37:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-/**
- * \fn void ft_vm_read_dead_pool_magic(t_header *champion, const int fd)
- * \brief Check magic numbers
- *
- * \param champion
- * \param file descriptor
- * \return None
- */
+/*
+* brief      		Read the Magic Number from header
+*
+* param champion	Champion's structure
+* param fd			File Descriptor
+*/
 
 void  ft_vm_read_dead_pool_magic(t_header *champion, const int fd)
 {

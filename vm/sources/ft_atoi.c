@@ -6,11 +6,17 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 00:46:50 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/19 01:12:06 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:22:15 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
+
+/*
+* brief      		ASCII to integer
+*
+* param str			String to be converted
+*/
 
 int          ft_atoi(char *str)
 {

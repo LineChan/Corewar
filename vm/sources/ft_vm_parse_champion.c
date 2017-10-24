@@ -6,22 +6,19 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/21 22:35:06 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:28:07 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include <fcntl.h>
 
-/**
- * \fn void ft_vm_parse_champion (int option[], char **av)
- * \brief Parse champions from arguments
- *
- * \param option
- * \param headers
- * \param arguments' list
- * \return None
- */
+/*
+* brief      		Parse champions from arguments
+*
+* param option		Options array
+* param av			Arguments array
+*/
 
 void ft_vm_parse_champion(int option[], char **av)
 {

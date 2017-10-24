@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/23 00:14:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:38:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,19 @@ t_option    *ft_vm_parse_option(int option[OPTION_MAX], int ac, char **av);
 void        ft_vm_parse_champion(int option[OPTION_MAX], char **av);
 
 void        ft_vm_read_champion(int option[OPTION_MAX],
-								t_dead_pool *dead_pool,
-								int *nb_champion);
+										t_dead_pool *dead_pool,
+										int *nb_champion);
 void		ft_vm_read_dead_pool_magic(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_name(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_size(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_comment(t_header *champion, const int fd);
 
 void		ft_vm_arena(char arena[MEM_SIZE],
-						int option[OPTION_MAX],
-						t_dead_pool *dead_pool,
-						int *nb_champion);
-void		ft_vm_arena_print(char arena[]);
+										int option[OPTION_MAX],
+										t_dead_pool *dead_pool,
+										int *nb_champion);
+void		ft_vm_arena_print(void const *data, size_t msize, size_t nb_byte);
+
 void		ft_vm_arena_upload_champion(char arena[MEM_SIZE],
 										int option[OPTION_MAX],
 										t_dead_pool *dead_pool,

@@ -6,20 +6,19 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/22 22:13:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:20:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
 
-/**
- * \fn int	main(int ac, char **av)
- * \brief Virtual Machine's main function
+ /*
+ * brief      		Virtual Machine's main function
  *
- * \param number of arguments
- * \param arguments' list
- * \return 0
+ * param ac				Number of arguments
+ * param av				Options' array
  */
+
 
 void			ft_print_stats(int option[], t_dead_pool *dead_pool)
 {

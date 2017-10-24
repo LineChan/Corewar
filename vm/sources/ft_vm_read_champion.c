@@ -6,21 +6,19 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:28:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/22 22:10:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:34:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
 
-/**
- * \fn void ft_vm_read_champion(int option[], t_dead_pool *dead_pool)
- * \brief Read champions' binaries
- *
- * \param option
- * \param dead_pool
- * \param champions number
- * \return How many champion
- */
+/*
+* brief      		Read each champion's hearder
+*
+* param option		Options array
+* param dead_pool	Structure gathering all the champions
+* param nb_champion	Champions' number
+*/
 
  void		ft_vm_read_routine(t_header *champion, const int fd)
  {

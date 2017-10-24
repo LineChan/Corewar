@@ -6,20 +6,20 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/23 00:13:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:17:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
 
-/**
- * \fn int	main(int ac, char **av)
- * \brief Virtual Machine's main function
- *
- * \param number of arguments
- * \param arguments' list
- * \return 0
- */
+/*
+* brief      		Set up the virtual machine
+*
+* param arena		Memory dedicated to the virtual machine
+* param option		Options' array
+* param dead_pool	Structure gatehering all the champions
+* param nb_champion	Champions number
+*/
 
 void		ft_vm_arena(char arena[MEM_SIZE],
 	 							int option[],

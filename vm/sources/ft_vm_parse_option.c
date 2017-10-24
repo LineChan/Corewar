@@ -6,21 +6,19 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:01:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/22 17:02:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:29:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-/**
- * \fn t_option *ft_vm_option (int option[], int ac, char **av)
- * \brief Parse options
- *
- * \param option
- * \param number of arguments
- * \param arguments' list
- * \return options' structure
- */
+/*
+* brief           Parse options from arguments
+*
+* param option    Options array
+* param ac        Number of arguments
+* param av        Arguments list
+*/
 
 t_option    *ft_vm_parse_option(int option[], int ac, char **av)
 {

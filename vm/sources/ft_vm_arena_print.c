@@ -6,43 +6,38 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:42:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/23 00:13:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:08:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
 
-/**
- * \fn void ft_vm_arena_print(char arena[])
- * \brief Print the arena
+ /*
+ * brief      		Memory dump
  *
- * \param number of arguments
- * \return None
+ * param data		Pointer to the memory region we want to dump
+ * param msize		Size of the data
+ * param nb_byte	Bytes per line
  */
 
-void		ft_vm_arena_print(char arena[])
+void	ft_vm_arena_print(void const *data, size_t msize, size_t nb_byte)
 {
-	ft_printf("coucou\n");
-	int i;
-	int j;
+	unsigned char	*p;
+	size_t			i;
 
 	i = 0;
-	while (i < MEM_SIZE)
+	p = (unsigned char *)data;
+	while (i < msize)
 	{
-		j = 0;
-		while (j < 17)
-		{
-
-			ft_fprintf(2, "%02x %02x\n", arena[i], arena[i + 1]);
-			i += 2;
-			++j;
-		}
-		j = 0;
-		write(2, "\n", 1);
-		//ft_fprintf(2, "%x", arena[i]);
-		//ft_fprintf(2, "%x \t", arena[i]);
+		if (0 != *p)
+			ft_printf("{green:%02hhx} ", *p);
+		else
+			ft_printf("{bblack:00} ");
+		++p;
 		++i;
+		if (0 == (i % nb_byte))
+			ft_printf("\n");
 	}
-	write(2, "\n", 1);
-	ft_printf("coucou\n");
+	if (i % nb_byte)
+		ft_printf("\n");
 }

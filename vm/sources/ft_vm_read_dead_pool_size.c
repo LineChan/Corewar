@@ -6,20 +6,18 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:46:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/22 21:31:30 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 00:38:12 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
 
-/**
- * \fn void 	ft_vm_read_dead_pool_size(t_header *champion, const int fd)
- * \brief Read champions' binaries
- *
- * \param champion
- * \param file descriptor
- * \return None
- */
+/*
+* brief      		Read champion's size from header
+*
+* param champion	Champion's structure
+* param fd			File Descriptor
+*/
 
 void		ft_vm_read_dead_pool_size(t_header *champion, const int fd)
 {
