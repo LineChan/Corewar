@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/24 19:10:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/24 23:52:12 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		ft_vm_arena_upload_champion(char arena[],
 
 	!*nb_champion ? EXIT_FAIL("Error : no champion") : 0;
 	step = MEM_SIZE / *nb_champion;
+	ft_memset((void *)PC, 0, sizeof(t_pc));
 	index = 0;
 	if (option[1])
 	{

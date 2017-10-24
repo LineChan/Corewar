@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/24 19:18:45 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/25 00:26:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ typedef struct			s_pc
 	char		*champion2;
 	char		*champion3;
 	char		*champion4;
+	int			carry1;
+	int			carry2;
+	int			carry3;
+	int			carry4;
+	int			register1[REG_NUMBER];
+	int			register2[REG_NUMBER];
+	int			register3[REG_NUMBER];
+	int			register4[REG_NUMBER];
 }						t_pc;
 
 /*
