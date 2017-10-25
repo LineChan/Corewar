@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:42:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/25 00:26:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:28:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	ft_vm_arena_print(void const *data, size_t msize, size_t nb_byte)
 
 void 		ft_vm_arena_print_pc(void)
 {
-		(PC->champion1) ? ft_fprintf(2, "champion1 : %02hhx\n", *PC->champion1) : 0;
-		(PC->champion2) ? ft_fprintf(2, "champion2 : %02hhx\n", *PC->champion2) : 0;
-		(PC->champion3) ? ft_fprintf(2, "champion3 : %02hhx\n", *PC->champion3) : 0;
-		(PC->champion4) ? ft_fprintf(2, "champion4 : %02hhx\n", *PC->champion4) : 0;
+		(PC_1) ? ft_fprintf(2, "champion1 : %02hhx\n", *PC_1) : 0;
+		(PC_2) ? ft_fprintf(2, "champion2 : %02hhx\n", *PC_2) : 0;
+		(PC_3) ? ft_fprintf(2, "champion3 : %02hhx\n", *PC_3) : 0;
+		(PC_4) ? ft_fprintf(2, "champion4 : %02hhx\n", *PC->champion4) : 0;
 }

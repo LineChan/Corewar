@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/24 19:18:48 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:28:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 * param nb_champion	Champions number
 */
 
-void		ft_vm_arena(char arena[MEM_SIZE],
+void		ft_vm_arena(unsigned char arena[MEM_SIZE],
 	 							int option[],
 								t_dead_pool *dead_pool,
 								int *nb_champion)

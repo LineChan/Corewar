@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/24 19:18:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:28:42 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				main(int ac, char **av)
 {
 	int				option[OPTION_MAX];
 	int				nb_champion;
-	char				arena[MEM_SIZE];
+	unsigned char	arena[MEM_SIZE];
 	t_dead_pool		dead_pool;
 	t_option		*opt;
 

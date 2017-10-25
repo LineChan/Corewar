@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/24 23:52:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/25 17:28:46 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 */
 
 void 		ft_vm_arena_up_routine(const int fd,
-										char arena[],
+										unsigned char arena[],
 										t_header *champion,
 										int index)
 {
@@ -30,7 +30,7 @@ void 		ft_vm_arena_up_routine(const int fd,
 	close(fd);
 }
 
-void		ft_vm_arena_upload_champion(char arena[],
+void		ft_vm_arena_upload_champion(unsigned char arena[],
 										int option[],
 										t_dead_pool *dead_pool,
 										int *nb_champion)
@@ -40,29 +40,32 @@ void		ft_vm_arena_upload_champion(char arena[],
 
 	!*nb_champion ? EXIT_FAIL("Error : no champion") : 0;
 	step = MEM_SIZE / *nb_champion;
-	ft_memset((void *)PC, 0, sizeof(t_pc));
+	ft_memset((void *)CHAMP_1, 0, sizeof(t_champion));
+	ft_memset((void *)CHAMP_2, 0, sizeof(t_champion));
+	ft_memset((void *)CHAMP_3, 0, sizeof(t_champion));
+	ft_memset((void *)CHAMP_4, 0, sizeof(t_champion));
 	index = 0;
 	if (option[1])
 	{
 		ft_vm_arena_up_routine(option[1], arena, &dead_pool->champion1, index);
-		PC->champion1 = &arena[index];
+		PC_1 = &arena[index];
 		index += step;
 	}
 	if (option[2])
 	{
 		ft_vm_arena_up_routine(option[2], arena, &dead_pool->champion2, index);
-		PC->champion2 = &arena[index];
+		PC_2 = &arena[index];
 		index += step;
 	}
 	if (option[3])
 	{
 		ft_vm_arena_up_routine(option[3], arena, &dead_pool->champion3, index);
-		PC->champion3 = &arena[index];
+		PC_3 = &arena[index];
 		index += step;
 	}
 	if (option[4])
 	{
 		ft_vm_arena_up_routine(option[4], arena, &dead_pool->champion4, index);
-		PC->champion4 = &arena[index];
+		PC_4 = &arena[index];
 	}
 }
