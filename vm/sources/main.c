@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/25 17:28:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:33:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,10 @@ int				main(int ac, char **av)
 	ft_vm_read_champion(option, &dead_pool, &nb_champion);
 	ft_vm_arena(arena, option, &dead_pool, &nb_champion);
 	ft_option_del(&opt);
+	//return (EXIT_SUCCESS);
+	option[1] ? ft_del_singl_champ(&CHAMP_1->champion_head) : 0;
+	option[2] ? ft_del_singl_champ(&CHAMP_2->champion_head) : 0;
+	option[3] ? ft_del_singl_champ(&CHAMP_3->champion_head) : 0;
+	option[4] ? ft_del_singl_champ(&CHAMP_4->champion_head) : 0;
 	return (EXIT_SUCCESS);
 }

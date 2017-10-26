@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/25 17:28:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/26 16:33:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void		ft_vm_arena(unsigned char arena[MEM_SIZE],
 {
 	ft_memset(arena, 0, MEM_SIZE);
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
-	ft_vm_arena_read_instruction(arena);
+	ft_vm_arena_read_instr(arena, dead_pool);
 }
