@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/26 16:33:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/27 18:04:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@
 */
 
 # define    OPTION_MAX		6
-# define    CHAMP_MAX		4
 
 # define	CHAMP_1			(ft_champion1())
+# define	HEAD_1			(CHAMP1->champion_head)
 # define	PC_1			(CHAMP_1->pc)
 # define	CARRY_1			(CHAMP_1->carry)
 # define	REG_1			(CHAMP_1->reg)
@@ -63,6 +63,7 @@
 # define	CYCLE_1			(CHAMP_1->cycle)
 
 # define	CHAMP_2			(ft_champion2())
+# define	HEAD_2			(CHAMP2->champion_head)
 # define	PC_2			(CHAMP_2->pc)
 # define	CARRY_2			(CARRY_2->carry)
 # define	REG_2			(CHAMP_2->reg)
@@ -70,6 +71,7 @@
 # define	CYCLE_2			(CHAMP_2->cycle)
 
 # define	CHAMP_3			(ft_champion3())
+# define	HEAD_3			(CHAMP_3->champion_head)
 # define	PC_3			(CHAMP_3->pc)
 # define	CARRY_3			(CHAMP_3->carry)
 # define	REG_3			(CHAMP_3->reg)
@@ -77,6 +79,7 @@
 # define	CYCLE_3			(CHAMP_3->cycle)
 
 # define	CHAMP_4			(ft_champion4())
+# define	HEAD_4			(CHAMP_4->champion_head)
 # define	PC_4			(CHAMP_4->pc)
 # define	CARRY_4			(CHAMP_4->carry)
 # define	REG_4			(CHAMP_4->reg)
@@ -90,13 +93,70 @@
 # define INSTR_OP(it)		(C_INSTR(it)->op)
 # define INSTR_JUMP(it)		(C_INSTR(it)->jump)
 
+#if 0
+# define LIVE		(1 << 0)
+# define LD			(1 << 1)
+# define ST			((1 << 1) + 1)
+# define ADD		(1 << 2)
+# define SUB		((1 << 2) + 1)
+# define AND		((1 << 2) + (1 << 1))
+# define OR			((1 << 2) + (1 << 1) + 1)
+# define XOR		(1 << 3)
+# define ZJUMP		((1 << 3) + 1)
+# define LDI		((1 << 3) + (1 << 1))
+# define STI		((1 << 3) + (1 << 1) + 1)
+# define FORK		((1 << 3) + (1 << 2))
+# define LLD		((1 << 3) + (1 << 2) + 1)
+# define LLDI		((1 << 3) + (1 << 2) + (1 << 1))
+# define LFORK		((1 << 3) + (1 << 2) + (1 << 1) + 1)
+# define AFF		(1 << 4)
+#endif
+
+#if 1
+# define LIVE		1
+# define LD			2
+# define ST			3
+# define ADD		4
+# define SUB		5
+# define AND		6
+# define OR			7
+# define XOR		8
+# define ZJUMP		9
+# define LDI		10
+# define STI		11
+# define FORK		12
+# define LLD		13
+# define LLDI		14
+# define LFORK		15
+# define AFF		16
+#endif
+
+# define IS_LIVE(it)	(*it->pc & LIVE)
+# define IS_LD(it)		(*it->pc & LD)
+# define IS_ST(it)		(*it->pc & ST)
+# define IS_ADD(it)		(*it->pc & ADD)
+# define IS_SUB(it)		(*it->pc & SUB)
+# define IS_AND(it)		(*it->pc & AND)
+# define IS_OR(it)		(*it->pc & OR)
+# define IS_XOR(it)		(*it->pc & XOR)
+# define IS_ZJUMP(it)	(*it->pc & ZJUMP)
+# define IS_LDI(it)		(*it->pc & LDI)
+# define IS_STI(it)		(*it->pc & STI)
+# define IS_FORK(it)	(*it->pc & FORK)
+# define IS_LLD(it)		(*it->pc & LLD)
+# define IS_LLDI(it)	(*it->pc & LLDI)
+# define IS_LFORK(it)	(*it->pc & LFORK)
+# define IS_AFF(it)		(*it->pc & AFF)
+
+# define NO_BCODE(it)	(!(IS_LIVE(it) || IS_ZJUMP(it) || IS_FORK(it) || IS_AFF(it)))
+
 typedef struct			s_champion
 {
 	unsigned int		live;
 	unsigned int		carry;
 	int					reg[REG_NUMBER];
 	unsigned char		*pc;
-	unsigned int		next_cycle;
+	unsigned int		cycle;
 	t_list				champion_head;
 }						t_champion;
 
@@ -168,9 +228,10 @@ void			ft_vm_arena(unsigned char arena[MEM_SIZE],
 										int option[OPTION_MAX],
 										t_dead_pool *dead_pool,
 										int *nb_champion);
-void			ft_vm_arena_print(void const *data, size_t msize,
+void			ft_vm_print_arena(void const *data, size_t msize,
 										size_t nb_byte);
-void			ft_vm_arena_print_pc(void);
+void			ft_vm_print_pc(void);
+void 			ft_vm_print_instr(t_list *node);
 
 void			ft_vm_arena_upload_champion(unsigned char arena[MEM_SIZE],
 										int option[OPTION_MAX],
@@ -181,6 +242,7 @@ void			ft_vm_arena_read_instr(unsigned char arena[],
 void			ft_vm_instr_decode(unsigned char arena[], t_champion *champ);
 void			ft_vm_instr_add(unsigned char arena[], t_champion *champion);
 void 			ft_vm_instr_del(t_list *src);
+void 			ft_vm_instr_bytecode(t_champion *champ);
 void			ft_vm_instruct_live(unsigned char arena[]);
 
 #endif

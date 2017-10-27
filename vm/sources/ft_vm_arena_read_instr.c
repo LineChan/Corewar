@@ -15,27 +15,27 @@ extern uint8_t	g_direct_jump_table_from_instr[17];
 void			ft_vm_arena_read_instr(unsigned char arena[],
 										t_dead_pool *dead_pool)
 {
-	ft_printf("dead_pool : %s\n", dead_pool->champion1.prog_name);
+	ft_printf("Read instruction :\n");
 	if (PC_1)
 	{
-		ft_printf("Champion1\n");
+		ft_printf("Champion1 : %s\n", dead_pool->champion1.prog_name);
 		ft_vm_instr_decode(arena, CHAMP_1);
-		//ft_printf("PC_1 : %s\n", g_op_tab[*PC_1].name);
 	}
+	//TODO : remove return
+	return ;
 	if (PC_2)
 	{
-		ft_printf("\nChampion2\n");
+		ft_printf("\nChampion2 : %s\n", dead_pool->champion2.prog_name);
 		ft_vm_instr_decode(arena, CHAMP_2);
-		//ft_printf("PC_2 : %s\n", g_op_tab[*PC_2].name);
 	}
 	if (PC_3)
 	{
-		ft_printf("\nChampion3\n");
+		ft_printf("\nChampion3 : %s\n", dead_pool->champion3.prog_name);
 		ft_vm_instr_decode(arena, CHAMP_3);
 	}
 	if (PC_4)
 	{
-		ft_printf("\nChampion4\n");
+		ft_printf("\nChampion4 : %s\n", dead_pool->champion4.prog_name);
 		ft_vm_instr_decode(arena, CHAMP_4);
 	}
 	ft_printf("\n");

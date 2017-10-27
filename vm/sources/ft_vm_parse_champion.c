@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/24 19:18:46 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/27 16:17:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void ft_vm_parse_champion(int option[], char **av)
 				}
 				else
 				{
-					while (option[current_champ] && (current_champ < 5))
+					while (option[current_champ] && (current_champ <= MAX_PLAYERS))
 						++current_champ;
-					if (current_champ < 5)
+					if (current_champ <= MAX_PLAYERS)
 					{
 						option[current_champ] = open(av[i], O_RDONLY, 0666);
 						if (IS_NEG(option[current_champ]))
