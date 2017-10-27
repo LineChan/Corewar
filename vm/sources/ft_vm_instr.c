@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 13:56:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/27 18:02:46 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/27 18:35:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void				ft_vm_instr_add(unsigned char arena[], t_champion *champ)
 	//TODO : bytecode, jump
 	ft_printf("code : %b\n", *champ->pc);
 	ft_printf("code : %d\n", *champ->pc);
+	new->op = &g_op_tab[*champ->pc];
+	new->index = champ->pc - arena;
 	if (!NO_BCODE(champ))
 		ft_vm_instr_bytecode(champ);
-		ft_printf("{red:BYCODE NEEDED}\n");
 
 	#if 0
 	ft_printf("NO_BCODE(champ) : %b\n", NO_BCODE(champ));
@@ -45,8 +46,6 @@ void				ft_vm_instr_add(unsigned char arena[], t_champion *champ)
 	if (!NO_BCODE(champ))
 		ft_printf("STI!!!\n");
 	#endif
-	new->op = &g_op_tab[*champ->pc];
-	new->index = champ->pc - arena;
 	ft_list_add_tail(&new->list, &champ->champion_head);
 	//return (jump) to move PC += jump
 }
