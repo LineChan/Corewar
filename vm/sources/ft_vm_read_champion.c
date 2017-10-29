@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:28:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/27 16:04:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/28 00:19:15 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	ft_vm_read_champion(int option[],
 	ft_memset((void *)dead_pool, 0, sizeof(*dead_pool));
 	*nb_champion = 0;
 	if (option[1] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion1, option[1]);
+		ft_vm_read_header(&dead_pool->header1, option[1]);
 	if (option[2] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion2, option[2]);
+		ft_vm_read_header(&dead_pool->header2, option[2]);
 	if (option[3] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion3, option[3]);
+		ft_vm_read_header(&dead_pool->header3, option[3]);
 	if (option[4] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion4, option[4]);
+		ft_vm_read_header(&dead_pool->header4, option[4]);
 }

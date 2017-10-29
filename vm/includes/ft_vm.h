@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/27 18:04:06 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/29 20:59:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,45 +54,6 @@
 
 # define    OPTION_MAX		6
 
-# define	CHAMP_1			(ft_champion1())
-# define	HEAD_1			(CHAMP1->champion_head)
-# define	PC_1			(CHAMP_1->pc)
-# define	CARRY_1			(CHAMP_1->carry)
-# define	REG_1			(CHAMP_1->reg)
-# define	LIVE_1			(CHAMP_1->live)
-# define	CYCLE_1			(CHAMP_1->cycle)
-
-# define	CHAMP_2			(ft_champion2())
-# define	HEAD_2			(CHAMP2->champion_head)
-# define	PC_2			(CHAMP_2->pc)
-# define	CARRY_2			(CARRY_2->carry)
-# define	REG_2			(CHAMP_2->reg)
-# define	LIVE_2			(CHAMP_2->live)
-# define	CYCLE_2			(CHAMP_2->cycle)
-
-# define	CHAMP_3			(ft_champion3())
-# define	HEAD_3			(CHAMP_3->champion_head)
-# define	PC_3			(CHAMP_3->pc)
-# define	CARRY_3			(CHAMP_3->carry)
-# define	REG_3			(CHAMP_3->reg)
-# define	LIVE_3			(CHAMP_3->live)
-# define	CYCLE_3			(CHAMP_3->cycle)
-
-# define	CHAMP_4			(ft_champion4())
-# define	HEAD_4			(CHAMP_4->champion_head)
-# define	PC_4			(CHAMP_4->pc)
-# define	CARRY_4			(CHAMP_4->carry)
-# define	REG_4			(CHAMP_4->reg)
-# define	LIVE_4			(CHAMP_4->live)
-# define	CYCLE_4			(CHAMP_4->cycle)
-
-
-# define C_CHAMP(it)		CONTAINEROF(it, t_champion, champion_head)
-# define C_INSTR(it)		CONTAINEROF(it, t_vm_instr, list)
-# define INSTR_BCODE(it)	(C_INSTR(it)->bytecode)
-# define INSTR_OP(it)		(C_INSTR(it)->op)
-# define INSTR_JUMP(it)		(C_INSTR(it)->jump)
-
 #if 0
 # define LIVE		(1 << 0)
 # define LD			(1 << 1)
@@ -131,6 +92,7 @@
 # define AFF		16
 #endif
 
+#if 0
 # define IS_LIVE(it)	(*it->pc & LIVE)
 # define IS_LD(it)		(*it->pc & LD)
 # define IS_ST(it)		(*it->pc & ST)
@@ -149,6 +111,17 @@
 # define IS_AFF(it)		(*it->pc & AFF)
 
 # define NO_BCODE(it)	(!(IS_LIVE(it) || IS_ZJUMP(it) || IS_FORK(it) || IS_AFF(it)))
+#endif
+
+typedef struct			s_vm_instr
+{
+	unsigned int		bytecode;
+	unsigned char		index;
+	t_op				*op;
+	size_t				jump;
+	t_list				list;
+
+}						t_vm_instr;
 
 typedef struct			s_champion
 {
@@ -157,18 +130,10 @@ typedef struct			s_champion
 	int					reg[REG_NUMBER];
 	unsigned char		*pc;
 	unsigned int		cycle;
-	t_list				champion_head;
+	t_vm_instr			instr;
+	t_arg_type			arg_types[MAX_ARGS_NUMBER];
 }						t_champion;
 
-typedef struct			s_vm_instr
-{
-	uint8_t				bytecode;
-	int					index;
-	t_op				*op;
-	size_t				jump;
-	t_list				list;
-
-}						t_vm_instr;
 
 #if 0
 typedef struct		s_instr
@@ -187,10 +152,14 @@ typedef struct		s_instr
 
 typedef struct          s_dead_pool
 {
-	t_header	champion1;
-	t_header	champion2;
-	t_header	champion3;
-	t_header	champion4;
+	t_header		header1;
+	t_header		header2;
+	t_header		header3;
+	t_header		header4;
+	t_champion		champion1;
+	t_champion		champion2;
+	t_champion		champion3;
+	t_champion		champion4;
 }						t_dead_pool;
 
 
@@ -230,19 +199,19 @@ void			ft_vm_arena(unsigned char arena[MEM_SIZE],
 										int *nb_champion);
 void			ft_vm_print_arena(void const *data, size_t msize,
 										size_t nb_byte);
-void			ft_vm_print_pc(void);
-void 			ft_vm_print_instr(t_list *node);
+void			ft_vm_print_pc(t_dead_pool *dead_pool);
 
 void			ft_vm_arena_upload_champion(unsigned char arena[MEM_SIZE],
 										int option[OPTION_MAX],
 										t_dead_pool *dead_pool,
 										int *nb_champion);
 void			ft_vm_arena_read_instr(unsigned char arena[],
-										t_dead_pool *dead_pool);
+										t_dead_pool *dead_pool,
+										const int nb_champion);
 void			ft_vm_instr_decode(unsigned char arena[], t_champion *champ);
-void			ft_vm_instr_add(unsigned char arena[], t_champion *champion);
-void 			ft_vm_instr_del(t_list *src);
 void 			ft_vm_instr_bytecode(t_champion *champ);
-void			ft_vm_instruct_live(unsigned char arena[]);
+//void			ft_vm_instruct_live(unsigned char arena[]);
+void			ft_vm_instr_jump(t_champion *champ);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/27 18:35:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/28 00:45:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,16 @@ void	ft_vm_print_arena(void const *data, size_t msize, size_t nb_byte)
 		++p;
 		++i;
 		if (0 == (i % nb_byte))
-			ft_printf("\n");
+			ft_fprintf(2,"\n");
 	}
 	if (i % nb_byte)
-		ft_printf("\n");
+		ft_fprintf(2,"\n");
 }
 
-void 		ft_vm_print_pc(void)
+void 		ft_vm_print_pc(t_dead_pool *dead_pool)
 {
-	(PC_1) ? ft_fprintf(2, "champion1 : %02hhx\n", *PC_1) : 0;
-	(PC_2) ? ft_fprintf(2, "champion2 : %02hhx\n", *PC_2) : 0;
-	(PC_3) ? ft_fprintf(2, "champion3 : %02hhx\n", *PC_3) : 0;
-	(PC_4) ? ft_fprintf(2, "champion4 : %02hhx\n", *PC_4) : 0;
-}
-
-void		ft_vm_print_instr(t_list *it)
-{
-	ft_fprintf(2, "instr : %s\n", C_INSTR(it)->op->name);
+	dead_pool->champion1.pc ? ft_fprintf(2, "champion1 : %02hhx\n", *dead_pool->champion1.pc) : 0;
+	dead_pool->champion2.pc ? ft_fprintf(2, "champion2 : %02hhx\n", *dead_pool->champion1.pc) : 0;
+	dead_pool->champion3.pc ? ft_fprintf(2, "champion3 : %02hhx\n", *dead_pool->champion1.pc) : 0;
+	dead_pool->champion4.pc ? ft_fprintf(2, "champion4 : %02hhx\n", *dead_pool->champion1.pc) : 0;
 }

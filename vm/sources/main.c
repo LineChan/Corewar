@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/10/27 16:00:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/28 00:32:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,35 @@ void			ft_print_stats(int option[], t_dead_pool *dead_pool)
 {
 	if (option[1])
 	{
-		ft_printf("champion1\n");
-		ft_printf("magic : %x\n", dead_pool->champion1.magic);
-		ft_printf("name : '%s'\n", dead_pool->champion1.prog_name);
-		ft_printf("size : '%d'\n", dead_pool->champion1.prog_size);
-		ft_printf("comment : '%s'\n", dead_pool->champion1.comment);
+		ft_printf("header1\n");
+		ft_printf("magic : %x\n", dead_pool->header1.magic);
+		ft_printf("name : '%s'\n", dead_pool->header1.prog_name);
+		ft_printf("size : '%d'\n", dead_pool->header1.prog_size);
+		ft_printf("comment : '%s'\n", dead_pool->header1.comment);
 	}
 	if (option[2])
 	{
-		ft_printf("champion2\n");
-		ft_printf("magic : %x\n", dead_pool->champion2.magic);
-		ft_printf("name : '%s'\n", dead_pool->champion2.prog_name);
-		ft_printf("size : '%d'\n", dead_pool->champion2.prog_size);
-		ft_printf("comment : '%s'\n", dead_pool->champion2.comment);
+		ft_printf("header2\n");
+		ft_printf("magic : %x\n", dead_pool->header2.magic);
+		ft_printf("name : '%s'\n", dead_pool->header2.prog_name);
+		ft_printf("size : '%d'\n", dead_pool->header2.prog_size);
+		ft_printf("comment : '%s'\n", dead_pool->header2.comment);
 	}
 	if (option[3])
 	{
-		ft_printf("champion3\n");
-		ft_printf("magic : %x\n", dead_pool->champion3.magic);
-		ft_printf("name : '%s'\n", dead_pool->champion3.prog_name);
-		ft_printf("size : '%d'\n", dead_pool->champion3.prog_size);
-		ft_printf("comment : '%s'\n", dead_pool->champion3.comment);
+		ft_printf("header3\n");
+		ft_printf("magic : %x\n", dead_pool->header3.magic);
+		ft_printf("name : '%s'\n", dead_pool->header3.prog_name);
+		ft_printf("size : '%d'\n", dead_pool->header3.prog_size);
+		ft_printf("comment : '%s'\n", dead_pool->header3.comment);
 	}
 	if (option[4])
 	{
-		ft_printf("champion4\n");
-		ft_printf("magic : %x\n", dead_pool->champion4.magic);
-		ft_printf("name : '%s'\n", dead_pool->champion4.prog_name);
-		ft_printf("size : '%d'\n", dead_pool->champion4.prog_size);
-		ft_printf("comment : '%s'\n", dead_pool->champion4.comment);
+		ft_printf("header4\n");
+		ft_printf("magic : %x\n", dead_pool->header4.magic);
+		ft_printf("name : '%s'\n", dead_pool->header4.prog_name);
+		ft_printf("size : '%d'\n", dead_pool->header4.prog_size);
+		ft_printf("comment : '%s'\n", dead_pool->header4.comment);
 	}
 }
 int				main(int ac, char **av)
@@ -68,9 +68,5 @@ int				main(int ac, char **av)
 	ft_vm_read_champion(option, &dead_pool, &nb_champion);
 	ft_vm_arena(arena, option, &dead_pool, &nb_champion);
 	ft_option_del(&opt);
-	option[1] ? ft_del_singl_champ(&CHAMP_1->champion_head) : 0;
-	option[2] ? ft_del_singl_champ(&CHAMP_2->champion_head) : 0;
-	option[3] ? ft_del_singl_champ(&CHAMP_3->champion_head) : 0;
-	option[4] ? ft_del_singl_champ(&CHAMP_4->champion_head) : 0;
 	return (EXIT_SUCCESS);
 }
