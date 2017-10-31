@@ -25,25 +25,21 @@ void			ft_vm_arena_read_instr(unsigned char arena[],
 	done_champion = 0;
 	if (dead_pool->champion1.pc && (dead_pool->champion1.cycle <= current_cycle))
 	{
-		//LIVE_1 = 1;
 		ft_printf("Champion1 : %s\n", dead_pool->header1.prog_name);
 		ft_vm_instr_decode(arena, &dead_pool->champion1);
 	}
 	if (dead_pool->champion2.pc && (dead_pool->champion2.cycle <= current_cycle))
 	{
-		//LIVE_2 = 2;
 		ft_printf("\nChampion2 : %s\n", dead_pool->header2.prog_name);
 		ft_vm_instr_decode(arena, &dead_pool->champion2);
 	}
 	if (dead_pool->champion3.pc && (dead_pool->champion3.cycle <= current_cycle))
 	{
-		//LIVE_3 = 3;
 		ft_printf("\nChampion3 : %s\n", dead_pool->header3.prog_name);
 		ft_vm_instr_decode(arena, &dead_pool->champion3);
 	}
 	if (dead_pool->champion4.pc && (dead_pool->champion4.cycle <= current_cycle))
 	{
-		//LIVE_4 = 4;
 		ft_printf("\nChampion4 : %s\n", dead_pool->header4.prog_name);
 		ft_vm_instr_decode(arena, &dead_pool->champion4);
 	}

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 01:24:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/29 20:59:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/29 21:51:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,52 @@ static void 			ft_vm_instr_save(t_champion *champ, int arg_nb, int type, int siz
 void			ft_vm_instr_jump(t_champion *champ)
 {
 	if (BYTECODE_GET(champ->instr.bytecode, 1) == IND_CODE)
-		ft_vm_instr_save(champ, 0, T_IND, IND_SIZE);
+	{
+		ft_printf("T_IND\n");
+		ft_vm_instr_save(champ, 0, T_IND, 2);
+	}
 	else if (BYTECODE_GET(champ->instr.bytecode, 1) == REG_CODE)
-		ft_vm_instr_save(champ, 0, T_REG, REG_SIZE);
+	{
+		ft_printf("T_REG\n");
+		ft_vm_instr_save(champ, 0, T_REG, 1);
+	}
 	else if (BYTECODE_GET(champ->instr.bytecode, 1) == DIR_CODE)
-		ft_vm_instr_save(champ, 0, T_DIR, g_direct_jump_table_from_instr[champ->instr.index]);
-	//ft_printf("jump : %d\n", champ->instr.jump);
+	{
+		ft_vm_instr_save(champ, 0, T_DIR, g_direct_jump_table_from_instr[champ->instr.op->numero]);
+		ft_printf("T_DIR\n");
+	}
+	ft_printf("jump : %d\n", champ->instr.jump);
 	if (BYTECODE_GET(champ->instr.bytecode, 2) == IND_CODE)
-		ft_vm_instr_save(champ, 1, T_IND, IND_SIZE);
+	{
+		ft_printf("T_IND\n");
+		ft_vm_instr_save(champ, 1, T_IND, 2);
+	}
 	else if (BYTECODE_GET(champ->instr.bytecode, 2) == REG_CODE)
-		ft_vm_instr_save(champ, 1, T_REG, REG_SIZE);
+	{
+		ft_printf("T_REG\n");
+		ft_vm_instr_save(champ, 1, T_REG, 1);
+	}
 	else if (BYTECODE_GET(champ->instr.bytecode, 2) == DIR_CODE)
-		ft_vm_instr_save(champ, 1, T_DIR, g_direct_jump_table_from_instr[champ->instr.index]);
-	//ft_printf("jump : %d\n", champ->instr.jump);
+	{
+
+		ft_printf("T_DIR\n");
+		ft_vm_instr_save(champ, 1, T_DIR, g_direct_jump_table_from_instr[champ->instr.op->numero]);
+	}
+	ft_printf("jump : %d\n", champ->instr.jump);
 	if (BYTECODE_GET(champ->instr.bytecode, 3) == IND_CODE)
-		ft_vm_instr_save(champ, 2, T_IND, IND_SIZE);
+	{
+		ft_printf("T_IND\n");
+		ft_vm_instr_save(champ, 2, T_IND, 2);
+	}
 	else if (BYTECODE_GET(champ->instr.bytecode, 3) == REG_CODE)
-		ft_vm_instr_save(champ, 2, T_REG, REG_SIZE);
+	{
+		ft_printf("T_REG\n");
+		ft_vm_instr_save(champ, 2, T_REG, 1);
+	}
 	else if (BYTECODE_GET(champ->instr.bytecode, 3) == DIR_CODE)
-		ft_vm_instr_save(champ, 2, T_DIR, g_direct_jump_table_from_instr[champ->instr.index]);
-	//ft_printf("jump : %d\n", champ->instr.jump);
+	{
+		ft_printf("T_DIR\n");
+		ft_vm_instr_save(champ, 2, T_DIR, g_direct_jump_table_from_instr[champ->instr.op->numero]);
+	}
+	ft_printf("jump : %d\n", champ->instr.jump);
 }
