@@ -6,7 +6,7 @@
 #    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/10/20 00:06:01 by mvillemi         ###   ########.fr        #
+#    Updated: 2017/11/01 14:44:56 by mvillemi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,9 @@ fclean: clean
 	@make -C "$(DLIB)/libctype/" fclean;
 	@make -C "$(DLIB)/libprintf/" fclean;
 	@rm -f $(NAME) $(TEST) 2> /dev/null
+
+debug : fclean
+	make DEBUG=1
 
 re: fclean all
 

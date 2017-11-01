@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/28 00:39:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/31 13:26:11 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,25 @@ void		ft_vm_arena_upload_champion(unsigned char arena[],
 	index = 0;
 	if (option[1])
 	{
-		ft_vm_arena_up_routine(option[1], arena, &dead_pool->header1, index);
+		ft_vm_arena_up_routine(option[1], arena, &dead_pool->champion1.header, index);
 		dead_pool->champion1.pc = &arena[index];
 		index += step;
 	}
 	if (option[2])
 	{
-		ft_vm_arena_up_routine(option[2], arena, &dead_pool->header2, index);
+		ft_vm_arena_up_routine(option[2], arena, &dead_pool->champion2.header, index);
 		dead_pool->champion2.pc = &arena[index];
 		index += step;
 	}
 	if (option[3])
 	{
-		ft_vm_arena_up_routine(option[3], arena, &dead_pool->header3, index);
+		ft_vm_arena_up_routine(option[3], arena, &dead_pool->champion3.header, index);
 		dead_pool->champion3.pc = &arena[index];
 		index += step;
 	}
 	if (option[4])
 	{
-		ft_vm_arena_up_routine(option[4], arena, &dead_pool->header4, index);
+		ft_vm_arena_up_routine(option[4], arena, &dead_pool->champion4.header, index);
 		dead_pool->champion4.pc = &arena[index];
 	}
 }

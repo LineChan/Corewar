@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/28 00:45:35 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/10/31 16:22:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ void	ft_vm_print_arena(void const *data, size_t msize, size_t nb_byte)
 	while (i < msize)
 	{
 		if (0 != *p)
+		{
 			ft_fprintf(2, "{green:%02hhx} ", *p);
+		}
 		else
 			ft_fprintf(2, "{bblack:00} ");
 		++p;
