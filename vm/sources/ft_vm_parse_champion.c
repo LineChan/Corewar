@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/20 16:11:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/31 13:26:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/01 18:54:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 * param option		Options array
 * param av			Arguments array
 */
+// TODO : to be checked : you cannot have 2 champions with the same number
 
 void ft_vm_parse_champion(int option[], char **av)
 {
