@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/02 08:27:29 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/02 10:14:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,12 +178,13 @@ void 			ft_vm_instr_bytecode(t_champion *champ);
 void			ft_vm_instr_jump(t_champion *champ);
 void			ft_vm_instr_exec(unsigned char arena[], t_champion *champ);
 void			ft_vm_instr_sti(unsigned char arena[], t_champion *champ);
+int				ft_vm_instr_get_data(int size, t_champion *champ);
 
 /*
 ** Print functions
 */
 void			ft_vm_print_arena(void const *data, size_t msize,
-										size_t nb_byte);
+								size_t nb_byte, t_dead_pool *dead_pool);
 void			ft_vm_print_pc(t_dead_pool *dead_pool);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 14:32:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/01 18:55:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/02 10:23:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ static const		t_instr_list g_instr_list [] =
 void			ft_vm_instr_exec(unsigned char arena[], t_champion *champ)
 {
 	ft_printf("instr exec\n");
-	g_instr_list[champ->instr.op->numero].func(arena, champ);
+	if (champ->instr.op->numero <= 16)
+		g_instr_list[champ->instr.op->numero].func(arena, champ);
+	else
+		champ->pc += 1;
 }

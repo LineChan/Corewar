@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 01:24:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/01 18:55:13 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/02 09:22:37 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ void			ft_vm_instr_jump(t_champion *champ)
 			EXIT_FAIL("Error : wrong bytecode");
 		++i;
 	}
-	champ->pc += 1;
 }
