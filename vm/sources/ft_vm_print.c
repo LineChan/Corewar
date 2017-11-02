@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/02 10:15:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/02 11:02:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
  * param nb_byte	Bytes per line
  */
 
-//void	ft_vm_print_arena(void const *data, size_t msize, size_t nb_byte)
 void	ft_vm_print_arena(void const *data,
 							size_t msize,
 							size_t nb_byte,

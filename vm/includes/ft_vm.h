@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/02 10:14:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/02 16:54:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 typedef struct			s_vm_instr
 {
 	unsigned int		bytecode;
-	unsigned char		index;
+	unsigned int		index;
 	t_op				*op;
 	//size_t				jump;
 	int					arg_jump[MAX_ARGS_NUMBER];
@@ -122,7 +122,7 @@ typedef struct          s_dead_pool
 
 typedef struct			s_instr_list
 {
-	void			(*func)(unsigned char arena[], t_champion *champ);
+	int			(*func)(unsigned char arena[], t_champion *champ);
 }						t_instr_list;
 
 
@@ -170,15 +170,17 @@ void			ft_vm_arena_upload_champion(unsigned char arena[MEM_SIZE],
 ** Instruction functions
 */
 void			ft_vm_instr(unsigned char arena[],
-										t_dead_pool *dead_pool,
-										int *nb_champion);
-int				ft_vm_instr_read(unsigned char arena[], t_dead_pool *dead_pool, const int nb_champion);
-void			ft_vm_instr_decode(t_champion *champ);
+							t_dead_pool *dead_pool,
+							unsigned const int nb_champion,
+							unsigned int current_cycle);
+int				ft_vm_instr_read(unsigned char arena[], t_dead_pool *dead_pool, const unsigned int nb_champion, unsigned int current_cycle);
+int				ft_vm_instr_decode(unsigned char arena[], t_champion *champ);
 void 			ft_vm_instr_bytecode(t_champion *champ);
-void			ft_vm_instr_jump(t_champion *champ);
+int				ft_vm_instr_jump(t_champion *champ);
 void			ft_vm_instr_exec(unsigned char arena[], t_champion *champ);
-void			ft_vm_instr_sti(unsigned char arena[], t_champion *champ);
 int				ft_vm_instr_get_data(int size, t_champion *champ);
+int				ft_vm_instr_sti(unsigned char arena[], t_champion *champ);
+int				ft_vm_instr_st(unsigned char arena[], t_champion *champ);
 
 /*
 ** Print functions
