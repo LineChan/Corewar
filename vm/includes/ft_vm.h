@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/02 16:54:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/03 14:53:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@
 # define DEBUG_MODE 0
 #endif
 
+#ifdef TESTS
+# define TEST_MODE 1
+#else
+# define TEST_MODE 0
+#endif
+
 # ifndef EXIT_FAILURE
 #  define EXIT_FAILURE 1
 # endif
@@ -68,7 +74,7 @@
 # define STI		11
 # define FORK		12
 # define LLD		13
-# define LLDI		1ampjkk
+# define LLDI		14
 # define LFORK		15
 # define AFF		16
 #endif
@@ -78,7 +84,7 @@ typedef struct			s_vm_instr
 	unsigned int		bytecode;
 	unsigned int		index;
 	t_op				*op;
-	//size_t				jump;
+	//int					jump;
 	int					arg_jump[MAX_ARGS_NUMBER];
 	t_list				list;
 
@@ -178,7 +184,7 @@ int				ft_vm_instr_decode(unsigned char arena[], t_champion *champ);
 void 			ft_vm_instr_bytecode(t_champion *champ);
 int				ft_vm_instr_jump(t_champion *champ);
 void			ft_vm_instr_exec(unsigned char arena[], t_champion *champ);
-int				ft_vm_instr_get_data(int size, t_champion *champ);
+int				ft_vm_instr_get_data(size_t size, uint8_t *ptr);
 int				ft_vm_instr_sti(unsigned char arena[], t_champion *champ);
 int				ft_vm_instr_st(unsigned char arena[], t_champion *champ);
 

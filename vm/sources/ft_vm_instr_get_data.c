@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_bytecode.c                             :+:      :+:    :+:   */
+/*   ft_vm_instr_get_data.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/27 18:07:45 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/03 11:52:56 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/03 14:49:30 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/03 15:43:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//TODO: presentation
-# include "ft_vm.h"
+#include "ft_vm.h"
 
-void			ft_vm_instr_bytecode(t_champion *champ)
+//TODO : presentation
+// by illan91
+
+int				ft_vm_instr_get_data(size_t size, uint8_t *pc)
 {
-	champ->instr.bytecode = (unsigned int)*(champ->pc + 1);
-	DEBUG_MODE ? ft_printf("instr->bytecode '%b'\n", champ->instr.bytecode) : 0;
+	if (1 == size)
+		return (*pc);
+	if (2 == size)
+	{
+		if (IS_BIG_ENDIAN)
+			return (*(int16_t *)pc);
+		return (ft_endian_convert_int16(*(int16_t *)pc));
+	}
+	if (IS_BIG_ENDIAN)
+		return (*(int32_t *)pc);
+	return (ft_endian_convert_int32(*(int32_t *)pc));
 }

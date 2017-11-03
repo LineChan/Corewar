@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:04:52 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/02 16:54:32 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/03 16:51:07 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,23 @@
 void			ft_vm_instr(unsigned char arena[], t_dead_pool *dead_pool,
 							unsigned const int nb_champion, unsigned int current_cyle)
 {
-	ft_printf("{red:ft_vm_instr in}\n");
 	int i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 1)
 	{
 		if (ft_vm_instr_read(arena, dead_pool, nb_champion, current_cyle) == EXIT_SUCCESS)
 		{
-			ft_printf("{red:ft_vm_instr LOOP}\n");
+			ft_printf("BREAK\n");
+			getchar();
+			ft_printf("coucou\n");
+			ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+			ft_printf("\n");
 			break ;
+
 		}
+		ft_printf("end of turn\n");
 		++i;
 		getchar();
 	}
-	ft_printf("{red:SEGFAULT vm_instr out}\n");
 }

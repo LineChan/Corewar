@@ -6,7 +6,7 @@
 #    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/11/01 14:44:56 by mvillemi         ###   ########.fr        #
+#    Updated: 2017/11/03 13:08:44 by mvillemi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,16 @@ C_DIRS			+= $(COMN)
 # Add to C_FLAGS
 ifeq ($(DEBUG),1)
 C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror
+ifeq ($(TESTS), 1)
+C_FLAGS		 	:= -MMD -g -DTESTS -Wall -Wextra -Werror
+ifeq ($(DEBUG), 1)
+ifeq ($(TESTS), 1)
+C_FLAGS		 	:= -MMD -g -DTESTS -DDEBUG -Wall -Wextra -Werror
 else
 C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror
+endif
+endif
+endif
 endif
 
 # Build .o files
