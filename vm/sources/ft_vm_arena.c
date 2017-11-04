@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/03 13:08:51 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/04 17:27:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 * param dead_pool	Structure gatehering all the champions
 * param nb_champion	Champions number
 */
-	#include <libc.h>
+	// TODO : remove libc.h
+#include <libc.h>
 
 void		ft_vm_arena(unsigned char arena[MEM_SIZE],
 	 							int option[],

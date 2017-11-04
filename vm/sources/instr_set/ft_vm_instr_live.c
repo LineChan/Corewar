@@ -6,13 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 15:25:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/04 17:14:44 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/04 17:28:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 //TODO: presentation
 
+//TODO : remove libc.h
 #include <libc.h>
 void           ft_vm_instr_live(unsigned char arena[],
                                 t_dead_pool *dead_pool,
