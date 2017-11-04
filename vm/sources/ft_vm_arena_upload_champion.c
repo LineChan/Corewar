@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/31 13:26:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/04 15:48:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 void 		ft_vm_arena_up_routine(const int fd,
 										unsigned char arena[],
-										t_header *header,
+										t_champion *champ,
 										int index)
 {
-	read(fd, &arena[index], header->prog_size);
+	read(fd, &arena[index], champ->header.prog_size);
 	close(fd);
 }
 
@@ -43,25 +43,29 @@ void		ft_vm_arena_upload_champion(unsigned char arena[],
 	index = 0;
 	if (option[1])
 	{
-		ft_vm_arena_up_routine(option[1], arena, &dead_pool->champion1.header, index);
+		ft_vm_arena_up_routine(option[1], arena, &dead_pool->champion1, index);
 		dead_pool->champion1.pc = &arena[index];
+		dead_pool->champion1.reg[0] = 1;
 		index += step;
 	}
 	if (option[2])
 	{
-		ft_vm_arena_up_routine(option[2], arena, &dead_pool->champion2.header, index);
+		ft_vm_arena_up_routine(option[2], arena, &dead_pool->champion2, index);
 		dead_pool->champion2.pc = &arena[index];
+		dead_pool->champion2.reg[0] = 2;
 		index += step;
 	}
 	if (option[3])
 	{
-		ft_vm_arena_up_routine(option[3], arena, &dead_pool->champion3.header, index);
+		ft_vm_arena_up_routine(option[3], arena, &dead_pool->champion3, index);
 		dead_pool->champion3.pc = &arena[index];
+		dead_pool->champion3.reg[0] = 3;
 		index += step;
 	}
 	if (option[4])
 	{
-		ft_vm_arena_up_routine(option[4], arena, &dead_pool->champion4.header, index);
+		ft_vm_arena_up_routine(option[4], arena, &dead_pool->champion4, index);
 		dead_pool->champion4.pc = &arena[index];
+		dead_pool->champion4.reg[0] = 4;
 	}
 }

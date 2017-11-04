@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/03 14:53:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/04 16:11:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@
 
 # define    OPTION_MAX		6
 
-#if 1
+# define	INSTR_NUMBER	16
+
+#if 0
 # define LIVE		1
 # define LD			2
 # define ST			3
@@ -82,11 +84,10 @@
 typedef struct			s_vm_instr
 {
 	unsigned int		bytecode;
-	unsigned int		index;
+	//unsigned int		index;
 	t_op				*op;
 	//int					jump;
 	int					arg_jump[MAX_ARGS_NUMBER];
-	t_list				list;
 
 }						t_vm_instr;
 
@@ -128,7 +129,7 @@ typedef struct          s_dead_pool
 
 typedef struct			s_instr_list
 {
-	int			(*func)(unsigned char arena[], t_champion *champ);
+	void			(*func)(unsigned char arena[], t_dead_pool *dead_pool, t_champion *champ);
 }						t_instr_list;
 
 
@@ -149,6 +150,11 @@ extern t_op	g_op_tab[17];
 int				ft_atoi(char *str);
 
 t_option		*ft_vm_parse_option(int option[OPTION_MAX], int ac, char **av);
+
+/*
+** Commun function
+*/
+int				ft_instruction_get_data(size_t size, uint8_t *pc);
 
 /*
 ** Parse functions
@@ -180,13 +186,19 @@ void			ft_vm_instr(unsigned char arena[],
 							unsigned const int nb_champion,
 							unsigned int current_cycle);
 int				ft_vm_instr_read(unsigned char arena[], t_dead_pool *dead_pool, const unsigned int nb_champion, unsigned int current_cycle);
-int				ft_vm_instr_decode(unsigned char arena[], t_champion *champ);
+int				ft_vm_instr_decode(t_champion *champ);
 void 			ft_vm_instr_bytecode(t_champion *champ);
 int				ft_vm_instr_jump(t_champion *champ);
-void			ft_vm_instr_exec(unsigned char arena[], t_champion *champ);
+void			ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool, t_champion *champ);
 int				ft_vm_instr_get_data(size_t size, uint8_t *ptr);
-int				ft_vm_instr_sti(unsigned char arena[], t_champion *champ);
-int				ft_vm_instr_st(unsigned char arena[], t_champion *champ);
+
+void			ft_vm_instr_sti(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+void			ft_vm_instr_live(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+//int				ft_vm_instr_st(unsigned char arena[], t_champion *champ);
 
 /*
 ** Print functions

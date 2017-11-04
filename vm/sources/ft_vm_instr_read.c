@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/03 16:54:51 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/04 17:03:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 * param nb_champion	Champions number
 */
 
-extern uint8_t	g_direct_jump_table_from_instr[17];
-
 int				ft_vm_instr_read(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								const unsigned int nb_champion,
@@ -34,11 +32,11 @@ int				ft_vm_instr_read(unsigned char arena[],
 	ft_printf("next_cycle : %d current : %d\n", dead_pool->champion1.next_cycle, current_cycle)	;
 	if (TEST_MODE)
 	{
-		int n = 2;
+		int n = 4;
 		while (n)
 		{
-			ft_vm_instr_decode(arena, &dead_pool->champion1);
-			ft_vm_instr_exec(arena, &dead_pool->champion1);
+			ft_vm_instr_decode(&dead_pool->champion1);
+			ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion1);
 			--n;
 		}
 			return (EXIT_SUCCESS);
@@ -71,8 +69,8 @@ int				ft_vm_instr_read(unsigned char arena[],
 			DEBUG_MODE ? ft_printf("Champion1 : %s\n", dead_pool->champion1.header.prog_name) : 0;
 			if  (dead_pool->champion1.next_cycle <= current_cycle)
 			{
-				if (ft_vm_instr_decode(arena, &dead_pool->champion1) == EXIT_SUCCESS)
-					ft_vm_instr_exec(arena, &dead_pool->champion1);
+				if (ft_vm_instr_decode(&dead_pool->champion1) == EXIT_SUCCESS)
+					ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion1);
 				else
 				dead_pool->champion1.pc += 1;
 			}
@@ -84,10 +82,10 @@ int				ft_vm_instr_read(unsigned char arena[],
 			DEBUG_MODE ? ft_printf("\nChampion2 : %s\n", dead_pool->champion2.header.prog_name) : 0;
 			if(dead_pool->champion2.next_cycle <= current_cycle)
 			{
-				if (ft_vm_instr_decode(arena, &dead_pool->champion2) == EXIT_SUCCESS)
-				ft_vm_instr_exec(arena, &dead_pool->champion2);
+				if (ft_vm_instr_decode(&dead_pool->champion2) == EXIT_SUCCESS)
+					ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion2);
 				else
-				dead_pool->champion2.pc += 1;
+					dead_pool->champion2.pc += 1;
 			}
 			else
 			++instr_left;
@@ -97,10 +95,10 @@ int				ft_vm_instr_read(unsigned char arena[],
 			DEBUG_MODE ? ft_printf("\nChampion3 : %s\n", dead_pool->champion3.header.prog_name) : 0;
 			if (dead_pool->champion3.next_cycle <= current_cycle)
 			{
-				if (ft_vm_instr_decode(arena, &dead_pool->champion3) == EXIT_SUCCESS)
-				ft_vm_instr_exec(arena, &dead_pool->champion3);
+				if (ft_vm_instr_decode(&dead_pool->champion3) == EXIT_SUCCESS)
+					ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion3);
 				else
-				dead_pool->champion3.pc += 1;
+					dead_pool->champion3.pc += 1;
 			}
 			else
 			++instr_left;
@@ -110,10 +108,10 @@ int				ft_vm_instr_read(unsigned char arena[],
 			DEBUG_MODE ? ft_printf("\nChampion4 : %s\n", dead_pool->champion4.header.prog_name) : 0;
 			if(dead_pool->champion4.next_cycle <= current_cycle)
 			{
-				if (ft_vm_instr_decode(arena, &dead_pool->champion4) == EXIT_SUCCESS)
-				ft_vm_instr_exec(arena, &dead_pool->champion4);
+				if (ft_vm_instr_decode(&dead_pool->champion4) == EXIT_SUCCESS)
+					ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion4);
 				else
-				dead_pool->champion4.pc += 1;
+					dead_pool->champion4.pc += 1;
 			}
 			else
 			++instr_left;
