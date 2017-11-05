@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/05 19:48:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/05 20:50:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@
 #if 0
 # define LIVE		1
 # define LD			2
-# define ST			3
+ define ST			3
 # define ADD		4
 # define SUB		5
 # define AND		6
@@ -196,6 +196,9 @@ void			ft_vm_instr_live(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ);
 void			ft_vm_instr_ld(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+void			ft_vm_instr_st(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ);
 void			ft_vm_instr_add(unsigned char arena[],

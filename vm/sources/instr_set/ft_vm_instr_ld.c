@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 17:49:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/05 19:28:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/05 20:38:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ void			ft_vm_instr_ld(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ)
 {
-	unsigned char		*ptr;
 	unsigned int		value_to_load;
+	unsigned char		*ptr;
 
 	(void)dead_pool;
-	(void)arena;
 	ptr = champ->pc + 2;
 	#if 1
 	if (champ->instr.op->arg_types[0] == T_DIR)

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 14:32:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/05 19:41:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/05 20:50:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static const		t_instr_list g_instr_list [] =
 	{0},
 	{&ft_vm_instr_live}, //1
 	{&ft_vm_instr_ld},	 //2
-	{&ft_vm_instr_tmp},  //3
+	{&ft_vm_instr_st},  //3
 	{&ft_vm_instr_add}, //4
 	{&ft_vm_instr_tmp}, //5
 	{&ft_vm_instr_tmp}, //6
@@ -54,8 +54,11 @@ void			ft_vm_instr_exec(unsigned char arena[],
 	static int i = 0;
 	if ((champ->instr.op->numero > 0) && (champ->instr.op->numero <= INSTR_NUMBER))
 	{
-		ft_printf("nb of instruction : %d\n", i);
-		getchar();
+		if (DEBUG_MODE)
+		{
+			ft_printf("nb of instruction : %d\n", i);
+			getchar();
+		}
 		g_instr_list[champ->instr.op->numero].func(arena, dead_pool, champ);
 		ft_memset((void *)&champ->instr, 0, sizeof(t_vm_instr));
 		++i;
