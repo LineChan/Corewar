@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 14:32:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/05 20:50:27 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/05 22:44:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_vm_instr_ld},	 //2
 	{&ft_vm_instr_st},  //3
 	{&ft_vm_instr_add}, //4
-	{&ft_vm_instr_tmp}, //5
+	{&ft_vm_instr_sub}, //5
 	{&ft_vm_instr_tmp}, //6
 	{&ft_vm_instr_tmp}, //7
 	{&ft_vm_instr_tmp}, //8

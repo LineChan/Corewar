@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/05 20:50:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/05 23:12:13 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct			s_champion
 {
 	unsigned int		live;
 	unsigned int		carry;
-	int					reg[REG_NUMBER];
+	unsigned int		reg[REG_NUMBER];
 	unsigned char		*pc;
 	unsigned int		next_cycle;
 	t_header			header;
@@ -204,6 +204,9 @@ void			ft_vm_instr_st(unsigned char arena[],
 void			ft_vm_instr_add(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ);
+void			ft_vm_instr_sub(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
 void			ft_vm_instr_sti(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ);
@@ -215,5 +218,6 @@ void			ft_vm_instr_sti(unsigned char arena[],
 void			ft_vm_print_arena(void const *data, size_t msize,
 								size_t nb_byte, t_dead_pool *dead_pool);
 void			ft_vm_print_pc(t_dead_pool *dead_pool);
+void 			ft_vm_print_reg(t_champion *champ);
 
 #endif
