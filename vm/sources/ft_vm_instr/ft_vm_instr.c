@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:04:52 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/04 01:46:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/05 20:11:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			ft_vm_instr(unsigned char arena[], t_dead_pool *dead_pool,
 	int i;
 
 	i = 0;
-	while (i < 1)
+	while (i < 4)
 	{
 		if (ft_vm_instr_read(arena, dead_pool, nb_champion, current_cyle) == EXIT_SUCCESS)
 		{

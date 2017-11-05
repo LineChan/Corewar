@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/04 18:15:23 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/05 20:17:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ int				ft_vm_instr_read(unsigned char arena[],
 	ft_printf("next_cycle : %d current : %d\n", dead_pool->champion1.next_cycle, current_cycle)	;
 	if (TEST_MODE)
 	{
-		int n = 4;
-		while (n)
+		int i = 0;
+		while (i < 5)
 		{
+			DEBUG_MODE ? ft_printf("{yellow:read in}\n") : 0;
 			ft_vm_instr_decode(&dead_pool->champion1);
 			ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion1);
-			--n;
+			DEBUG_MODE ? ft_printf("{yellow:read out}\n") : 0;
+			++i;
 		}
-			return (EXIT_SUCCESS);
 	}
 
 
