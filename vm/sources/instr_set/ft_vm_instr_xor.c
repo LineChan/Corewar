@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 11:06:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/06 11:50:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/06 12:40:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			ft_vm_instr_xor(unsigned char arena[],
 		{
 			ft_printf("pc : %d\n", champ->pc - arena);
 			ft_printf("T_IND : %d\n", ft_instruction_get_data(2, ptr));
-			ft_printf("arena[%d] : %d\n", champ->pc - arena + ft_instruction_get_data(2, ptr), arena[champ->pc - arena + ft_instruction_get_data(2, ptr)]);
+			ft_printf("arena[%d] : %d\n", champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD), arena[champ->pc - arena + ft_instruction_get_data(2, ptr)]);
 			xor[i] = arena[champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD)];
 			ft_printf("xor[%d] = %d\n", i, xor[i]);
 		}
