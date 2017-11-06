@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:29:24 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/06 01:59:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/06 10:49:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void			ft_vm_instr_and(unsigned char arena[],
 			ft_printf("pc : %d\n", champ->pc - arena);
 			ft_printf("T_IND : %d\n", ft_instruction_get_data(2, ptr));
 			ft_printf("arena[%d] : %d\n", champ->pc - arena + ft_instruction_get_data(2, ptr), arena[champ->pc - arena + ft_instruction_get_data(2, ptr)]);
-			and[i] = arena[champ->pc - arena + ft_instruction_get_data(2, ptr)];
+			and[i] = arena[champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD)];
 			ft_printf("and[%d] = %d\n", i, and[i]);
 			ft_vm_print_reg(champ);
 			getchar();
@@ -74,7 +74,7 @@ void			ft_vm_instr_and(unsigned char arena[],
 		ptr += champ->instr.arg_jump[i];
 		++i;
 	}
-	ft_printf("reg[%d] : and[0] : %d and[1] : %d ----> & %d \n", *ptr, and[0] , and[1], and[0] & and[1]);
+	DEBUG_MODE ? ft_printf("reg[%d] : and[0] : %d and[1] : %d ----> & %d \n", *ptr, and[0] , and[1], and[0] & and[1]) : 0;
 	champ->reg[ft_instruction_get_data(1, ptr)] = and[0] & and[1];
 	champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1] + champ->instr.arg_jump[2];
 	if (DEBUG_MODE)

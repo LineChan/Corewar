@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:29:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/06 00:47:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/06 11:02:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void			ft_vm_instr_or(unsigned char arena[],
     unsigned int        or[2];
     unsigned char       *ptr;
 
-    (void)arena;
     (void)dead_pool;
     ptr = champ->pc + 2;
     i = 0;
@@ -43,13 +42,14 @@ void			ft_vm_instr_or(unsigned char arena[],
         if (champ->instr.op->arg_types[i] == T_REG)
             or[i] = champ->reg[*ptr];
         else if (champ->instr.op->arg_types[i] == T_IND)
-            or[i] = *(champ->pc + (ft_instruction_get_data(2, ptr) % IDX_MOD));
+            or[i] = arena[champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD)];
         else
-            or[i] = ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr);
-        ++i;
+            or[i] = arena[ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr)];
         ptr += champ->instr.arg_jump[i];
+        ++i;
     }
     champ->reg[*ptr] = or[0] | or[1];
+	DEBUG_MODE ? ft_printf("reg[%c] : or[0] : %d or[1] : %d ----> & %d \n", *ptr, or[0] , or[1], or[0] | or[1]) : 0;
     champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1] + champ->instr.arg_jump[2];
     if (DEBUG_MODE)
     {
