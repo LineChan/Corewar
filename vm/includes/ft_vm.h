@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/07 16:04:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:49:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,27 +59,8 @@
 */
 
 # define    OPTION_MAX		6
-
 # define	INSTR_NUMBER	16
-
-#if 0
-# define LIVE		1
-# define LD			2
- define ST			3
-# define ADD		4
-# define SUB		5
-# define AND		6
-# define OR			7
-# define XOR		8
-# define ZJUMP		9
-# define LDI		10
-# define STI		11
-# define FORK		12
-# define LLD		13
-# define LLDI		14
-# define LFORK		15
-# define AFF		16
-#endif
+#define		MOD(x)			((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
 
 typedef struct			s_vm_instr
 {

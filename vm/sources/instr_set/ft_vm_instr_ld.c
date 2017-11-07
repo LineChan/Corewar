@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 17:49:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/05 20:38:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:49:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ extern uint8_t g_direct_jump_table_from_instr[17];
 
 // TODO : remove libc.h
 #include <libc.h>
+
 void			ft_vm_instr_ld(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ)
@@ -36,12 +37,12 @@ void			ft_vm_instr_ld(unsigned char arena[],
 	ptr = champ->pc + 2;
 	#if 1
 	if (champ->instr.op->arg_types[0] == T_DIR)
-		value_to_load = arena[ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr)];
+		value_to_load = arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr))];
 	else
-		value_to_load = arena[(champ->pc - arena) + ft_instruction_get_data(2, ptr)];
+		value_to_load = arena[MOD((champ->pc - arena) + ft_instruction_get_data(2, ptr))];
 	#endif
 	ptr += champ->instr.arg_jump[0];
-	champ->reg[ft_instruction_get_data(1, ptr)] = value_to_load;
+	champ->reg[*ptr] = value_to_load;
 	if (DEBUG_MODE)
 	{
 		ft_printf("{yellow:ld}\n");

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 23:29:24 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/06 12:41:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:49:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,14 @@ void			ft_vm_instr_and(unsigned char arena[],
 			ft_printf("pc : %d\n", champ->pc - arena);
 			ft_printf("T_IND : %d\n", ft_instruction_get_data(2, ptr));
 			ft_printf("arena[%d] : %d\n", champ->pc - arena + ft_instruction_get_data(2, ptr), arena[champ->pc - arena + ft_instruction_get_data(2, ptr)]);
-			and[i] = arena[champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD)];
+
+
+
+			and[i] = arena[MOD(champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD))];
+
+
+
+
 			ft_printf("and[%d] = %d\n", i, and[i]);
 			ft_vm_print_reg(champ);
 			getchar();
@@ -66,7 +73,7 @@ void			ft_vm_instr_and(unsigned char arena[],
 		else
 		{
 			ft_printf("T_DIR\n");
-			and[i] = arena[ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr)];
+			and[i] = arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr))];
 			ft_printf("and[%d] = %d\n", i, and[i]);
 			ft_vm_print_reg(champ);
 			getchar();

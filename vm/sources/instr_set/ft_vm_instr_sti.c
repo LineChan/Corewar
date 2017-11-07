@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:56:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/06 00:47:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:49:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void 			ft_vm_instr_sti(unsigned char arena[],
         else
             copy_at_address += ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr);
         ptr += champ->instr.arg_jump[i];
-        i++;
+        ++i;
     }
     DEBUG_MODE ? ft_printf("final copy_at_address : %d\n", copy_at_address) : 0;
-    arena[copy_at_address] = champ->reg[reg];
+    arena[MOD(copy_at_address)] = champ->reg[reg];
     champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1] + champ->instr.arg_jump[2];
     DEBUG_MODE ? getchar() : 0;
 }

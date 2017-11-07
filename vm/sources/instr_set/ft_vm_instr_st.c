@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 20:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/05 22:29:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:46:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				ft_vm_instr_st(unsigned char arena[],
 	if (champ->instr.op->arg_types[1] == T_REG)
 		champ->reg[*(champ->pc + 3)] = champ->reg[*(champ->pc + 2)];
 	else
-		arena[(champ->pc - arena) + (ft_instruction_get_data(2, champ->pc + 3))] = champ->reg[*(champ->pc) + 2];
+		arena[MOD((champ->pc - arena) + (ft_instruction_get_data(2, champ->pc + 3)))] = champ->reg[*(champ->pc + 2)];
 	champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1];
 
 	if (DEBUG_MODE)

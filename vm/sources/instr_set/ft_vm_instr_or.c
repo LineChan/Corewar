@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:29:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/06 12:41:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/07 17:45:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void			ft_vm_instr_or(unsigned char arena[],
         if (champ->instr.op->arg_types[i] == T_REG)
             or[i] = champ->reg[*ptr];
         else if (champ->instr.op->arg_types[i] == T_IND)
-            or[i] = arena[champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD)];
+            or[i] = arena[MOD(champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD))];
         else
-            or[i] = arena[ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr)];
+            or[i] = arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr))];
         ptr += champ->instr.arg_jump[i];
         ++i;
     }
