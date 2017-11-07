@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/06 11:50:25 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/07 16:16:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int				ft_vm_instr_read(unsigned char arena[],
 	if (TEST_MODE)
 	{
 		int i = 0;
-		while (i < 5)
 		{
 			DEBUG_MODE ? ft_printf("{yellow:read in}\n") : 0;
 			ft_vm_instr_decode(&dead_pool->champion1);
@@ -41,6 +40,8 @@ int				ft_vm_instr_read(unsigned char arena[],
 			DEBUG_MODE ? ft_printf("{yellow:read out}\n") : 0;
 			++i;
 		}
+		getchar();
+		return (0);
 	}
 
 
