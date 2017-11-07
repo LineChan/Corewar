@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/07 17:49:45 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/08 00:11:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,9 @@ void			ft_vm_instr_xor(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ);
 void			ft_vm_instr_zjmp(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+void			ft_vm_instr_ldi(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ);
 void			ft_vm_instr_sti(unsigned char arena[],
