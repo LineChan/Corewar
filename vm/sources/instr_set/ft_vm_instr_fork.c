@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:26:03 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/08 00:30:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/08 11:18:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@ void			ft_vm_instr_fork(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ)
 {
-
+	(void)arena;
+	(void)dead_pool;
+	(void)champ;
 }

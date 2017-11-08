@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_ldi.c                                  :+:      :+:    :+:   */
+/*   ft_vm_instr_lld.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 16:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/08 11:45:34 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/08 11:20:54 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/08 12:57:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,40 @@
 
 // TODO : presentation
 // TODO : carry
+// TODO : remove libc.h
+#include <libc.h>
 
 extern uint8_t g_direct_jump_table_from_instr[17];
 
-void				ft_vm_instr_ldi(unsigned char arena[],
+void				ft_vm_instr_lld(unsigned char arena[],
 									t_dead_pool *dead_pool,
 									t_champion *champ)
-
 {
-	int					i;
 	unsigned int		value_to_load;
 	unsigned char		*ptr;
 
 	(void)dead_pool;
 	ptr = champ->pc + 2;
-	value_to_load = 0;
-	i = 0;
-	while (i < (champ->instr.op->nb_args - 1))
+	if (champ->instr.op->arg_types[0] == T_DIR)
 	{
-		if (champ->instr.op->arg_types[i] == T_REG)
-			value_to_load += champ->reg[*ptr];
-		else if (champ->instr.op->arg_types[i] == T_IND)
-			value_to_load += arena[MOD((champ->pc - arena) + (ft_instruction_get_data(2, ptr) % IDX_MOD))];
-		else if (champ->instr.op->arg_types[i] == T_DIR)
-			value_to_load += arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr))];
-		++i;
-		ptr += champ->instr.arg_jump[i];
+
+		value_to_load =
+		arena[MOD(ft_instruction_get_data(
+			g_direct_jump_table_from_instr[champ->instr.op->numero], ptr))];
 	}
+	else
+		value_to_load = arena[MOD((champ->pc - arena) + ft_instruction_get_data(2, ptr))];
+	ptr += champ->instr.arg_jump[0];
 	champ->reg[*ptr] = value_to_load;
+	if (DEBUG_MODE)
+	{
+		ft_printf("{yellow:ld}\n");
+		ft_vm_print_reg(champ);
+	}
+	champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1];
+	if (DEBUG_MODE)
+	{
+		getchar();
+		ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+	}
 }

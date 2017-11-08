@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/08 00:11:35 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:19:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,17 +158,15 @@ void			ft_vm_arena_upload_champion(unsigned char arena[MEM_SIZE],
 										int option[OPTION_MAX],
 										t_dead_pool *dead_pool,
 										int *nb_champion);
-
+void			ft_vm_arena_live_check(t_dead_pool *dead_pool, int *nb_champion);
 /*
 ** Instruction functions
 */
 void			ft_vm_instr(unsigned char arena[],
 							t_dead_pool *dead_pool,
 							unsigned const int nb_champion,
-							unsigned int current_cycle);
-int				ft_vm_instr_read(unsigned char arena[], t_dead_pool *dead_pool, const unsigned int nb_champion, unsigned int current_cycle);
+							unsigned const int current_cycle);
 int				ft_vm_instr_decode(t_champion *champ);
-void 			ft_vm_instr_bytecode(t_champion *champ);
 int				ft_vm_instr_jump(t_champion *champ);
 void			ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool, t_champion *champ);
 int				ft_vm_instr_get_data(size_t size, uint8_t *ptr);
@@ -206,7 +204,21 @@ void			ft_vm_instr_ldi(unsigned char arena[],
 void			ft_vm_instr_sti(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								t_champion *champ);
-//int				ft_vm_instr_st(unsigned char arena[], t_champion *champ);
+void			ft_vm_instr_fork(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+void			ft_vm_instr_lld(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+void			ft_vm_instr_lldi(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+void			ft_vm_instr_lfork(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
+void			ft_vm_instr_aff(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								t_champion *champ);
 
 /*
 ** Print functions

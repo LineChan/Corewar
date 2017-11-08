@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/04 17:27:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/08 18:19:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ void		ft_vm_arena(unsigned char arena[MEM_SIZE],
 								t_dead_pool *dead_pool,
 								int *nb_champion)
 {
-	int			current_cycle;
-	int			cycle_to_die;
+	unsigned int		current_cycle;
+	unsigned int		cycle_to_die;
 
-	cycle_to_die = CYCLE_TO_DIE;
+	//cycle_to_die = CYCLE_TO_DIE;
+	cycle_to_die = 30;
 	current_cycle = cycle_to_die;
+
 	ft_memset(arena, 0, MEM_SIZE);
 	if (TEST_MODE)
 	{
@@ -45,16 +47,26 @@ void		ft_vm_arena(unsigned char arena[MEM_SIZE],
 			--i;
 		}
 	}
-
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
-	int i = 0;
-	while (i < 2)
+
+
+	while (*nb_champion)
 	{
 		ft_vm_instr(arena, dead_pool, *nb_champion, current_cycle);
-		ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+		ft_vm_arena_live_check(dead_pool, nb_champion);
+		ft_printf("There are %d champions left\n", *nb_champion);
+		break ;
+	}
+	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+	#if 0
+	int i = 0;
+	while (cycle_to_die > 1)
+	{
+		ft_printf("nb of turns : %d current_cyle : %d\n", i, current_cycle);
 		cycle_to_die -= CYCLE_DELTA;
 		current_cycle += cycle_to_die;
-		++i;
 	}
+	#endif
+	//
 }
