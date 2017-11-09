@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/04 15:48:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:34:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void 		ft_vm_arena_up_routine(const int fd,
 										int index)
 {
 	read(fd, &arena[index], champ->header.prog_size);
+	champ->index = index;
 	close(fd);
 }
 

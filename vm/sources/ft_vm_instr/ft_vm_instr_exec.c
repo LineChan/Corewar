@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 14:32:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/09 18:57:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:01:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,17 @@ void			ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool)
 	static int i = 0;
 	if ((*dead_pool->i_champ->pc > 0) && (*dead_pool->i_champ->pc <= INSTR_NUMBER))
 	{
+		ft_printf("next_cycle {green:in}: %d\n", dead_pool->i_champ->next_cycle);
 		if (DEBUG_MODE)
 		{
 			ft_printf("nb of instruction : %d\n", i);
 			getchar();
 		}
 		g_instr_list[dead_pool->i_champ->instr.op->numero].func(arena, dead_pool);
+		//ft_memset((void *)&dead_pool->i_champ->instr, 0, sizeof(t_vm_instr));
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-		ft_memset((void *)&dead_pool->i_champ->instr, 0, sizeof(t_vm_instr));
+		ft_printf("next_cycle {green:out}: %d\n", dead_pool->i_champ->next_cycle);
+		getchar();
 		++i;
 	}
 	else

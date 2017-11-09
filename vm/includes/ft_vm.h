@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/09 18:51:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 20:33:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ typedef struct			s_champion
 	unsigned int		live;
 	unsigned int		carry;
 	unsigned int		reg[REG_NUMBER];
-	unsigned char		*pc;
 	unsigned int		next_cycle;
+	unsigned int		index;
+	unsigned char		*pc;
 	t_header			header;
 	t_vm_instr			instr;
 }						t_champion;
