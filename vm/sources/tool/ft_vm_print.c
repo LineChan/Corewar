@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/05 22:43:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 21:34:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ void 		ft_vm_print_pc(t_dead_pool *dead_pool)
 
 void 		ft_vm_print_reg(t_champion *champ)
 {
-	ft_printf("reg[0] : %d\n", champ->reg[0]);
-	ft_printf("reg[1] : %d\n", champ->reg[1]);
-	ft_printf("reg[2] : %d\n", champ->reg[2]);
-	ft_printf("reg[3] : %d\n", champ->reg[3]);
-	ft_printf("reg[4] : %d\n", champ->reg[4]);
-	ft_printf("reg[5] : %d\n", champ->reg[5]);
-	ft_printf("reg[6] : %d\n", champ->reg[6]);
-	ft_printf("reg[7] : %d\n", champ->reg[7]);
-	ft_printf("reg[8] : %d\n", champ->reg[8]);
-	ft_printf("reg[9] : %d\n", champ->reg[9]);
-	ft_printf("reg[10] : %d\n", champ->reg[10]);
-	ft_printf("reg[11] : %d\n", champ->reg[11]);
+	ft_fprintf(2, "reg[0] : %d\n", champ->reg[0]);
+	ft_fprintf(2, "reg[1] : %d\n", champ->reg[1]);
+	ft_fprintf(2, "reg[2] : %d\n", champ->reg[2]);
+	ft_fprintf(2, "reg[3] : %d\n", champ->reg[3]);
+	ft_fprintf(2, "reg[4] : %d\n", champ->reg[4]);
+	ft_fprintf(2, "reg[5] : %d\n", champ->reg[5]);
+	ft_fprintf(2, "reg[6] : %d\n", champ->reg[6]);
+	ft_fprintf(2, "reg[7] : %d\n", champ->reg[7]);
+	ft_fprintf(2, "reg[8] : %d\n", champ->reg[8]);
+	ft_fprintf(2, "reg[9] : %d\n", champ->reg[9]);
+	ft_fprintf(2, "reg[10] : %d\n", champ->reg[10]);
+	ft_fprintf(2, "reg[11] : %d\n", champ->reg[11]);
 }

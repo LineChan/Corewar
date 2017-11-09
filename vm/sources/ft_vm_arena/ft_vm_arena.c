@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/09 17:15:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 00:28:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,40 @@
 	// TODO : remove libc.h
 #include <libc.h>
 
-void		ft_vm_arena(unsigned char arena[MEM_SIZE],
-	 							int option[],
-								t_dead_pool *dead_pool,
-								int *nb_champion)
+static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
+{
+	if (dead_pool->champion1.pc)
+	{
+		dead_pool->i_champ = &dead_pool->champion1;
+		dead_pool->i_champ->index = 1;
+	}
+	else if (dead_pool->champion2.pc)
+	{
+		dead_pool->i_champ = &dead_pool->champion2;
+		dead_pool->i_champ->index = 2;
+	}
+	else if (dead_pool->champion3.pc)
+	{
+		dead_pool->i_champ = &dead_pool->champion3;
+		dead_pool->i_champ->index = 3;
+	}
+	else if (dead_pool->champion4.pc)
+	{
+		dead_pool->i_champ = &dead_pool->champion4;
+		dead_pool->i_champ->index = 4;
+	}
+}
+
+void					ft_vm_arena(unsigned char arena[MEM_SIZE],
+	 								int option[],
+									t_dead_pool *dead_pool,
+									int *nb_champion)
 {
 	unsigned int		current_cycle;
 	unsigned int		cycle_to_die;
 
 	//cycle_to_die = CYCLE_TO_DIE;
-	cycle_to_die = 30;
+	cycle_to_die = 10;
 	current_cycle = cycle_to_die;
 
 	ft_memset(arena, 0, MEM_SIZE);
@@ -47,26 +71,19 @@ void		ft_vm_arena(unsigned char arena[MEM_SIZE],
 			--i;
 		}
 	}
+
+
+
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
-
-
-	while (*nb_champion)
+	while (*nb_champion != 1)
 	{
 		ft_vm_instr(arena, dead_pool, *nb_champion, current_cycle);
 		ft_vm_arena_live_check(dead_pool, nb_champion);
-		ft_printf("There are %d champions left\n", *nb_champion);
-		break ;
+		ft_printf("ft_vm_arena : nb_champion = %d\n", *nb_champion);
+		getchar();
 	}
+	ft_vm_arena_find_winner(dead_pool);
+	ft_printf("Player %d ({green:%s}) won\n", dead_pool->i_champ->index, dead_pool->i_champ->header.prog_name);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
-	#if 0
-	int i = 0;
-	while (cycle_to_die > 1)
-	{
-		ft_printf("nb of turns : %d current_cyle : %d\n", i, current_cycle);
-		cycle_to_die -= CYCLE_DELTA;
-		current_cycle += cycle_to_die;
-	}
-	#endif
-	//
 }
