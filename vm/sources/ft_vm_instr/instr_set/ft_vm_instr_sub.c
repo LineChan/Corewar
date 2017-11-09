@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 22:33:27 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/05 23:14:13 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:02:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,32 +21,29 @@ substract the first two, and place the result in the third, right before modifyi
 * param champ
 */
 //TODO : carry
-void            ft_vm_instr_sub(unsigned char arena[],
-                                t_dead_pool *dead_pool,
-                                t_champion *champ)
+void            ft_vm_instr_sub(unsigned char arena[], t_dead_pool *dead_pool)
 {
     int             i;
     unsigned        sub[3];
     unsigned char   *ptr;
 
-    (void)dead_pool;
     (void)arena;
     i = 0;
-    ptr = champ->pc + 2;
-    while (i < champ->instr.op->nb_args)
+    ptr = dead_pool->i_champ->pc + 2;
+    while (i < dead_pool->i_champ->instr.op->nb_args)
     {
         sub[i] = *ptr;
         ++ptr;
         ++i;
     }
-    champ->reg[sub[2]] = champ->reg[sub[0]] - champ->reg[sub[1]];
-    champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1] + champ->instr.arg_jump[2];
+    dead_pool->i_champ->reg[sub[2]] = dead_pool->i_champ->reg[sub[0]] - dead_pool->i_champ->reg[sub[1]];
+    dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
     if (DEBUG_MODE)
     {
         ft_printf("sub[0] : %d\n", sub[0]);
         ft_printf("sub[1] : %d\n", sub[1]);
         ft_printf("sub[2] : %d\n\n", sub[2]);
-        ft_vm_print_reg(champ);
+        ft_vm_print_reg(dead_pool->i_champ);
         getchar();
     }
 }

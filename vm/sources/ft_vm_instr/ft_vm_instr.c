@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/08 18:19:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:14:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,59 @@
 * param arena		Memory dedicated to the virtual machine
 * param option		Options' array
 * param dead_pool	Structure gatehering all the champions
-* param nb_champion	Champions number
+* param nb_champion	Champions' number
 */
 
 // TODO : libc.h
 #include <libc.h>
 
-#if 0
-void				ft_vm_instr_champion_routine(unsigned char arena[], dead_pool, champ, current_cycle)
+void				ft_vm_instr_champion_routine(unsigned char arena[],
+												t_dead_pool * dead_pool,
+												unsigned const int current_cycle,
+												unsigned int *instr_left)
 {
 
+	DEBUG_MODE ? ft_printf("{bblack:ft_vm_instr_champion_routine} {green:in}\n") : 0;
+	(void)arena;
+	(void)current_cycle;
+	if (dead_pool->i_champ->pc)
+	{
+		if (DEBUG_MODE)
+		{
+			ft_printf("next_cycle : %d current : %d\n", dead_pool->i_champ->next_cycle, current_cycle);
+			ft_printf("Champion's name : %s\n", dead_pool->i_champ->header.prog_name);
+		}
+		if  (dead_pool->i_champ->next_cycle <= current_cycle)
+		{
+			if (ft_vm_instr_decode(dead_pool->i_champ) == EXIT_SUCCESS)
+				ft_vm_instr_exec(arena, dead_pool);
+			else
+				dead_pool->i_champ->pc += 1;
+		}
+		else
+			++*instr_left;
+	}
+	#if 0
+	instr_left = 0;
+	if (dead_pool->champion1.pc)
+	{
+		//ft_vm_instr_routine(arena, dead_pool, &dead_pool->champion1, current_cycle);
+		DEBUG_MODE ? ft_printf("Champion1 : %s\n", dead_pool->champion1.header.prog_name) : 0;
+		if  (dead_pool->champion1.next_cycle <= current_cycle)
+		{
+			#if 1
+			if (ft_vm_instr_decode(&dead_pool->champion1) == EXIT_SUCCESS)
+				ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion1);
+			else
+				dead_pool->champion1.pc += 1;
+				#endif
+		}
+		else
+			++instr_left;
+	}
+	#endif
+	ft_printf("{bblack:ft_vm_instr_champion_routine} {green:out}\n");
 }
-#endif
 
 void				ft_vm_instr(unsigned char arena[],
 								t_dead_pool *dead_pool,
@@ -37,6 +78,7 @@ void				ft_vm_instr(unsigned char arena[],
 								unsigned const int current_cycle)
 {
 	unsigned int		instr_left;
+	int					i;
 
 	instr_left = 0;
 	if (TEST_MODE)
@@ -44,8 +86,8 @@ void				ft_vm_instr(unsigned char arena[],
 		int i = 0;
 		{
 			DEBUG_MODE ? ft_printf("{yellow:read in}\n") : 0;
-			ft_vm_instr_decode(&dead_pool->champion1);
-			ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion1);
+			//ft_vm_instr_decode(&dead_pool->champion1);
+			//ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion1);
 			DEBUG_MODE ? ft_printf("{yellow:read out}\n") : 0;
 			++i;
 		}
@@ -53,29 +95,16 @@ void				ft_vm_instr(unsigned char arena[],
 		return ;
 	}
 
+	i = 0;
+	dead_pool->i_champ = &dead_pool->champion1;
 	while (instr_left != nb_champion)
 	{
-		ft_printf("{bblack:ft_vm_instr_read} {green:in}\n");
-		instr_left = 0;
-		if (dead_pool->champion1.pc)
+		while (i < 4)
 		{
-			//ft_vm_instr_routine(arena, dead_pool, &dead_pool->champion1, current_cycle);
-			ft_printf("next_cycle : %d current : %d\n", dead_pool->champion1.next_cycle, current_cycle)	;
-
-
-
-			DEBUG_MODE ? ft_printf("Champion1 : %s\n", dead_pool->champion1.header.prog_name) : 0;
-			if  (dead_pool->champion1.next_cycle <= current_cycle)
-			{
-				#if 1
-				if (ft_vm_instr_decode(&dead_pool->champion1) == EXIT_SUCCESS)
-					ft_vm_instr_exec(arena, dead_pool, &dead_pool->champion1);
-				else
-					dead_pool->champion1.pc += 1;
-					#endif
-			}
-			else
-				++instr_left;
+			ft_vm_instr_champion_routine(arena, dead_pool, current_cycle, &instr_left);
+			++i;
+			++dead_pool->i_champ;
+			getchar();
 		}
 		ft_printf("{bblack:ft_vm_instr_read} {green:out}\n");
 		getchar();

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:20:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/08 12:57:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:01:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,29 @@
 
 extern uint8_t g_direct_jump_table_from_instr[17];
 
-void				ft_vm_instr_lld(unsigned char arena[],
-									t_dead_pool *dead_pool,
-									t_champion *champ)
+void			ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool)
 {
 	unsigned int		value_to_load;
 	unsigned char		*ptr;
 
-	(void)dead_pool;
-	ptr = champ->pc + 2;
-	if (champ->instr.op->arg_types[0] == T_DIR)
+	ptr = dead_pool->i_champ->pc + 2;
+	if (dead_pool->i_champ->instr.op->arg_types[0] == T_DIR)
 	{
 
 		value_to_load =
 		arena[MOD(ft_instruction_get_data(
-			g_direct_jump_table_from_instr[champ->instr.op->numero], ptr))];
+			g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
 	}
 	else
-		value_to_load = arena[MOD((champ->pc - arena) + ft_instruction_get_data(2, ptr))];
-	ptr += champ->instr.arg_jump[0];
-	champ->reg[*ptr] = value_to_load;
+		value_to_load = arena[MOD((dead_pool->i_champ->pc - arena) + ft_instruction_get_data(2, ptr))];
+	ptr += dead_pool->i_champ->instr.arg_jump[0];
+	dead_pool->i_champ->reg[*ptr] = value_to_load;
 	if (DEBUG_MODE)
 	{
 		ft_printf("{yellow:ld}\n");
-		ft_vm_print_reg(champ);
+		ft_vm_print_reg(dead_pool->i_champ);
 	}
-	champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1];
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];
 	if (DEBUG_MODE)
 	{
 		getchar();

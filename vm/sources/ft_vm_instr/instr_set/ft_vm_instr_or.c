@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:29:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/07 17:45:35 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 19:03:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,32 @@
 #include <libc.h>
 extern uint8_t	g_direct_jump_table_from_instr[17];
 
-void			ft_vm_instr_or(unsigned char arena[],
-                                t_dead_pool *dead_pool,
-                                t_champion *champ)
+void			ft_vm_instr_or(unsigned char arena[], t_dead_pool *dead_pool)
 {
-    int                 i;
-    unsigned int        or[2];
-    unsigned char       *ptr;
+    int					i;
+    unsigned int		or[2];
+    unsigned char		*ptr;
 
-    (void)dead_pool;
-    ptr = champ->pc + 2;
+    ptr = dead_pool->i_champ->pc + 2;
     i = 0;
     DEBUG_MODE ? ft_printf("{yellow:or}\n") : 0;
-    while (i < (champ->instr.op->nb_args - 1))
+    while (i < (dead_pool->i_champ->instr.op->nb_args - 1))
     {
-        if (champ->instr.op->arg_types[i] == T_REG)
-            or[i] = champ->reg[*ptr];
-        else if (champ->instr.op->arg_types[i] == T_IND)
-            or[i] = arena[MOD(champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD))];
+        if (dead_pool->i_champ->instr.op->arg_types[i] == T_REG)
+            or[i] = dead_pool->i_champ->reg[*ptr];
+        else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
+            or[i] = arena[MOD(dead_pool->i_champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD))];
         else
-            or[i] = arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[champ->instr.op->numero], ptr))];
-        ptr += champ->instr.arg_jump[i];
+            or[i] = arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
+        ptr += dead_pool->i_champ->instr.arg_jump[i];
         ++i;
     }
-    champ->reg[*ptr] = or[0] | or[1];
+    dead_pool->i_champ->reg[*ptr] = or[0] | or[1];
 	DEBUG_MODE ? ft_printf("reg[%c] : or[0] : %d or[1] : %d ----> & %d \n", *ptr, or[0] , or[1], or[0] | or[1]) : 0;
-    champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1] + champ->instr.arg_jump[2];
+    dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
     if (DEBUG_MODE)
     {
-        ft_vm_print_reg(champ);
+        ft_vm_print_reg(dead_pool->i_champ);
         getchar();
     }
 }

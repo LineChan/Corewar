@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/08 18:19:45 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 17:15:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 * param arena		Memory dedicated to the virtual machine
 * param option		Options' array
 * param dead_pool	Structure gatehering all the champions
-* param nb_champion	Champions number
+* param nb_champion	Champions' number
 */
 	// TODO : remove libc.h
 #include <libc.h>

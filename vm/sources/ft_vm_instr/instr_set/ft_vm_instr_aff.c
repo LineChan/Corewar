@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_zjmp.c                                 :+:      :+:    :+:   */
+/*   ft_vm_instr_aff.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/07 14:39:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/07 17:49:33 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/08 11:34:23 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/09 18:39:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-// TODO : Presentation
+// TODO : presentation
 // TODO : carry
-// TODO : remove libc
 
-extern uint8_t g_direct_jump_table_from_instr[17];
-
-void				ft_vm_instr_zjmp(unsigned char arena[],
-									t_dead_pool *dead_pool,
-									t_champion *champ)
+void 			ft_vm_instr_aff(unsigned char arena[], t_dead_pool *dead_pool)
 {
+	DEBUG_MODE ? ft_printf("{yellow:aff}\n") : 0;
 	(void)arena;
-	(void)dead_pool;
-	champ->pc +=
-	MOD(ft_instruction_get_data(
-		g_direct_jump_table_from_instr[champ->instr.op->numero],
-		champ->pc + 1) % IDX_MOD);
+	ft_printf("%c\n", (dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 2)] % 256));
 }

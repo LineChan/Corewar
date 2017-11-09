@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 19:21:08 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/08 12:57:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/09 18:54:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,33 @@
 #include <libc.h>
 //TODO : carry
 
-void 			ft_vm_instr_add(unsigned char arena[],
-								t_dead_pool *dead_pool,
-								t_champion *champ)
+void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 {
 	int					i;
 	unsigned int		add[3];
 	unsigned char		*ptr;
 
-	ptr = champ->pc + 2;
+	ptr = dead_pool->i_champ->pc + 2;
 	i = 0;
 	DEBUG_MODE ? ft_printf("{yellow:add}\n") : 0;
-	(void)dead_pool;
 	(void)arena;
-	while (i < champ->instr.op->nb_args)
+	while (i < dead_pool->i_champ->instr.op->nb_args)
 	{
 		add[i] = *ptr;
 		++ptr;
 		++i;
 	}
-	champ->reg[add[2]] = champ->reg[add[0]] + champ->reg[add[1]];
-	champ->pc += 2 + champ->instr.arg_jump[0] + champ->instr.arg_jump[1] + champ->instr.arg_jump[2];
+	dead_pool->i_champ->reg[add[2]] = dead_pool->i_champ->reg[add[0]]
+										+ dead_pool->i_champ->reg[add[1]];
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] +
+										dead_pool->i_champ->instr.arg_jump[1]
+										+ dead_pool->i_champ->instr.arg_jump[2];
 	if (DEBUG_MODE)
 	{
 		ft_printf("add[0] : %d\n", add[0]);
 		ft_printf("add[1] : %d\n", add[1]);
 		ft_printf("add[2] : %d\n\n", add[2]);
-		ft_vm_print_reg(champ);
+		ft_vm_print_reg(dead_pool->i_champ);
 		getchar();
 	}
 }
