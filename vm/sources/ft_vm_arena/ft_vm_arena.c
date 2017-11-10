@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 00:28:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 12:15:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,20 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 	unsigned int		current_cycle;
 	unsigned int		cycle_to_die;
 
-	//cycle_to_die = CYCLE_TO_DIE;
-	cycle_to_die = 10;
+	cycle_to_die = CYCLE_TO_DIE;
+	//cycle_to_die = 10;
 	current_cycle = cycle_to_die;
-
-	ft_memset(arena, 0, MEM_SIZE);
-	if (TEST_MODE)
-	{
-		int i = MEM_SIZE - 1;
-		int nb = 1;
-		while (i > (MEM_SIZE - 129))
-		{
-			arena[i] = nb;
-			++nb;
-			--i;
-		}
-	}
-
-
 
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+
+	//while (1)
+	{
+		ft_vm_instr(arena, dead_pool, *nb_champion, current_cycle);
+		ft_vm_arena_live_check(dead_pool, nb_champion);
+		getchar();
+	}
+	#if 0
 	while (*nb_champion != 1)
 	{
 		ft_vm_instr(arena, dead_pool, *nb_champion, current_cycle);
@@ -85,5 +78,6 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 	}
 	ft_vm_arena_find_winner(dead_pool);
 	ft_printf("Player %d ({green:%s}) won\n", dead_pool->i_champ->index, dead_pool->i_champ->header.prog_name);
-	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+	#endif
+	ft_vm_arena_find_winner(dead_pool);
 }

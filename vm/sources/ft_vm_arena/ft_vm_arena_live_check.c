@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:04:13 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 00:28:36 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 12:16:01 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,4 @@ void		ft_vm_arena_live_check(t_dead_pool *dead_pool, int *nb_champion)
 		++dead_pool->i_champ;
 		++i;
 	}
-	getchar();
 }

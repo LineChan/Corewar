@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 17:49:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/09 19:02:07 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 15:53:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,30 @@ void			ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool)
 	unsigned int		value_to_load;
 	unsigned char		*ptr;
 
+	(void)arena;
+	ft_printf("{yellow:ld}\n");
 	ptr = dead_pool->i_champ->pc + 2;
+	ft_printf("while ld next_cycle ====> {green:in   1} : %d\n", dead_pool->i_champ->next_cycle);
 	if (dead_pool->i_champ->instr.op->arg_types[0] == T_DIR)
+	{
 		value_to_load = arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
+		ft_printf("while ld next_cycle ====> {green:in   2} : %d\n", dead_pool->i_champ->next_cycle);
+	}
 	else
+	{
 		value_to_load = arena[MOD((dead_pool->i_champ->pc - arena) + ft_instruction_get_data(2, ptr) % IDX_MOD)];
+		ft_printf("while ld next_cycle ====> {green:in   2} : %d\n", dead_pool->i_champ->next_cycle);
+	}
+
 	ptr += dead_pool->i_champ->instr.arg_jump[0];
-	dead_pool->i_champ->reg[*ptr] = value_to_load;
-	if (DEBUG_MODE)
+	ft_printf("ptr : %d\n", *ptr);
+	if (IS_REG(*ptr))
 	{
-		ft_printf("{yellow:ld}\n");
-		ft_vm_print_reg(dead_pool->i_champ);
+		dead_pool->i_champ->reg[*ptr] = value_to_load;
+		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];
+		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 	}
-	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];
-	if (DEBUG_MODE)
-	{
-		getchar();
-		ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
-	}
+	else
+		dead_pool->i_champ += 1;
+	DEBUG_MODE ? ft_vm_print_reg(dead_pool->i_champ) : 0;
 }

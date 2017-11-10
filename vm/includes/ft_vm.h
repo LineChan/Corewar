@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/10 00:28:33 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 15:53:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 # define    OPTION_MAX		6
 # define	INSTR_NUMBER	16
 # define	MOD(x)			((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
+# define	IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
 
 /*
 ** Structures
