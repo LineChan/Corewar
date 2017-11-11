@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 19:21:08 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 15:53:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 22:19:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,27 @@ void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 	unsigned int		add[3];
 	unsigned char		*ptr;
 
+	/* Set up a pointer at the beginning of the arguments */
 	ptr = dead_pool->i_champ->pc + 2;
 	i = 0;
 	DEBUG_MODE ? ft_printf("{yellow:add}\n") : 0;
 	(void)arena;
+	/* Store arguments */
 	while (i < dead_pool->i_champ->instr.op->nb_args)
 	{
 		add[i] = *ptr;
 		++ptr;
 		++i;
 	}
+	/* Check if it is a register number */
 	if (IS_REG(add[0]) && IS_REG(add[1]) && IS_REG(add[2]))
 	{
 		dead_pool->i_champ->reg[add[2]] = dead_pool->i_champ->reg[add[0]]
 												+ dead_pool->i_champ->reg[add[1]];
+		/* Move the Pointer Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] +
 										dead_pool->i_champ->instr.arg_jump[1]
 										+ dead_pool->i_champ->instr.arg_jump[2];
-		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 	}
 	else
 		dead_pool->i_champ->pc += 1;

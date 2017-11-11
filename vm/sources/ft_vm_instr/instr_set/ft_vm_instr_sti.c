@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:56:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 15:52:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 23:06:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void 			ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool)
 	DEBUG_MODE ? ft_printf("{yellow:sti}\n") : 0;
     i = 1;
     copy_at_address = 0;
+	/* Set a pointer at the beginning of the arguments */
     ptr = dead_pool->i_champ->pc + 2;
     reg = *ptr;
 	if (!IS_REG(reg))
@@ -45,6 +46,7 @@ void 			ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool)
 	}
     DEBUG_MODE ? ft_printf("reg : %hhx\n", reg) : 0;
     ptr += dead_pool->i_champ->instr.arg_jump[0];
+	/* Read arguments */
     while (i < dead_pool->i_champ->instr.op->nb_args)
     {
         if (dead_pool->i_champ->instr.op->arg_types[i] == T_REG)
@@ -64,7 +66,8 @@ void 			ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool)
         ++i;
     }
     DEBUG_MODE ? ft_printf("final copy_at_address : %d\n", copy_at_address) : 0;
+    /* Store the value from the register */
     arena[MOD(copy_at_address)] = dead_pool->i_champ->reg[reg];
+    /* Move the Program Counter */
     dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
-	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 }

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 11:06:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 15:53:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 23:11:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ void			ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool)
 	unsigned int	xor[2];
 	unsigned char	*ptr;
 
+	/* Set a pointer at the beginning of the arguments */
 	ptr = dead_pool->i_champ->pc + 2;
 	i = 0;
 	DEBUG_MODE ? ft_printf("{yellow:xor}\n") : 0;
+	/* Read arguments */
 	while (i < (dead_pool->i_champ->instr.op->nb_args - 1))
 	{
 		if (dead_pool->i_champ->instr.op->arg_types[i] == T_REG)
@@ -79,11 +81,12 @@ void			ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool)
 		++i;
 	}
 	DEBUG_MODE ? ft_fprintf(2,"reg[%d] : xor[0] : %d xor[1] : %d ----> & %d \n", *ptr, xor[0] , xor[1], xor[0] ^ xor[1]) : 0;
+	/* Compute the result and save it in a register */
 	if (IS_REG(*ptr))
 	{
 		dead_pool->i_champ->reg[*ptr] = xor[0] ^ xor[1];
+		/* Move the Program Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
-		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 	}
 	else
 		dead_pool->i_champ->pc += 1;

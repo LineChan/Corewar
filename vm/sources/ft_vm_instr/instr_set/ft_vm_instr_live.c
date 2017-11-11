@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 15:25:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 15:46:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/10 22:38:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,4 @@ void           ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool)
 		getchar();
 	}
 	dead_pool->i_champ->pc += 5;
-	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 }

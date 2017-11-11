@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 12:15:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/11 15:38:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,20 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 	unsigned int		current_cycle;
 	unsigned int		cycle_to_die;
 
-	cycle_to_die = CYCLE_TO_DIE;
-	//cycle_to_die = 10;
+	//cycle_to_die = CYCLE_TO_DIE;
+	cycle_to_die = 10;
 	current_cycle = cycle_to_die;
 
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
 
-	//while (1)
+	while (1)
 	{
-		ft_vm_instr(arena, dead_pool, *nb_champion, current_cycle);
+		if (ft_vm_instr(arena, dead_pool, nb_champion, current_cycle) == EXIT_SUCCESS)
+		{
+			ft_printf("{green:END OF GAME}\n");
+			break;
+		}
 		ft_vm_arena_live_check(dead_pool, nb_champion);
 		getchar();
 	}
@@ -77,7 +81,7 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 		getchar();
 	}
 	ft_vm_arena_find_winner(dead_pool);
-	ft_printf("Player %d ({green:%s}) won\n", dead_pool->i_champ->index, dead_pool->i_champ->header.prog_name);
 	#endif
 	ft_vm_arena_find_winner(dead_pool);
+	ft_printf("Player %d ({green:%s}) won\n", dead_pool->i_champ->index, dead_pool->i_champ->header.prog_name);
 }
