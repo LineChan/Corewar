@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/11 17:06:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/13 16:41:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,23 @@ int						ft_vm_instr(unsigned char arena[],
 	dead_pool->i_champ = &dead_pool->champion1;
 	while (i < MAX_PLAYERS)
 	{
-		if ((dead_pool->i_champ->pc) && !dead_pool->i_champ->done)
+		if (*dead_pool->i_champ->header.prog_name)
 		{
-			ft_printf("going to routine\n");
-			//if (dead_pool->i_champ->next_cycle <= current_cycle)
+			ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d\n", dead_pool->i_champ->header.prog_name, dead_pool->i_champ->next_cycle);
+			if (dead_pool->i_champ->next_cycle <= current_cycle)
 			{
 				ft_vm_instr_champion_routine(arena, dead_pool, current_cycle);
-				ft_printf("vm_instr next_cycle : %d current : %d\n", dead_pool->i_champ->next_cycle, current_cycle);
 				if (dead_pool->i_champ->next_cycle > current_cycle)
 				{
 					dead_pool->i_champ->done = 1;
 					if (EXIT_SUCCESS == ft_vm_instr_end_of_game(dead_pool, nb_champion))
 						return (EXIT_SUCCESS);
 				}
-				getchar();
 			}
 		}
 		++dead_pool->i_champ;
 		++i;
-		if (MAX_PLAYERS == i)
+		if (i == MAX_PLAYERS)
 		{
 			i ^= i;
 			dead_pool->i_champ = &dead_pool->champion1;
@@ -81,7 +79,6 @@ int						ft_vm_instr(unsigned char arena[],
 				ft_printf("{red:turn is over}\n");
 				return (EXIT_FAILURE);
 			}
-			getchar();
 		}
 	}
 	return (EXIT_FAILURE);

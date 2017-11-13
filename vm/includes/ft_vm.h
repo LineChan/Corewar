@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/11 16:00:33 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/13 14:33:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,8 @@ int			ft_vm_instr(unsigned char arena[],
 							t_dead_pool *dead_pool,
 							int *nb_champion,
 							unsigned const int current_cycle);
-int			ft_vm_instr_decode(t_champion *champ);
-int			ft_vm_instr_jump(t_champion *champ);
+int			ft_vm_instr_decode(t_dead_pool *dead_pool);
+int			ft_vm_instr_jump(t_dead_pool *dead_pool);
 void		ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool);
 int			ft_vm_instr_get_data(size_t size, uint8_t *ptr);
 int			ft_vm_instr_end_of_game(t_dead_pool *dead_pool, int *nb_champion);

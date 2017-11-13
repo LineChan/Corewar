@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/09 20:34:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/13 14:33:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void 		ft_vm_arena_up_routine(const int fd,
 	close(fd);
 }
 
+#include <libc.h>
 void		ft_vm_arena_upload_champion(unsigned char arena[],
 										int option[],
 										t_dead_pool *dead_pool,
@@ -39,6 +40,7 @@ void		ft_vm_arena_upload_champion(unsigned char arena[],
 	int		index;
 	int		step;
 
+	ft_memset((void *)arena, 0, MEM_SIZE);
 	!*nb_champion ? EXIT_FAIL("Error : no champion") : 0;
 	step = MEM_SIZE / *nb_champion;
 	index = 0;
@@ -48,6 +50,7 @@ void		ft_vm_arena_upload_champion(unsigned char arena[],
 		dead_pool->champion1.pc = &arena[index];
 		dead_pool->champion1.reg[0] = 1;
 		index += step;
+
 	}
 	if (option[2])
 	{

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:03:23 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/11 15:30:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/13 15:42:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,39 @@
 #include <libc.h>
 
 void				ft_vm_instr_champion_routine(unsigned char arena[],
-												t_dead_pool * dead_pool,
+												t_dead_pool *dead_pool,
 												unsigned const int current_cycle)
 {
 
 	(void)arena;
 	(void)dead_pool;
 	(void)current_cycle;
-	ft_printf("\n{bblack:ft_vm_instr_champion_routine} {green:in}\n");
+	if (DEBUG_MODE)
+		ft_printf("\n{bblack:ft_vm_instr_champion_routine} {green:in}\n");
+	if (!dead_pool->i_champ->done)
+	{
+		if ((ft_vm_instr_decode(dead_pool) == EXIT_SUCCESS) &&
+			(*dead_pool->i_champ->pc > 0) && (*dead_pool->i_champ->pc <= INSTR_NUMBER))
+			ft_vm_instr_exec(arena, dead_pool);
+		else
+		{
+			++dead_pool->i_champ->pc;
+			++dead_pool->i_champ->next_cycle;
+		}
+	}
+	else
+	{
+		++dead_pool->i_champ->pc;
+		++dead_pool->i_champ->next_cycle;
+	}
+	if ((dead_pool->i_champ->pc - arena - dead_pool->i_champ->index) == CHAMP_MAX_SIZE)
+		dead_pool->i_champ->pc = &arena[dead_pool->i_champ->index];
+	if (DEBUG_MODE)
+		ft_printf("{bblack:ft_vm_instr_champion_routine} {green:out}\n");
+	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+	return ;
+
+	#if 0
 	if ((dead_pool->i_champ->pc) && !dead_pool->i_champ->done)
 	{
 		if (DEBUG_MODE)
@@ -33,11 +58,17 @@ void				ft_vm_instr_champion_routine(unsigned char arena[],
 			ft_printf("\nChampion's name : {yellow:%s}\n", dead_pool->i_champ->header.prog_name);
 			ft_printf("next_cycle : %d current : %d\n", dead_pool->i_champ->next_cycle, current_cycle);
 		}
-		if (ft_vm_instr_decode(dead_pool->i_champ) == EXIT_SUCCESS)
+		ft_printf("{red:SEGFAULT1}\n");
+		if (ft_vm_instr_decode(dead_pool) == EXIT_SUCCESS)
+		{
+			ft_printf("{red:SEGFAULT2}\n");
 			ft_vm_instr_exec(arena, dead_pool);
+		}
 		else
 			dead_pool->i_champ->pc += 1;
+		ft_printf("{red:SEGFAULT4}\n");
 	}
+	#endif
 	#if 0
 	if ((dead_pool->i_champ->pc) && !dead_pool->i_champ->done)
 	{
