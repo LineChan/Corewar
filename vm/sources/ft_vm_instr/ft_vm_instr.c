@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/11 16:06:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/11 17:06:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int						ft_vm_instr(unsigned char arena[],
 	dead_pool->i_champ = &dead_pool->champion1;
 	while (i < MAX_PLAYERS)
 	{
-		if (dead_pool->i_champ->pc)
+		if ((dead_pool->i_champ->pc) && !dead_pool->i_champ->done)
 		{
 			ft_printf("going to routine\n");
-			if (dead_pool->i_champ->next_cycle <= current_cycle)
+			//if (dead_pool->i_champ->next_cycle <= current_cycle)
 			{
 				ft_vm_instr_champion_routine(arena, dead_pool, current_cycle);
 				ft_printf("vm_instr next_cycle : %d current : %d\n", dead_pool->i_champ->next_cycle, current_cycle);
