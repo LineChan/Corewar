@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:48:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 21:54:01 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@
 
 static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
 {
+	(void)dead_pool;
+	/*
+	dead_pool->idx ^= dead_pool->idx;
+	while (dead_pool->idx < MAX_PLAYERS)
+	{
+		if (dead_pool->champ[dead_pool->idx].pc)
+			dead_pool->champ[dead_pool->idx].index = dead_pool->idx + 1;
+		++dead_pool->idx;
+
+	}
+	*/
+	#if 0
 	if (dead_pool->champion1.pc)
 	{
 		dead_pool->i_champ = &dead_pool->champion1;
@@ -46,6 +58,7 @@ static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
 		dead_pool->i_champ = &dead_pool->champion4;
 		dead_pool->i_champ->index = 4;
 	}
+	#endif
 }
 
 void					ft_vm_arena(unsigned char arena[MEM_SIZE],
@@ -67,6 +80,7 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 		ft_vm_arena_live_check(dead_pool, nb_champion);
 		getchar();
 	}
+	// TODO: find winner can be removed
 	ft_vm_arena_find_winner(dead_pool);
-	ft_printf("Player %d ({green:%s}) won\n", dead_pool->i_champ->index, dead_pool->i_champ->header.prog_name);
+	ft_printf("Player %d ({green:%s}) won\n", dead_pool->idx, dead_pool->champ[dead_pool->idx].header.prog_name);
 }

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 14:32:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:27:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 00:11:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ static const		t_instr_list g_instr_list [] =
 
 void			ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool)
 {
-	ft_printf("\t{bblack:ft_vm_instr_exec} {green:in}\n");
-	g_instr_list[dead_pool->i_champ->instr.op->numero].func(arena, dead_pool);
-	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+	ft_printf("\t{bblack:ft_vm_instr_exec} {green:in} op : %hhx\n", dead_pool->champ[CHAMP_IDX].instr.op->numero);
+	g_instr_list[dead_pool->champ[CHAMP_IDX].instr.op->numero].func(arena, dead_pool);
+	dead_pool->champ[CHAMP_IDX].next_cycle += dead_pool->champ[CHAMP_IDX].instr.op->nb_cycles;
 	ft_printf("\t{bblack:ft_vm_instr_exec} {green:out}\n");
 }

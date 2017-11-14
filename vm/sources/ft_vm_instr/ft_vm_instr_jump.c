@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 01:24:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 16:30:30 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:31:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ int				ft_vm_instr_jump(t_dead_pool *dead_pool)
 
 	i = 0;
 	ft_printf("\t{bblack:ft_vm_instr_jump} {green:in}\n\t  -->  ");
-	while (i < dead_pool->champ[dead_pool->idx]->instr.op->nb_args)
+	while (i < dead_pool->champ[CHAMP_IDX].instr.op->nb_args)
 	{
-		if (BYTECODE_GET(dead_pool->champ[dead_pool->idx]->instr.bytecode, i + 1) == IND_CODE)
+		if (BYTECODE_GET(dead_pool->champ[CHAMP_IDX].instr.bytecode, i + 1) == IND_CODE)
 		{
 			DEBUG_MODE ? ft_fprintf(2, "[T_IND]  ") : 0;
-			dead_pool->champ[dead_pool->idx]->instr.arg_jump[i] = 2;
-			dead_pool->champ[dead_pool->idx]->instr.op->arg_types[i] = T_IND;
+			dead_pool->champ[CHAMP_IDX].instr.arg_jump[i] = 2;
+			dead_pool->champ[CHAMP_IDX].instr.op->arg_types[i] = T_IND;
 		}
-		else if (BYTECODE_GET(dead_pool->champ[dead_pool->idx]->instr.bytecode, i + 1) == REG_CODE)
+		else if (BYTECODE_GET(dead_pool->champ[CHAMP_IDX].instr.bytecode, i + 1) == REG_CODE)
 		{
 			DEBUG_MODE ? ft_fprintf(2, "[T_REG]  ") : 0;
-			dead_pool->champ[dead_pool->idx]->instr.arg_jump[i] = 1;
-			dead_pool->champ[dead_pool->idx]->instr.op->arg_types[i] = T_REG;
+			dead_pool->champ[CHAMP_IDX].instr.arg_jump[i] = 1;
+			dead_pool->champ[CHAMP_IDX].instr.op->arg_types[i] = T_REG;
 		}
-		else if (BYTECODE_GET(dead_pool->champ[dead_pool->idx]->instr.bytecode, i + 1) == DIR_CODE)
+		else if (BYTECODE_GET(dead_pool->champ[CHAMP_IDX].instr.bytecode, i + 1) == DIR_CODE)
 		{
 			DEBUG_MODE ? ft_fprintf(2, "[T_DIR]  ") : 0;
-			dead_pool->champ[dead_pool->idx]->instr.arg_jump[i] = g_direct_jump_table_from_instr[dead_pool->champ[dead_pool->idx]->instr.op->numero];
-			dead_pool->champ[dead_pool->idx]->instr.op->arg_types[i] = T_DIR;
+			dead_pool->champ[CHAMP_IDX].instr.arg_jump[i] = g_direct_jump_table_from_instr[dead_pool->champ[CHAMP_IDX].instr.op->numero];
+			dead_pool->champ[CHAMP_IDX].instr.op->arg_types[i] = T_DIR;
 		}
 		else
 		{

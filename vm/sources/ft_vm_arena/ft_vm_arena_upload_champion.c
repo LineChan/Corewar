@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:47:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:59:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,25 @@ void				ft_vm_arena_upload_champion(unsigned char arena[],
 	step = MEM_SIZE / *nb_champion;
 	dead_pool->idx = 0;
 	index = 0;
+	// Reset just in case, check if it can be removed
+	dead_pool->idx ^= dead_pool->idx;
 	/* Read headers for each champion*/
 	while (dead_pool->idx < MAX_PLAYERS)
 	{
-		if (option[i + 1])
+		if (option[dead_pool->idx + 1])
 		{
-			read(option[i + 1], &arena[index], dead_pool->champ[dead_pool->idx]->header.prog_size);
-			dead_pool->champ[dead_pool->idx]->index = index;
+			/* Read from the header and store it in a structure */
+			read(option[dead_pool->idx + 1], &arena[index], dead_pool->champ[dead_pool->idx].header.prog_size);
+			/* Set up the starting position in the arena */
+			dead_pool->champ[dead_pool->idx].index = index;
+			/* Set up the Program Counter at the starting position */
+			dead_pool->champ[dead_pool->idx].pc = &arena[index];
+			/* Put the champion's number in the first register */
+			dead_pool->champ[dead_pool->idx].reg[0] = dead_pool->idx + 1;
 			/* Initialize the subprocess list */
-			INIT_LIST_HEAD(dead_pool->champ[dead_pool->index]->process_head);
-			close(option[i + 1]);
+			INIT_LIST_HEAD(dead_pool->champ[dead_pool->idx].process_head);
+			close(option[dead_pool->idx + 1]);
+			index += step;
 		}
 		++dead_pool->idx;
 	}

@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/14 15:55:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:24:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@
 
 # define    OPTION_MAX		6
 # define	INSTR_NUMBER	16
+# define	CHAMP_IDX		(dead_pool->idx % MAX_PLAYERS)
+
 # define	MOD(x)			((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
 # define	IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
 /*
@@ -94,7 +96,7 @@ typedef struct          s_dead_pool
 {
 	#if 1
 	unsigned int	idx;
-	t_champion[4]	champ;
+	t_champion		champ[4];
 	#endif
 	#if 0
 	t_champion		*i_champ;
@@ -165,8 +167,7 @@ void		ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool);
 int			ft_vm_instr_get_data(size_t size, uint8_t *ptr);
 int			ft_vm_instr_end_of_game(t_dead_pool *dead_pool, int *nb_champion);
 void		ft_vm_instr_champion_routine(unsigned char arena[],
-											t_dead_pool * dead_pool,
-											unsigned const int current_cycle);
+											t_dead_pool * dead_pool);
 void 		ft_vm_instr_new_process(t_dead_pool *dead_pool);
 void		ft_vm_instr_close_provess(t_dead_pool *dead_pool);
 void		ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool);

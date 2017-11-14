@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 15:25:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 22:38:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:33:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@ void           ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool)
 	int				number;
 
 	(void)arena;
-	number = ft_instruction_get_data(4, dead_pool->i_champ->pc + 1);
+	number = ft_instruction_get_data(4, dead_pool->champ[CHAMP_IDX].pc + 1);
 	if (number == 1)
-		++dead_pool->champion1.live;
+		++dead_pool->champ[CHAMP_IDX].live;
 	else if (number == 2)
-		++dead_pool->champion2.live;
+		++dead_pool->champ[CHAMP_IDX].live;
 	else if (number == 3)
-		++dead_pool->champion3.live;
+		++dead_pool->champ[CHAMP_IDX].live;
 	else if (number == 4)
-		++dead_pool->champion4.live;
+		++dead_pool->champ[CHAMP_IDX].live;
+		#if 0
 	if (DEBUG_MODE)
 	{
 		ft_fprintf(2, "live [1] : %d\n", dead_pool->champion1.live);
@@ -38,5 +39,6 @@ void           ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool)
 		ft_fprintf(2, "live [4] : %d\n", dead_pool->champion4.live);
 		getchar();
 	}
-	dead_pool->i_champ->pc += 5;
+	#endif
+	dead_pool->champ[CHAMP_IDX].pc += 5;
 }

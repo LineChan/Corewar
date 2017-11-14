@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:21:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:08:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_vm_print_arena(void const *data,
 	p = (unsigned char *)data;
 	while (i < msize)
 	{
-		if ((p == dead_pool->champion1.pc) || (p == dead_pool->champion2.pc)
-			|| (p == dead_pool->champion3.pc) || (p == dead_pool->champion4.pc))
+		if ((p == dead_pool->champ[0].pc) || (p == dead_pool->champ[1].pc)
+			|| (p == dead_pool->champ[2].pc) || (p == dead_pool->champ[2].pc))
 		{
 			ft_fprintf(2, "{red:%02hhx} ", *p);
 		}
@@ -54,10 +54,10 @@ void	ft_vm_print_arena(void const *data,
 
 void 		ft_vm_print_pc(t_dead_pool *dead_pool)
 {
-	dead_pool->champion1.pc ? ft_fprintf(2, "champion1 : %02hhx\n", *dead_pool->champion1.pc) : 0;
-	dead_pool->champion2.pc ? ft_fprintf(2, "champion2 : %02hhx\n", *dead_pool->champion1.pc) : 0;
-	dead_pool->champion3.pc ? ft_fprintf(2, "champion3 : %02hhx\n", *dead_pool->champion1.pc) : 0;
-	dead_pool->champion4.pc ? ft_fprintf(2, "champion4 : %02hhx\n", *dead_pool->champion1.pc) : 0;
+	dead_pool->champ[0].pc ? ft_fprintf(2, "champion1 : %02hhx\n", *dead_pool->champ[0].pc) : 0;
+	dead_pool->champ[1].pc ? ft_fprintf(2, "champion2 : %02hhx\n", *dead_pool->champ[1].pc) : 0;
+	dead_pool->champ[2].pc ? ft_fprintf(2, "champion3 : %02hhx\n", *dead_pool->champ[2].pc) : 0;
+	dead_pool->champ[3].pc ? ft_fprintf(2, "champion4 : %02hhx\n", *dead_pool->champ[3].pc) : 0;
 }
 
 void 		ft_vm_print_reg(t_champion *champ)
@@ -85,5 +85,5 @@ static void 	ft_vm_print_name(t_list *src)
 
 void			ft_vm_print_process(t_dead_pool *dead_pool)
 {
-	ft_list_apply(&dead_pool->i_champ->process_head, &ft_vm_print_name);
+	ft_list_apply(&dead_pool->champ[dead_pool->idx].process_head, &ft_vm_print_name);
 }

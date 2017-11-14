@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:28:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:38:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 23:06:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	ft_vm_read_champion(int option[],
 	*nb_champion = 0;
 	while (dead_pool->idx < MAX_PLAYERS)
 	{
-		if (option[i + 1])
+		if (option[dead_pool->idx + 1])
 		{
 			++*nb_champion;
-			ft_vm_read_header(&dead_pool->champ[i].header, option[i + 1]);
+			ft_vm_read_header(&dead_pool->champ[dead_pool->idx].header, option[dead_pool->idx + 1]);
 		}
 		++dead_pool->idx;
 	}
