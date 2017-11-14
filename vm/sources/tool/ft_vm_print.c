@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/10 15:53:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:21:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ void 		ft_vm_print_reg(t_champion *champ)
 	ft_fprintf(2, "reg[9] : %d\n", champ->reg[9]);
 	ft_fprintf(2, "reg[10] : %d\n", champ->reg[10]);
 	ft_fprintf(2, "reg[11] : %d\n", champ->reg[11]);
+}
+
+#if 1
+static void 	ft_vm_print_name(t_list *src)
+{
+	ft_printf("--> '%s'\n", C_PROCESS(src)->process.header.prog_name);
+}
+#endif
+
+void			ft_vm_print_process(t_dead_pool *dead_pool)
+{
+	ft_list_apply(&dead_pool->i_champ->process_head, &ft_vm_print_name);
 }

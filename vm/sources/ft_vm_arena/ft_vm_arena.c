@@ -6,11 +6,11 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/13 16:39:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:26:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_vm.h"
+#include "ft_vm.h"
 
 /*
 * brief      		Set up the virtual machine
@@ -61,7 +61,6 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
-	getchar();
 	while (*nb_champion != 1)
 	{
 		if (ft_vm_instr(arena, dead_pool, nb_champion, current_cycle) == EXIT_SUCCESS)

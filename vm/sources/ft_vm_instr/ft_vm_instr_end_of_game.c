@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 16:01:38 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/11 16:06:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 10:55:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int					ft_vm_instr_end_of_game(t_dead_pool *dead_pool, int *nb_champion)
 		{
 			if (dead_pool->i_champ->pc && !dead_pool->i_champ->live && left)
 			{
-				ft_memset((void *)&(*dead_pool->i_champ), 0, sizeof (t_champion));
+				ft_memset((void *)&(*dead_pool->i_champ), 0, sizeof(t_champion));
 				--left;
 			}
 			++dead_pool->i_champ;

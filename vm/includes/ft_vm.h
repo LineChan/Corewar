@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/13 14:33:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:32:12 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,12 @@
 ** Defines
 */
 
+# define	C_PROCESS(it)	CONTAINEROF(it, t_process, list)
+
 # define    OPTION_MAX		6
 # define	INSTR_NUMBER	16
 # define	MOD(x)			((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
 # define	IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
-
 /*
 ** Structures
 */
@@ -86,33 +87,38 @@ typedef struct			s_champion
 	unsigned char		*pc;
 	t_header			header;
 	t_vm_instr			instr;
+	t_list				process_head;
 }						t_champion;
-
-
-#if 0
-typedef struct		s_instr
-{
-	int				type;
-	uint8_t			bytecode;
-	t_op			*op;
-	t_instr_conv	args;
-	size_t			instr_size;
-}					t_instr;
-#endif
 
 typedef struct          s_dead_pool
 {
+	#if 0
+	unsigned int	idx;
+	t_champion[4]	champion;
+	#endif
+	#if 1
 	t_champion		*i_champ;
 	t_champion		champion1;
 	t_champion		champion2;
 	t_champion		champion3;
 	t_champion		champion4;
+	#endif
 }						t_dead_pool;
 
 typedef struct			s_instr_list
 {
 	void			(*func)(unsigned char arena[], t_dead_pool *dead_pool);
 }						t_instr_list;
+
+/*
+** Linked Lists
+*/
+
+typedef struct		s_process
+{
+	t_champion	process;
+	t_list		list;
+}				t_process;
 
 /*
 ** Prototypes
@@ -161,7 +167,8 @@ int			ft_vm_instr_end_of_game(t_dead_pool *dead_pool, int *nb_champion);
 void		ft_vm_instr_champion_routine(unsigned char arena[],
 											t_dead_pool * dead_pool,
 											unsigned const int current_cycle);
-
+void 		ft_vm_instr_new_process(t_dead_pool *dead_pool);
+void		ft_vm_instr_close_provess(t_dead_pool *dead_pool);
 void		ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool);
@@ -185,6 +192,8 @@ void		ft_vm_print_arena(void const *data, size_t msize,
 								size_t nb_byte, t_dead_pool *dead_pool);
 void		ft_vm_print_pc(t_dead_pool *dead_pool);
 void 		ft_vm_print_reg(t_champion *champ);
+void		ft_vm_print_process(t_dead_pool *dead_pool);
+
 
 /*
 ** Tools

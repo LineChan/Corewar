@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/13 14:33:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:21:15 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 * param nb_champion	Champions' number
 */
 
+//TODO: libc
+
+#include <libc.h>
 void 		ft_vm_arena_up_routine(const int fd,
 										unsigned char arena[],
 										t_champion *champ,
@@ -28,10 +31,10 @@ void 		ft_vm_arena_up_routine(const int fd,
 {
 	read(fd, &arena[index], champ->header.prog_size);
 	champ->index = index;
+	INIT_LIST_HEAD(champ->process_head);
 	close(fd);
 }
 
-#include <libc.h>
 void		ft_vm_arena_upload_champion(unsigned char arena[],
 										int option[],
 										t_dead_pool *dead_pool,
@@ -49,6 +52,7 @@ void		ft_vm_arena_upload_champion(unsigned char arena[],
 		ft_vm_arena_up_routine(option[1], arena, &dead_pool->champion1, index);
 		dead_pool->champion1.pc = &arena[index];
 		dead_pool->champion1.reg[0] = 1;
+
 		index += step;
 
 	}

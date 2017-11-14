@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/13 16:41:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:27:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void				ft_vm_instr_init_done(t_dead_pool *dead_pool)
 		ft_fprintf(2, "dead_pool->champion1.done : %d\n",dead_pool->champion1.done);
 		ft_fprintf(2, "dead_pool->champion2.done : %d\n",dead_pool->champion2.done);
 		ft_fprintf(2, "dead_pool->champion3.done : %d\n",dead_pool->champion3.done);
-		ft_fprintf(2,	 "dead_pool->champion4.done : %d\n",dead_pool->champion4.done);
+		ft_fprintf(2, "dead_pool->champion4.done : %d\n",dead_pool->champion4.done);
 	}
 }
 
