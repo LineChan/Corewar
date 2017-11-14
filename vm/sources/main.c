@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/13 14:57:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:48:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 
 void			ft_print_stats(int option[], t_dead_pool *dead_pool)
 {
+	(void)option;
+	(void)dead_pool;
+	#if 0
 	if (option[1])
 	{
 		ft_fprintf(2, "header1\n");
@@ -54,6 +57,7 @@ void			ft_print_stats(int option[], t_dead_pool *dead_pool)
 		ft_fprintf(2, "size : '%d'\n", dead_pool->champion4.header.prog_size);
 		ft_fprintf(2, "comment : '%s'\n", dead_pool->champion4.header.comment);
 	}
+	#endif
 }
 
 int				main(int ac, char **av)

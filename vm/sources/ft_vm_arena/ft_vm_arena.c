@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:26:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:48:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 
 	cycle_to_die = CYCLE_TO_DIE;
 	current_cycle = cycle_to_die;
-
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
 	while (*nb_champion != 1)

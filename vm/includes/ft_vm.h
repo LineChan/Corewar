@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/14 15:32:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:55:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ typedef struct			s_champion
 
 typedef struct          s_dead_pool
 {
-	#if 0
-	unsigned int	idx;
-	t_champion[4]	champion;
-	#endif
 	#if 1
+	unsigned int	idx;
+	t_champion[4]	champ;
+	#endif
+	#if 0
 	t_champion		*i_champ;
 	t_champion		champion1;
 	t_champion		champion2;

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:03:23 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:26:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 16:14:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,31 @@ void				ft_vm_instr_champion_routine(unsigned char arena[],
 												unsigned const int current_cycle)
 {
 
+	if (DEBUG_MODE)
+		ft_printf("\n{bblack:ft_vm_instr_champion_routine} {green:in}\n");
+	if (!dead_pool->champ[dead_pool->idx]->done)
+	{
+		if ((ft_vm_instr_decode(dead_pool) == EXIT_SUCCESS) &&
+			(*dead_pool->champ[dead_pool->idx]->pc > 0) && (*dead_pool->champ[dead_pool->idx]->pc <= INSTR_NUMBER))
+			ft_vm_instr_exec(arena, dead_pool);
+		else
+		{
+			++dead_pool->champ[dead_pool->idx]->pc;
+			++dead_pool->champ[dead_pool->idx]->next_cycle;
+		}
+	}
+	else
+	{
+		++dead_pool->champ[dead_pool->idx]->pc;
+		++dead_pool->champ[dead_pool->idx]->next_cycle;
+	}
+	if ((dead_pool->champ[dead_pool->idx]->pc - arena - dead_pool->champ[dead_pool->idx]->index) == CHAMP_MAX_SIZE)
+		dead_pool->champ[dead_pool->idx]->pc = &arena[dead_pool->champ[dead_pool->idx]->index];
+	if (DEBUG_MODE)
+		ft_printf("{bblack:ft_vm_instr_champion_routine} {green:out}\n");
+	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+	return ;
+	#if 0
 	(void)arena;
 	(void)dead_pool;
 	(void)current_cycle;
@@ -49,6 +74,7 @@ void				ft_vm_instr_champion_routine(unsigned char arena[],
 		ft_printf("{bblack:ft_vm_instr_champion_routine} {green:out}\n");
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
 	return ;
+	#endif
 
 	#if 0
 	if ((dead_pool->i_champ->pc) && !dead_pool->i_champ->done)

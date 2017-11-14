@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 15:21:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/14 15:47:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,47 @@
 //TODO: libc
 
 #include <libc.h>
-void 		ft_vm_arena_up_routine(const int fd,
-										unsigned char arena[],
-										t_champion *champ,
-										int index)
+#if 0
+static void 		ft_vm_arena_up_routine(const int fd,
+												unsigned char arena[],
+												t_champion *champ,
+												int index)
 {
 	read(fd, &arena[index], champ->header.prog_size);
 	champ->index = index;
 	INIT_LIST_HEAD(champ->process_head);
 	close(fd);
 }
+#endif
 
-void		ft_vm_arena_upload_champion(unsigned char arena[],
-										int option[],
-										t_dead_pool *dead_pool,
-										int *nb_champion)
+void				ft_vm_arena_upload_champion(unsigned char arena[],
+												int option[],
+												t_dead_pool *dead_pool,
+												int *nb_champion)
 {
 	int		index;
 	int		step;
 
 	ft_memset((void *)arena, 0, MEM_SIZE);
 	!*nb_champion ? EXIT_FAIL("Error : no champion") : 0;
+	/* Find the distance between 2 champions */
 	step = MEM_SIZE / *nb_champion;
+	dead_pool->idx = 0;
 	index = 0;
+	/* Read headers for each champion*/
+	while (dead_pool->idx < MAX_PLAYERS)
+	{
+		if (option[i + 1])
+		{
+			read(option[i + 1], &arena[index], dead_pool->champ[dead_pool->idx]->header.prog_size);
+			dead_pool->champ[dead_pool->idx]->index = index;
+			/* Initialize the subprocess list */
+			INIT_LIST_HEAD(dead_pool->champ[dead_pool->index]->process_head);
+			close(option[i + 1]);
+		}
+		++dead_pool->idx;
+	}
+	#if 0
 	if (option[1])
 	{
 		ft_vm_arena_up_routine(option[1], arena, &dead_pool->champion1, index);
@@ -76,4 +94,5 @@ void		ft_vm_arena_upload_champion(unsigned char arena[],
 		dead_pool->champion4.pc = &arena[index];
 		dead_pool->champion4.reg[0] = 4;
 	}
+	#endif
 }
