@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:22:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 00:14:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ int						ft_vm_instr(unsigned char arena[],
 	while (1)
 	{
 		ft_printf("idx : %d\n", dead_pool->idx);
-		ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d\n", dead_pool->champ[dead_pool->idx % MAX_PLAYERS].header.prog_name, dead_pool->champ[dead_pool->idx % MAX_PLAYERS].next_cycle);
-		if (*dead_pool->champ[dead_pool->idx % MAX_PLAYERS].header.prog_name)
+		ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d\n", dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].next_cycle);
+		if (*dead_pool->champ[CHAMP_IDX].header.prog_name)
 		{
-			if (dead_pool->champ[dead_pool->idx % MAX_PLAYERS].next_cycle < current_cycle)
+			if (dead_pool->champ[CHAMP_IDX].next_cycle <= current_cycle)
 			{
 				ft_vm_instr_champion_routine(arena, dead_pool);
-				if (dead_pool->champ[dead_pool->idx % MAX_PLAYERS].next_cycle > current_cycle)
+				if (dead_pool->champ[CHAMP_IDX].next_cycle > current_cycle)
 				{
-					dead_pool->champ[dead_pool->idx % MAX_PLAYERS].done = 1;
+					dead_pool->champ[CHAMP_IDX].done = 1;
 					if (EXIT_SUCCESS == ft_vm_instr_end_of_game(dead_pool, nb_champion))
 						return (EXIT_SUCCESS);
 				}
@@ -76,7 +76,7 @@ int						ft_vm_instr(unsigned char arena[],
 		}
 		getchar();
 		++dead_pool->idx;
-		if (dead_pool->idx && !(dead_pool->idx % MAX_PLAYERS))
+		if (dead_pool->idx && !(CHAMP_IDX))
 		{
 			if (CHAMP_DONE == (unsigned int)*nb_champion)
 			{
@@ -89,7 +89,7 @@ int						ft_vm_instr(unsigned char arena[],
 	int			i;
 
 	i = 0;
-	dead_pool->i_champchamp[dead_pool->idx % MAX_PLAYERS] = &dead_pool->champion1;
+	dead_pool->i_champchamp[CHAMP_IDX] = &dead_pool->champion1;
 	while (i < MAX_PLAYERS)
 	{
 		if (*dead_pool->i_champ->header.prog_name)
