@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/28 01:24:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:31:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 15:23:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				ft_vm_instr_jump(t_dead_pool *dead_pool)
 	int		i;
 
 	i = 0;
-	ft_printf("\t{bblack:ft_vm_instr_jump} {green:in}\n\t  -->  ");
+	ft_printf("\t{bblack:ft_vm_instr_jump} {green:in}\n\t");
 	while (i < dead_pool->champ[CHAMP_IDX].instr.op->nb_args)
 	{
 		if (BYTECODE_GET(dead_pool->champ[CHAMP_IDX].instr.bytecode, i + 1) == IND_CODE)

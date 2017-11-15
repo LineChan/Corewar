@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 19:21:08 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:32:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:22:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 
 void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 {
+	#if 0
 	int					i;
 	unsigned int		add[3];
 	unsigned char		*ptr;
@@ -62,7 +63,8 @@ void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 		ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
 		getchar();
 	}
-	#if 0
+	#endif
+	#if 1
 	int					i;
 	unsigned int		add[3];
 	unsigned char		*ptr;
@@ -94,9 +96,9 @@ void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 
 	if (DEBUG_MODE)
 	{
-		ft_printf("add[0] : %d\n", add[0]);
-		ft_printf("add[1] : %d\n", add[1]);
-		ft_printf("add[2] : %d\n\n", add[2]);
+		ft_fprintf(2, "add[0] : %d\n", add[0]);
+		ft_fprintf(2, "add[1] : %d\n", add[1]);
+		ft_fprintf(2, "add[2] : %d\n\n", add[2]);
 		ft_vm_print_reg(dead_pool->i_champ);
 		getchar();
 	}

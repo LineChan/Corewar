@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 21:54:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:45:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 // TODO : remove libc.h
 #include <libc.h>
 
+#if 0
 static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
 {
 	(void)dead_pool;
@@ -60,27 +61,33 @@ static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
 	}
 	#endif
 }
+#endif
 
 void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 	 								int option[],
 									t_dead_pool *dead_pool,
 									int *nb_champion)
 {
-	unsigned int		current_cycle;
+	//unsigned int		current_cycle;
 	unsigned int		cycle_to_die;
 
-	cycle_to_die = CYCLE_TO_DIE;
-	current_cycle = cycle_to_die;
+	//cycle_to_die = CYCLE_TO_DIE;
+	cycle_to_die = 100;
+	dead_pool->current_cycle = cycle_to_die;
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
 	while (*nb_champion != 1)
 	{
-		if (ft_vm_instr(arena, dead_pool, nb_champion, current_cycle) == EXIT_SUCCESS)
+		if (ft_vm_instr(arena, dead_pool, nb_champion) == EXIT_SUCCESS)
 			break;
 		ft_vm_arena_live_check(dead_pool, nb_champion);
+		if (cycle_to_die > CYCLE_DELTA)
+			cycle_to_die -= CYCLE_DELTA;
+		dead_pool->current_cycle += cycle_to_die;
 		getchar();
+
 	}
 	// TODO: find winner can be removed
-	ft_vm_arena_find_winner(dead_pool);
-	ft_printf("Player %d ({green:%s}) won\n", dead_pool->idx, dead_pool->champ[dead_pool->idx].header.prog_name);
+	//ft_vm_arena_find_winner(dead_pool);
+	ft_printf("Player %d ({green:%s}) won\n", dead_pool->idx + 1, dead_pool->champ[dead_pool->idx].header.prog_name);
 }

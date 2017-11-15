@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 16:01:38 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:31:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:45:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,65 @@
 
 int					ft_vm_instr_end_of_game(t_dead_pool *dead_pool, int *nb_champion)
 {
-	ft_printf("CHAMP_DONE : %d nb_champion : %d i_champ->live : %d\n", CHAMP_DONE, *nb_champion, dead_pool->champ[dead_pool->idx].live);
 	int			left;
 
+	ft_printf("{bblack:ft_vm_instr_end_of_game} {green:in}\n");
+	ft_printf("CHAMP_DONE : %d nb_champion : %d %s->live : %d\n", CHAMP_DONE, *nb_champion, dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].live);
 	left = CHAMP_DONE;
-	if ((left == (*nb_champion - 1)) && (!dead_pool->champ[dead_pool->idx].live))
+	if ((!dead_pool->champ[CHAMP_IDX].live) && (left != (*nb_champion - 1)))
+	{
+		if (!ft_list_is_empty(&dead_pool->champ[CHAMP_IDX].process_head))
+			ft_vm_instr_close_process(dead_pool);
+		--*nb_champion;
+		ft_memset((void *)&dead_pool->champ[CHAMP_IDX], 0, sizeof(t_champion));
+		return (EXIT_FAILURE);
+	}
+	if ((left == (*nb_champion - 1)) && (!dead_pool->champ[CHAMP_IDX].live))
+	{
+		{
+			if (!ft_list_is_empty(&dead_pool->champ[CHAMP_IDX].process_head))
+				ft_vm_instr_close_process(dead_pool);
+			ft_memset((void *)&dead_pool->champ[CHAMP_IDX], 0, sizeof(t_champion));
+			ft_printf("END OF GAME\n");
+			return (EXIT_SUCCESS);
+		}
+
+	}
+	ft_printf("{bblack:ft_vm_instr_end_of_game} {red:out}\n");
+	return (EXIT_FAILURE);
+}
+
+		#if 0
+		if  ((left == (*nb_champion - 1)))
+		{
+			dead_pool->idx ^= dead_pool->idx;
+			while (CHAMP_IDX < MAX_PLAYERS)
+			{
+				if (!ft_list_is_empty(&dead_pool->champ[CHAMP_IDX].process_head))
+					ft_vm_instr_close_process(dead_pool);
+				ft_memset((void *)&dead_pool->champ[CHAMP_IDX], 0, sizeof(t_champion));
+				--*nb_champion;
+			}
+		}
+		#endif
+	#if 0
+	if ((left == (*nb_champion - 1)) && (!dead_pool->champ[CHAMP_IDX].live))
 	{
 		dead_pool->idx ^= dead_pool->idx;
-		while (dead_pool->idx < MAX_PLAYERS)
+		while (CHAMP_IDX < MAX_PLAYERS)
 		{
-			if (dead_pool->champ[dead_pool->idx].pc && !dead_pool->champ[dead_pool->idx].live && left)
+			ft_printf("while loop (%d champ  left):\n%s ---> %d live(s)\n", left, dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].live);
+			if (dead_pool->champ[CHAMP_IDX].pc && !dead_pool->champ[CHAMP_IDX].live && left)
 			{
-				// TODO : free all nodes from fork and lfork
-				ft_memset((void *)&dead_pool->champ[dead_pool->idx], 0, sizeof(t_champion));
+				if (!ft_list_is_empty(&dead_pool->champ[CHAMP_IDX].process_head))
+					ft_vm_instr_close_process(dead_pool);
+				ft_memset((void *)&dead_pool->champ[CHAMP_IDX], 0, sizeof(t_champion));
 				--left;
 			}
 			++dead_pool->idx;
 		}
 		return (EXIT_SUCCESS);
 	}
+	#endif
 	// Necessary ?
-	//dead_pool->idx ^= dead_pool->idx;
-	return (EXIT_FAILURE);
-}
+	//CHAMP_IDX ^= CHAMP_IDX;

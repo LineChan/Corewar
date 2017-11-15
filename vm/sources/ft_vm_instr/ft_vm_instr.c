@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 00:14:35 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 17:45:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void				ft_vm_instr_init_done(t_dead_pool *dead_pool)
 		dead_pool->champ[dead_pool->idx].done ^= dead_pool->champ[dead_pool->idx].done;
 		++dead_pool->idx;
 	}
+}
 	#if 0
 	dead_pool->champion1.done ^= dead_pool->champion1.done;
 	dead_pool->champion2.done ^= dead_pool->champion2.done;
@@ -49,33 +50,26 @@ void				ft_vm_instr_init_done(t_dead_pool *dead_pool)
 	}
 	#endif
 
-}
-
 int						ft_vm_instr(unsigned char arena[],
 										t_dead_pool *dead_pool,
-										int *nb_champion,
-										unsigned const int current_cycle)
+										int *nb_champion)
 {
 	dead_pool->idx ^= dead_pool->idx;
 	while (1)
 	{
-		ft_printf("idx : %d\n", dead_pool->idx);
 		ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d\n", dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].next_cycle);
-		if (*dead_pool->champ[CHAMP_IDX].header.prog_name)
+		if ((*dead_pool->champ[CHAMP_IDX].header.prog_name)
+				&& !dead_pool->champ[CHAMP_IDX].done)
 		{
-			if (dead_pool->champ[CHAMP_IDX].next_cycle <= current_cycle)
-			{
-				ft_vm_instr_champion_routine(arena, dead_pool);
-				if (dead_pool->champ[CHAMP_IDX].next_cycle > current_cycle)
-				{
-					dead_pool->champ[CHAMP_IDX].done = 1;
-					if (EXIT_SUCCESS == ft_vm_instr_end_of_game(dead_pool, nb_champion))
-						return (EXIT_SUCCESS);
-				}
-			}
+			ft_vm_instr_champion_routine(arena, dead_pool);
+			if (ft_vm_instr_check_if_done(dead_pool, nb_champion) == EXIT_SUCCESS)
+				return (EXIT_SUCCESS);
 		}
 		getchar();
 		++dead_pool->idx;
+	}
+}
+		#if 0
 		if (dead_pool->idx && !(CHAMP_IDX))
 		{
 			if (CHAMP_DONE == (unsigned int)*nb_champion)
@@ -85,6 +79,7 @@ int						ft_vm_instr(unsigned char arena[],
 			}
 		}
 	}
+	#endif
 	#if 0
 	int			i;
 
@@ -132,4 +127,3 @@ int						ft_vm_instr(unsigned char arena[],
 	}
 	return (EXIT_FAILURE);
 	#endif
-}

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 22:33:27 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:39:23 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 13:35:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void            ft_vm_instr_sub(unsigned char arena[], t_dead_pool *dead_pool)
     (void)arena;
     i = 0;
 	/* Set a pointer at the beginning of the argumentes */
-    ptr = dead_pool->champ[CHAMP_IDX].pc + 2;
+    ptr = dead_pool->i_champ->pc + 2;
 	/* Read arguments */
-    while (i < dead_pool->champ[CHAMP_IDX].instr.op->nb_args)
+    while (i < dead_pool->i_champ->instr.op->nb_args)
     {
         sub[i] = *ptr;
         ++ptr;
@@ -41,12 +41,12 @@ void            ft_vm_instr_sub(unsigned char arena[], t_dead_pool *dead_pool)
 	/* Compute the value and load it in a register */
 	if  (IS_REG(sub[0]) && IS_REG(sub[1]) && IS_REG(sub[2]))
 	{
-		dead_pool->champ[CHAMP_IDX].reg[sub[2]] = dead_pool->champ[CHAMP_IDX].reg[sub[0]] - dead_pool->champ[CHAMP_IDX].reg[sub[1]];
+		dead_pool->i_champ->reg[sub[2]] = dead_pool->i_champ->reg[sub[0]] - dead_pool->i_champ->reg[sub[1]];
 		/* Move the Program Counter */
-		dead_pool->champ[CHAMP_IDX].pc += 2 + dead_pool->champ[CHAMP_IDX].instr.arg_jump[0] + dead_pool->champ[CHAMP_IDX].instr.arg_jump[1] + dead_pool->champ[CHAMP_IDX].instr.arg_jump[2];
+		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
 	}
 	else
-		dead_pool->champ[CHAMP_IDX].pc += 1;
+		dead_pool->i_champ->pc += 1;
     if (DEBUG_MODE)
     {
         ft_fprintf(2, "sub[0] : %d\n", sub[0]);

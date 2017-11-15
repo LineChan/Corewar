@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/14 23:24:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/15 16:30:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,9 @@ typedef struct          s_dead_pool
 {
 	#if 1
 	unsigned int	idx;
+	unsigned int	current_cycle;
 	t_champion		champ[4];
+	t_champion		*i_champ;
 	#endif
 	#if 0
 	t_champion		*i_champ;
@@ -159,17 +161,18 @@ void		ft_vm_arena_live_check(t_dead_pool *dead_pool, int *nb_champion);
 */
 int			ft_vm_instr(unsigned char arena[],
 							t_dead_pool *dead_pool,
-							int *nb_champion,
-							unsigned const int current_cycle);
+							int *nb_champion);
 int			ft_vm_instr_decode(t_dead_pool *dead_pool);
 int			ft_vm_instr_jump(t_dead_pool *dead_pool);
+void		ft_vm_instr_exec_routine(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool);
 int			ft_vm_instr_get_data(size_t size, uint8_t *ptr);
 int			ft_vm_instr_end_of_game(t_dead_pool *dead_pool, int *nb_champion);
 void		ft_vm_instr_champion_routine(unsigned char arena[],
 											t_dead_pool * dead_pool);
+int 		ft_vm_instr_check_if_done(t_dead_pool *dead_pool, int *nb_champion);
 void 		ft_vm_instr_new_process(t_dead_pool *dead_pool);
-void		ft_vm_instr_close_provess(t_dead_pool *dead_pool);
+void		ft_vm_instr_close_process(t_dead_pool *dead_pool);
 void		ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool);
