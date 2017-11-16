@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 19:21:08 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 15:48:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:33:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 */
 //TODO : remove libc.h
 #include <libc.h>
-//TODO : carry
 
 void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 {
@@ -37,7 +36,7 @@ void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 	/* Store arguments */
 	while (i < dead_pool->i_champ->instr.op->nb_args)
 	{
-		add[i] = *ptr + 1;
+		add[i] = *ptr;
 		++ptr;
 		++i;
 	}

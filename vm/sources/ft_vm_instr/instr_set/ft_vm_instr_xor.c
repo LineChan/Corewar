@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 11:06:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 15:49:26 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 21:44:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 //TODO : remove libc.h
 
 #include <libc.h>
-extern uint8_t	g_direct_jump_table_from_instr[17];
 
 void			ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool)
 {
-	int				i;
-	unsigned int	xor[2];
-	unsigned char	*ptr;
+	int					i;
+	unsigned int		xor[2];
+	unsigned char		*ptr;
+	extern uint8_t		g_direct_jump_table_from_instr[17];
 
 	/* Set a pointer at the beginning of the arguments */
 	ptr = dead_pool->i_champ->pc + 2;
@@ -46,7 +46,7 @@ void			ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool)
 			if (!IS_REG(*ptr))
 			{
 				dead_pool->i_champ->pc += 1;
-				dead_pool->i_champ->next += 1;
+				dead_pool->i_champ->next_cycle += 1;
 				dead_pool->i_champ->carry = 1;
 				return ;
 			}
@@ -104,6 +104,5 @@ void			ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool)
 	if (DEBUG_MODE)
 	{
 		ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
-		getchar();
 	}
 }

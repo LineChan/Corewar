@@ -6,16 +6,15 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 16:19:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 21:46:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
 // TODO : presentation
-// TODO : carry
 
-
+// NB : value to load can be removed
 void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 
 {
@@ -33,18 +32,17 @@ void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 	{
 		if (dead_pool->i_champ->instr.op->arg_types[i] == T_REG)
 		{
-			if (IS_REG(*ptr))
-				value_to_load += dead_pool->i_champ->reg[*ptr];
-			else
+			if (!IS_REG(*ptr))
 			{
 				dead_pool->i_champ->pc += 1;
 				dead_pool->i_champ->next_cycle += 1;
 				dead_pool->i_champ->carry = 1;
 				return ;
 			}
+			value_to_load += dead_pool->i_champ->reg[*ptr];
 		}
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
-			value_to_load += arena[MOD(dead_pool->i_champ->pc - arena + 1
+			value_to_load += arena[MOD(dead_pool->i_champ->pc - arena
 							+ (ft_instruction_get_data(2, ptr) % IDX_MOD))];
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_DIR)
 			value_to_load += arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
@@ -54,7 +52,7 @@ void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 	/* Load the value in a register */
 	if (IS_REG(*ptr))
 	{
-		dead_pool->i_champ->reg[*ptr] = value_to_load;
+		dead_pool->i_champ->reg[*ptr] = value_to_load % IDX_MOD;
 		/* Move the Program Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0]
 									+ dead_pool->i_champ->instr.arg_jump[1]

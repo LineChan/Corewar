@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:56:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 15:58:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 21:48:36 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 * param champ
 */
 
-extern uint8_t	g_direct_jump_table_from_instr[17];
 
 // TODO : remove libc.h
 #include <libc.h>
 void 			ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool)
 {
-	int				i;
-	int				reg;
-	int				copy_at_address;
-	unsigned char   *ptr;
+	int					i;
+	int					reg;
+	int					copy_at_address;
+	unsigned char		*ptr;
+	extern uint8_t		g_direct_jump_table_from_instr[17];
 
 	DEBUG_MODE ? ft_printf("{yellow:sti}\n") : 0;
 	i = 1;
@@ -61,8 +61,8 @@ void 			ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool)
 		}
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
 		{
-			ft_printf("get data 1: %d\n", ft_instruction_get_data(2, ptr) + 1);
-			copy_at_address += MOD(dead_pool->i_champ->pc + 1 - arena + ft_instruction_get_data(2, ptr));
+			ft_printf("get data 1: %d\n", ft_instruction_get_data(2, ptr));
+			copy_at_address += MOD(dead_pool->i_champ->pc - arena + ft_instruction_get_data(2, ptr));
 			ft_printf("copy_at_address 1: %d\n", copy_at_address);
 		}
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_DIR)

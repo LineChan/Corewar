@@ -6,13 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 20:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 15:32:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 21:32:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 	//TODO : presentation
-extern uint8_t g_direct_jump_table_from_instr[17];
 /*
 * brief      		Execute ld : Take a registry and a registry or an indirect
 * and store the value of the registry toward a second argument
@@ -26,6 +25,7 @@ extern uint8_t g_direct_jump_table_from_instr[17];
 
 void			ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool)
 {
+	extern uint8_t		g_direct_jump_table_from_instr[17];
 	/* Read arguments */
 	if (dead_pool->i_champ->instr.op->arg_types[1] == T_REG)
 	{
@@ -47,7 +47,7 @@ void			ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool)
 			return ;
 		}
 		/* Store a value in a directory */
-		arena[MOD((dead_pool->i_champ->pc - arena + 1) + (ft_instruction_get_data(2, dead_pool->i_champ->pc + 3) % IDX_MOD))] = dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 2)];
+		arena[MOD((dead_pool->i_champ->pc - arena) + (ft_instruction_get_data(2, dead_pool->i_champ->pc + 3) % IDX_MOD))] = dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 2)];
 	}
 	/* Move the Program Counter */
 	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];

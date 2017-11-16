@@ -6,14 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 17:49:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 16:24:27 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 20:57:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 // TODO: presentation
 
-extern uint8_t g_direct_jump_table_from_instr[17];
 /*
 * brief      		Execute ld : Take a random argument and a registry.
 * Load the value of the first argument in the registry. It will change the carry.
@@ -26,8 +25,10 @@ extern uint8_t g_direct_jump_table_from_instr[17];
 
 void			ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool)
 {
+	// NB : Value to load can be removed (if ... else)
 	unsigned int		value_to_load;
 	unsigned char		*ptr;
+	extern				uint8_t g_direct_jump_table_from_instr[17];
 
 	(void)arena;
 	ft_printf("{yellow:ld}\n");
@@ -42,11 +43,12 @@ void			ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool)
 	}
 	else
 	{
-		value_to_load = arena[MOD(dead_pool->i_champ->pc - arena + 1 +
+		value_to_load = arena[MOD(dead_pool->i_champ->pc - arena +
 									ft_instruction_get_data(2, ptr) % IDX_MOD)];
 	}
 	ptr += dead_pool->i_champ->instr.arg_jump[0];
 	/* Load the value in a register */
+	// NB : IS_REG(*(pc + 2 + dead_pool->i_champ->instr.arg_jump[0]))
 	if (IS_REG(*ptr))
 	{
 		dead_pool->i_champ->reg[*ptr] = value_to_load;

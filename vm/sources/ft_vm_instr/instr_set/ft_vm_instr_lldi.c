@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:30:10 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 16:22:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 21:19:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // TODO : presentation
 
-
+// NB : value to load can be removed
 void			ft_vm_instr_lldi(unsigned char arena[], t_dead_pool *dead_pool)
 {
 	int					i;
@@ -42,14 +42,12 @@ void			ft_vm_instr_lldi(unsigned char arena[], t_dead_pool *dead_pool)
 		}
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
 		{
-			value_to_load += arena[MOD(dead_pool->i_champ->pc - arena + 1
-								+ ft_instruction_get_data(2, ptr))];
+			value_to_load += (arena[MOD(dead_pool->i_champ->pc - arena
+								+ ft_instruction_get_data(2, ptr))]);
 		}
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_DIR)
 		{
-			value_to_load += arena[1 +
-				MOD(ft_instruction_get_data(
-				g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
+			value_to_load += arena[1 + (MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr)))];
 		}
 		++i;
 		ptr += dead_pool->i_champ->instr.arg_jump[i];

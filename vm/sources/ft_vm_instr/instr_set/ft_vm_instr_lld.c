@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:20:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 16:12:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 21:15:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 // TODO : presentation
 
+// NB : like ld, value_to_load can be removed
 extern uint8_t g_direct_jump_table_from_instr[17];
 
 void			ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool)
@@ -21,6 +22,7 @@ void			ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool)
 	unsigned int		value_to_load;
 	unsigned char		*ptr;
 
+	ft_printf("{yellow:lld}\n");
 	/* Set up a pointer at the beginning of the arguments */
 	ptr = dead_pool->i_champ->pc + 2;
 	/* Read arguments */
