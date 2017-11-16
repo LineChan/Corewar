@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:56:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 08:58:55 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 15:58:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,40 +34,53 @@ void 			ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool)
 	unsigned char   *ptr;
 
 	DEBUG_MODE ? ft_printf("{yellow:sti}\n") : 0;
-    i = 1;
-    copy_at_address = 0;
+	i = 1;
+	copy_at_address = 0;
 	/* Set a pointer at the beginning of the arguments */
-    ptr = dead_pool->i_champ->pc + 2;
-    reg = *ptr;
+	ptr = dead_pool->i_champ->pc + 2;
+	reg = *ptr;
 	if (!IS_REG(reg))
 	{
 		dead_pool->i_champ->pc += 1;
+		dead_pool->i_champ->next_cycle += 1;
 		return ;
 	}
-    DEBUG_MODE ? ft_fprintf(2, "reg : %hhx\n", reg) : 0;
-    ptr += dead_pool->i_champ->instr.arg_jump[0];
+	ptr += dead_pool->i_champ->instr.arg_jump[0];
 	/* Read arguments */
-    while (i < dead_pool->i_champ->instr.op->nb_args)
-    {
-        if (dead_pool->i_champ->instr.op->arg_types[i] == T_REG)
+	while (i < dead_pool->i_champ->instr.op->nb_args)
+	{
+		if (dead_pool->i_champ->instr.op->arg_types[i] == T_REG)
 		{
 			if (!IS_REG(*ptr))
 			{
 				dead_pool->i_champ->pc += 1;
+				dead_pool->i_champ->next_cycle += 1;
 				return ;
 			}
-            copy_at_address += dead_pool->i_champ->reg[*ptr];
+			copy_at_address += dead_pool->i_champ->reg[*ptr];
 		}
-        else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
-            copy_at_address += dead_pool->i_champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD);
-        else
-            copy_at_address += ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr);
-        ptr += dead_pool->i_champ->instr.arg_jump[i];
-        ++i;
-    }
-    DEBUG_MODE ? ft_fprintf(2, "final copy_at_address : %d\n", copy_at_address) : 0;
-    /* Store the value from the register */
-    arena[MOD(copy_at_address)] = dead_pool->i_champ->reg[reg];
-    /* Move the Program Counter */
-    dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
+		{
+			ft_printf("get data 1: %d\n", ft_instruction_get_data(2, ptr) + 1);
+			copy_at_address += MOD(dead_pool->i_champ->pc + 1 - arena + ft_instruction_get_data(2, ptr));
+			ft_printf("copy_at_address 1: %d\n", copy_at_address);
+		}
+		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_DIR)
+		{
+			ft_printf("get data 2: %d\n", ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr));
+			copy_at_address += MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr));
+			ft_printf("copy_at_address 2: %d\n", copy_at_address);
+		}
+		ptr += dead_pool->i_champ->instr.arg_jump[i];
+		++i;
+	}
+	DEBUG_MODE ? ft_fprintf(2, "reg[%hhx] : %hhx\n", reg, *ptr) : 0;
+	DEBUG_MODE ? ft_fprintf(2, "final copy_at_address : %d\n", copy_at_address) : 0;
+	ft_vm_print_reg(dead_pool->i_champ);
+	/* Store the value from the register */
+	arena[MOD(copy_at_address)] = dead_pool->i_champ->reg[reg];
+	/* Move the Program Counter */
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+	/* Waiting time until the next instruction */
+	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 }

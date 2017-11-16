@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 22:33:27 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 13:35:23 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 15:47:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,20 @@ void            ft_vm_instr_sub(unsigned char arena[], t_dead_pool *dead_pool)
 	/* Compute the value and load it in a register */
 	if  (IS_REG(sub[0]) && IS_REG(sub[1]) && IS_REG(sub[2]))
 	{
-		dead_pool->i_champ->reg[sub[2]] = dead_pool->i_champ->reg[sub[0]] - dead_pool->i_champ->reg[sub[1]];
+		dead_pool->i_champ->reg[sub[2]] = MOD(dead_pool->i_champ->reg[sub[0]] - dead_pool->i_champ->reg[sub[1]]);
 		/* Move the Program Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+		/* Waitinf time until the next instruction */
+		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+		/* Change the carry */
+		dead_pool->i_champ->carry = 0;
 	}
 	else
+	{
 		dead_pool->i_champ->pc += 1;
+		dead_pool->i_champ->next_cycle += 1;
+		dead_pool->i_champ->carry = 1;
+	}
     if (DEBUG_MODE)
     {
         ft_fprintf(2, "sub[0] : %d\n", sub[0]);

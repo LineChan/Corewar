@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 20:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 13:35:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 15:32:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void			ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool)
 		if (!IS_REG(*(dead_pool->i_champ->pc + 3)) || !IS_REG(*(dead_pool->i_champ->pc + 2)))
 		{
 			dead_pool->i_champ->pc += 1;
+			dead_pool->i_champ->next_cycle += 1;
 			return ;
 		}
 		/* Store the value in a register */
@@ -42,14 +43,16 @@ void			ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool)
 		if (!IS_REG(*(dead_pool->i_champ->pc + 2)))
 		{
 			dead_pool->i_champ->pc += 1;
+			dead_pool->i_champ->next_cycle += 1;
 			return ;
 		}
 		/* Store a value in a directory */
-		arena[MOD((dead_pool->i_champ->pc - arena) + (ft_instruction_get_data(2, dead_pool->i_champ->pc + 3) % IDX_MOD))] = dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 2)];
+		arena[MOD((dead_pool->i_champ->pc - arena + 1) + (ft_instruction_get_data(2, dead_pool->i_champ->pc + 3) % IDX_MOD))] = dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 2)];
 	}
 	/* Move the Program Counter */
 	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];
-
+	/* Waiting time until the next instruction */
+	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 	if (DEBUG_MODE)
 	{
 		ft_printf("{yellow:st}\n");

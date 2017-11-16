@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 17:26:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 16:19:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // TODO : presentation
 // TODO : carry
 
-extern uint8_t g_direct_jump_table_from_instr[17];
 
 void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 
@@ -23,6 +22,7 @@ void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 	int					i;
 	unsigned int		value_to_load;
 	unsigned char		*ptr;
+	extern uint8_t		g_direct_jump_table_from_instr[17];
 
 	/* Set a pointer at the beginning of the arguments */
 	ptr = dead_pool->i_champ->pc + 2;
@@ -38,11 +38,13 @@ void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 			else
 			{
 				dead_pool->i_champ->pc += 1;
+				dead_pool->i_champ->next_cycle += 1;
+				dead_pool->i_champ->carry = 1;
 				return ;
 			}
 		}
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
-			value_to_load += arena[MOD((dead_pool->i_champ->pc - arena)
+			value_to_load += arena[MOD(dead_pool->i_champ->pc - arena + 1
 							+ (ft_instruction_get_data(2, ptr) % IDX_MOD))];
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_DIR)
 			value_to_load += arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
@@ -57,8 +59,17 @@ void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0]
 									+ dead_pool->i_champ->instr.arg_jump[1]
 									+ dead_pool->i_champ->instr.arg_jump[2];
+		/* Waiting time until the next instruction */
+		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+		/* Change the carry */
+		dead_pool->i_champ->carry = 0;
+
 	}
 	else
+	{
 		dead_pool->i_champ->pc += 1;
+		dead_pool->i_champ->next_cycle += 1;
+		dead_pool->i_champ->carry = 1;
+	}
 
 }

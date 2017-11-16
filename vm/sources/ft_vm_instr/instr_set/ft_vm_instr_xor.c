@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 11:06:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 17:27:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 15:49:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void			ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool)
 			if (!IS_REG(*ptr))
 			{
 				dead_pool->i_champ->pc += 1;
+				dead_pool->i_champ->next += 1;
+				dead_pool->i_champ->carry = 1;
 				return ;
 			}
 			xor[i] = dead_pool->i_champ->reg[*ptr];
@@ -87,9 +89,17 @@ void			ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool)
 		dead_pool->i_champ->reg[*ptr] = xor[0] ^ xor[1];
 		/* Move the Program Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+		/* Waiting time until the next instruction */
+		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+		/* Change the carry */
+		dead_pool->i_champ->carry = 0;
 	}
 	else
+	{
 		dead_pool->i_champ->pc += 1;
+		dead_pool->i_champ->next_cycle += 1;
+		dead_pool->i_champ->carry = 1;
+	}
 
 	if (DEBUG_MODE)
 	{

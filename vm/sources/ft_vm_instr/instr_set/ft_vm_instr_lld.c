@@ -6,16 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:20:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 13:34:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 16:12:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
 // TODO : presentation
-// TODO : carry
-// TODO : remove libc.h
-#include <libc.h>
 
 extern uint8_t g_direct_jump_table_from_instr[17];
 
@@ -42,9 +39,17 @@ void			ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool)
 		dead_pool->i_champ->reg[*ptr] = value_to_load;
 		/* Move the Program Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];
+		/* Waiting time until the next cycle */
+		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+		/* Change the carry */
+		dead_pool->i_champ->carry = 0;
 	}
 	else
+	{
 		dead_pool->i_champ->pc += 1;
+		dead_pool->i_champ->next_cycle += 1;
+		dead_pool->i_champ->carry = 1;
+	}
 	if (DEBUG_MODE)
 	{
 		ft_printf("{yellow:ld}\n");

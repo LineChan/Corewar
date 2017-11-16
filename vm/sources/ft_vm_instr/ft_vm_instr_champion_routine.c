@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/09 22:03:23 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 08:17:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 16:24:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void			ft_vm_instr_champion_routine(unsigned char arena[],
 		++dead_pool->champ[CHAMP_IDX].pc;
 		++dead_pool->champ[CHAMP_IDX].next_cycle;
 	}
-	if ((dead_pool->champ[CHAMP_IDX].pc - arena - dead_pool->champ[CHAMP_IDX].index))
+	if ((dead_pool->champ[CHAMP_IDX].pc - arena - dead_pool->champ[CHAMP_IDX].index) >= CHAMP_MAX_SIZE)
 		dead_pool->champ[CHAMP_IDX].pc = &arena[dead_pool->champ[CHAMP_IDX].index];
 	// TODO : subprocess
 	if (ft_list_is_empty(&dead_pool->i_champ->process_head))

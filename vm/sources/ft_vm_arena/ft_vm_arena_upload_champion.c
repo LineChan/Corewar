@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:59:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 13:50:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void				ft_vm_arena_upload_champion(unsigned char arena[],
 			/* Set up the Program Counter at the starting position */
 			dead_pool->champ[dead_pool->idx].pc = &arena[index];
 			/* Put the champion's number in the first register */
-			dead_pool->champ[dead_pool->idx].reg[0] = dead_pool->idx + 1;
+			dead_pool->champ[dead_pool->idx].reg[1] = dead_pool->idx + 1;
 			/* Initialize the subprocess list */
 			INIT_LIST_HEAD(dead_pool->champ[dead_pool->idx].process_head);
 			close(option[dead_pool->idx + 1]);
