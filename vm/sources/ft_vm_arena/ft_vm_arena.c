@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 17:45:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 09:02:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,16 @@
 // TODO : remove libc.h
 #include <libc.h>
 
-#if 0
+#if 1
 static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
 {
-	(void)dead_pool;
-	/*
 	dead_pool->idx ^= dead_pool->idx;
 	while (dead_pool->idx < MAX_PLAYERS)
 	{
 		if (dead_pool->champ[dead_pool->idx].pc)
-			dead_pool->champ[dead_pool->idx].index = dead_pool->idx + 1;
+			return ;
 		++dead_pool->idx;
-
 	}
-	*/
 	#if 0
 	if (dead_pool->champion1.pc)
 	{
@@ -71,8 +67,8 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 	//unsigned int		current_cycle;
 	unsigned int		cycle_to_die;
 
-	//cycle_to_die = CYCLE_TO_DIE;
-	cycle_to_die = 100;
+	cycle_to_die = CYCLE_TO_DIE;
+	//cycle_to_die = 100;
 	dead_pool->current_cycle = cycle_to_die;
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
@@ -84,10 +80,10 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 		if (cycle_to_die > CYCLE_DELTA)
 			cycle_to_die -= CYCLE_DELTA;
 		dead_pool->current_cycle += cycle_to_die;
-		getchar();
-
+		//getchar();
 	}
+	ft_printf("ARENA ALMOST OUT\n");
 	// TODO: find winner can be removed
-	//ft_vm_arena_find_winner(dead_pool);
+	ft_vm_arena_find_winner(dead_pool);
 	ft_printf("Player %d ({green:%s}) won\n", dead_pool->idx + 1, dead_pool->champ[dead_pool->idx].header.prog_name);
 }

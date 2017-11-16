@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 15:04:13 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 16:28:46 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 08:17:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,45 @@
 
 void		ft_vm_arena_live_check(t_dead_pool *dead_pool, int *nb_champion)
 {
+	t_list		*it;
+
+	(void)nb_champion;
+	DEBUG_MODE ? ft_printf("{bblack:ft_vm_arena_live_check} {green:in}\n") : 0;
+	dead_pool->idx ^= dead_pool->idx;
+	while (dead_pool->idx < MAX_PLAYERS)
+	{
+		if (dead_pool->champ[dead_pool->idx].pc)
+		{
+			if (!ft_list_is_empty(&dead_pool->champ[dead_pool->idx].process_head))
+			{
+				it = dead_pool->champ[dead_pool->idx].process_head.next;
+				while (it != &dead_pool->champ[dead_pool->idx].process_head)
+				{
+					if (C_PROCESS(it)->process.live)
+					{
+						dead_pool->champ[dead_pool->idx].live += C_PROCESS(it)->process.live;
+						C_PROCESS(it)->process.live ^= C_PROCESS(it)->process.live;
+					}
+					it = it->next;
+				}
+			}
+			if (dead_pool->champ[dead_pool->idx].live)
+			{
+				dead_pool->champ[dead_pool->idx].live ^= dead_pool->champ[dead_pool->idx].live;
+			}
+			else
+			{
+				--*nb_champion;
+				if (!ft_list_is_empty(&dead_pool->champ[dead_pool->idx].process_head))
+					ft_vm_instr_close_process(dead_pool);
+				ft_memset((void *)&dead_pool->champ[dead_pool->idx], 0, sizeof(t_champion));
+			}
+		}
+		++dead_pool->idx;
+	}
+
+	DEBUG_MODE ? ft_printf("{bblack:ft_vm_arena_live_check} {green:out}\n") : 0;
+	#if 0
 	dead_pool->idx ^= dead_pool->idx;
 	while (dead_pool->idx < MAX_PLAYERS)
 	{
@@ -30,6 +69,7 @@ void		ft_vm_arena_live_check(t_dead_pool *dead_pool, int *nb_champion)
 		}
 		++dead_pool->idx;
 	}
+	#endif
 	#if 0
 	int		i;
 

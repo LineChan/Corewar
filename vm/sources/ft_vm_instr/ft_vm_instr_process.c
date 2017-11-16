@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 11:08:53 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 17:45:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 08:29:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void           ft_vm_instr_new_process(t_dead_pool *dead_pool)
    if (!(new = ft_memalloc(sizeof(t_process))))
       EXIT_FAIL("Error : memory allocation");
    ft_memcpy((void *)&new->process, &dead_pool->champ[CHAMP_IDX], sizeof(t_champion));
-   ft_list_add(&new->list,  &dead_pool->champ[CHAMP_IDX].process_head);
+   ft_list_add_tail(&new->list,  &dead_pool->champ[CHAMP_IDX].process_head);
 }
 
 static void     ft_vm_instr_del_process(t_list *src)

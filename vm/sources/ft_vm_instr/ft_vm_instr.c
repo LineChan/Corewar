@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 17:45:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 10:02:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,15 @@ int						ft_vm_instr(unsigned char arena[],
 		if ((*dead_pool->champ[CHAMP_IDX].header.prog_name)
 				&& !dead_pool->champ[CHAMP_IDX].done)
 		{
+			dead_pool->i_champ = &dead_pool->champ[CHAMP_IDX];
 			ft_vm_instr_champion_routine(arena, dead_pool);
 			if (ft_vm_instr_check_if_done(dead_pool, nb_champion) == EXIT_SUCCESS)
+			{
+				ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d {green:out}\n", dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].next_cycle);
 				return (EXIT_SUCCESS);
+			}
 		}
+		ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
 		getchar();
 		++dead_pool->idx;
 	}

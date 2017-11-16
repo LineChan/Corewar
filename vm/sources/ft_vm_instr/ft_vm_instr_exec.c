@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 14:32:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/15 16:23:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/16 08:52:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 //TODO : remove libc
 # include <libc.h>
 
+#if 0
 static void ft_vm_instr_tmp(unsigned char arena[],
 							t_dead_pool *dead_pool)
 {
@@ -23,6 +24,7 @@ static void ft_vm_instr_tmp(unsigned char arena[],
 	(void)dead_pool;
 	ft_printf("{red: function not written yet}\n");
 }
+#endif
 
 static const		t_instr_list g_instr_list [] =
 {
@@ -38,10 +40,10 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_vm_instr_zjmp},
 	{&ft_vm_instr_ldi},
 	{&ft_vm_instr_sti},
-	{&ft_vm_instr_fork}, // ----> fork
+	{&ft_vm_instr_fork},
 	{&ft_vm_instr_lld},
 	{&ft_vm_instr_lldi},
-	{&ft_vm_instr_tmp}, // ---> lfork
+	{&ft_vm_instr_lfork},
 	{&ft_vm_instr_aff},
 };
 
