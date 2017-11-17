@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 20:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 21:32:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 17:20:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@
 //TODO : remove libc.h
 #include <libc.h>
 
-void			ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool)
+void			ft_vm_instr_st(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								int option[])
 {
 	extern uint8_t		g_direct_jump_table_from_instr[17];
 	/* Read arguments */
@@ -37,6 +39,8 @@ void			ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool)
 		}
 		/* Store the value in a register */
 		dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 3)] = dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 2)];
+		if (OPTION_SUMMARY)
+			ft_fprintf(OPTION_SUMMARY, "(%d) : st\n\tREG[%c] at %d\n", *(dead_pool->i_champ->pc + 3), dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 3)]);
 	}
 	else
 	{
@@ -48,6 +52,8 @@ void			ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool)
 		}
 		/* Store a value in a directory */
 		arena[MOD((dead_pool->i_champ->pc - arena) + (ft_instruction_get_data(2, dead_pool->i_champ->pc + 3) % IDX_MOD))] = dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 2)];
+		if (OPTION_SUMMARY)
+			ft_fprintf(OPTION_SUMMARY, "(%d) cycle : %d -> st\n\tarena[%hhx] at %d\n", CHAMP_IDX + 1, dead_pool->i_champ->next_cycle, MOD((dead_pool->i_champ->pc - arena) + (ft_instruction_get_data(2, dead_pool->i_champ->pc + 3) % IDX_MOD)), dead_pool->i_champ->reg[*(dead_pool->i_champ->pc + 3)], arena[MOD((dead_pool->i_champ->pc - arena) + (ft_instruction_get_data(2, dead_pool->i_champ->pc + 3) % IDX_MOD))]);
 	}
 	/* Move the Program Counter */
 	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];

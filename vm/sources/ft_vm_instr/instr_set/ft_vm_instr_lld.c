@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:20:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 21:15:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 16:47:15 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 // NB : like ld, value_to_load can be removed
 extern uint8_t g_direct_jump_table_from_instr[17];
 
-void			ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool)
+void			ft_vm_instr_lld(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								int option[])
 {
 	unsigned int		value_to_load;
 	unsigned char		*ptr;
@@ -45,6 +47,10 @@ void			ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool)
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 		/* Change the carry */
 		dead_pool->i_champ->carry = 0;
+		if (OPTION_SUMMARY)
+			ft_fprintf(OPTION_SUMMARY, "(%d) : lld\n\tREG[%c] = %d\n",
+				CHAMP_IDX + 1, *ptr, dead_pool->i_champ->reg[*ptr]);
+
 	}
 	else
 	{

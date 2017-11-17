@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:08:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 13:58:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,26 @@ void 		ft_vm_print_reg(t_champion *champ)
 	ft_fprintf(2, "reg[9] : %d\n", champ->reg[9]);
 	ft_fprintf(2, "reg[10] : %d\n", champ->reg[10]);
 	ft_fprintf(2, "reg[11] : %d\n", champ->reg[11]);
+}
+
+void			ft_vm_print_stat(t_dead_pool *dead_pool)
+{
+	ft_printf("Welcome to {yellow:Corewar} !\nList of champions :\n");
+	dead_pool->idx ^= dead_pool->idx;
+	ft_printf("dead_pool->idx : %d\n", dead_pool->idx);
+	ft_printf("MAX_PLAYERS : %d \n", MAX_PLAYERS);
+	while (dead_pool->idx < MAX_PLAYERS)
+	{
+		if (dead_pool->champ[dead_pool->idx].pc)
+		{
+			ft_printf("* Player {green:1}, %d bytes, {yello:%s} (%s)\n",
+			dead_pool->idx + 1, dead_pool->champ[dead_pool->idx].header.prog_size,
+			dead_pool->champ[dead_pool->idx].header.prog_name,
+			dead_pool->champ[dead_pool->idx].header.comment);
+		}
+		// * Player 1, weighing 32 bytes, "sti" ("Take a registry and 2 indexes (potentially registries), add the two indexes and use this result as an address where the value of the first parameter will be copied.") !
+		++dead_pool->idx;
+	}
 }
 
 #if 1

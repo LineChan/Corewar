@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:29:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 21:22:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 16:51:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 //TODO : remove libc.h
 #include <libc.h>
 
-void			ft_vm_instr_or(unsigned char arena[], t_dead_pool *dead_pool)
+void			ft_vm_instr_or(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								int option[])
 {
 	int					i;
 	unsigned int		or[2];
@@ -66,6 +68,8 @@ void			ft_vm_instr_or(unsigned char arena[], t_dead_pool *dead_pool)
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 		/* Change the carry */
 		dead_pool->i_champ->carry = 0;
+		if (OPTION_SUMMARY)
+			ft_fprintf(OPTION_SUMMARY, "(%d) : or\n\tREG[%hhx] = REG[%d] | REG[%d] = %d\n", CHAMP_IDX + 1, or[0], or[1], or[0] | or[1]);
 	}
 	else
 	{

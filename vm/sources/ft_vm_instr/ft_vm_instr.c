@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 11:36:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:03:11 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,99 +36,31 @@ void				ft_vm_instr_init_done(t_dead_pool *dead_pool)
 		++dead_pool->idx;
 	}
 }
-	#if 0
-	dead_pool->champion1.done ^= dead_pool->champion1.done;
-	dead_pool->champion2.done ^= dead_pool->champion2.done;
-	dead_pool->champion3.done ^= dead_pool->champion3.done;
-	dead_pool->champion4.done ^= dead_pool->champion4.done;
-	if (DEBUG_MODE)
-	{
-		ft_fprintf(2, "dead_pool->champion1.done : %d\n",dead_pool->champion1.done);
-		ft_fprintf(2, "dead_pool->champion2.done : %d\n",dead_pool->champion2.done);
-		ft_fprintf(2, "dead_pool->champion3.done : %d\n",dead_pool->champion3.done);
-		ft_fprintf(2, "dead_pool->champion4.done : %d\n",dead_pool->champion4.done);
-	}
-	#endif
 
-int						ft_vm_instr(unsigned char arena[],
+void						ft_vm_instr(unsigned char arena[],
+										int option[],
 										t_dead_pool *dead_pool,
-										int *nb_champion)
+										unsigned int *nb_champion)
 {
 	dead_pool->idx ^= dead_pool->idx;
-	while (1)
+	/* While all the champions haven't executed all their instructions */
+	while (CHAMP_DONE != *nb_champion)
 	{
-		ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d\n", dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].next_cycle);
-		if ((*dead_pool->champ[CHAMP_IDX].header.prog_name)
+		ft_printf("dead_pool->idx : %d\n", dead_pool->idx);
+		if ((dead_pool->champ[CHAMP_IDX].pc)
 				&& !dead_pool->champ[CHAMP_IDX].done)
 		{
+			ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d\n", dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].next_cycle);
 			dead_pool->i_champ = &dead_pool->champ[CHAMP_IDX];
-			ft_vm_instr_champion_routine(arena, dead_pool);
-			if (ft_vm_instr_check_if_done(dead_pool, nb_champion) == EXIT_SUCCESS)
-			{
-				ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d {green:out}\n", dead_pool->champ[CHAMP_IDX].header.prog_name, dead_pool->champ[CHAMP_IDX].next_cycle);
-				return (EXIT_SUCCESS);
-			}
+			/* Instruction execution routine per champion */
+			ft_vm_instr_champion_routine(arena, dead_pool, option);
+			/* If the champion has executed all its instructions */
+			/* it is set as done and waits until the next cycle to die */
+			ft_vm_instr_check_if_done(dead_pool);
 		}
+		ft_printf("{red:SEGFAULT OUT}\n");
 		ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
 		getchar();
 		++dead_pool->idx;
 	}
 }
-		#if 0
-		if (dead_pool->idx && !(CHAMP_IDX))
-		{
-			if (CHAMP_DONE == (unsigned int)*nb_champion)
-			{
-				ft_printf("{red:turn is over}\n");
-				return(EXIT_FAILURE);
-			}
-		}
-	}
-	#endif
-	#if 0
-	int			i;
-
-	i = 0;
-	dead_pool->i_champchamp[CHAMP_IDX] = &dead_pool->champion1;
-	while (i < MAX_PLAYERS)
-	{
-		if (*dead_pool->i_champ->header.prog_name)
-		{
-			ft_printf("\n{bblack:ft_vm_instr :} {yellow:%s} next_cycle : %d\n", dead_pool->i_champ->header.prog_name, dead_pool->i_champ->next_cycle);
-
-
-			if (dead_pool->i_champ->next_cycle <= current_cycle)
-			{
-				ft_vm_instr_champion_routine(arena, dead_pool, current_cycle);
-
-
-
-				if (dead_pool->i_champ->next_cycle > current_cycle)
-				{
-					dead_pool->i_champ->done = 1;
-					if (EXIT_SUCCESS == ft_vm_instr_end_of_game(dead_pool, nb_champion))
-						return (EXIT_SUCCESS);
-				}
-
-
-
-			}
-
-
-
-		}
-		++dead_pool->i_champ;
-		++i;
-		if (i == MAX_PLAYERS)
-		{
-			i ^= i;
-			dead_pool->i_champ = &dead_pool->champion1;
-			if (CHAMP_DONE == (unsigned int)*nb_champion)
-			{
-				ft_printf("{red:turn is over}\n");
-				return (EXIT_FAILURE);
-			}
-		}
-	}
-	return (EXIT_FAILURE);
-	#endif

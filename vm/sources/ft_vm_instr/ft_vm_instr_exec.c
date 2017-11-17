@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 14:32:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 20:26:56 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:21:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,6 @@
 // TODO : presentation
 //TODO : remove libc
 # include <libc.h>
-
-#if 0
-static void ft_vm_instr_tmp(unsigned char arena[],
-							t_dead_pool *dead_pool)
-{
-	(void)arena;
-	(void)dead_pool;
-	ft_printf("{red: function not written yet}\n");
-}
-#endif
 
 static const		t_instr_list g_instr_list [] =
 {
@@ -47,10 +37,16 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_vm_instr_aff},
 };
 
-void			ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool)
+void			ft_vm_instr_exec(unsigned char arena[],
+									t_dead_pool *dead_pool,
+									int option[])
 {
-	ft_printf("\t{bblack:ft_vm_instr_exec} {green:in} op : %hhx\n", dead_pool->i_champ->instr.op->numero);
-	g_instr_list[dead_pool->i_champ->instr.op->numero].func(arena, dead_pool);
+	ft_printf("\t{bblack:ft_vm_instr_exec} {green:in} op : %s --> %hhx\n", dead_pool->i_champ->header.prog_name, dead_pool->i_champ->instr.op->numero);
+	//dead_pool->i_champ = &dead_pool->champ[0];
+	ft_printf("op->numero : %d\n", dead_pool->i_champ->instr.op->numero);
+	/* Look up table for the instruction */
+	g_instr_list[dead_pool->i_champ->instr.op->numero].func(arena, dead_pool, option);
+	/* Update the champion next cycle to check */
 	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 	ft_printf("\t{bblack:ft_vm_instr_exec} {green:out}\n");
 }

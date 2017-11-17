@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 21:46:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 16:46:36 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 // TODO : presentation
 
 // NB : value to load can be removed
-void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
+void			ft_vm_instr_ldi(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								int option[])
 
 {
 	int					i;
@@ -61,7 +63,8 @@ void			ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool)
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 		/* Change the carry */
 		dead_pool->i_champ->carry = 0;
-
+		if (OPTION_SUMMARY)
+			ft_fprintf(OPTION_SUMMARY, "(%d) : ldi\n\tREG[%c] = %d\n", CHAMP_IDX + 1, *ptr, dead_pool->i_champ->reg[*ptr]);
 	}
 	else
 	{

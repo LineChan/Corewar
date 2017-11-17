@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 16:24:32 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 15:11:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 // TODO : remove libc.h
 #include <libc.h>
 
-#if 1
 static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
 {
 	dead_pool->idx ^= dead_pool->idx;
@@ -34,57 +33,35 @@ static void				ft_vm_arena_find_winner(t_dead_pool *dead_pool)
 			return ;
 		++dead_pool->idx;
 	}
-	#if 0
-	if (dead_pool->champion1.pc)
-	{
-		dead_pool->i_champ = &dead_pool->champion1;
-		dead_pool->i_champ->index = 1;
-	}
-	else if (dead_pool->champion2.pc)
-	{
-		dead_pool->i_champ = &dead_pool->champion2;
-		dead_pool->i_champ->index = 2;
-	}
-	else if (dead_pool->champion3.pc)
-	{
-		dead_pool->i_champ = &dead_pool->champion3;
-		dead_pool->i_champ->index = 3;
-	}
-	else if (dead_pool->champion4.pc)
-	{
-		dead_pool->i_champ = &dead_pool->champion4;
-		dead_pool->i_champ->index = 4;
-	}
-	#endif
 }
-#endif
 
 void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 	 								int option[],
 									t_dead_pool *dead_pool,
-									int *nb_champion)
+									unsigned int *nb_champion)
 {
-	//unsigned int		current_cycle;
 	unsigned int		cycle_to_die;
 
 	cycle_to_die = CYCLE_TO_DIE;
-	//cycle_to_die = 100;
 	dead_pool->current_cycle = cycle_to_die;
+	/* Place champions on the arena at the right position and set them up */
+	/* for the battle */
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+	/* Main loop : the game is on until there is only one champion left */
 	while (*nb_champion != 1)
 	{
-		if (ft_vm_instr(arena, dead_pool, nb_champion) == EXIT_SUCCESS)
-			break;
+		/* Execute all instructions until the next cycle to die */
+		ft_vm_instr(arena, option, dead_pool, nb_champion);
+		/* Remove the champions who did not execute live since the last cycle to die */
 		ft_vm_arena_live_check(dead_pool, nb_champion);
+		/* Update the cycle to die and add it to the next_cycle to check in the arena */
 		if (cycle_to_die > CYCLE_DELTA)
 			cycle_to_die -= CYCLE_DELTA;
 		else
 			break ;
 		dead_pool->current_cycle += cycle_to_die;
-		//getchar();
 	}
-	// TODO: find winner can be removed
 	ft_vm_arena_find_winner(dead_pool);
 	ft_printf("Player %d ({green:%s}) won\n", dead_pool->idx, dead_pool->champ[dead_pool->idx].header.prog_name);
 }

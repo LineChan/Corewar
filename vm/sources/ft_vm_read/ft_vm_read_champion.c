@@ -6,14 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:28:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/14 23:06:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 14:11:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ft_vm.h"
 
 /*
-* brief      		Read each champion's hearder
+* brief      		Read each champion's header
 *
 * param option		Options array
 * param dead_pool	Structure gathering all the champions
@@ -30,7 +30,7 @@
 
 void	ft_vm_read_champion(int option[],
 							t_dead_pool *dead_pool,
-							int *nb_champion)
+							unsigned int *nb_champion)
 {
 	ft_memset((void *)dead_pool, 0, sizeof(*dead_pool));
 	*nb_champion = 0;
@@ -43,14 +43,4 @@ void	ft_vm_read_champion(int option[],
 		}
 		++dead_pool->idx;
 	}
-	#if 0
-	if (option[1] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion1.header, option[1]);
-	if (option[2] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion2.header, option[2]);
-	if (option[3] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion3.header, option[3]);
-	if (option[4] && ++*nb_champion)
-		ft_vm_read_header(&dead_pool->champion4.header, option[4]);
-	#endif
 }

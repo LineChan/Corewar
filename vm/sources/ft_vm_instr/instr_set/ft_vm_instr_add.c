@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 19:21:08 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 20:33:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 17:15:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 //TODO : remove libc.h
 #include <libc.h>
 
-void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
+void 			ft_vm_instr_add(unsigned char arena[],
+								t_dead_pool *dead_pool,
+								int option[])
 {
 	int					i;
 	unsigned int		add[3];
@@ -49,6 +51,8 @@ void 			ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool)
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] +
 										dead_pool->i_champ->instr.arg_jump[1]
 										+ dead_pool->i_champ->instr.arg_jump[2];
+		if (OPTION_SUMMARY)
+			ft_fprintf(OPTION_SUMMARY, "cycle : %d (%d) : add\n\tREG[%d] = REG[%d] + REG[%d]\n",dead_pool->i_champ->next_cycle, CHAMP_IDX + 1, add[2], add[0], add[1]);
 		/* Waiting time until the next instrution */
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 		/* Change the carry */

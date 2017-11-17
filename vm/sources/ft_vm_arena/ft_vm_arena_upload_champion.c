@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/16 20:28:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/17 14:38:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,10 @@
 //TODO: libc
 
 #include <libc.h>
-#if 0
-static void 		ft_vm_arena_up_routine(const int fd,
-												unsigned char arena[],
-												t_champion *champ,
-												int index)
-{
-	read(fd, &arena[index], champ->header.prog_size);
-	champ->index = index;
-	INIT_LIST_HEAD(champ->process_head);
-	close(fd);
-}
-#endif
-
 void				ft_vm_arena_upload_champion(unsigned char arena[],
 												int option[],
 												t_dead_pool *dead_pool,
-												int *nb_champion)
+												unsigned int *nb_champion)
 {
 	int		index;
 	int		step;
@@ -64,46 +51,16 @@ void				ft_vm_arena_upload_champion(unsigned char arena[],
 			dead_pool->champ[dead_pool->idx].index = index;
 			/* Set up the Program Counter at the starting position */
 			dead_pool->champ[dead_pool->idx].pc = &arena[index];
+			index += step;
 			/* Put the champion's number in the first register */
 			dead_pool->champ[dead_pool->idx].reg[1] = dead_pool->idx + 1;
 			/* Set up the carry */
 			dead_pool->champ[dead_pool->idx].carry = 1;
 			/* Initialize the subprocess list */
 			INIT_LIST_HEAD(dead_pool->champ[dead_pool->idx].process_head);
+			/* Close the File Descriptor */
 			close(option[dead_pool->idx + 1]);
-			index += step;
 		}
 		++dead_pool->idx;
 	}
-	#if 0
-	if (option[1])
-	{
-		ft_vm_arena_up_routine(option[1], arena, &dead_pool->champion1, index);
-		dead_pool->champion1.pc = &arena[index];
-		dead_pool->champion1.reg[0] = 1;
-
-		index += step;
-
-	}
-	if (option[2])
-	{
-		ft_vm_arena_up_routine(option[2], arena, &dead_pool->champion2, index);
-		dead_pool->champion2.pc = &arena[index];
-		dead_pool->champion2.reg[0] = 2;
-		index += step;
-	}
-	if (option[3])
-	{
-		ft_vm_arena_up_routine(option[3], arena, &dead_pool->champion3, index);
-		dead_pool->champion3.pc = &arena[index];
-		dead_pool->champion3.reg[0] = 3;
-		index += step;
-	}
-	if (option[4])
-	{
-		ft_vm_arena_up_routine(option[4], arena, &dead_pool->champion4, index);
-		dead_pool->champion4.pc = &arena[index];
-		dead_pool->champion4.reg[0] = 4;
-	}
-	#endif
 }
