@@ -6,7 +6,7 @@
 #    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/09/30 23:55:37 by Zoellingam       ###   ########.fr        #
+#    Updated: 2017/11/12 22:56:58 by Zoellingam       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,12 @@ debug:
 
 asm:
 	@make -C $(ASM_DIR);
+
+asm_test: asm
+	@sh unit_test_asm.sh
+
+disass_test: disass
+	@sh unit_test_disass.sh
 
 vm:
 	@make -C $(VM_DIR);

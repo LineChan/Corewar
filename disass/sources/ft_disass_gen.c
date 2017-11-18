@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 08:34:52 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/16 21:01:36 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ void		ft_disass_gen(t_disass *dsm)
 		it_instr = it_instr->next;
 	}
 	/* Signature */
-	ft_fprintf(dsm->fd_out, "\n; generated ;");
+	ft_fprintf(dsm->fd_out, "\n; generated ;\n");
 	ft_timer_stop(&dsm->benchmark[2]);
 }

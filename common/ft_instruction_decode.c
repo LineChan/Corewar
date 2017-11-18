@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_instruction_decode.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/06 11:56:51 by mvillemi         ###   ########.fr       */
+/*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
+/*   Updated: 2017/11/08 00:12:27 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 extern uint8_t	g_direct_jump_table_from_instr[17];
 
-int	ft_instruction_get_data(size_t size, uint8_t *pc)
+static int	ft_instruction_get_data(size_t size, uint8_t *pc)
 {
 	if (1 == size)
 		return (*pc);
@@ -45,10 +45,7 @@ static uint8_t	*ft_instruction_get_args(t_instr *st, uint8_t *idx, int bc)
 		else if (T_DIR == st->args.decode[i].type)
 			st->args.decode[i].size = g_direct_jump_table_from_instr[st->op->numero];
 		else
-		{
-			st->args.decode[i].type = T_IND;
 			st->args.decode[i].size = 2;
-		}
 		st->args.decode[i].data = ft_instruction_get_data(st->args.decode[i].size, idx);
 		bc <<= 2;
 		idx += st->args.decode[i].size;
@@ -62,7 +59,7 @@ t_instr			*ft_instruction_decode(void const *pc)
 	extern t_op	g_op_tab[17];
 	t_instr		*st;
 	uint8_t		*idx;
-	uint32_t	jmp;
+	uint8_t		*jmp;
 
 	idx = (uint8_t *)pc;
 	st = (t_instr *)ft_calloc(1, sizeof(t_instr));
@@ -71,9 +68,9 @@ t_instr			*ft_instruction_decode(void const *pc)
 	st->op = &g_op_tab[*idx];
 	st->args.decode = (t_instr_decode *)ft_calloc(st->op->nb_args, sizeof(0[st->args.decode]));
 	if (0 == st->op->param_byte)
-		jmp = ft_instruction_get_args(st, idx + 1, T_DIR << 6) - idx;
+		jmp = ft_instruction_get_args(st, idx + 1, DIR_CODE << 6);
 	else
-		jmp = ft_instruction_get_args(st, idx + 2, idx[1]) - idx;
-	st->instr_size = jmp;
+		jmp = ft_instruction_get_args(st, idx + 2, idx[1]);
+	st->instr_size = jmp - idx;
 	return (st);
 }

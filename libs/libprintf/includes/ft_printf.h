@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/27 02:14:32 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 16:49:05 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/18 12:39:16 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ int				ft_printf(char const *format, ...);
 **	so it shouldn't handle more than 4096
 */
 int				ft_fprintf(int const fd, char const *format, ...);
+
+/*
+** Print on file_descriptor fd using va_list.
+**	This function doesn't alloc memory,
+**	so it shouldn't handle more than 4096
+*/
+int				ft_vfprintf(int fd, char const *format, va_list ap);
 
 /*
 ** Print on string

@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/03 22:06:54 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/12 17:55:04 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct		s_instr_decode
 typedef struct		s_instr_encode
 {
 	t_arg_type		type;
-	char			data[64];
+	char			data[1 << 8];
 	size_t			size;
 }					t_instr_encode;
 

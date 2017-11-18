@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
+#    By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/11/03 13:08:44 by mvillemi         ###   ########.fr        #
+#*   Updated: 2017/11/18 15:49:00 by mvillemi         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OBJS 			:= objs
 
 LIB  			:= 	libstr   \
 					libopt	 \
+					liblog   \
 					liblist  \
 					libctype \
 					libprintf
@@ -32,12 +33,14 @@ INCLUDES 		:= -I$(INCS)
 INCLUDES 		+= -I$(COMN)/
 INCLUDES		+= -I$(DLIB)/libstr/$(INCS)
 INCLUDES		+= -I$(DLIB)/libopt/$(INCS)
+INCLUDES		+= -I$(DLIB)/liblog/$(INCS)
 INCLUDES		+= -I$(DLIB)/liblist/$(INCS)
 INCLUDES		+= -I$(DLIB)/libctype/$(INCS)
 INCLUDES		+= -I$(DLIB)/libprintf/$(INCS)
 
 LIBS 	 		+= -L $(DLIB)/libstr/ -lstr
 LIBS 	 		+= -L $(DLIB)/libopt/ -lopt
+LIBS 	 		+= -L $(DLIB)/liblog/ -llog
 LIBS 	 		+= -L $(DLIB)/liblist/ -llist
 LIBS 	 		+= -L $(DLIB)/libctype/ -lctype
 LIBS			+= -L $(DLIB)/libprintf/ -lprintf
@@ -51,16 +54,8 @@ C_DIRS			+= $(COMN)
 # Add to C_FLAGS
 ifeq ($(DEBUG),1)
 C_FLAGS		 	:= -MMD -g -DDEBUG -Wall -Wextra -Werror
-ifeq ($(TESTS), 1)
-C_FLAGS		 	:= -MMD -g -DTESTS -Wall -Wextra -Werror
-ifeq ($(DEBUG), 1)
-ifeq ($(TESTS), 1)
-C_FLAGS		 	:= -MMD -g -DTESTS -DDEBUG -Wall -Wextra -Werror
 else
 C_FLAGS		 	:= -MMD -g -Wall -Wextra -Werror
-endif
-endif
-endif
 endif
 
 # Build .o files
@@ -91,6 +86,7 @@ $(NAME): $(O_FILES)
 	@make -C "$(DLIB)/libopt/";
 	@make -C "$(DLIB)/libctype/";
 	@make -C "$(DLIB)/libprintf/";
+	@make -C "$(DLIB)/liblog/";
 	@gcc $(C_FLAGS) $(INCLUDES) $(LIBS) -o $@ $(O_FILES) && $(PRINT_GREEN) $@ || exit
 
 $(OBJS)/%.o: %.c
@@ -102,7 +98,7 @@ clean:
 	@make -C "$(DLIB)/liblist/" clean;
 	@make -C "$(DLIB)/libctype/" clean;
 	@make -C "$(DLIB)/libprintf/" clean;
-	@rm -f $(SRCS)"/ft_parser_gen.c" $(INCS)"/ft_parser_gen.h"
+	@make -C "$(DLIB)/liblog/" clean;
 	@rm -rf $(O_FILES) $(OBJS) 2> /dev/null
 
 fclean: clean
@@ -111,10 +107,8 @@ fclean: clean
 	@make -C "$(DLIB)/liblist/" fclean;
 	@make -C "$(DLIB)/libctype/" fclean;
 	@make -C "$(DLIB)/libprintf/" fclean;
+	@make -C "$(DLIB)/liblog/" fclean;
 	@rm -f $(NAME) $(TEST) 2> /dev/null
-
-debug : fclean
-	make DEBUG=1
 
 re: fclean all
 

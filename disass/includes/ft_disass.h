@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 08:36:47 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/12 23:21:20 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "instruction.h"
 # include "timer.h"
 
-# include "ft_option.h"
 # include "ft_list.h"
 
 # ifdef DEBUG
@@ -84,7 +83,6 @@ typedef struct		s_instr_node
  */
 typedef struct		s_disass
 {
-	t_option		*opt;
 	t_timer			benchmark[3];
 	int				fd_in;
 	int				fd_out;
@@ -109,7 +107,7 @@ void				ft_disass(t_disass *dsm);
  * 			- Init source stream
  * 			- Init destination stream
  */
-int					ft_disass_init(t_disass *dsm, int argc, char **argv);
+int					ft_disass_init(t_disass *dsm, char const *input_file);
 
 /*
  * brief	Delete disass structure

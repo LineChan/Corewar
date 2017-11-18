@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/04 08:36:05 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/16 20:58:40 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ static void		ft_label_reach(t_disass *dsm)
 	   quicksort/mergesort if there is small number of
 	   items in the container. In our case, I really doubt
 	   that we'll work on champions that use direct-reference
-	   on a big number of label. Garanted simple and fast.
+	   on a big number of label. 'Garanted' efficient.
 	   ft_sort_label compare function is overflow-safe. */
 	ft_list_insertsort(&dsm->label_head, &ft_sort_label);
 }
@@ -137,7 +137,7 @@ void			ft_disass_label(t_disass *dsm)
 	ft_timer_start(&dsm->benchmark[1]);
 	/* Create first label at position 0 */
 	ft_create_label(dsm, 0, 1);
-	/* 1st pass: creates labels from T_DIR */
+	/* 1st pass: creates labels from DIR_CODE */
 	ft_label_build(dsm);
 	/* 2nd pass: check if data refers to an existant label */
 	ft_label_reach(dsm);

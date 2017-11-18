@@ -6,7 +6,7 @@
 /*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/27 02:48:51 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/09/30 17:06:39 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2017/11/14 19:32:53 by Zoellingam       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static char const * const g_color_def[] =
 
 static char const * const g_color_def_2[] =
 {
+	"{none:", "\033[0m",
+	"{bold:", "\033[1m",
 	"{black:", "\033[30m",
 	"{red:", "\033[31m",
 	"{green:", "\033[32m",
