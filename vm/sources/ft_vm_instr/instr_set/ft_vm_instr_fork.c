@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:26:03 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 16:30:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:49:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			ft_vm_instr_fork(unsigned char arena[],
 			g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero];
 	/* Waiting time until the next instruction */
 	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-	if (OPTION_SUMMARY)
-		ft_fprintf(OPTION_SUMMARY,"(%d) : fork at %hhx\n",
+	if (OPTION_LOG)
+		ft_fprintf(OPTION_LOG,"(%d) : fork at %hhx\n",
 								CHAMP_IDX, *(dead_pool->i_champ->pc + 1));
 }

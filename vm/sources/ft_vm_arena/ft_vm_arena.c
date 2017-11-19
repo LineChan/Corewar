@@ -6,11 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 21:51:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 15:11:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:59:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_log.h"
 
 /*
 * brief      		Set up the virtual machine
@@ -48,6 +49,8 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 	/* for the battle */
 	ft_vm_arena_upload_champion(arena, option, dead_pool, nb_champion);
 	ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
+	/* If it doesn't exist, create a logfile and print a header */
+	OPTION_LOG ? ft_vm_log_start(dead_pool, option) : 0;
 	/* Main loop : the game is on until there is only one champion left */
 	while (*nb_champion != 1)
 	{
@@ -62,6 +65,7 @@ void					ft_vm_arena(unsigned char arena[MEM_SIZE],
 			break ;
 		dead_pool->current_cycle += cycle_to_die;
 	}
+	ft_log_close();
 	ft_vm_arena_find_winner(dead_pool);
-	ft_printf("Player %d ({green:%s}) won\n", dead_pool->idx, dead_pool->champ[dead_pool->idx].header.prog_name);
+	ft_printf("Player %d ({green:%s}) won !\n", dead_pool->idx + 1, dead_pool->champ[dead_pool->idx].header.prog_name);
 }

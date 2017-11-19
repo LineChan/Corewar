@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/31 16:08:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 15:03:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:44:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void						ft_vm_instr(unsigned char arena[],
 			/* it is set as done and waits until the next cycle to die */
 			ft_vm_instr_check_if_done(dead_pool);
 		}
-		ft_printf("{red:SEGFAULT OUT}\n");
 		ft_vm_print_arena((void *)arena, MEM_SIZE, 64, dead_pool);
 		getchar();
 		++dead_pool->idx;

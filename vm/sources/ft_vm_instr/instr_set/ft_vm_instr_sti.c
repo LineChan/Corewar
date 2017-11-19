@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 16:56:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 17:17:36 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:50:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,8 @@ void 			ft_vm_instr_sti(unsigned char arena[],
 	arena[MOD(copy_at_address)] = dead_pool->i_champ->reg[reg];
 	/* Move the Program Counter */
 	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
-	if (OPTION_SUMMARY)
-		ft_fprintf(OPTION_SUMMARY, "(%d) cycle : %d -> sti\n\tarena[%hhx] : %c\n",
+	if (OPTION_LOG)
+		ft_fprintf(OPTION_LOG, "(%d) cycle : %d -> sti\n\tarena[%hhx] : %c\n",
 			CHAMP_IDX + 1, dead_pool->i_champ->next_cycle,
 			MOD(copy_at_address), arena[MOD(copy_at_address)]);
 	/* Waiting time until the next instruction */

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 11:06:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 17:19:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 01:08:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void			ft_vm_instr_xor(unsigned char arena[],
 		dead_pool->i_champ->reg[*ptr] = xor[0] ^ xor[1];
 		/* Move the Program Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
-		if (OPTION_SUMMARY)
-			ft_fprintf(OPTION_SUMMARY, "(%d) cycle : %d -> xor\n\t, reg[%c] = %d ^ %d = %d\n", CHAMP_IDX + 1, dead_pool->i_champ->next_cycle, *ptr, xor[0], xor[1], dead_pool->i_champ->reg[*ptr]);
+		/* Write in the logfile */
+		OPTION_LOG ? ft_vm_log_xor(dead_pool, ptr, xor) : 0;
 		/* Waiting time until the next instruction */
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 		/* Change the carry */

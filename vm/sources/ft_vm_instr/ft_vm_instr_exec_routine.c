@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:44:59 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 15:09:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 23:16:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 //TODO : presentation
 //TODO : libc.h
 #include <libc.h>
+#include "ft_log.h"
 
 void 			ft_vm_instr_exec_routine(unsigned char arena[],
 										t_dead_pool *dead_pool,

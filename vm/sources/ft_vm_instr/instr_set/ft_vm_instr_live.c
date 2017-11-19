@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 15:25:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 16:55:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 20:21:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ void           ft_vm_instr_live(unsigned char arena[],
 		++dead_pool->champ[2].live;
 	else if (number == 4)
 		++dead_pool->champ[3].live;
+	/* Move the Program Counter */
 	dead_pool->i_champ->pc += 1 + g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero];
+	/* Write log */
+	OPTION_LOG ? ft_vm_log_live(dead_pool, number) : 0;
+	/* Waiting time until the next instruction */
 	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-	if (OPTION_SUMMARY)
-		ft_fprintf(OPTION_SUMMARY, "(%d) : live\n\tPlayer %d\n", CHAMP_IDX + 1, number);
 }

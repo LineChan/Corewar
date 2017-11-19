@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:34:23 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 16:12:55 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:48:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void 			ft_vm_instr_aff(unsigned char arena[],
 		dead_pool->i_champ->pc += 1;
 		dead_pool->i_champ->next_cycle += 1;
 	}
-	if (OPTION_SUMMARY)
-		ft_fprintf(OPTION_SUMMARY, "(%d) : aff\n");
+	if (OPTION_LOG)
+		ft_fprintf(OPTION_LOG, "(%d) : aff\n");
 }
 
 	#if 0

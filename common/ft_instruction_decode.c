@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_instruction_decode.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/08 00:12:27 by Zoellingam       ###   ########.fr       */
+/*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
+/*   Updated: 2017/11/18 16:51:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 extern uint8_t	g_direct_jump_table_from_instr[17];
 
-static int	ft_instruction_get_data(size_t size, uint8_t *pc)
+int	ft_instruction_get_data(size_t size, uint8_t *pc)
 {
 	if (1 == size)
 		return (*pc);

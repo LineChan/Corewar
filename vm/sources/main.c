@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/17 16:11:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/18 19:10:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int				main(int ac, char **av)
 	ft_vm_parse_champion(option, av);
 	/* Read each champion's header */
 	ft_vm_read_champion(option, &dead_pool, &nb_champion);
-	//ft_vm_print_stat(&dead_pool);
+	ft_vm_print_stat(&dead_pool, option);
+	ft_printf("{green:separator}\n");
 	/* Start the battle */
 	ft_vm_arena(arena, option, &dead_pool, &nb_champion);
 	ft_option_del(&opt);
-	//TODO: close FD OPTION_SUMMARY
 	return (EXIT_SUCCESS);
 }

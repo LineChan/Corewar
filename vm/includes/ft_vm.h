@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/17 16:09:51 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 01:00:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@
 # define    OPTION_MAX		6
 # define	INSTR_NUMBER	16
 # define	CHAMP_IDX		(dead_pool->idx % MAX_PLAYERS)
-# define	OPTION_SUMMARY	option[5]
+# define	OPTION_LOG	option[5]
+# define	OPTION_WAIT		option[0]
 
 # define	MOD(x)			((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
 # define	IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
@@ -106,6 +107,12 @@ typedef struct			s_instr_list
 	void			(*func)(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
 }						t_instr_list;
 
+#if 0
+typedef struct			s_instr_log
+{
+	void 			(*func)(t_dead_pool *dead_pool, va_list ap);
+}						t_instr_log;
+#endif
 /*
 ** Linked Lists
 */
@@ -187,6 +194,7 @@ void		ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool, int option[
 void		ft_vm_instr_lldi(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
 void		ft_vm_instr_lfork(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
 void		ft_vm_instr_aff(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
+
 /*
 ** Print functions
 */
@@ -195,10 +203,29 @@ void		ft_vm_print_arena(void const *data, size_t msize,
 void		ft_vm_print_pc(t_dead_pool *dead_pool);
 void 		ft_vm_print_reg(t_champion *champ);
 void		ft_vm_print_process(t_dead_pool *dead_pool);
-void		ft_vm_print_stat(t_dead_pool *dead_pool);
+void		ft_vm_print_stat(t_dead_pool *dead_pool, int option[OPTION_MAX]);
 
-
-
+/*
+** Logger functions
+*/
+void				ft_vm_log_start(t_dead_pool *dead_pool, int option[OPTION_MAX]);
+//void				ft_vm_log_instr(t_dead_pool *dead_pool, ...);
+void 				ft_vm_log_live(t_dead_pool *dead_pool, int nb);
+void 				ft_vm_log_ld(t_dead_pool *dead_pool, unsigned char *ptr);
+void 				ft_vm_log_st(t_dead_pool *dead_pool,
+									unsigned char arena[],
+									int dir);
+void 				ft_vm_log_add(t_dead_pool *dead_pool, unsigned int add[]);
+void 				ft_vm_log_sub(t_dead_pool *dead_pool, unsigned int sub[]);
+void				ft_vm_log_and(t_dead_pool *dead_pool,
+									unsigned char *ptr,
+									unsigned int and[2]);
+void				ft_vm_log_or(t_dead_pool *dead_pool,
+									unsigned char *ptr,
+									unsigned int or[2]);
+void 				ft_vm_log_xor(t_dead_pool *dead_pool,
+									unsigned char *ptr,
+									unsigned int xor[]);
 /*
 ** Tools
 */

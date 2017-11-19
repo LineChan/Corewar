@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:29:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 16:51:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 00:37:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ void			ft_vm_instr_or(unsigned char arena[],
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 		/* Change the carry */
 		dead_pool->i_champ->carry = 0;
-		if (OPTION_SUMMARY)
-			ft_fprintf(OPTION_SUMMARY, "(%d) : or\n\tREG[%hhx] = REG[%d] | REG[%d] = %d\n", CHAMP_IDX + 1, or[0], or[1], or[0] | or[1]);
+		OPTION_LOG ? ft_vm_log_or(dead_pool, ptr, or) : 0;
+		if (OPTION_LOG)
+			ft_fprintf(OPTION_LOG, "(%d) : or\n\tREG[%hhx] = REG[%d] | REG[%d] = %d\n", CHAMP_IDX + 1, or[0], or[1], or[0] | or[1]);
 	}
 	else
 	{

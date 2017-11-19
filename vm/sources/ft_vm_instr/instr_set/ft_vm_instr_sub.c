@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 22:33:27 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 17:03:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 00:48:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void            ft_vm_instr_sub(unsigned char arena[],
 		dead_pool->i_champ->reg[sub[2]] = MOD(dead_pool->i_champ->reg[sub[0]] - dead_pool->i_champ->reg[sub[1]]);
 		/* Move the Program Counter */
 		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+		/* Write in the logfile */
+		OPTION_LOG ? ft_vm_log_sub(dead_pool, sub) : 0;
 		/* Waitinf time until the next instruction */
 		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
 		/* Change the carry */
@@ -59,13 +61,6 @@ void            ft_vm_instr_sub(unsigned char arena[],
 		dead_pool->i_champ->next_cycle += 1;
 		dead_pool->i_champ->carry = 1;
 	}
-	if (OPTION_SUMMARY)
-		ft_fprintf(OPTION_SUMMARY, "(%d) : sub\n\t, REG[%d] = REG[%d] - REG[%d] = %d\n", CHAMP_IDX + 1, sub[2], sub[0], sub[1], dead_pool->i_champ->reg[sub[0]]);
 	if (DEBUG_MODE)
-	{
-		ft_fprintf(2, "sub[0] : %d\n", sub[0]);
-		ft_fprintf(2, "sub[1] : %d\n", sub[1]);
-		ft_fprintf(2, "sub[2] : %d\n\n", sub[2]);
 		ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
-	}
 }
