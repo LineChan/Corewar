@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 00:26:03 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/18 18:49:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 18:43:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 // TODO : presentation
+// TODO : remap the childs
 
 
 void			ft_vm_instr_fork(unsigned char arena[],
@@ -20,7 +21,6 @@ void			ft_vm_instr_fork(unsigned char arena[],
 {
 	extern uint8_t g_direct_jump_table_from_instr[17];
 
-	DEBUG_MODE ? ft_printf("{yellow:sti}\n") : 0;
 	/* Create a new process, copy data from parent */
 	/* and link it to the champion's structure */
 	ft_vm_instr_new_process(dead_pool);
@@ -32,9 +32,9 @@ void			ft_vm_instr_fork(unsigned char arena[],
 	/* Move the Program Counter */
 	dead_pool->i_champ->pc += 1 +
 			g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero];
+	/* Write in a logfile */
+	OPTION_LOG ? ft_vm_log_fork(dead_pool, ft_instruction_get_data(g_direct_jump_table_from_instr[
+	dead_pool->i_champ->instr.op->numero], dead_pool->i_champ->pc)) : 0;
 	/* Waiting time until the next instruction */
 	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-	if (OPTION_LOG)
-		ft_fprintf(OPTION_LOG,"(%d) : fork at %hhx\n",
-								CHAMP_IDX, *(dead_pool->i_champ->pc + 1));
 }

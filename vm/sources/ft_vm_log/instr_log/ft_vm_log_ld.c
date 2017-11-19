@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 20:22:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/18 23:36:32 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 15:43:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 *
 */
 
-void 				ft_vm_log_ld(t_dead_pool *dead_pool, unsigned char *ptr)
+void 				ft_vm_log_ld(t_dead_pool *dead_pool,
+								unsigned char *ptr,
+								unsigned int address)
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s : reg[%d] = %d \n", dead_pool->i_champ->next_cycle, CHAMP_IDX + 1, "ld", *ptr, dead_pool->i_champ->reg[*ptr]);
+	ft_log("  Cycle %-7d Player %d --- %-5s\n", dead_pool->i_champ->next_cycle, CHAMP_IDX + 1, "and");
+	ft_vm_log_arg(dead_pool);
+	ft_log("\t\treg[%d] = %d --> arena[%d]\n", *ptr, dead_pool->i_champ->reg[*ptr], address);
 }

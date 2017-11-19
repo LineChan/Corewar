@@ -6,14 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 11:06:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/19 01:08:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 16:55:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-//TODO : presentaiton
-//TODO : carry
+//TODO : presentaton
 
 /*
 * brief      		Execute xor :Apply an ^ (bit-to-bit XOR) over the first
@@ -23,10 +22,6 @@
 * param arena
 * param champ
 */
-//TODO : remove libc.h
-
-#include <libc.h>
-
 void			ft_vm_instr_xor(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								int option[])
@@ -39,7 +34,6 @@ void			ft_vm_instr_xor(unsigned char arena[],
 	/* Set a pointer at the beginning of the arguments */
 	ptr = dead_pool->i_champ->pc + 2;
 	i = 0;
-	DEBUG_MODE ? ft_printf("{yellow:xor}\n") : 0;
 	/* Read arguments */
 	while (i < (dead_pool->i_champ->instr.op->nb_args - 1))
 	{
@@ -47,65 +41,31 @@ void			ft_vm_instr_xor(unsigned char arena[],
 		{
 			if (!IS_REG(*ptr))
 			{
-				dead_pool->i_champ->pc += 1;
-				dead_pool->i_champ->next_cycle += 1;
-				dead_pool->i_champ->carry = 1;
+				ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
 				return ;
 			}
 			xor[i] = dead_pool->i_champ->reg[*ptr];
-			if (DEBUG_MODE)
-			{
-
-				ft_fprintf(2, "T_REG : reg[%d]\n", (int)*ptr);
-				ft_fprintf(2, "xor[%d] = %d\n", i, xor[i]);
-			}
 		}
 		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
-		{
 			xor[i] = arena[MOD(dead_pool->i_champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD))];
-			if (DEBUG_MODE)
-			{
-				ft_fprintf(2, "pc : %d\n", dead_pool->i_champ->pc - arena);
-				ft_fprintf(2, "T_IND : %d\n", ft_instruction_get_data(2, ptr));
-				ft_fprintf(2, "arena[%d] : %d\n", dead_pool->i_champ->pc - arena + (ft_instruction_get_data(2, ptr) % IDX_MOD), arena[dead_pool->i_champ->pc - arena + ft_instruction_get_data(2, ptr)]);
-				ft_fprintf(2, "xor[%d] = %d\n", i, xor[i]);
-			}
-		}
 		else
-		{
 			xor[i] = arena[MOD(ft_instruction_get_data(g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
-			if (DEBUG_MODE)
-			{
-				ft_fprintf(2, "T_DIR\n");
-				ft_fprintf(2, "xor[%d] = %d\n", i, xor[i]);
-				ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
-			}
-		}
 		ptr += dead_pool->i_champ->instr.arg_jump[i];
 		++i;
 	}
-	DEBUG_MODE ? ft_fprintf(2,"reg[%d] : xor[0] : %d xor[1] : %d ----> & %d \n", *ptr, xor[0] , xor[1], xor[0] ^ xor[1]) : 0;
+	if (!IS_REG(*ptr))
+	{
+		ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
+		return ;
+	}
 	/* Compute the result and save it in a register */
-	if (IS_REG(*ptr))
-	{
-		dead_pool->i_champ->reg[*ptr] = xor[0] ^ xor[1];
-		/* Move the Program Counter */
-		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
-		/* Write in the logfile */
-		OPTION_LOG ? ft_vm_log_xor(dead_pool, ptr, xor) : 0;
-		/* Waiting time until the next instruction */
-		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-		/* Change the carry */
-		dead_pool->i_champ->carry = 0;
-	}
-	else
-	{
-		dead_pool->i_champ->pc += 1;
-		dead_pool->i_champ->next_cycle += 1;
-		dead_pool->i_champ->carry = 1;
-	}
-	if (DEBUG_MODE)
-	{
-		ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
-	}
+	dead_pool->i_champ->reg[*ptr] = xor[0] ^ xor[1];
+	/* Move the Program Counter */
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+	/* Write in the logfile */
+	OPTION_LOG ? ft_vm_log_xor(dead_pool, ptr, xor) : 0;
+	/* Waiting time until the next instruction */
+	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+	/* Change the carry */
+	dead_pool->i_champ->carry = 0;
 }

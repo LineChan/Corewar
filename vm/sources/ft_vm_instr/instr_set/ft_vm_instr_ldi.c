@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 16:32:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/18 18:49:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 18:09:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 // TODO : presentation
 
-// NB : value to load can be removed
 void			ft_vm_instr_ldi(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								int option[])
@@ -36,9 +35,7 @@ void			ft_vm_instr_ldi(unsigned char arena[],
 		{
 			if (!IS_REG(*ptr))
 			{
-				dead_pool->i_champ->pc += 1;
-				dead_pool->i_champ->next_cycle += 1;
-				dead_pool->i_champ->carry = 1;
+				ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
 				return ;
 			}
 			value_to_load += dead_pool->i_champ->reg[*ptr];
@@ -51,26 +48,21 @@ void			ft_vm_instr_ldi(unsigned char arena[],
 		++i;
 		ptr += dead_pool->i_champ->instr.arg_jump[i];
 	}
+	if (!IS_REG(*ptr))
+	{
+		ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
+		return ;
+	}
 	/* Load the value in a register */
-	if (IS_REG(*ptr))
-	{
-		dead_pool->i_champ->reg[*ptr] = value_to_load % IDX_MOD;
-		/* Move the Program Counter */
-		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0]
-									+ dead_pool->i_champ->instr.arg_jump[1]
-									+ dead_pool->i_champ->instr.arg_jump[2];
-		/* Waiting time until the next instruction */
-		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-		/* Change the carry */
-		dead_pool->i_champ->carry = 0;
-		if (OPTION_LOG)
-			ft_fprintf(OPTION_LOG, "(%d) : ldi\n\tREG[%c] = %d\n", CHAMP_IDX + 1, *ptr, dead_pool->i_champ->reg[*ptr]);
-	}
-	else
-	{
-		dead_pool->i_champ->pc += 1;
-		dead_pool->i_champ->next_cycle += 1;
-		dead_pool->i_champ->carry = 1;
-	}
-
+	dead_pool->i_champ->reg[*ptr] = value_to_load % IDX_MOD;
+	/* Move the Program Counter */
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0]
+								+ dead_pool->i_champ->instr.arg_jump[1]
+								+ dead_pool->i_champ->instr.arg_jump[2];
+	/* Write in the logfile */
+	OPTION_LOG ? ft_vm_log_ldi(dead_pool, ptr) : 0;
+	/* Waiting time until the next instruction */
+	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+	/* Change the carry */
+	dead_pool->i_champ->carry = 0;
 }

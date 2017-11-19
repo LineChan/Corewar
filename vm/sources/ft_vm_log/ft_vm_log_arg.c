@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_log_or.c                                     :+:      :+:    :+:   */
+/*   ft_vm_log_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/19 00:31:48 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/19 16:13:57 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/19 13:43:37 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/19 15:26:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,24 @@
 #include "ft_log.h"
 
 // TODO : presentation
-void				ft_vm_log_or(t_dead_pool *dead_pool,
-									unsigned char *ptr,
-									unsigned int or[2])
+
+void 				ft_vm_log_arg(t_dead_pool *dead_pool)
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s\n", dead_pool->i_champ->next_cycle, CHAMP_IDX + 1, "or");
-	ft_vm_log_arg(dead_pool);
-	ft_log("\t\treg[%d] = %d --> [%d] | [%d]\n", *ptr, dead_pool->i_champ->reg[*ptr], or[0], or[1]);
+	int		i;
+	char	type[3];
+
+	i = 0;
+	while (i < MAX_ARGS_NUMBER)
+	{
+		if (dead_pool->i_champ->instr.op->arg_types[i] == T_REG)
+			type[i] = 'R';
+		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_IND)
+			type[i] = 'I';
+		else if (dead_pool->i_champ->instr.op->arg_types[i] == T_DIR)
+			type[i] = 'D';
+		else
+			type[i] = 'X';
+		++i;
+	}
+	ft_log("\t\t[%c] [%c] [%c]\n", type[0], type[1], type[2]);
 }

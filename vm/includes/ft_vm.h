@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/19 01:00:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 18:36:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@
 
 # define	C_PROCESS(it)	CONTAINEROF(it, t_process, list)
 
+# define	CARRY_CHANGE	1
 # define    OPTION_MAX		6
 # define	INSTR_NUMBER	16
 # define	CHAMP_IDX		(dead_pool->idx % MAX_PLAYERS)
@@ -162,6 +163,7 @@ void		ft_vm_instr(unsigned char arena[],
 							int option[OPTION_MAX],
 							t_dead_pool *dead_pool,
 							unsigned int *nb_champion);
+void		ft_vm_instr_fail(t_dead_pool *dead_pool, int carry_change);
 int			ft_vm_instr_decode(t_dead_pool *dead_pool);
 int			ft_vm_instr_jump(t_dead_pool *dead_pool);
 void		ft_vm_instr_exec_routine(unsigned char arena[],
@@ -209,9 +211,12 @@ void		ft_vm_print_stat(t_dead_pool *dead_pool, int option[OPTION_MAX]);
 ** Logger functions
 */
 void				ft_vm_log_start(t_dead_pool *dead_pool, int option[OPTION_MAX]);
+void 				ft_vm_log_arg(t_dead_pool *dead_pool);
 //void				ft_vm_log_instr(t_dead_pool *dead_pool, ...);
 void 				ft_vm_log_live(t_dead_pool *dead_pool, int nb);
-void 				ft_vm_log_ld(t_dead_pool *dead_pool, unsigned char *ptr);
+void 				ft_vm_log_ld(t_dead_pool *dead_pool,
+								unsigned char *ptr,
+								unsigned int address);
 void 				ft_vm_log_st(t_dead_pool *dead_pool,
 									unsigned char arena[],
 									int dir);
@@ -225,7 +230,14 @@ void				ft_vm_log_or(t_dead_pool *dead_pool,
 									unsigned int or[2]);
 void 				ft_vm_log_xor(t_dead_pool *dead_pool,
 									unsigned char *ptr,
-									unsigned int xor[]);
+									unsigned int xor[2]);
+void				ft_vm_log_zjump(t_dead_pool *dead_pool, int jump);
+void				ft_vm_log_ldi(t_dead_pool *dead_pool, unsigned char *ptr);
+void				ft_vm_log_sti(t_dead_pool *dead_pool,
+									unsigned char arena[MEM_SIZE],
+									unsigned int reg,
+									unsigned int address);
+void				ft_vm_log_fork(t_dead_pool *dead_pool, unsigned int jump);
 /*
 ** Tools
 */

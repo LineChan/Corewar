@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 00:29:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/19 00:37:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 16:07:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void			ft_vm_instr_or(unsigned char arena[],
 		{
 			if (!IS_REG(*ptr))
 			{
-				dead_pool->i_champ->pc += 1;
-				dead_pool->i_champ->next_cycle += 1;
-				dead_pool->i_champ->carry = 1;
+				ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
 				return ;
 			}
 			or[i] = dead_pool->i_champ->reg[*ptr];
@@ -58,30 +56,19 @@ void			ft_vm_instr_or(unsigned char arena[],
 		ptr += dead_pool->i_champ->instr.arg_jump[i];
 		++i;
 	}
+	if (!IS_REG(*ptr))
+	{
+		ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
+		return ;
+	}
 	/* Compute the result and load it in a register */
-	if (IS_REG(*ptr))
-	{
-		dead_pool->i_champ->reg[*ptr] = or[0] | or[1];
-		/* Move the Program Counter */
-		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
-		/* Waiting time until the next instruction */
-		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-		/* Change the carry */
-		dead_pool->i_champ->carry = 0;
-		OPTION_LOG ? ft_vm_log_or(dead_pool, ptr, or) : 0;
-		if (OPTION_LOG)
-			ft_fprintf(OPTION_LOG, "(%d) : or\n\tREG[%hhx] = REG[%d] | REG[%d] = %d\n", CHAMP_IDX + 1, or[0], or[1], or[0] | or[1]);
-	}
-	else
-	{
-		dead_pool->i_champ->next_cycle += 1;
-		dead_pool->i_champ->pc += 1;
-		dead_pool->i_champ->carry = 1;
-	}
-
-	if (DEBUG_MODE)
-	{
-		ft_fprintf(2, "reg[%c] : or[0] : %d or[1] : %d ----> & %d \n", *ptr, or[0] , or[1], or[0] | or[1]);
-		ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
-	}
+	dead_pool->i_champ->reg[*ptr] = or[0] | or[1];
+	/* Move the Program Counter */
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+	/* Write in the logfile */
+	OPTION_LOG ? ft_vm_log_or(dead_pool, ptr, or) : 0;
+	/* Waiting time until the next instruction */
+	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+	/* Change the carry */
+	dead_pool->i_champ->carry = 0;
 }

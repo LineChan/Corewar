@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/05 22:33:27 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/19 00:48:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/19 16:43:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,19 @@ void            ft_vm_instr_sub(unsigned char arena[],
 		++ptr;
 		++i;
 	}
+	if  (!(IS_REG(sub[0]) && IS_REG(sub[1]) && IS_REG(sub[2])))
+	{
+		ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
+		return ;
+	}
 	/* Compute the value and load it in a register */
-	if  (IS_REG(sub[0]) && IS_REG(sub[1]) && IS_REG(sub[2]))
-	{
-		dead_pool->i_champ->reg[sub[2]] = MOD(dead_pool->i_champ->reg[sub[0]] - dead_pool->i_champ->reg[sub[1]]);
-		/* Move the Program Counter */
-		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
-		/* Write in the logfile */
-		OPTION_LOG ? ft_vm_log_sub(dead_pool, sub) : 0;
-		/* Waitinf time until the next instruction */
-		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-		/* Change the carry */
-		dead_pool->i_champ->carry = 0;
-	}
-	else
-	{
-		dead_pool->i_champ->pc += 1;
-		dead_pool->i_champ->next_cycle += 1;
-		dead_pool->i_champ->carry = 1;
-	}
-	if (DEBUG_MODE)
-		ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
+	dead_pool->i_champ->reg[sub[2]] = MOD(dead_pool->i_champ->reg[sub[0]] - dead_pool->i_champ->reg[sub[1]]);
+	/* Move the Program Counter */
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1] + dead_pool->i_champ->instr.arg_jump[2];
+	/* Write in the logfile */
+	OPTION_LOG ? ft_vm_log_sub(dead_pool, sub) : 0;
+	/* Waitinf time until the next instruction */
+	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+	/* Change the carry */
+	dead_pool->i_champ->carry = 0;
 }
