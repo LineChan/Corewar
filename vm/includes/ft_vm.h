@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/19 18:36:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 16:20:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,13 +231,24 @@ void				ft_vm_log_or(t_dead_pool *dead_pool,
 void 				ft_vm_log_xor(t_dead_pool *dead_pool,
 									unsigned char *ptr,
 									unsigned int xor[2]);
-void				ft_vm_log_zjump(t_dead_pool *dead_pool, int jump);
-void				ft_vm_log_ldi(t_dead_pool *dead_pool, unsigned char *ptr);
+void				ft_vm_log_zjmp(t_dead_pool *dead_pool, int jump);
+void				ft_vm_log_ldi(t_dead_pool *dead_pool,
+									unsigned char *ptr,
+									unsigned int address);
 void				ft_vm_log_sti(t_dead_pool *dead_pool,
 									unsigned char arena[MEM_SIZE],
 									unsigned int reg,
 									unsigned int address);
 void				ft_vm_log_fork(t_dead_pool *dead_pool, unsigned int jump);
+void				ft_vm_log_lld(t_dead_pool *dead_pool,
+									unsigned char *ptr,
+									unsigned int address);
+void 				ft_vm_log_lldi(t_dead_pool *dead_pool,
+									unsigned char *ptr,
+									unsigned int address);
+void				ft_vm_log_lfork(t_dead_pool *dead_pool, unsigned int jump);
+void 				ft_vm_log_aff(t_dead_pool *dead_pool);
+
 /*
 ** Tools
 */

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 11:20:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/18 18:50:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 14:43:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,41 @@
 
 // TODO : presentation
 
-// NB : like ld, value_to_load can be removed
-extern uint8_t g_direct_jump_table_from_instr[17];
 
 void			ft_vm_instr_lld(unsigned char arena[],
 								t_dead_pool *dead_pool,
 								int option[])
 {
-	unsigned int		value_to_load;
+	unsigned int		address;
 	unsigned char		*ptr;
+	extern uint8_t g_direct_jump_table_from_instr[17];
 
-	ft_printf("{yellow:lld}\n");
 	/* Set up a pointer at the beginning of the arguments */
 	ptr = dead_pool->i_champ->pc + 2;
 	/* Read arguments */
 	if (dead_pool->i_champ->instr.op->arg_types[0] == T_DIR)
 	{
-		value_to_load =
-		arena[MOD(ft_instruction_get_data(
-			g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero], ptr))];
+		address = MOD(ft_instruction_get_data(
+		g_direct_jump_table_from_instr[dead_pool->i_champ->instr.op->numero],
+		ptr));
 	}
 	else
-		value_to_load = arena[MOD((dead_pool->i_champ->pc - arena) + ft_instruction_get_data(2, ptr))];
+		address = MOD((dead_pool->i_champ->pc - arena)
+									+ ft_instruction_get_data(2, ptr));
 	ptr += dead_pool->i_champ->instr.arg_jump[0];
+	if (!IS_REG(*ptr))
+	{
+		ft_vm_instr_fail(dead_pool, CARRY_CHANGE);
+		return ;
+	}
 	/* Load a value in a register */
-	if (IS_REG(*ptr))
-	{
-		dead_pool->i_champ->reg[*ptr] = value_to_load;
-		/* Move the Program Counter */
-		dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];
-		/* Waiting time until the next cycle */
-		dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
-		/* Change the carry */
-		dead_pool->i_champ->carry = 0;
-		if (OPTION_LOG)
-			ft_fprintf(OPTION_LOG, "(%d) : lld\n\tREG[%c] = %d\n",
-				CHAMP_IDX + 1, *ptr, dead_pool->i_champ->reg[*ptr]);
-
-	}
-	else
-	{
-		dead_pool->i_champ->pc += 1;
-		dead_pool->i_champ->next_cycle += 1;
-		dead_pool->i_champ->carry = 1;
-	}
-	if (DEBUG_MODE)
-	{
-		ft_printf("{yellow:ld}\n");
-		ft_vm_print_reg(&dead_pool->champ[CHAMP_IDX]);
-	}
+	dead_pool->i_champ->reg[*ptr] = arena[address];
+	/* Move the Program Counter */
+	dead_pool->i_champ->pc += 2 + dead_pool->i_champ->instr.arg_jump[0] + dead_pool->i_champ->instr.arg_jump[1];
+	/* Write in the logfile */
+	OPTION_LOG ? ft_vm_log_lld(dead_pool, ptr, address) : 0;
+	/* Waiting time until the next cycle */
+	dead_pool->i_champ->next_cycle += dead_pool->i_champ->instr.op->nb_cycles;
+	/* Change the carry */
+	dead_pool->i_champ->carry = 0;
 }

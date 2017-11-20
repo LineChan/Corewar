@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/04 17:49:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/19 15:59:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 14:43:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 * param arena		Memory dedicated to the virtual machine
 * param champ
 */
-// TODO : remove libc.h
-#include <libc.h>
-#include "ft_log.h"
 
 void			ft_vm_instr_ld(unsigned char arena[],
 								t_dead_pool *dead_pool,
