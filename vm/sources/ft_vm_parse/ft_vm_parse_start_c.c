@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 20:00:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 19:47:26 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 20:04:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 void			ft_vm_parse_start_c(t_dead_pool *dead_pool, char **av)
 
 {
-	while (av)
+	while (*av)
 	{
 		if (!ft_strncmp("-start_c", *av, 8))
 		{

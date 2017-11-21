@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 18:29:15 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 19:49:45 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 20:02:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 void 			ft_vm_parse(t_dead_pool *dead_pool, char **av)
 {
     ft_vm_parse_log(dead_pool, av);
+	ft_printf("{red:SEGFAULT}\n");
     ft_vm_parse_start_c(dead_pool, av);
     ft_vm_parse_dump(dead_pool, av);
     ft_vm_parse_champion(dead_pool, av);

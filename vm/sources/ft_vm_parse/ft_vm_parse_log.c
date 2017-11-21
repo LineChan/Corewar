@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 18:56:06 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 19:55:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 20:04:11 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 void		ft_vm_parse_log(t_dead_pool *dead_pool, char **av)
 {
-	while (av)
+	while (*av)
 	{
 		if (!ft_strcmp("--log", *av))
 		{

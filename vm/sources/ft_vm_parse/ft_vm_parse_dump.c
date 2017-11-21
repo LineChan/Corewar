@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 20:39:02 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 19:47:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 20:04:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void			ft_vm_parse_dump(t_dead_pool *dead_pool, char **av)
 {
 	while (*av)
 	{
-		ft_printf("dump : %s\n", *av);
 		if (!ft_strncmp("-dump", *av, 5))
 		{
 			if (*(*av + 5) == '=')
