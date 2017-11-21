@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 20:39:02 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/20 21:38:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 19:47:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 * param av        Arguments list
 */
 
-void			ft_vm_parse_dump(t_dead_pool *dead_pool, int ac, char **av)
+void			ft_vm_parse_dump(t_dead_pool *dead_pool, char **av)
 {
-	while (ac)
+	while (*av)
 	{
 		ft_printf("dump : %s\n", *av);
 		if (!ft_strncmp("-dump", *av, 5))
@@ -41,6 +41,5 @@ void			ft_vm_parse_dump(t_dead_pool *dead_pool, int ac, char **av)
 				EXIT_FAIL("Error : did you mean -dump=nb ?");
 		}
 		++av;
-		--ac;
 	}
 }

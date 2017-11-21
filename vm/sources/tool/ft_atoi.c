@@ -6,11 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 00:46:50 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 11:50:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 18:43:24 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_vm.h"
+#include "ft_vm.h"
+#include "ft_ctype.h"
+
 
 /*
 * brief      		ASCII to integer

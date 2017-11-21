@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 20:00:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 11:49:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 19:47:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 * param av        Arguments list
 */
 
-void			ft_vm_parse_start_c(t_dead_pool *dead_pool, int ac, char **av)
+void			ft_vm_parse_start_c(t_dead_pool *dead_pool, char **av)
 
 {
-	while (ac)
+	while (av)
 	{
-		ft_printf("start_c : %s\n", *av);
 		if (!ft_strncmp("-start_c", *av, 8))
 		{
 			if (*(*av + 8) == '=')
@@ -42,6 +41,5 @@ void			ft_vm_parse_start_c(t_dead_pool *dead_pool, int ac, char **av)
 			EXIT_FAIL("Error : did you mean -start_c=nb ?");
 		}
 		++av;
-		--ac;
 	}
 }

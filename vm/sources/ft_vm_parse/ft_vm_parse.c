@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 18:29:15 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 11:50:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 19:49:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 * param av				Arguments' list
 */
 
-void 			ft_vm_parse(t_dead_pool *dead_pool, int ac, char **av)
+void 			ft_vm_parse(t_dead_pool *dead_pool, char **av)
 {
-    ft_vm_parse_log(dead_pool, ac, av);
-    ft_vm_parse_start_c(dead_pool, ac, av);
-    ft_vm_parse_dump(dead_pool, ac, av);
-    ft_vm_parse_champion(dead_pool, ac, av);
+    ft_vm_parse_log(dead_pool, av);
+    ft_vm_parse_start_c(dead_pool, av);
+    ft_vm_parse_dump(dead_pool, av);
+    ft_vm_parse_champion(dead_pool, av);
     //ft_vm_parse_help	//--help
-	//ft_vm_parse_champion // ./PATH/champion.cor
 }

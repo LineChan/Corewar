@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/20 22:13:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 19:53:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				main(int ac, char **av)
 	--ac;
 	++av;
 	//MEMSET DEAD_POOL
-	ft_vm_parse(&dead_pool, ac, av);
+	ft_vm_parse(&dead_pool, av);
 	(void)nb_champion;
 	(void)arena;
 	(void)dead_pool;

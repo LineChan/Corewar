@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/20 22:12:18 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 19:49:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "macro.h"
 # include "ft_printf.h"
 # include "ft_option.h"
-# include "ft_ctype.h"
+//# include "ft_ctype.h"
 # include "ft_string.h"
 # include "endian.h"
 
@@ -75,7 +75,7 @@
 
 typedef struct			s_vm_option
 {
-	unsigned int		champ[4];
+	int					fd[4];
 	unsigned int		log;
 	unsigned int		start_c;
 	unsigned int		dump;
@@ -137,11 +137,11 @@ int			ft_instruction_get_data(size_t size, uint8_t *pc);
 /*
 ** Parse functions
 */
-void		ft_vm_parse(t_dead_pool *dead_pool, int ac, char **av);
-void		ft_vm_parse_log(t_dead_pool *dead_pool, int ac, char **av);
-void		ft_vm_parse_start_c(t_dead_pool *dead_pool, int ac, char **av);
-void		ft_vm_parse_dump(t_dead_pool *dead_pool, int ac, char **av);
-void		ft_vm_parse_champion(t_dead_pool *dead_pool, int ac, char **av);
+void		ft_vm_parse(t_dead_pool *dead_pool, char **av);
+void		ft_vm_parse_log(t_dead_pool *dead_pool, char **av);
+void		ft_vm_parse_start_c(t_dead_pool *dead_pool, char **av);
+void		ft_vm_parse_dump(t_dead_pool *dead_pool, char **av);
+void		ft_vm_parse_champion(t_dead_pool *dead_pool, char **av);
 #if 0
 t_option	*ft_vm_parse_option( int ac, char **av);
 void		ft_vm_parse_champion( char **av);

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 18:56:06 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/20 19:53:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 19:55:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 */
 
 
-void		ft_vm_parse_log(t_dead_pool *dead_pool, int ac, char **av)
+void		ft_vm_parse_log(t_dead_pool *dead_pool, char **av)
 {
-	while (ac)
+	while (av)
 	{
 		if (!ft_strcmp("--log", *av))
 		{
@@ -33,6 +33,5 @@ void		ft_vm_parse_log(t_dead_pool *dead_pool, int ac, char **av)
 			break ;
 		}
 		++av;
-		--ac;
 	}
 }
