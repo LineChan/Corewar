@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 00:46:50 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/27 20:54:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 11:50:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@
 
 int          ft_atoi(char *str)
 {
-  int             sign;
-  unsigned int    nb;
+  int           sign;
+  long int        nb;
 
+  ft_printf("atoi : %s\n", str);
   nb = 0;
   sign = 1;
   if (*str == '-')
-    sign = -1;
+  sign = -1;
   if ((*str == '-') || (*str == '+'))
-    ++str;
+  ++str;
   while (ft_isdigit(*str))
+  {
     nb = (nb << 3) + (nb << 1) + *str++ - 48;
-  if ((!ft_isspace(*str)) && ((*str != 0) ||
-      ((nb > 2147483647) || ((nb > 2147483648) && IS_NEG(sign)))))
+    if ((nb > 2147483647) || ((nb > 2147483648) && IS_NEG(sign)))
       EXIT_FAIL("Error : not an integer");
+  }
   return (IS_NEG(sign) ? -nb : nb);
 }

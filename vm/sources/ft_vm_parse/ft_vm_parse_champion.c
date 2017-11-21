@@ -5,76 +5,53 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/20 16:11:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 11:04:26 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/20 21:39:50 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/21 12:01:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include <fcntl.h>
+#include "ctype.h"
 
 /*
-* brief      		Parse champions from arguments
+* brief           Parse champions from arguments
 *
-* param option		Options array
-* param av			Arguments array
+* param option    t_dead_pool struct for the game
+* param ac        Number of arguments
+* param av        Arguments list
 */
-// TODO : to be checked : you cannot have 2 champions with the same number
 
-void ft_vm_parse_champion(int option[], char **av)
+void 			ft_vm_parse_champion(t_dead_pool *dead_pool, int ac, char **av)
 {
-	int		i;
-	int		given_champ;
-	int		current_champ;
+	unsigned int	current_i;
+	unsigned int	n;
+	unsigned int	fd_tmp[4];
+	char	*tmp;
 
-	i = 0;
-	current_champ = 1;
-	while (av[i])
+	(void)dead_pool;
+	/* Go through the list of arguments */
+	current_i = 0;
+	while (ac)
 	{
-		/* Find a champion's option */
-		if (!ft_strncmp(av[i], "-c", 2))
+		ft_printf("champion : %s\n", *av + ft_strlen(*av) - 4);
+		/* If a .cor file is found */
+		if (*(int *)".cor" == *(int *)(*av + ft_strlen(*av) - 4))
 		{
-			++i;
-			!av[i] ? EXIT_FAIL("Error : near -c") : 0;
-			/* If a champion's number is found*/
-			if (!ft_strncmp(av[i], "-n", 2))
+			/* Look the previous argument for the -n=nb or -n nb option*/
+			tmp = *(av - 1);
+			if (!ft_strncmp("-n=", tmp, 3))
 			{
-				++i;
-				!av[i] ? EXIT_FAIL("Error : near -n") : 0;
-				given_champ = ft_atoi(av[i]);
-				/* if a number is found, store the File Descriptor in the option array */
-				option[given_champ] = open(av[i + 1], O_RDONLY, 0666);
-				if (IS_NEG(option[given_champ]))
-					EXIT_FAIL("Error : cannot read the champion");
-				++i;
+				n = ft_atoi(*av + 3);
+				if ((n < 1) || (n > MAX_PLAYERS) || dead_pool->option.champ[n])
+					EXIT_FAIL("Error : The player number is invalid");
+				dead_pool->option.fd[n] = open(*av, O_RDONLY, 0666);
 			}
-			else
+			if (ft_isdigit(*tmp))
 			{
-				/* If the array at current_champ if available */
-				if (!option[current_champ])
-				{
-					/* Store the File Descriptor in the option array */
-					if (av[i])
-						option[current_champ] = open(av[i], O_RDONLY, 0666);
-					else
-						EXIT_FAIL("Error : near -c");
-				}
-				else
-				{
-					/* Find an avaible player for the champion */
-					while (option[current_champ] && (current_champ <= MAX_PLAYERS))
-						++current_champ;
-					if (current_champ <= MAX_PLAYERS)
-					{
-						option[current_champ] = open(av[i], O_RDONLY, 0666);
-						if (IS_NEG(option[current_champ]))
-							EXIT_FAIL("Error : champion out of range");
-					}
-					else
-						EXIT_FAIL("Error : champion out of range");
-				}
+				if (ft_str*(av - 2))
 			}
 		}
-		++i;
+		++av;
+		--ac;
 	}
 }

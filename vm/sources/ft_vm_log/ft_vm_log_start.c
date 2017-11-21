@@ -6,20 +6,18 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 16:37:15 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/18 21:35:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 11:50:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_log.h"
 
-void			ft_vm_log_start(t_dead_pool *dead_pool, int option[])
+void			ft_vm_log_start(t_dead_pool *dead_pool)
 {
 	int			i;
 
 	i = 0;
-	/* Open the logfile */
-	ft_log_open("logfile.txt");
 	ft_log("# ----------------  NEW EPIC BATTLE ----------------\n");
 	/* Write the name of the all the champions */
 	while (i < MAX_PLAYERS)
@@ -29,6 +27,6 @@ void			ft_vm_log_start(t_dead_pool *dead_pool, int option[])
 		++i;
 		++dead_pool->idx;
 	}
-	ft_log("# Starting cycle : %d\n", OPTION_WAIT);
+	//ft_log("# Starting cycle : %d\n", OPTION_WAIT);
 	ft_log("# --------------------------------------------------\n");
 }

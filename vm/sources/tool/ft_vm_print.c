@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:12:04 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/18 19:14:36 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 19:27:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ void 		ft_vm_print_reg(t_champion *champ)
 	ft_fprintf(2, "reg[11] : %d\n", champ->reg[11]);
 }
 
-void			ft_vm_print_stat(t_dead_pool *dead_pool, int option[])
+void			ft_vm_print_stat(t_dead_pool *dead_pool)
 {
 	ft_printf("Welcome to {yellow:Corewar} !\nList of champions :\n");
 	dead_pool->idx ^= dead_pool->idx;
+	#if 0
 	while (dead_pool->idx < MAX_PLAYERS)
 	{
 		if (option[dead_pool->idx + 1])
@@ -92,6 +93,7 @@ void			ft_vm_print_stat(t_dead_pool *dead_pool, int option[])
 		// * Player 1, weighing 32 bytes, "sti" ("Take a registry and 2 indexes (potentially registries), add the two indexes and use this result as an address where the value of the first parameter will be copied.") !
 		++dead_pool->idx;
 	}
+	#endif
 }
 
 #if 1

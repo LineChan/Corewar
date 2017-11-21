@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/21 17:28:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 14:11:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 19:37:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@
 	ft_vm_read_dead_pool_comment(header, fd);
  }
 
-void	ft_vm_read_champion(int option[],
-							t_dead_pool *dead_pool,
+void	ft_vm_read_champion(t_dead_pool *dead_pool,
 							unsigned int *nb_champion)
 {
+	(void)dead_pool;
+	(void)nb_champion;
+	#if 0
 	ft_memset((void *)dead_pool, 0, sizeof(*dead_pool));
 	*nb_champion = 0;
 	while (dead_pool->idx < MAX_PLAYERS)
@@ -43,4 +45,5 @@ void	ft_vm_read_champion(int option[],
 		}
 		++dead_pool->idx;
 	}
+	#endif
 }

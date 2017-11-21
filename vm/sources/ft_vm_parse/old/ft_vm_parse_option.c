@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 17:01:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/18 19:19:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 18:38:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ t_option    *ft_vm_parse_option(int option[], int ac, char **av)
 	if (ft_option_find(opt, "-log"))
 	{
 		option[5] = 1;
-		if (IS_NEG(option[5]))
-			EXIT_FAIL("Error : Wrong File Descriptor for the Summary");
 	}
 	return (opt);
 }

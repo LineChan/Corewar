@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/20 16:20:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 22:12:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@
 # define    OPTION_MAX		6
 # define	INSTR_NUMBER	16
 # define	CHAMP_IDX		(dead_pool->idx % MAX_PLAYERS)
-# define	OPTION_LOG	option[5]
+# define	OPTION_LOG		(dead_pool->option.log)
 # define	OPTION_WAIT		option[0]
 
 # define	MOD(x)			((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
@@ -73,6 +73,13 @@
 ** Structures
 */
 
+typedef struct			s_vm_option
+{
+	unsigned int		champ[4];
+	unsigned int		log;
+	unsigned int		start_c;
+	unsigned int		dump;
+}						t_vm_option;
 typedef struct			s_vm_instr
 {
 	unsigned int		bytecode;
@@ -101,23 +108,17 @@ typedef struct          s_dead_pool
 	unsigned int	current_cycle;
 	t_champion		champ[4];
 	t_champion		*i_champ;
+	t_vm_option		option;
 }						t_dead_pool;
 
 typedef struct			s_instr_list
 {
-	void			(*func)(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
+	void			(*func)(unsigned char arena[], t_dead_pool *dead_pool);
 }						t_instr_list;
 
-#if 0
-typedef struct			s_instr_log
-{
-	void 			(*func)(t_dead_pool *dead_pool, va_list ap);
-}						t_instr_log;
-#endif
 /*
 ** Linked Lists
 */
-
 typedef struct		s_process
 {
 	t_champion	process;
@@ -136,23 +137,32 @@ int			ft_instruction_get_data(size_t size, uint8_t *pc);
 /*
 ** Parse functions
 */
-t_option	*ft_vm_parse_option(int option[OPTION_MAX], int ac, char **av);
-void		ft_vm_parse_champion(int option[OPTION_MAX], char **av);
-void		ft_vm_read_champion(int option[OPTION_MAX],
-										t_dead_pool *dead_pool,
+void		ft_vm_parse(t_dead_pool *dead_pool, int ac, char **av);
+void		ft_vm_parse_log(t_dead_pool *dead_pool, int ac, char **av);
+void		ft_vm_parse_start_c(t_dead_pool *dead_pool, int ac, char **av);
+void		ft_vm_parse_dump(t_dead_pool *dead_pool, int ac, char **av);
+void		ft_vm_parse_champion(t_dead_pool *dead_pool, int ac, char **av);
+#if 0
+t_option	*ft_vm_parse_option( int ac, char **av);
+void		ft_vm_parse_champion( char **av);
+#endif
+/* Read champions functions */
+void		ft_vm_read_champion(t_dead_pool *dead_pool,
 										unsigned int *nb_champion);
 void		ft_vm_read_dead_pool_magic(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_name(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_size(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_comment(t_header *champion, const int fd);
 
+/*
+** Arena functions
+*/
 void		ft_vm_arena(unsigned char arena[MEM_SIZE],
-										int option[OPTION_MAX],
 										t_dead_pool *dead_pool,
 										unsigned int *nb_champion);
 
 void		ft_vm_arena_upload_champion(unsigned char arena[MEM_SIZE],
-										int option[OPTION_MAX],
+
 										t_dead_pool *dead_pool,
 										unsigned int *nb_champion);
 void		ft_vm_arena_live_check(t_dead_pool *dead_pool, unsigned int *nb_champion);
@@ -160,42 +170,35 @@ void		ft_vm_arena_live_check(t_dead_pool *dead_pool, unsigned int *nb_champion);
 ** Instruction functions
 */
 void		ft_vm_instr(unsigned char arena[],
-							int option[OPTION_MAX],
 							t_dead_pool *dead_pool,
 							unsigned int *nb_champion);
 void		ft_vm_instr_fail(t_dead_pool *dead_pool, int carry_change);
 int			ft_vm_instr_decode(t_dead_pool *dead_pool);
 int			ft_vm_instr_jump(t_dead_pool *dead_pool);
-void		ft_vm_instr_exec_routine(unsigned char arena[],
-										t_dead_pool *dead_pool,
-										int option[OPTION_MAX]);
-void		ft_vm_instr_exec(unsigned char arena[],
-							t_dead_pool *dead_pool,
-							int option[OPTION_MAX]);
-int			ft_vm_instr_get_data(size_t size, uint8_t *ptr);
+void		ft_vm_instr_exec_routine(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool);
 int			ft_vm_instr_end_of_game(t_dead_pool *dead_pool, unsigned int *nb_champion);
 void		ft_vm_instr_champion_routine(unsigned char arena[],
-											t_dead_pool * dead_pool,
-											int option[OPTION_MAX]);
+											t_dead_pool * dead_pool);
 int 		ft_vm_instr_check_if_done(t_dead_pool *dead_pool);
 void 		ft_vm_instr_new_process(t_dead_pool *dead_pool);
 void		ft_vm_instr_close_process(t_dead_pool *dead_pool);
-void		ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_sub(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_and(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_or(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_zjmp(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_fork(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_lldi(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_lfork(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
-void		ft_vm_instr_aff(unsigned char arena[], t_dead_pool *dead_pool, int option[OPTION_MAX]);
+void		ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_add(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_sub(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_and(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_or(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_xor(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_zjmp(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_ldi(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_sti(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_fork(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_lldi(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_lfork(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_aff(unsigned char arena[], t_dead_pool *dead_pool);
 
 /*
 ** Print functions
@@ -205,12 +208,13 @@ void		ft_vm_print_arena(void const *data, size_t msize,
 void		ft_vm_print_pc(t_dead_pool *dead_pool);
 void 		ft_vm_print_reg(t_champion *champ);
 void		ft_vm_print_process(t_dead_pool *dead_pool);
-void		ft_vm_print_stat(t_dead_pool *dead_pool, int option[OPTION_MAX]);
+void		ft_vm_print_stat(t_dead_pool *dead_pool);
 
 /*
 ** Logger functions
 */
-void				ft_vm_log_start(t_dead_pool *dead_pool, int option[OPTION_MAX]);
+
+void				ft_vm_log_start(t_dead_pool *dead_pool);
 void 				ft_vm_log_arg(t_dead_pool *dead_pool);
 //void				ft_vm_log_instr(t_dead_pool *dead_pool, ...);
 void 				ft_vm_log_live(t_dead_pool *dead_pool, int nb);

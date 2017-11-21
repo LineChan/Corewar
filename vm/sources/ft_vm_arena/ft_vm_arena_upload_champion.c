@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/22 22:40:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/17 14:38:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/20 19:34:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 
 #include <libc.h>
 void				ft_vm_arena_upload_champion(unsigned char arena[],
-												int option[],
 												t_dead_pool *dead_pool,
 												unsigned int *nb_champion)
 {
@@ -43,6 +42,7 @@ void				ft_vm_arena_upload_champion(unsigned char arena[],
 	/* Read headers for each champion*/
 	while (dead_pool->idx < MAX_PLAYERS)
 	{
+		#if 0
 		if (option[dead_pool->idx + 1])
 		{
 			/* Read from the header and store it in a structure */
@@ -61,6 +61,7 @@ void				ft_vm_arena_upload_champion(unsigned char arena[],
 			/* Close the File Descriptor */
 			close(option[dead_pool->idx + 1]);
 		}
+		#endif
 		++dead_pool->idx;
 	}
 }
