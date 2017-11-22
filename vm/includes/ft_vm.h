@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/21 19:49:56 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/22 00:31:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,13 +142,18 @@ void		ft_vm_parse_log(t_dead_pool *dead_pool, char **av);
 void		ft_vm_parse_start_c(t_dead_pool *dead_pool, char **av);
 void		ft_vm_parse_dump(t_dead_pool *dead_pool, char **av);
 void		ft_vm_parse_champion(t_dead_pool *dead_pool, char **av);
-#if 0
-t_option	*ft_vm_parse_option( int ac, char **av);
-void		ft_vm_parse_champion( char **av);
-#endif
-/* Read champions functions */
-void		ft_vm_read_champion(t_dead_pool *dead_pool,
-										unsigned int *nb_champion);
+
+/* Read header functions */
+void		ft_vm_read_header(t_dead_pool *dead_pool, unsigned int *nb_champion);
+void		ft_vm_read_header_magic(t_dead_pool *dead_pool);
+void		ft_vm_read_header_name(t_dead_pool *dead_pool);
+void		ft_vm_read_header_size(t_dead_pool *dead_pool);
+void		ft_vm_read_header_comment(t_dead_pool *dead_pool);
+
+
+
+
+
 void		ft_vm_read_dead_pool_magic(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_name(t_header *champion, const int fd);
 void		ft_vm_read_dead_pool_size(t_header *champion, const int fd);

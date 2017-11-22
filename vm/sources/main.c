@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/21 20:02:06 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/22 01:03:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,18 @@
 
 int				main(int ac, char **av)
 {
-	//int				option[OPTION_MAX];
 	unsigned int	nb_champion;
 	unsigned char	arena[MEM_SIZE];
 	t_dead_pool		dead_pool;
-	//t_option		*opt;
 
 	if (ac < 2)
 		return (EXIT_FAILURE);
-	--ac;
 	++av;
-	//MEMSET DEAD_POOL
 	ft_memset((void *)&dead_pool, '\0', sizeof(t_dead_pool));
+	/* Parse all options and champions */
 	ft_vm_parse(&dead_pool, av);
-	(void)nb_champion;
-	(void)arena;
-	(void)dead_pool;
+	/* Read each champion's header */
+	ft_vm_read_header(&dead_pool, &nb_champion);
 	#if 0
 	opt = ft_vm_parse_option(&dead_pool, ac, av);
 	ft_vm_parse_champion(&dead_pool, av);

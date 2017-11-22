@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_read_dead_pool_comment.c                     :+:      :+:    :+:   */
+/*   ft_vm_read_header_comment.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/22 17:27:35 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/10/24 00:36:08 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/22 00:31:59 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/22 01:04:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_vm.h"
+#include "ft_vm.h"
 
 /*
-* brief      		Read comment from header
+* brief      		Read each champion's comment
 *
-* param champion	Champion's structure
-* param fd			File Descriptor
+* param dead_pool		t_dead_pool struct for the game
 */
 
-void			ft_vm_read_dead_pool_comment(t_header *champion, const int fd)
+void				ft_vm_read_header_comment(t_dead_pool *dead_pool)
 {
-	if (IS_NEG(read(fd, champion->comment, ALIGN_4(sizeof(champion->comment)))))
-		EXIT_FAIL("Error : can not read comment");
+
+    if (IS_NEG(read(dead_pool->option.fd[dead_pool->idx],
+        dead_pool->champ[dead_pool->idx].header.comment,
+        ALIGN_4(sizeof(dead_pool->i_champ->header.comment)))))
+        EXIT_FAIL("Error : champion's name can't be read");
 }

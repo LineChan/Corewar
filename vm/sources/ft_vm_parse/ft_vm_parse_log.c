@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 18:56:06 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 20:04:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 20:21:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,8 @@
 /*
 * brief           Parse the --log option from arguments
 *
-* param option    t_dead_pool struct for the game
-* param ac        Number of arguments
-* param av        Arguments list
+* param dead_pool    t_dead_pool struct for the game
+* param av        Arguments' list
 */
 
 

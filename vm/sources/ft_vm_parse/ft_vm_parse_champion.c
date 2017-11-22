@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 21:39:50 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 20:04:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 20:21:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,14 @@
 #include "ft_ctype.h"
 #include <fcntl.h>
 
-
 /*
 * brief           Parse champions from arguments
 *
-* param option    t_dead_pool struct for the game
-* param ac        Number of arguments
+* param dead_pool    t_dead_pool struct for the game
 * param av        Arguments list
 */
 
-#if 0
-int		test(int argc, char **argv)
-{
-	int val;
 
-	// chaque argument, skip le ./a.out
-	while (0 != *++argv)
-	{
-		// Champion number, 0 par defaut;
-		val = 0;
-		// Check le -n
-		if (0 == ft_strncmp(*argv, "-n", 2))
-		{
-			// Si c'est un egal, on skip le "-n=" afin que l'argument soit pile poile sur le nombre
-			if ('=' == (*argv)[2])
-				*argv += 3;
-			// Sinon le nombre est l'argument d'apres.
-			else
-				++argv;
-
-			// Si c'est pas un digit, kill;
-			if (!ft_isdigit(*argv))
-				return (0);
-
-			val = ft_atoi(*argv);
-			++argv;
-		}
-
-		//argv devrais etre a la fin de la boucle sur le champion
-		if (*(int *)".cor" != *(int *)(*argv + ft_strlen(*argv) - 4))
-			return (0);
-
-		// Ajoute le champion avec le numero de champion
-		ft_new_champion(*argv, val);
-
-		//Next loop is setup
-	}
-}
-#endif
 static void			ft_vm_champion_distribution(t_dead_pool *dead_pool,
 												unsigned int fd_tmp[],
 												const int current_i)
@@ -133,28 +93,3 @@ void 			ft_vm_parse_champion(t_dead_pool *dead_pool, char **av)
 	/* Distribute all champions with no specific number */
 	current_i ? ft_vm_champion_distribution(dead_pool, fd_tmp, current_i) : 0;
 }
-
-
-
-
-
-#if 0
-ft_printf("champion : %s\n", *av + ft_strlen(*av) - 4);
-/* If a .cor file is found */
-if (*(int *)".cor" == *(int *)(*av + ft_strlen(*av) - 4))
-{
-	/* Look the previous argument for the -n=nb or -n nb option*/
-	tmp = *(av - 1);
-	if (!ft_strncmp("-n=", tmp, 3))
-	{
-		n = ft_atoi(*av + 3);
-		if ((n < 1) || (n > MAX_PLAYERS) || dead_pool->option.champ[n])
-			EXIT_FAIL("Error : The player number is invalid");
-		dead_pool->option.fd[n] = open(*av, O_RDONLY, 0666);
-	}
-	if (ft_isdigit(*tmp))
-	{
-		if (ft_str*(av - 2))
-	}
-}
-#endif

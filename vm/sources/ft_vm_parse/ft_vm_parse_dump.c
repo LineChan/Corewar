@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 20:39:02 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 20:04:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/21 20:21:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 /*
 * brief           Parse the -dump=nb option from arguments
 *
-* param option    t_dead_pool struct for the game
-* param ac        Number of arguments
+* param dead_pool    t_dead_pool struct for the game
 * param av        Arguments list
 */
 
