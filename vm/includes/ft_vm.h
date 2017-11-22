@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/11/22 00:31:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/22 18:20:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,16 @@ typedef struct          s_dead_pool
 	unsigned int	idx;
 	unsigned int	current_cycle;
 	t_champion		champ[4];
+	// Se debarasser de ca
 	t_champion		*i_champ;
 	t_vm_option		option;
 }						t_dead_pool;
 
 typedef struct			s_instr_list
 {
-	void			(*func)(unsigned char arena[], t_dead_pool *dead_pool);
+	void			(*func)(unsigned char arena[2][MEM_SIZE],
+							t_dead_pool *dead_pool,
+							t_champion *champ);
 }						t_instr_list;
 
 /*
@@ -150,44 +153,61 @@ void		ft_vm_read_header_name(t_dead_pool *dead_pool);
 void		ft_vm_read_header_size(t_dead_pool *dead_pool);
 void		ft_vm_read_header_comment(t_dead_pool *dead_pool);
 
-
-
-
-
-void		ft_vm_read_dead_pool_magic(t_header *champion, const int fd);
-void		ft_vm_read_dead_pool_name(t_header *champion, const int fd);
-void		ft_vm_read_dead_pool_size(t_header *champion, const int fd);
-void		ft_vm_read_dead_pool_comment(t_header *champion, const int fd);
-
 /*
 ** Arena functions
 */
-void		ft_vm_arena(unsigned char arena[MEM_SIZE],
+void		ft_vm_arena(unsigned char arena[2][MEM_SIZE],
 										t_dead_pool *dead_pool,
 										unsigned int *nb_champion);
-
-void		ft_vm_arena_upload_champion(unsigned char arena[MEM_SIZE],
-
+void		ft_vm_arena_upload_champion(unsigned char arena[2][MEM_SIZE],
 										t_dead_pool *dead_pool,
 										unsigned int *nb_champion);
-void		ft_vm_arena_live_check(t_dead_pool *dead_pool, unsigned int *nb_champion);
+void		ft_vm_arena_round_routine(unsigned char arena[2][MEM_SIZE],
+										t_dead_pool *dead_pool,
+										unsigned int *nb_champion);
+void		ft_vm_arena_round_check(unsigned char arena[2][MEM_SIZE],
+										t_dead_pool *dead_pool,
+										unsigned int *nb_champion);
+void		ft_vm_arena_champion_routine(unsigned char arena[2][MEM_SIZE],
+										t_dead_pool *dead_pool);
+void		ft_vm_arena_process_routine(unsigned char arena[2][MEM_SIZE],
+										t_dead_pool *dead_pool,
+										t_champion *i_champ);
+void		ft_vm_arena_instr_routine(unsigned char arena[2][MEM_SIZE],
+										t_dead_pool *dead_pool,
+										t_champion *i_champ);
+//void		ft_vm_arena_live_check(t_dead_pool *dead_pool, unsigned int *nb_champion);
 /*
 ** Instruction functions
 */
 void		ft_vm_instr(unsigned char arena[],
-							t_dead_pool *dead_pool,
-							unsigned int *nb_champion);
-void		ft_vm_instr_fail(t_dead_pool *dead_pool, int carry_change);
+										t_dead_pool *dead_pool,
+										unsigned int *nb_champion);
+//void		ft_vm_instr_fail(t_dead_pool *dead_pool, int carry_change);
+void 		ft_vm_instr_fail(t_champion *i_champ, int carry);
+//int			ft_vm_instr_jump(t_dead_pool *dead_pool);
+int			ft_vm_instr_jump(t_champion *i_champ);
+
+
+
+
+
+
+
+
+
 int			ft_vm_instr_decode(t_dead_pool *dead_pool);
-int			ft_vm_instr_jump(t_dead_pool *dead_pool);
-void		ft_vm_instr_exec_routine(unsigned char arena[], t_dead_pool *dead_pool);
+void		ft_vm_instr_exec_routine(unsigned char arena[],
+										t_dead_pool *dead_pool);
 void		ft_vm_instr_exec(unsigned char arena[], t_dead_pool *dead_pool);
-int			ft_vm_instr_end_of_game(t_dead_pool *dead_pool, unsigned int *nb_champion);
+int			ft_vm_instr_end_of_game(t_dead_pool *dead_pool,
+										unsigned int *nb_champion);
 void		ft_vm_instr_champion_routine(unsigned char arena[],
-											t_dead_pool * dead_pool);
+										t_dead_pool * dead_pool);
 int 		ft_vm_instr_check_if_done(t_dead_pool *dead_pool);
 void 		ft_vm_instr_new_process(t_dead_pool *dead_pool);
 void		ft_vm_instr_close_process(t_dead_pool *dead_pool);
+#if 0
 void		ft_vm_instr_live(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_ld(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_st(unsigned char arena[], t_dead_pool *dead_pool);
@@ -204,22 +224,25 @@ void		ft_vm_instr_lld(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_lldi(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_lfork(unsigned char arena[], t_dead_pool *dead_pool);
 void		ft_vm_instr_aff(unsigned char arena[], t_dead_pool *dead_pool);
+#endif
 
 /*
 ** Print functions
 */
 void		ft_vm_print_arena(void const *data, size_t msize,
 								size_t nb_byte, t_dead_pool *dead_pool);
-void		ft_vm_print_pc(t_dead_pool *dead_pool);
-void 		ft_vm_print_reg(t_champion *champ);
+void		ft_vm_print_intro(t_dead_pool *dead_pool);
+
+
+
+
 void		ft_vm_print_process(t_dead_pool *dead_pool);
-void		ft_vm_print_stat(t_dead_pool *dead_pool);
 
 /*
 ** Logger functions
 */
 
-void				ft_vm_log_start(t_dead_pool *dead_pool);
+void				ft_vm_log_introduction(t_dead_pool *dead_pool);
 void 				ft_vm_log_arg(t_dead_pool *dead_pool);
 //void				ft_vm_log_instr(t_dead_pool *dead_pool, ...);
 void 				ft_vm_log_live(t_dead_pool *dead_pool, int nb);

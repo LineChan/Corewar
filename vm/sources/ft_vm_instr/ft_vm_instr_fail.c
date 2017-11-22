@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_read_header_name.c                           :+:      :+:    :+:   */
+/*   ft_vm_instr_fail.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 00:01:16 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/22 18:26:05 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/22 17:26:41 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/22 17:47:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
 /*
-* brief      		Read each champion's name
+* brief      			Move the Program Counter and update the next cycle
+*						if the execution fails
 *
+* param arena			Memory dedicated to the Virtual Machine
 * param dead_pool		t_dead_pool struct for the game
+* param nb_champion		Number of alive champions in the arena
 */
 
-void            ft_vm_read_header_name(t_dead_pool *dead_pool)
+void 				ft_vm_instr_fail(t_champion *i_champ, int carry)
 {
-    if (IS_NEG(read(dead_pool->option.fd[dead_pool->idx],
-        dead_pool->champ[dead_pool->idx].header.prog_name,
-        ALIGN_4(sizeof(dead_pool->i_champ->header.prog_name)))))
-        EXIT_FAIL("Error : champion's name can't be read");
+	i_champ->pc += 1;
+	i_champ->next_cycle += 1;
+	(carry == CARRY_CHANGE) ? (i_champ->carry = 1) : 0;
 }

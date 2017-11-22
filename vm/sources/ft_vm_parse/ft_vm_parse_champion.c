@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 21:39:50 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/21 20:21:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/22 14:43:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 #include <fcntl.h>
 
 /*
-* brief           Parse champions from arguments
+* brief					Parse champions from arguments
 *
-* param dead_pool    t_dead_pool struct for the game
-* param av        Arguments list
+* param dead_pool		t_dead_pool struct for the game
+* param av				Arguments list
 */
 
 
