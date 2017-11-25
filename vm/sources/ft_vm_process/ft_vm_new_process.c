@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:34:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/24 18:02:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/25 16:18:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void 			ft_vm_new_process(t_vm *vm,
 	extern t_op			g_op_tab[17];
 	t_process			*new;
 
+	/* Allocate a new process */
 	new = ft_memalloc(sizeof(t_process));
 	/* Reference to the champion who created the process */
 	new->master_nb = master_nb;

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/24 18:02:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/25 17:12:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,17 @@
 # endif
 
 # define	MOD(x)	((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
+# define    IS_INSTR(x)     ((x > 0) && (x <= REG_NUMBER))
 
 # define    LOG_OPT         (vm->option.log)
+# define    CARRY_CHANGE    1
 
 # define C_PROCESS(it)      CONTAINEROF(it, t_process, list)
 
 /*
 ** Structures
 */
+
 typedef struct          s_vm_option
 {
     unsigned char       log;
@@ -59,8 +62,11 @@ typedef struct          s_process
     unsigned int            live;
     unsigned int            carry;
     unsigned int            exec_cycle;
-    unsigned char           *pc;
+    unsigned int            bytecode;
     int                     reg[REG_NUMBER];
+    int                     jump[MAX_ARGS_NUMBER];
+    unsigned char           *pc;
+    t_op                    *op;
     t_list          list;
 }                       t_process;
 
@@ -68,7 +74,7 @@ typedef struct			s_vm
 {
     unsigned int            index[MAX_PLAYERS];
     unsigned int            fd[MAX_PLAYERS];
-    unsigned int            cycle_to_die;
+    unsigned int            current_cycle;
     unsigned int            last_alive;
     unsigned int            checks;
     unsigned char           arena[2][MEM_SIZE];
@@ -76,6 +82,11 @@ typedef struct			s_vm
     t_header                header[MAX_PLAYERS];
     t_list                  process_head;
 }			            t_vm;
+
+typedef struct			s_instr_list
+{
+	void			(*func)(t_vm *vm, t_process *proc);
+}						t_instr_list;
 
 /*
 ** Prototypes
@@ -91,6 +102,10 @@ int			ft_instruction_get_data(size_t size, uint8_t *pc);
 */
 int			ft_atoi(char *str);
 void        ft_vm_print_intro(t_vm *vm);
+void		ft_vm_print_arena(void const *data,
+									size_t msize,
+									size_t nb_byte,
+									t_vm *vm);
 
 /*
 ** Parse functions
@@ -118,6 +133,8 @@ void       ft_vm_read_header_comment(t_vm *vm, int i);
 
 void       ft_vm_arena(t_vm *vm, int *nb_champion);
 void       ft_vm_arena_upload(t_vm *vm, const int nb_champion);
+void	   ft_vm_arena_cycle_routine(t_vm *vm);
+void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
 
 /*
 ** Process functions
@@ -127,4 +144,12 @@ void       ft_vm_new_process(t_vm *vm,
                             const int master_nb,
                             const int process_nb,
                             unsigned int index);
+
+/*
+** Instruction functions
+*/
+
+void       ft_vm_instr_fail(t_process *proc, const int carry_change);
+int        ft_vm_instr_bytecode_check(t_process *proc);
+
 #endif
