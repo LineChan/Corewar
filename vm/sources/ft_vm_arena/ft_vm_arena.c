@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/25 15:02:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/25 17:31:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			ft_vm_arena(t_vm *vm, int *nb_champion)
 {
 	unsigned int			cycle_to_die;
 
-	ft_memset((void *)vm->arena, 0, MEM_SIZE * 2);
 	/* Place champions on the arena at the right position and set them up */
 	ft_vm_arena_upload(vm, *nb_champion);
 	/* Set up cycle_to_die */
