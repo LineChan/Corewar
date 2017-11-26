@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/25 17:17:55 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/26 01:13:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 #include "ft_string.h"
 #include "ft_printf.h"
 
+//TODO: libs
+#include <libc.h>
 static void ft_tmp(t_vm *vm, t_process *proc)
 {
 	(void)vm;
 	(void)proc;
+	++proc->pc;
+	++proc->exec_cycle;
 	ft_printf("exec func\n");
 	/* code */
 }

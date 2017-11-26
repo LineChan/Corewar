@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_arena_cycle_routine.c                        :+:      :+:    :+:   */
+/*   ft_vm_arena_round_check.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 14:27:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 01:22:37 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/26 00:51:33 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/26 01:27:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_string.h"
-// TODO:remove printf
+
+//TODO : libs
 #include "ft_printf.h"
 #include <libc.h>
-
-void			ft_vm_arena_cycle_routine(t_vm *vm)
+void			ft_vm_arena_round_check(t_vm *vm,
+										int *nb_champion,
+										unsigned int *cycle_to_die)
 {
-	t_list		*it;
+	t_list				*it;
+	unsigned int		live_total;
 
+	ft_printf("round_check\n");
+	(void)nb_champion;
+	(void)cycle_to_die;
 	it = vm->process_head.next;
+	live_total = 0;
 	while (it != &vm->process_head)
 	{
-		ft_printf("process (%d)-> g_op_tab[%hhx] exec cycle : %d current_cycle : %d\n",
-			-C_PROCESS(it)->process_nb, *C_PROCESS(it)->pc,
-			C_PROCESS(it)->exec_cycle, vm->current_cycle);
-		if (C_PROCESS(it)->exec_cycle == vm->current_cycle)
+		ft_printf("going through loop\n");
+		if (!C_PROCESS(it)->live)
 		{
-			ft_vm_arena_instr_routine(vm, C_PROCESS(it));
-			ft_printf("cycle_routine\n");
-			//getchar();
+			ft_printf("NO LIVES\n");
+			ft_vm_close_process(it);
+		}
+		else
+		{
+			live_total += C_PROCESS(it)->live;
+			ft_printf("check : %d ---> %d lives\n", C_PROCESS(it)->parent_nb,
+						C_PROCESS(it)->live);
 		}
 		it = it->next;
 	}
+	getchar();
 }

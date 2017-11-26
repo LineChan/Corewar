@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:33:35 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/24 13:46:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/25 23:32:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void 			ft_vm_parse_start_c(t_vm *vm, char **av)
 		{
 			if (*(*av + 8) == '=')
 			{
-				if (IS_NEG((vm->option.start_c = ft_atoi(*av + 9))))
+				if (IS_NEG((vm->current_cycle = ft_atoi(*av + 9))))
 					EXIT_FAIL("Error : -start_c takes a positive integer");
 			}
 			else if (*(*av + 8) == '\0')
 			{
 				if (!*(*av + 1) ||
-						IS_NEG((vm->option.start_c = ft_atoi(*(av + 1)))))
+						IS_NEG((vm->current_cycle = ft_atoi(*(av + 1)))))
 					EXIT_FAIL("Error : -start_c takes a positive integer");
 			}
 			else

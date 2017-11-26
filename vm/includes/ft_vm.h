@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/25 17:12:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/26 01:06:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@
 typedef struct          s_vm_option
 {
     unsigned char       log;
-    unsigned int        start_c;
     unsigned int        dump;
 }                       t_vm_option;
 
 typedef struct          s_process
 {
-    int                     master_nb;
+    int                     parent_nb;
     int                     process_nb;
     unsigned int            live;
     unsigned int            carry;
@@ -106,7 +105,7 @@ void		ft_vm_print_arena(void const *data,
 									size_t msize,
 									size_t nb_byte,
 									t_vm *vm);
-
+t_list		*ft_vm_find_proc_nb(t_list *head, int nb);
 /*
 ** Parse functions
 */
@@ -135,6 +134,9 @@ void       ft_vm_arena(t_vm *vm, int *nb_champion);
 void       ft_vm_arena_upload(t_vm *vm, const int nb_champion);
 void	   ft_vm_arena_cycle_routine(t_vm *vm);
 void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
+void       ft_vm_arena_round_check(t_vm *vm,
+                                    int *nb_champion,
+                                    unsigned int *cycle_to_die);
 
 /*
 ** Process functions
@@ -145,11 +147,29 @@ void       ft_vm_new_process(t_vm *vm,
                             const int process_nb,
                             unsigned int index);
 
+void		ft_vm_close_process(t_list *node);
 /*
 ** Instruction functions
 */
 
-void       ft_vm_instr_fail(t_process *proc, const int carry_change);
-int        ft_vm_instr_bytecode_check(t_process *proc);
+void        ft_vm_instr_fail(t_process *proc, const int carry_change);
+int             ft_vm_instr_bytecode_check(t_process *proc);
 
+/*
+** Instruction set
+*/
+
+void       ft_vm_instr_live(t_vm *vm, t_process *proc);
+
+/*
+** Log functions
+*/
+
+void			ft_vm_log_intro(t_vm *vm);
+
+/*
+** Log set
+*/
+
+void			ft_vm_log_live(t_vm *vm, t_process *proces, t_list *it);
 #endif

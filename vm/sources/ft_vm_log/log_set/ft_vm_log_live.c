@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_fail.c                                 :+:      :+:    :+:   */
+/*   ft_vm_log_live.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 16:10:06 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/25 23:53:01 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/25 23:50:37 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/26 01:16:46 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_log.h"
 
-void 				ft_vm_instr_fail(t_process *proc, const int carry_change)
+void			ft_vm_log_live(t_vm *vm, t_process *proc, t_list *it)
 {
-	/* Move the Program Counter to the next byte */
-	proc->pc += 1;
-	/* Set the instruction cycle to the next one */
-	proc->exec_cycle += 1;
-	/* Set the carry to 1 if necessary */
-	(carry_change == CARRY_CHANGE) ? (proc->carry = 1) : 0;
+	if (it)
+	{
+		ft_log("  Cycle %-7d Process %d --- %-5s : Player %d\n",
+							vm->current_cycle,
+							-proc->process_nb,
+							proc->op->description,
+							-C_PROCESS(it)->process_nb);
+	}
+	ft_log("  Cycle %-7d Process %d --- %-5s : failed\n",
+						vm->current_cycle,
+						-proc->process_nb,
+						proc->op->description);
+
 }
