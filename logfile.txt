@@ -1,476 +1,57 @@
-[sun nov 26 16:06:45 2017] -- # ----------------  NEW EPIC BATTLE ----------------
-[sun nov 26 16:06:45 2017] -- # Player 1: stayin' alive
-[sun nov 26 16:06:45 2017] -- # Player 2: live
-[sun nov 26 16:06:45 2017] -- # Player 3: HoneyBadger
-[sun nov 26 16:06:45 2017] -- # Player 4: ld
-[sun nov 26 16:06:45 2017] -- # Starting cycle : 0
-[sun nov 26 16:06:45 2017] -- # --------------------------------------------------
-[sun nov 26 16:06:45 2017] --   Cycle 5       Player 4 --- load 
-[sun nov 26 16:06:45 2017] -- 		[I] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[1] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 5       Player 3 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 10      Player 4 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[2] = 0 --> (arena[4092 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 10      Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 10      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 15      Player 4 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[2] = 0 --> (arena[4091 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 20      Player 4 --- load 
-[sun nov 26 16:06:45 2017] -- 		[I] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[12] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 20      Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 20      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 26      Process 3 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 27      Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 30      Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 30      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 40      Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 40      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 50      Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 50      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 54      Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 59      Player 1 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[3] = 104 --> (arena[1 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 60      Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 60      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 64      Player 1 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[6] = 8 --> (arena[33 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 70      Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 70      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 80      Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 80      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 87      Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 90      Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 90      Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 100     Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 100     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 110     Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 110     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 113     Player 1 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[4] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 120     Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 120     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 130     Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 130     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 136     Player 1 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[4] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 140     Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 140     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 146     Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 150     Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 150     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 160     Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 160     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 170     Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 170     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 180     Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 180     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 190     Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 190     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 200     Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 200     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 210     Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 210     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 220     Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 220     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 230     Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 230     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 240     Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 240     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 250     Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 250     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 260     Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 260     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 270     Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 270     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 280     Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 280     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 290     Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 290     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 300     Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 300     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 310     Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 310     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 320     Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 320     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 330     Process 2 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 330     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 340     Process 2 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 340     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 350     Process 2 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 350     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 360     Process 2 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 360     Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1116    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1116    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1126    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1126    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1136    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1136    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1146    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1146    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1156    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1156    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1166    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1166    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1176    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1176    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1186    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1186    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1196    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1196    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1205    Player 2 --- load 
-[sun nov 26 16:06:45 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:45 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:45 2017] --   Cycle 1206    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1206    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1216    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1216    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1226    Process 2 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1226    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1226    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1236    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1236    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1246    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1246    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1256    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1256    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1266    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1266    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1276    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1276    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1280    Process 3 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1286    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1286    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1296    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1296    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1306    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1306    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1316    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1316    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1326    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1326    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1336    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1336    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1346    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1346    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1356    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1356    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1366    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1366    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1376    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1376    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1386    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1386    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1396    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1396    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1406    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1406    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1416    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1416    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1426    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1426    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1436    Process 1 --- alive : Player 1
-[sun nov 26 16:06:45 2017] --   Cycle 1436    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1446    Process 1 --- alive : Player 2
-[sun nov 26 16:06:45 2017] --   Cycle 1446    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1456    Process 1 --- alive : Player 3
-[sun nov 26 16:06:45 2017] --   Cycle 1456    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] --   Cycle 1466    Process 1 --- alive : Player 4
-[sun nov 26 16:06:45 2017] --   Cycle 1466    Process 1 --- alive : failed
-[sun nov 26 16:06:45 2017] -- current_cycle : 1536
-[sun nov 26 16:06:47 2017] --   Cycle 1649    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[4] = 0 --> (arena[769 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 1654    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[5] = 0 --> (arena[506 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 1659    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[3] = 2 --> (arena[2048 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 1664    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 1672    Process 3 --- alive : failed
-[sun nov 26 16:06:47 2017] --   Cycle 1682    Process 3 --- alive : failed
-[sun nov 26 16:06:47 2017] --   Cycle 2026    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[I] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[1] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2031    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[2] = 0 --> (arena[4092 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2036    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[2] = 0 --> (arena[4091 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2041    Player 3 --- load 
-[sun nov 26 16:06:47 2017] -- 		[I] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[12] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2311    Player 1 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2332    Process 1 --- alive : failed
-[sun nov 26 16:06:47 2017] --   Cycle 2480    Process 2 --- alive : failed
-[sun nov 26 16:06:47 2017] --   Cycle 2849    Player 2 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[4] = 0 --> (arena[769 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2854    Player 2 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[5] = 0 --> (arena[506 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2859    Player 2 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[3] = 2 --> (arena[2048 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2864    Player 2 --- load 
-[sun nov 26 16:06:47 2017] -- 		[D] [R] [X]
-[sun nov 26 16:06:47 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:06:47 2017] --   Cycle 2872    Process 2 --- alive : failed
-[sun nov 26 16:06:47 2017] --   Cycle 2882    Process 2 --- alive : failed
-[sun nov 26 16:06:47 2017] -- current_cycle : 3022
-[sun nov 26 16:06:47 2017] -- Check Round at 3023: Player -4 is dead
-[sun nov 26 16:06:47 2017] -- Check Round at 3023: Player -3 is dead
-[sun nov 26 16:06:47 2017] -- Check Round at 3023: Player -2 is dead
-[sun nov 26 16:06:47 2017] -- Check Round at 3023: Player -1 is dead
-[sun nov 26 16:36:17 2017] -- # ----------------  NEW EPIC BATTLE ----------------
-[sun nov 26 16:36:17 2017] -- # Player 1: stayin' alive
-[sun nov 26 16:36:17 2017] -- # Player 2: live
-[sun nov 26 16:36:17 2017] -- # Player 3: HoneyBadger
-[sun nov 26 16:36:17 2017] -- # Player 4: ld
-[sun nov 26 16:36:17 2017] -- # Starting cycle : 0
-[sun nov 26 16:36:17 2017] -- # --------------------------------------------------
-[sun nov 26 16:36:17 2017] --   Cycle 5       Player 4 --- load 
-[sun nov 26 16:36:17 2017] -- 		[I] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[1] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 5       Player 3 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 10      Player 4 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[2] = 0 --> (arena[4092 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 10      Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 10      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 15      Player 4 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[2] = 0 --> (arena[4091 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 20      Player 4 --- load 
-[sun nov 26 16:36:17 2017] -- 		[I] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[12] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 20      Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 20      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 26      Process 3 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 27      Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 30      Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 30      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 40      Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 40      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 50      Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 50      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 54      Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 59      Player 1 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[3] = 104 --> (arena[1 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 60      Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 60      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 64      Player 1 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[6] = 8 --> (arena[33 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 70      Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 70      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 80      Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 80      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 87      Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 90      Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 90      Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 100     Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 100     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 110     Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 110     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 113     Player 1 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[4] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 120     Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 120     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 130     Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 130     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 136     Player 1 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[4] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 140     Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 140     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 146     Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 150     Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 150     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 160     Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 160     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 170     Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 170     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 180     Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 180     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 190     Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 190     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 200     Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 200     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 210     Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 210     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 220     Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 220     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 230     Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 230     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 240     Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 240     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 250     Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 250     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 260     Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 260     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 270     Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 270     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 280     Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 280     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 290     Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 290     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 300     Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 300     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 310     Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 310     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 320     Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 320     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 330     Process 2 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 330     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 340     Process 2 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 340     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 350     Process 2 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 350     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 360     Process 2 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 360     Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1116    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1116    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1126    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1126    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1136    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1136    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1146    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1146    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1156    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1156    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1166    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1166    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1176    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1176    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1186    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1186    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1196    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1196    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1205    Player 2 --- load 
-[sun nov 26 16:36:17 2017] -- 		[D] [R] [X]
-[sun nov 26 16:36:17 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:36:17 2017] --   Cycle 1206    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1206    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1216    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1216    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1226    Process 2 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1226    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1226    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1236    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1236    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1246    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1246    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1256    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1256    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1266    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1266    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1276    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1276    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1280    Process 3 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1286    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1286    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1296    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1296    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1306    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1306    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1316    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1316    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1326    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1326    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1336    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1336    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1346    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1346    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1356    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1356    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1366    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1366    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1376    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1376    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1386    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1386    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1396    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1396    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1406    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1406    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1416    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1416    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1426    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1426    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1436    Process 1 --- alive : Player 1
-[sun nov 26 16:36:17 2017] --   Cycle 1436    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1446    Process 1 --- alive : Player 2
-[sun nov 26 16:36:17 2017] --   Cycle 1446    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1456    Process 1 --- alive : Player 3
-[sun nov 26 16:36:17 2017] --   Cycle 1456    Process 1 --- alive : failed
-[sun nov 26 16:36:17 2017] --   Cycle 1466    Process 1 --- alive : Player 4
-[sun nov 26 16:36:17 2017] --   Cycle 1466    Process 1 --- alive : failed
-[sun nov 26 16:37:24 2017] --   Cycle 1649    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[4] = 0 --> (arena[769 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 1654    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[5] = 0 --> (arena[506 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 1659    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[3] = 2 --> (arena[2048 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 1664    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 1672    Process 3 --- alive : failed
-[sun nov 26 16:37:24 2017] --   Cycle 1682    Process 3 --- alive : failed
-[sun nov 26 16:37:24 2017] --   Cycle 2026    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[I] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[1] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2031    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[2] = 0 --> (arena[4092 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2036    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[2] = 0 --> (arena[4091 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2041    Player 3 --- load 
-[sun nov 26 16:37:24 2017] -- 		[I] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[12] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2311    Player 1 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2332    Process 1 --- alive : failed
-[sun nov 26 16:37:24 2017] --   Cycle 2480    Process 2 --- alive : failed
-[sun nov 26 16:37:24 2017] --   Cycle 2849    Player 2 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[4] = 0 --> (arena[769 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2854    Player 2 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[5] = 0 --> (arena[506 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2859    Player 2 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[3] = 2 --> (arena[2048 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2864    Player 2 --- load 
-[sun nov 26 16:37:24 2017] -- 		[D] [R] [X]
-[sun nov 26 16:37:24 2017] -- 		reg[2] = 11 --> (arena[0 % IDX_MOD])
-[sun nov 26 16:37:24 2017] --   Cycle 2872    Process 2 --- alive : failed
-[sun nov 26 16:37:24 2017] --   Cycle 2882    Process 2 --- alive : failed
-[sun nov 26 16:37:24 2017] -- Check Round at 3023: Player -4 is dead
-[sun nov 26 16:37:24 2017] -- Check Round at 3023: Player -3 is dead
-[sun nov 26 16:37:24 2017] -- Check Round at 3023: Player -2 is dead
-[sun nov 26 16:37:24 2017] -- Check Round at 3023: Player -1 is dead
+[mon nov 27 00:14:06 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[mon nov 27 00:14:06 2017] -- # Player 1: 
+[mon nov 27 00:14:06 2017] -- # Player 2: 
+[mon nov 27 00:14:06 2017] -- # Player 3: 
+[mon nov 27 00:14:06 2017] -- # Player 4: sub
+[mon nov 27 00:14:06 2017] -- # Starting cycle : 0
+[mon nov 27 00:14:06 2017] -- # --------------------------------------------------
+[mon nov 27 00:14:06 2017] --   Cycle 13      Process 4 --- alive : failed
+[mon nov 27 00:14:06 2017] --   Cycle 22      Process 4 --- alive : failed
+[mon nov 27 00:14:06 2017] -- Check Round at 1537: Player -4 is dead
+[mon nov 27 00:17:16 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[mon nov 27 00:17:16 2017] -- # Player 1: 
+[mon nov 27 00:17:16 2017] -- # Player 2: 
+[mon nov 27 00:17:16 2017] -- # Player 3: 
+[mon nov 27 00:17:16 2017] -- # Player 4: sub
+[mon nov 27 00:17:16 2017] -- # Starting cycle : 0
+[mon nov 27 00:17:16 2017] -- # --------------------------------------------------
+[mon nov 27 00:17:16 2017] --   Cycle 13      Process 4 --- alive : failed
+[mon nov 27 00:17:16 2017] --   Cycle 22      Process 4 --- alive : failed
+[mon nov 27 00:17:16 2017] -- Check Round at 1537: Player -4 is dead
+[mon nov 27 00:18:35 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[mon nov 27 00:18:35 2017] -- # Player 1: 
+[mon nov 27 00:18:35 2017] -- # Player 2: 
+[mon nov 27 00:18:35 2017] -- # Player 3: 
+[mon nov 27 00:18:35 2017] -- # Player 4: sub
+[mon nov 27 00:18:35 2017] -- # Starting cycle : 0
+[mon nov 27 00:18:35 2017] -- # --------------------------------------------------
+[mon nov 27 00:18:35 2017] --   Cycle 13      Process 4 --- alive : failed
+[mon nov 27 00:18:35 2017] --   Cycle 22      Process 4 --- alive : failed
+[mon nov 27 00:18:35 2017] -- Check Round at 1537: Player -4 is dead
+[mon nov 27 00:19:35 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[mon nov 27 00:19:35 2017] -- # Player 1: 
+[mon nov 27 00:19:35 2017] -- # Player 2: 
+[mon nov 27 00:19:35 2017] -- # Player 3: 
+[mon nov 27 00:19:35 2017] -- # Player 4: sub
+[mon nov 27 00:19:35 2017] -- # Starting cycle : 0
+[mon nov 27 00:19:35 2017] -- # --------------------------------------------------
+[mon nov 27 00:19:35 2017] --   Cycle 13      Process 4 --- alive : failed
+[mon nov 27 00:19:35 2017] --   Cycle 22      Process 4 --- alive : failed
+[mon nov 27 00:19:35 2017] -- Check Round at 1537: Player -4 is dead
+[mon nov 27 00:21:10 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[mon nov 27 00:21:10 2017] -- # Player 1: 
+[mon nov 27 00:21:10 2017] -- # Player 2: 
+[mon nov 27 00:21:10 2017] -- # Player 3: 
+[mon nov 27 00:21:10 2017] -- # Player 4: sub
+[mon nov 27 00:21:10 2017] -- # Starting cycle : 0
+[mon nov 27 00:21:10 2017] -- # --------------------------------------------------
+[mon nov 27 00:21:10 2017] --   Cycle 10      Player 4 --- soustraction
+[mon nov 27 00:21:10 2017] -- 		[R] [R] [R]
+[mon nov 27 00:21:10 2017] -- 		reg[1] = 4092 --> [0] - [1]
+[mon nov 27 00:21:10 2017] --   Cycle 20      Player 4 --- soustraction
+[mon nov 27 00:21:10 2017] -- 		[R] [R] [R]
+[mon nov 27 00:21:10 2017] -- 		reg[2] = 4092 --> [1] - [2]
+[mon nov 27 00:21:10 2017] --   Cycle 30      Player 4 --- soustraction
+[mon nov 27 00:21:10 2017] -- 		[R] [R] [R]
+[mon nov 27 00:21:10 2017] -- 		reg[2] = 0 --> [1] - [1]
+[mon nov 27 00:21:10 2017] -- Check Round at 1537: Player -4 is dead

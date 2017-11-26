@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 16:39:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/27 00:11:15 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void       ft_vm_new_process(t_vm *vm,
                             unsigned int index);
 
 void		ft_vm_close_process(t_list *node);
+
 /*
 ** Instruction functions
 */
@@ -165,6 +166,8 @@ int             ft_vm_instr_bytecode_check(t_process *proc);
 void       ft_vm_instr_live(t_vm *vm, t_process *proc);
 void       ft_vm_instr_ld(t_vm *vm, t_process *proc);
 void       ft_vm_instr_st(t_vm *vm, t_process *proc);
+void       ft_vm_instr_add(t_vm *vm, t_process *proc);
+void       ft_vm_instr_sub(t_vm *vm, t_process *proc);
 
 /*
 ** Log functions
@@ -182,4 +185,12 @@ void			ft_vm_log_ld(t_vm *vm,
                             t_process *proces,
                             unsigned char *ptr,
                             unsigned int address);
+void 			ft_vm_log_st(t_vm *vm, t_process *proc, const int dir);
+void 			ft_vm_log_add(t_vm *vm,
+                            t_process *proc,
+                            const unsigned int add[3]);
+void 			ft_vm_log_sub(t_vm *vm,
+                            t_process *proc,
+                            const unsigned int sub[3]);
+
 #endif

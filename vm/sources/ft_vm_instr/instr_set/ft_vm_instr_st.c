@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:40:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 17:20:25 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/26 22:46:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc)
 	extern uint8_t		g_direct_jump_table_from_instr[17];
 
 	/* Read argumetns */
-	if (proc->op->arg_types == T_REG)
+	if (proc->op->arg_types[1] == T_REG)
 	{
-		if (!IS_REG(*proc->pc + 3) || !IS_REG(*(proc->pc + 2)))
+		if (!IS_REG(*(proc->pc + 3)) || !IS_REG(*(proc->pc + 2)))
 		{
 			ft_vm_instr_fail(proc, !CARRY_CHANGE);
 			return ;
@@ -28,21 +28,20 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc)
 		/* Store the value in a register */
 		proc->reg[*(proc->pc + 3)] = proc->reg[*(proc->pc + 2)];
 		/* Write in the log file */
-		LOG_OPT ? ft_vm_log_st(vm, T_REG) : 0;
+		LOG_OPT ? ft_vm_log_st(vm, proc, T_REG) : 0;
 	}
 	else
 	{
 		if (!IS_REG(*(proc->pc + 2)))
 		{
-			ft_vm_instr_fail(vm, !CARRY_CHANGE);
+			ft_vm_instr_fail(proc, !CARRY_CHANGE);
 			return ;
 		}
 		/* Store a value in a directory */
-		vm->arena[0][MOD(proc->pc +
-			(ft_instruction_get_data(2, vm->pc + 3) % IDX_MOD)] =
+		vm->arena[0][MOD((proc->pc - vm->arena[0] + (ft_instruction_get_data(2, proc->pc + 3) % IDX_MOD)))] =
 			proc->reg[*(proc->pc + 2)];
-			/* Write in the log file */
-			LOG_OPT ? ft_vm_log_st(vm, T_IND) : 0;
+		/* Write in the log file */
+		LOG_OPT ? ft_vm_log_st(vm, proc, T_IND) : 0;
 	}
 	/* Fetch the next instruction */
 	proc->pc += 2 + proc->jump[0] + proc->jump[1];
