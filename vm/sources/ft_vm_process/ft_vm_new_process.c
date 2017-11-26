@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:34:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 00:36:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/26 17:25:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void 			ft_vm_new_process(t_vm *vm,
 	new->process_nb = process_nb;
 	/* Set up the Program Counter */
 	new->pc = &vm->arena[0][index];
-	/* Put the champion's number in the 2nd register */
-	new->reg[1] = parent_nb;
 	/* Initialize the process with the 1st instruction */
 	new->exec_cycle = g_op_tab[*new->pc].nb_cycles;
 	/* Add the node to the list */

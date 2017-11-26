@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 01:06:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/26 16:39:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include "op.h"
 # include "ft_list.h"
+#include "macro.h"
 
 /*
 ** Standard Libraries
@@ -36,8 +37,9 @@
 #  define EXIT_SUCCESS 0
 # endif
 
-# define	MOD(x)	((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
+# define	MOD(x)	        ((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
 # define    IS_INSTR(x)     ((x > 0) && (x <= REG_NUMBER))
+# define	IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
 
 # define    LOG_OPT         (vm->option.log)
 # define    CARRY_CHANGE    1
@@ -136,6 +138,7 @@ void	   ft_vm_arena_cycle_routine(t_vm *vm);
 void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
 void       ft_vm_arena_round_check(t_vm *vm,
                                     int *nb_champion,
+                                    unsigned int *cycle_end_round,
                                     unsigned int *cycle_to_die);
 
 /*
@@ -160,16 +163,23 @@ int             ft_vm_instr_bytecode_check(t_process *proc);
 */
 
 void       ft_vm_instr_live(t_vm *vm, t_process *proc);
+void       ft_vm_instr_ld(t_vm *vm, t_process *proc);
+void       ft_vm_instr_st(t_vm *vm, t_process *proc);
 
 /*
 ** Log functions
 */
 
 void			ft_vm_log_intro(t_vm *vm);
+void			ft_vm_log_arg(t_process *proc);
 
 /*
 ** Log set
 */
 
 void			ft_vm_log_live(t_vm *vm, t_process *proces, t_list *it);
+void			ft_vm_log_ld(t_vm *vm,
+                            t_process *proces,
+                            unsigned char *ptr,
+                            unsigned int address);
 #endif
