@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 00:21:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/27 17:55:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_vm_instr_st},
 	{&ft_vm_instr_add},
 	{&ft_vm_instr_sub},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
+	{&ft_vm_instr_and},
+	{&ft_vm_instr_or},
+	{&ft_vm_instr_xor},
+	{&ft_vm_instr_zjmp},
+	{&ft_vm_instr_ldi},
 	{&ft_tmp},
 	{&ft_tmp},
 	{&ft_tmp},
@@ -50,13 +50,6 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_tmp},
 	{&ft_tmp},
 	#if 0
-	{&ft_vm_instr_add},
-	{&ft_vm_instr_sub},
-	{&ft_vm_instr_and},
-	{&ft_vm_instr_or},
-	{&ft_vm_instr_xor},
-	{&ft_vm_instr_zjmp},
-	{&ft_vm_instr_ldi},
 	{&ft_vm_instr_sti},
 	{&ft_vm_instr_fork},
 	{&ft_vm_instr_lld},
@@ -92,5 +85,10 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 	}
 	/* Execute the decoded instruction */
 	g_instr_list[proc->op->numero].func(vm, proc);
+	/* Add its sleeping time to the execution cycle */
+	if (IS_INSTR(*proc->pc))
+		proc->exec_cycle += g_op_tab[*proc->pc].nb_cycles;
+	else
+		proc->exec_cycle += 1;
 	//TODO : ft_vm_notif_instr()
 }

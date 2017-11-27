@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_and.c                                  :+:      :+:    :+:   */
+/*   ft_vm_instr_xor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 00:26:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 17:56:12 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/27 14:21:54 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/27 17:55:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-void			ft_vm_instr_and(t_vm *vm, t_process *proc)
+void			ft_vm_instr_xor(t_vm *vm, t_process *proc)
 {
-	int				i;
-	unsigned int	and[2];
-	unsigned char	*ptr;
-	extern uint8_t	g_direct_jump_table_from_instr[17];
+	int					i;
+	unsigned int		xor[2];
+	unsigned char		*ptr;
+	extern uint8_t		g_direct_jump_table_from_instr[17];
 	extern t_op			g_op_tab[17];
 
-	/* Set up a pointer at the beginning of the arguments */
+	/* Set a pointer at the beginnin of the arguments */
 	ptr = proc->pc + 2;
 	i = 0;
 	/* Read arguments */
@@ -33,27 +33,32 @@ void			ft_vm_instr_and(t_vm *vm, t_process *proc)
 				ft_vm_instr_fail(proc, CARRY_CHANGE);
 				return ;
 			}
-			and[i] = proc->reg[*ptr];
+			xor[i] = proc->reg[*ptr];
 		}
 		else if (proc->op->arg_types[i] == T_IND)
-			and[i] = vm->arena[0][MOD((proc->pc - vm->arena[0] + (ft_instruction_get_data(2, ptr) % IDX_MOD)))];
+		{
+			xor[i] = vm->arena[0][MOD((proc->pc - vm->arena[0]
+				+ (ft_instruction_get_data(2, ptr) % IDX_MOD)))];
+		}
 		else
-			and[i] = ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero], ptr);
+		{
+			xor[i] = ft_instruction_get_data(
+				g_direct_jump_table_from_instr[proc->op->numero], ptr);
+		}
 		ptr += proc->jump[i];
 		++i;
 	}
-	/* Add arguments and store the result in a register */
+	/* Compute the result and save it in a register */
 	if (!IS_REG(*ptr))
 	{
 		ft_vm_instr_fail(proc, CARRY_CHANGE);
 		return ;
 	}
-	/* Compute the result and store it in a register */
-	proc->reg[*ptr] = and[0] & and[1];
+	proc->reg[*ptr] = xor[0] ^ xor[1];
 	/* Fetch the next instruction */
 	proc->pc += 2 + proc->jump[0] + proc->jump[1] + proc->jump[2];
-	/* Write in the log file */
-	LOG_OPT ? ft_vm_log_and(vm, proc, ptr, and) : 0;
+	/* Write in a log file */
+	LOG_OPT ? ft_vm_log_xor(vm, proc, ptr, xor) : 0;
 	/* Change the carry */
 	proc->carry ^= proc->carry;
 }

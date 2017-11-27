@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 00:11:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/27 17:57:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define    LOG_OPT         (vm->option.log)
 # define    CARRY_CHANGE    1
 
-# define C_PROCESS(it)      CONTAINEROF(it, t_process, list)
+# define	C_PROCESS(it)	CONTAINEROF(it, t_process, list)
 
 /*
 ** Structures
@@ -168,6 +168,11 @@ void       ft_vm_instr_ld(t_vm *vm, t_process *proc);
 void       ft_vm_instr_st(t_vm *vm, t_process *proc);
 void       ft_vm_instr_add(t_vm *vm, t_process *proc);
 void       ft_vm_instr_sub(t_vm *vm, t_process *proc);
+void       ft_vm_instr_and(t_vm *vm, t_process *proc);
+void       ft_vm_instr_or(t_vm *vm, t_process *proc);
+void       ft_vm_instr_xor(t_vm *vm, t_process *proc);
+void       ft_vm_instr_zjmp(t_vm *vm, t_process *proc);
+void       ft_vm_instr_ldi(t_vm *vm, t_process *proc);
 
 /*
 ** Log functions
@@ -192,5 +197,23 @@ void 			ft_vm_log_add(t_vm *vm,
 void 			ft_vm_log_sub(t_vm *vm,
                             t_process *proc,
                             const unsigned int sub[3]);
+void 			ft_vm_log_and(t_vm *vm,
+							t_process *proc,
+							unsigned char *ptr,
+							const unsigned int and[2]);
+void 			ft_vm_log_or(t_vm *vm,
+                            t_process *proc,
+                            unsigned char *ptr,
+                            const unsigned int or[2]);
+void 			ft_vm_log_xor(t_vm *vm,
+                            t_process *proc,
+                            unsigned char *ptr,
+                            const unsigned int xor[2]);
+void 			ft_vm_log_zjmp(t_vm *vm, t_process *proc);
+void 			ft_vm_log_xor(t_vm *vm,
+                            t_process *proc,
+                            unsigned char *ptr,
+                            const unsigned int xor[2]);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 14:07:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/27 17:56:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,4 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 	LOG_OPT ? ft_vm_log_live(vm, proc, it) : 0;
 	/* Fetch the next instruction */
 	proc->pc += 1 + g_direct_jump_table_from_instr[proc->op->numero];
-	/* Add its sleeping time to execution cycle */
-	if (IS_INSTR(*proc->pc))
-		proc->exec_cycle += g_op_tab[*proc->pc].nb_cycles;
-	else
-		proc->exec_cycle += 1;
 }

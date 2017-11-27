@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_option.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/10/20 00:47:34 by Zoellingam       ###   ########.fr       */
+/*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
+/*   Updated: 2017/11/24 13:08:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct		s_option_rule
 
 /**
  * @brief      Option struct
- * 
+ *
  * That structure handle options and command line arguments from main.
  * It allow you to define rules to parse argc/argv.
  */
@@ -76,7 +76,7 @@ typedef struct		s_option
 
 /**
  * @brief      Create new option structure using calloc.
- * 
+ *
  * details     Malloc errors aren't catched as long as the standards does not
  *             define these kind of behaviors.
  *              ==>> https://linux.die.net/man/3/malloc
@@ -107,7 +107,7 @@ void				ft_option_add_rule(t_option *opt, char const *rule, t_option_key key);
 
 /**
  * @brief      Find rule in rule_list
- * 
+ *
  * @param 		opt	Option struct
  * @param 		option_name Name of the option we want the value
  *
@@ -118,7 +118,7 @@ char				**ft_option_find(t_option *opt, char const *option_name);
 
 /**
  * @brief      Argument parser
- * 
+ *
  * @details 	Argument parser can parse the following grammar:
  *           	"--toto"
  *           		==>>	{ "--toto", "true" }
@@ -126,7 +126,7 @@ char				**ft_option_find(t_option *opt, char const *option_name);
  *           		==>>	{ "--toto", "titi" }
  *           	"--toto=titi"
  *           		==>>	{ "--toto", "titi" }
- *           		
+ *
  *           	Special symbol "--" abort parsing at current position
  *
  * @param      opt	Valid option struct

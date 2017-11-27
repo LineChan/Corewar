@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:29:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 17:20:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/27 17:56:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,4 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 	proc->carry ^= proc->carry;
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_ld(vm, proc, ptr, address) : 0;
-	/* Add its sleeping time to execution cycle */
-	if (IS_INSTR(*proc->pc))
-		proc->exec_cycle += g_op_tab[*proc->pc].nb_cycles;
-	else
-		proc->exec_cycle += 1;
 }
