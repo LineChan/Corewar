@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 15:48:36 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/28 17:55:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ void       ft_vm_instr_xor(t_vm *vm, t_process *proc);
 void       ft_vm_instr_zjmp(t_vm *vm, t_process *proc);
 void       ft_vm_instr_ldi(t_vm *vm, t_process *proc);
 void       ft_vm_instr_sti(t_vm *vm, t_process *proc);
+void       ft_vm_instr_fork(t_vm *vm, t_process *proc);
 
 /*
 ** Log functions
@@ -219,7 +220,7 @@ void					ft_vm_log_ldi(t_vm *vm,
 									t_process *proc,
 									unsigned char *ptr,
     								const unsigned int value_to_load);
-void                    ft_vm_log_sti(t_vm *vm, t_process,
+void                    ft_vm_log_sti(t_vm *vm, t_process *proc,
                                     const int copy_at_address);
 
 

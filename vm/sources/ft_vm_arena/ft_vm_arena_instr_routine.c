@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 15:43:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/28 17:55:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_vm_instr_zjmp},
 	{&ft_vm_instr_ldi},
 	{&ft_vm_instr_sti},
-	{&ft_tmp},
-	{&ft_tmp},
+	{&ft_tmp}
+	{&ft_vm_instr_fork},
 	{&ft_tmp},
 	{&ft_tmp},
 	{&ft_tmp},
@@ -50,7 +50,6 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_tmp},
 	{&ft_tmp},
 	#if 0
-	{&ft_vm_instr_fork},
 	{&ft_vm_instr_lld},
 	{&ft_vm_instr_lldi},
 	{&ft_vm_instr_lfork},
