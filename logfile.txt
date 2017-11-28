@@ -618,3 +618,1272 @@
 [mon nov 27 17:31:00 2017] -- 		Player 3 is dead
 [mon nov 27 17:31:00 2017] -- 		Player 1 is dead
 [mon nov 27 17:31:00 2017] -- # --------------------------------------------------
+[tue nov 28 15:12:59 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[tue nov 28 15:12:59 2017] -- # Player 1: zork
+[tue nov 28 15:12:59 2017] -- # Player 3: Jinx
+[tue nov 28 15:12:59 2017] -- # Starting cycle : 0
+[tue nov 28 15:12:59 2017] -- # --------------------------------------------------
+[tue nov 28 15:12:59 2017] --   Cycle 5       Player 3 --- st   
+[tue nov 28 15:12:59 2017] -- 		[R] [I] [X]
+[tue nov 28 15:12:59 2017] -- 		reg[0] = 0 --> reg[1]
+[tue nov 28 15:12:59 2017] --   Cycle 10      Player 3 --- st   
+[tue nov 28 15:12:59 2017] -- 		[R] [I] [X]
+[tue nov 28 15:12:59 2017] -- 		reg[255] = 32745 --> reg[6]
+[tue nov 28 15:12:59 2017] --   Cycle 15      Player 3 --- ld   
+[tue nov 28 15:12:59 2017] -- 		[I] [R] [X]
+[tue nov 28 15:12:59 2017] -- 		reg[1] = 0 --> (arena[3 % IDX_MOD])
+[tue nov 28 15:12:59 2017] --   Cycle 20      Player 3 --- ld   
+[tue nov 28 15:12:59 2017] -- 		[D] [R] [X]
+[tue nov 28 15:12:59 2017] -- 		reg[7] = 11 --> (arena[0 % IDX_MOD])
+[tue nov 28 15:12:59 2017] --   Cycle 28      Process 1 --- live  : failed
+[tue nov 28 15:12:59 2017] --   Cycle 34      Player 1 --- and  
+[tue nov 28 15:12:59 2017] -- 		[R] [D] [R]
+[tue nov 28 15:12:59 2017] -- 		reg[1] = 0 --> [1] & [0]
+[tue nov 28 15:12:59 2017] --   Cycle 40      Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 44      Process 1 --- live  : failed
+[tue nov 28 15:12:59 2017] --   Cycle 60      Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 64      Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 80      Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 84      Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 100     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 104     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 120     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 124     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 140     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 144     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 160     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 164     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 180     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 184     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 200     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 204     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 220     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 224     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 240     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 244     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 260     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 264     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 280     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 284     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 300     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 304     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 320     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 324     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 340     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 344     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 360     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 364     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 380     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 384     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 400     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 404     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 420     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 424     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 440     Player 3 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:12:59 2017] --   Cycle 444     Player 1 --- zjmp 
+[tue nov 28 15:12:59 2017] -- 		[D] [X] [X]
+[tue nov 28 15:12:59 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 460     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 464     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 480     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 484     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 500     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 504     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 520     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 524     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 540     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 544     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 560     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 564     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 580     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 584     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 600     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 604     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 620     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 624     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 640     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 644     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 660     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 664     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 680     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 684     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 700     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 704     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 720     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 724     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 740     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 744     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 760     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 764     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 780     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 784     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 800     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 804     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 820     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 824     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 840     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 844     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 860     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 864     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 880     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 884     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 900     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 904     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 920     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 924     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 940     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 944     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 960     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 964     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 980     Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 984     Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1000    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1004    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1020    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1024    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1040    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1044    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1060    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1064    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1080    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1084    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1100    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1104    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1120    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1124    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1140    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1144    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1160    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1164    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1180    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1184    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1200    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1204    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1220    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1224    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1240    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1244    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1260    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1264    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1280    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1284    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1300    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1304    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1320    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1324    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1340    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1344    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1360    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1364    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1380    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1384    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1400    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1404    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1420    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1424    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1440    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1444    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1460    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1464    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1480    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1484    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1500    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1504    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1520    Player 3 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:13:00 2017] --   Cycle 1524    Player 1 --- zjmp 
+[tue nov 28 15:13:00 2017] -- 		[D] [X] [X]
+[tue nov 28 15:13:00 2017] -- 		Jump of -5 % IDX_MOD
+[tue nov 28 15:13:00 2017] -- # ---------------- ROUND CHECK ---------------------
+[tue nov 28 15:13:00 2017] --   Cycle 1537   
+[tue nov 28 15:13:00 2017] -- 		Player 3 is dead
+[tue nov 28 15:13:00 2017] -- 		Player 1 is dead
+[tue nov 28 15:13:00 2017] -- # --------------------------------------------------
+[tue nov 28 15:14:24 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[tue nov 28 15:14:24 2017] -- # Player 1: ldi_lldi
+[tue nov 28 15:14:24 2017] -- # Player 3: Jinx
+[tue nov 28 15:14:24 2017] -- # Starting cycle : 0
+[tue nov 28 15:14:24 2017] -- # --------------------------------------------------
+[tue nov 28 15:14:24 2017] --   Cycle 5       Player 3 --- st   
+[tue nov 28 15:14:24 2017] -- 		[R] [I] [X]
+[tue nov 28 15:14:24 2017] -- 		reg[0] = 0 --> reg[1]
+[tue nov 28 15:14:24 2017] --   Cycle 10      Player 3 --- st   
+[tue nov 28 15:14:24 2017] -- 		[R] [I] [X]
+[tue nov 28 15:14:24 2017] -- 		reg[255] = 32735 --> reg[6]
+[tue nov 28 15:14:24 2017] --   Cycle 15      Player 3 --- ld   
+[tue nov 28 15:14:24 2017] -- 		[I] [R] [X]
+[tue nov 28 15:14:24 2017] -- 		reg[1] = 215 --> (arena[3 % IDX_MOD])
+[tue nov 28 15:14:24 2017] --   Cycle 20      Player 3 --- ld   
+[tue nov 28 15:14:24 2017] -- 		[D] [R] [X]
+[tue nov 28 15:14:24 2017] -- 		reg[7] = 14 --> (arena[0 % IDX_MOD])
+[tue nov 28 15:14:24 2017] --   Cycle 40      Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 60      Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 80      Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 98      Player 1 --- ldi  
+[tue nov 28 15:14:24 2017] -- 		[D] [D] [R]
+[tue nov 28 15:14:24 2017] -- 		reg[2] =  471 --> arena[(PC + (-41 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:14:24 2017] --   Cycle 100     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 120     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 123     Player 1 --- ldi  
+[tue nov 28 15:14:24 2017] -- 		[D] [D] [R]
+[tue nov 28 15:14:24 2017] -- 		reg[3] =  132 --> arena[(PC + (132 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:14:24 2017] --   Cycle 140     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 148     Player 1 --- ldi  
+[tue nov 28 15:14:24 2017] -- 		[I] [D] [R]
+[tue nov 28 15:14:24 2017] -- 		reg[4] =  130 --> arena[(PC + (130 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:14:24 2017] --   Cycle 160     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 173     Player 1 --- ldi  
+[tue nov 28 15:14:24 2017] -- 		[I] [D] [R]
+[tue nov 28 15:14:24 2017] -- 		reg[5] =  0 --> arena[(PC + (0 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:14:24 2017] --   Cycle 180     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 198     Player 1 --- ldi  
+[tue nov 28 15:14:24 2017] -- 		[D] [D] [R]
+[tue nov 28 15:14:24 2017] -- 		reg[6] =  0 --> arena[(PC + (4096 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:14:24 2017] --   Cycle 200     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 220     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 223     Player 1 --- ldi  
+[tue nov 28 15:14:24 2017] -- 		[I] [D] [R]
+[tue nov 28 15:14:24 2017] -- 		reg[7] =  10 --> arena[(PC + (10 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:14:24 2017] --   Cycle 240     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 260     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 280     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 300     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 320     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 340     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 360     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 380     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 400     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 420     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 440     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 460     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 480     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 500     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 520     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 540     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 560     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 580     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 600     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 620     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 640     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 660     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 680     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 700     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 720     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 740     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 760     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 780     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 800     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 820     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 840     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 860     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 880     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 900     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 920     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 940     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 960     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 980     Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1000    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1020    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1040    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1060    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1080    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1100    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1120    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1140    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1160    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1180    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1200    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1220    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1240    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1260    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1280    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1300    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1320    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1340    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1360    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1380    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1400    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1420    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1440    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1460    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1480    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1500    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] --   Cycle 1520    Player 3 --- zjmp 
+[tue nov 28 15:14:24 2017] -- 		[D] [X] [X]
+[tue nov 28 15:14:24 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:14:24 2017] -- # ---------------- ROUND CHECK ---------------------
+[tue nov 28 15:14:24 2017] --   Cycle 1537   
+[tue nov 28 15:14:24 2017] -- 		Player 3 is dead
+[tue nov 28 15:14:24 2017] -- 		Player 1 is dead
+[tue nov 28 15:14:24 2017] -- # --------------------------------------------------
+[tue nov 28 15:19:20 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[tue nov 28 15:19:20 2017] -- # Player 1: ldi_lldi
+[tue nov 28 15:19:20 2017] -- # Player 3: Jinx
+[tue nov 28 15:19:20 2017] -- # Starting cycle : 0
+[tue nov 28 15:19:20 2017] -- # --------------------------------------------------
+[tue nov 28 15:19:20 2017] --   Cycle 5       Player 3 --- st   
+[tue nov 28 15:19:20 2017] -- 		[R] [I] [X]
+[tue nov 28 15:19:20 2017] -- 		reg[0] = 0 --> reg[1]
+[tue nov 28 15:19:20 2017] --   Cycle 10      Player 3 --- st   
+[tue nov 28 15:19:20 2017] -- 		[R] [I] [X]
+[tue nov 28 15:19:20 2017] -- 		reg[255] = 8 --> reg[6]
+[tue nov 28 15:19:20 2017] --   Cycle 15      Player 3 --- ld   
+[tue nov 28 15:19:20 2017] -- 		[I] [R] [X]
+[tue nov 28 15:19:20 2017] -- 		reg[1] = 215 --> (arena[3 % IDX_MOD])
+[tue nov 28 15:19:20 2017] --   Cycle 20      Player 3 --- ld   
+[tue nov 28 15:19:20 2017] -- 		[D] [R] [X]
+[tue nov 28 15:19:20 2017] -- 		reg[7] = 14 --> (arena[0 % IDX_MOD])
+[tue nov 28 15:19:20 2017] --   Cycle 40      Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 60      Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 80      Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 98      Player 1 --- ldi  
+[tue nov 28 15:19:20 2017] -- 		[D] [D] [R]
+[tue nov 28 15:19:20 2017] -- 		reg[2] =  132 --> arena[(PC + (-41 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:19:20 2017] --   Cycle 100     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 120     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 123     Player 1 --- ldi  
+[tue nov 28 15:19:20 2017] -- 		[D] [D] [R]
+[tue nov 28 15:19:20 2017] -- 		reg[3] =  0 --> arena[(PC + (132 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:19:20 2017] --   Cycle 140     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 148     Player 1 --- ldi  
+[tue nov 28 15:19:20 2017] -- 		[I] [D] [R]
+[tue nov 28 15:19:20 2017] -- 		reg[4] =  120 --> arena[(PC + (130 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:19:20 2017] --   Cycle 160     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 173     Player 1 --- ldi  
+[tue nov 28 15:19:20 2017] -- 		[I] [D] [R]
+[tue nov 28 15:19:20 2017] -- 		reg[5] =  0 --> arena[(PC + (0 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:19:20 2017] --   Cycle 180     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 198     Player 1 --- ldi  
+[tue nov 28 15:19:20 2017] -- 		[D] [D] [R]
+[tue nov 28 15:19:20 2017] -- 		reg[6] =  0 --> arena[(PC + (4096 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:19:20 2017] --   Cycle 200     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 220     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 223     Player 1 --- ldi  
+[tue nov 28 15:19:20 2017] -- 		[I] [D] [R]
+[tue nov 28 15:19:20 2017] -- 		reg[7] =  0 --> arena[(PC + (10 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:19:20 2017] --   Cycle 240     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 260     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 280     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 300     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 320     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 340     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 360     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 380     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 400     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 420     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 440     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 460     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 480     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 500     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 520     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 540     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 560     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 580     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 600     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 620     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 640     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 660     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 680     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 700     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 720     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 740     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 760     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 780     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 800     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 820     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 840     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 860     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 880     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 900     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 920     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 940     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 960     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 980     Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1000    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1020    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1040    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1060    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1080    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1100    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1120    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1140    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1160    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:20 2017] --   Cycle 1180    Player 3 --- zjmp 
+[tue nov 28 15:19:20 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:20 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1200    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1220    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1240    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1260    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1280    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1300    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1320    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1340    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1360    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1380    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1400    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1420    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1440    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1460    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1480    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1500    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] --   Cycle 1520    Player 3 --- zjmp 
+[tue nov 28 15:19:21 2017] -- 		[D] [X] [X]
+[tue nov 28 15:19:21 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:19:21 2017] -- # ---------------- ROUND CHECK ---------------------
+[tue nov 28 15:19:21 2017] --   Cycle 1537   
+[tue nov 28 15:19:21 2017] -- 		Player 3 is dead
+[tue nov 28 15:19:21 2017] -- 		Player 1 is dead
+[tue nov 28 15:19:21 2017] -- # --------------------------------------------------
+[tue nov 28 15:20:10 2017] -- # ----------------  NEW EPIC BATTLE ----------------
+[tue nov 28 15:20:10 2017] -- # Player 1: ldi_lldi
+[tue nov 28 15:20:10 2017] -- # Player 3: Jinx
+[tue nov 28 15:20:10 2017] -- # Starting cycle : 0
+[tue nov 28 15:20:10 2017] -- # --------------------------------------------------
+[tue nov 28 15:20:10 2017] --   Cycle 5       Player 3 --- st   
+[tue nov 28 15:20:10 2017] -- 		[R] [I] [X]
+[tue nov 28 15:20:10 2017] -- 		reg[0] = 0 --> reg[1]
+[tue nov 28 15:20:10 2017] --   Cycle 10      Player 3 --- st   
+[tue nov 28 15:20:10 2017] -- 		[R] [I] [X]
+[tue nov 28 15:20:10 2017] -- 		reg[255] = 32659 --> reg[6]
+[tue nov 28 15:20:10 2017] --   Cycle 15      Player 3 --- ld   
+[tue nov 28 15:20:10 2017] -- 		[I] [R] [X]
+[tue nov 28 15:20:10 2017] -- 		reg[1] = 215 --> (arena[3 % IDX_MOD])
+[tue nov 28 15:20:10 2017] --   Cycle 20      Player 3 --- ld   
+[tue nov 28 15:20:10 2017] -- 		[D] [R] [X]
+[tue nov 28 15:20:10 2017] -- 		reg[7] = 14 --> (arena[0 % IDX_MOD])
+[tue nov 28 15:20:10 2017] --   Cycle 40      Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 60      Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 80      Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 98      Player 1 --- ldi  
+[tue nov 28 15:20:10 2017] -- 		[D] [D] [R]
+[tue nov 28 15:20:10 2017] -- 		reg[2] =  132 --> arena[(PC + (-41 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:20:10 2017] --   Cycle 100     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 120     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 123     Player 1 --- ldi  
+[tue nov 28 15:20:10 2017] -- 		[D] [D] [R]
+[tue nov 28 15:20:10 2017] -- 		reg[3] =  0 --> arena[(PC + (132 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:20:10 2017] --   Cycle 140     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 148     Player 1 --- ldi  
+[tue nov 28 15:20:10 2017] -- 		[I] [D] [R]
+[tue nov 28 15:20:10 2017] -- 		reg[4] =  120 --> arena[(PC + (130 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:20:10 2017] --   Cycle 160     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 173     Player 1 --- ldi  
+[tue nov 28 15:20:10 2017] -- 		[I] [D] [R]
+[tue nov 28 15:20:10 2017] -- 		reg[5] =  0 --> arena[(PC + (0 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:20:10 2017] --   Cycle 180     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 198     Player 1 --- ldi  
+[tue nov 28 15:20:10 2017] -- 		[D] [D] [R]
+[tue nov 28 15:20:10 2017] -- 		reg[6] =  0 --> arena[(PC + (4096 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:20:10 2017] --   Cycle 200     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 220     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 223     Player 1 --- ldi  
+[tue nov 28 15:20:10 2017] -- 		[I] [D] [R]
+[tue nov 28 15:20:10 2017] -- 		reg[7] =  0 --> arena[(PC + (10 % IDX_MOD)) % MEM_SIZE]
+[tue nov 28 15:20:10 2017] --   Cycle 240     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 260     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 280     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 300     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 320     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 340     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 360     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 380     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 400     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 420     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 440     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 460     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 480     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 500     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 520     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 540     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 560     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 580     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 600     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 620     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 640     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 660     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 680     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 700     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 720     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 740     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 760     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 780     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 800     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 820     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 840     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 860     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 880     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 900     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 920     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 940     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 960     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 980     Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1000    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1020    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1040    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1060    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1080    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1100    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1120    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1140    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1160    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1180    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1200    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1220    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1240    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1260    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1280    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1300    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1320    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1340    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1360    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1380    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1400    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1420    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1440    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1460    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1480    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1500    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] --   Cycle 1520    Player 3 --- zjmp 
+[tue nov 28 15:20:10 2017] -- 		[D] [X] [X]
+[tue nov 28 15:20:10 2017] -- 		Jump of 45 % IDX_MOD
+[tue nov 28 15:20:10 2017] -- # ---------------- ROUND CHECK ---------------------
+[tue nov 28 15:20:10 2017] --   Cycle 1537   
+[tue nov 28 15:20:10 2017] -- 		Player 3 is dead
+[tue nov 28 15:20:10 2017] -- 		Player 1 is dead
+[tue nov 28 15:20:10 2017] -- # --------------------------------------------------

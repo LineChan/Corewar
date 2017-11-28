@@ -1,65 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_ldi.c                                  :+:      :+:    :+:   */
+/*   ft_vm_instr_sti.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 17:38:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 15:48:32 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/28 14:57:32 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/28 15:39:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-void				ft_vm_instr_ldi(t_vm *vm, t_process *proc)
+void                ft_vm_sti(t_vm *vm, t_process *proc)
 {
 	int					i;
-	unsigned int		value_to_load;
-	unsigned char		*ptr;
+	//instr				reg;
+	int					copy_at_address;
+	unsigned char		*ptr
+	extern t_op			g_op_tab[17];
 	extern uint8_t		g_direct_jump_table_from_instr[17];
-
+	(void)proc;
+	(void)vm;
+	copy_at_address = 0;
 	/* Set a pointer at the beginning of the arguments */
 	ptr = proc->pc + 2;
-	value_to_load = 0;
-	i = 0;
 	/* Read arguments */
-	while (i < (proc->op->nb_args - 1))
+	if (!IS_REG(*ptr))
+	{
+		ft_instr_fail(proc, !CARRY_CHANGE);
+		return ;
+	}
+	ptr += proc->jump[0];
+	i = 1;
+	while (i < proc->op->nb_args)
 	{
 		if (proc->op->arg_types[i] == T_REG)
 		{
 			if (!IS_REG(*ptr))
 			{
-				ft_vm_instr_fail(proc, CARRY_CHANGE);
+				ft_instr_fail(proc, !CARRY_CHANGE);
 				return ;
 			}
-			value_to_load += proc->reg[*ptr];
+			copy_at_address += proc->reg[*ptr];
 		}
 		else if (proc->op->arg_types[i] == T_IND)
-		{
-			value_to_load += vm->arena[0][MOD((proc->pc - vm->arena[0] +
-				(ft_instruction_get_data(2, ptr) % IDX_MOD)))];
-		}
+			copy_at_address += proc->pc - vm->arena[0] + (ft_instruction_get_data(2, ptr) % IDX_MOD);
 		else if (proc->op->arg_types[i] == T_DIR)
-		{
-			value_to_load +=
-				ft_instruction_get_data(
-				g_direct_jump_table_from_instr[proc->op->numero], ptr);
-		}
+			copy_at_address += ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero]);
 		ptr += proc->jump[i];
 		++i;
 	}
-	/* Load the value in a register */
-	if (!IS_REG(*ptr))
-	{
-		ft_vm_instr_fail(proc, CARRY_CHANGE);
-		return ;
-	}
-	proc->reg[*ptr] = vm->arena[0][MOD(proc->pc - vm->arena[0] + (ft_instruction_get_data(2, ptr) % IDX_MOD))];
+	/* Load a value from a register */
+	vm->arena[0][MOD(copy_at_address)] = proc->reg[*(proc->pc + 2)];
+	/* Write in a logfile */
+	LOG_OPT ? ft_vm_log_sti(vm, proc, copy_at_address) : 0;
 	/* Fetch the next instruction */
 	proc->pc += 2 + proc->jump[0] + proc->jump[1] + proc->jump[2];
-	/* Write in a log file */
-	LOG_OPT ? ft_vm_log_ldi(vm, proc, ptr, value_to_load) : 0;
-	/* Change the carry */
-	proc->carry ^= proc->carry;
 }
