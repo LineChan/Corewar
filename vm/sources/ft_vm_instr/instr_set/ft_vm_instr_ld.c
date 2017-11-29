@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:29:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 00:35:18 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 18:58:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 //TODO : libs
 #include <libc.h>
+#include "ft_printf.h"
+#include "ft_string.h"
 
 void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 {
@@ -43,7 +45,7 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 		return ;
 	}
 	/* Load the value in a register */
-	proc->reg[*ptr] = vm->arena[0][MOD(address)];
+	ft_memcpy((void *)&proc->reg[*ptr], (void *)&vm->arena[0][MOD(address)], REG_SIZE);
 	/* Fetch the next instruction */
 	proc->pc += 2 + proc->jump[0] + proc->jump[1];
 	/* Change the carry */

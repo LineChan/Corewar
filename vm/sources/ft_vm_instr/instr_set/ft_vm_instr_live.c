@@ -6,12 +6,16 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 00:35:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 18:15:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
+// TODO: libs
+#include <libc.h>
+#include "ft_printf.h"
+#include "ft_log.h"
 void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 {
 	int				number;
@@ -22,6 +26,8 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 	number =
 		ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero],
 		proc->pc + 1);
+		ft_vm_print_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
+		getchar();
 	/* Find the champion that benefits from the live instruction */
 	if ((number < 0) && (number > -5) &&
 			(it = ft_vm_find_proc_nb(&vm->process_head, number)))
