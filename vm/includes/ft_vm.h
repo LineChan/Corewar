@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 17:55:56 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 01:17:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,10 @@ void       ft_vm_arena_round_check(t_vm *vm,
 void       ft_vm_new_process(t_vm *vm,
                             const int master_nb,
                             const int process_nb,
-                            unsigned int index);
-
+                            const unsigned int index);
+void		ft_vm_new_process_kid(t_vm *vm,
+							t_process *proc,
+							const unsigned int index);
 void		ft_vm_close_process(t_list *node);
 
 /*
@@ -157,8 +159,8 @@ void		ft_vm_close_process(t_list *node);
 */
 
 void        ft_vm_instr_fail(t_process *proc, const int carry_change);
-int             ft_vm_instr_bytecode_check(t_process *proc);
-
+void		ft_vm_instr_update_exec_cycle(t_process *proc);
+int         ft_vm_instr_bytecode_check(t_process *proc);
 /*
 ** Instruction set
 */

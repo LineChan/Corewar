@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_new_process.c                                :+:      :+:    :+:   */
+/*   ft_vm_new_process_kid.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 16:34:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 01:19:10 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/29 00:58:40 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/29 01:18:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
+#include "ft_list.h"
 // TODO : REMOVE EXIT FAIL AND DO A REAL EXIT FUNC
 #include "ft_printf.h"
 #include "macro.h"
-#include "ft_list.h"
 
-void 			ft_vm_new_process(t_vm *vm,
-									const int parent_nb,
-									const int process_nb,
+void			ft_vm_new_process_kid(t_vm *vm,
+									t_process *proc,
 									const unsigned int index)
 {
 	extern t_op			g_op_tab[17];
 	t_process			*new;
+	static int			current_proc_nb = -5;
 
-	/* Allocate a new process */
+	/* Allocate a new proceess */
 	if (!(new = ft_memalloc(sizeof(t_process))))
-		EXIT_FAIL("Error : memory allocation");
-	/* Reference to the champion who created the process */
-	new->parent_nb = parent_nb;
-	/* Process reference */
-	new->process_nb = process_nb;
-	/* Set up the Program Counter */
+		EXIT_FAIL("Error : memory allocation failed");
+	ft_memcpy((void *)&new, &proc, sizeof(t_process));
+	/* Change the process' reference */
+	new->process_nb = current_proc_nb--;
+	/* Set up the Program Counter to the new location  */
 	new->pc = &vm->arena[0][index];
-	/* Initialize the process with the 1st instruction */
-	new->exec_cycle = g_op_tab[*new->pc].nb_cycles;
-	/* Add the process to the list */
+	/* Update the execution cycle */
+	new->exec_cycle += 1;
+	/* Add the new process to the list */
 	ft_list_add(&new->list, &vm->process_head);
 }

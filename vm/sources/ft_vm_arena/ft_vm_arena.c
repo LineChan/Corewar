@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 17:20:23 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 00:57:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			ft_vm_arena(t_vm *vm, int *nb_champion)
 	//ft_vm_print_arena((void *)vm->arena, MEM_SIZE, 64, vm);
 	/* Loop until there is no champion in the arena */
 	//TODO : some adjusment for the option start_c
-	while (*nb_champion)
+	while (*nb_champion > 0)
 	{
 		while (vm->current_cycle <= cycle_end_round)
 		{

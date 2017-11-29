@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 23:16:48 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 17:56:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 00:34:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void			ft_vm_instr_add(t_vm *vm, t_process *proc)
 	int					i;
 	unsigned int		add[3];
 	unsigned char		*ptr;
-	extern t_op			g_op_tab[17];
 
 	/* Set up a pointer at the beginning of the arguments */
 	ptr = proc->pc + 2;
@@ -43,4 +42,6 @@ void			ft_vm_instr_add(t_vm *vm, t_process *proc)
 	proc->pc += 2 + proc->jump[0] + proc->jump[1] + proc->jump[2];
 	/* Change the carry */
 	proc->carry ^= proc->carry;
+	/* Update the execution cycle with the new instruction */
+	ft_vm_instr_update_exec_cycle(proc);
 }

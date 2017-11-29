@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:29:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 17:56:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 00:35:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 {
 	unsigned int		address;
 	unsigned char		*ptr;
-	extern t_op			g_op_tab[17];
 	extern uint8_t		g_direct_jump_table_from_instr[17];
 	(void)vm;
 
@@ -51,4 +50,6 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 	proc->carry ^= proc->carry;
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_ld(vm, proc, ptr, address) : 0;
+	/* Update the execution cycle with the new instruction */
+	ft_vm_instr_update_exec_cycle(proc);
 }

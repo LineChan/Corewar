@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:31:29 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 17:56:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 00:36:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void				ft_vm_instr_or(t_vm *vm, t_process *proc)
 	unsigned int		or[2];
 	unsigned char		*ptr;
 	extern uint8_t		g_direct_jump_table_from_instr[17];
-	extern t_op			g_op_tab[17];
 
 	/* Set up a pointer a the beginning of the arguments */
 	ptr = proc->pc + 2;
@@ -58,4 +57,6 @@ void				ft_vm_instr_or(t_vm *vm, t_process *proc)
 	LOG_OPT ? ft_vm_log_or(vm, proc, ptr, or) : 0;
 	/* Change the carry */
 	proc->carry ^= proc->carry;
+	/* Update the execution cycle with the new instruction */
+	ft_vm_instr_update_exec_cycle(proc);
 }

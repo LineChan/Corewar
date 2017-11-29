@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_log_sti.c                                    :+:      :+:    :+:   */
+/*   ft_vm_instr_update_exec_cycle.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 15:42:38 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 22:57:46 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/29 00:00:48 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/29 00:03:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_log.h"
 
-void				ft_vm_log_sti(t_vm *vm,
-									t_process *proc,
-									const int copy_at_address)
+void		ft_vm_instr_update_exec_cycle(t_process *proc)
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
-		-proc->process_nb, "sti");
-	ft_vm_log_arg(proc);
-	ft_log("\t\tarena[%d] = %d --> reg[%d]\n", MOD(copy_at_address),
-												vm->arena[0][MOD(copy_at_address)],
-												*(proc->pc + 2));
+	extern t_op			g_op_tab[17];
+	
+	if (IS_INSTR(*proc->pc))
+		proc->exec_cycle += g_op_tab[*proc->pc].nb_cycles;
+	else
+		proc->exec_cycle += 1;
 }

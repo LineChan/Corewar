@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 17:38:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 15:48:32 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 00:35:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc)
 	LOG_OPT ? ft_vm_log_ldi(vm, proc, ptr, value_to_load) : 0;
 	/* Change the carry */
 	proc->carry ^= proc->carry;
+	/* Update the execution cycle with the new instruction */
+	ft_vm_instr_update_exec_cycle(proc);
 }
