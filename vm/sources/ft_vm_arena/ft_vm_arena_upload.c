@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:59:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/26 17:25:55 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 11:47:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-void			ft_vm_arena_upload(t_vm *vm, const int nb_champion)
+void			ft_vm_arena_upload(t_vm *vm)
 {
 	int			step;
 	int			index;
 	int			i;
 
 	/* Find the distance between 2 champions */
-	step = MEM_SIZE / nb_champion;
+	step = MEM_SIZE / vm->nb_champion;
 	index = 0;
 	i = 0;
 	while (i < MAX_PLAYERS)

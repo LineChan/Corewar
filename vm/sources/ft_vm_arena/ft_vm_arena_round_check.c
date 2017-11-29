@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 00:51:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 17:29:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 13:44:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <libc.h>
 
 void			ft_vm_arena_round_check(t_vm *vm,
-										int *nb_champion,
 										unsigned int *cycle_end_round,
 										unsigned int *cycle_to_die)
 {
@@ -39,9 +38,9 @@ void			ft_vm_arena_round_check(t_vm *vm,
 		{
 			/* Delete the process if it did not call the live instruction */
 			LOG_OPT ?
-				ft_log("\t\tPlayer %d is dead\n", -C_PROCESS(it)->process_nb) : 0 ;
+				ft_log("\t\tProcess %d is dead\n", -C_PROCESS(it)->process_nb) : 0 ;
 			ft_vm_close_process(it);
-			--*nb_champion;
+			--vm->nb_champion;
 		}
 		else
 		{

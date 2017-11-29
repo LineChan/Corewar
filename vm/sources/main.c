@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/24 18:02:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 11:51:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 int				main(int ac, char **av)
 {
 	t_vm		vm;
-	int			nb_champion;
 
 	if (ac < 2)
 		return (EXIT_FAILURE);
@@ -28,13 +27,13 @@ int				main(int ac, char **av)
 	/* Parse arguments */
 	ft_vm_parse(&vm, av);
 	/* Read each champion's header */
-	ft_vm_read_header(&vm, &nb_champion);
-	if (!nb_champion)
+	ft_vm_read_header(&vm);
+	if (!vm.nb_champion)
 		return (0);
 	/* Print presentation before the battle starts */
 	ft_vm_print_intro(&vm);
 	/* Handle the battle */
-	ft_vm_arena(&vm, &nb_champion);
+	ft_vm_arena(&vm);
 	/* Close the logfile */
 	vm.option.log ? ft_log_close() : 0;
 	//CLOSE ALL THE PROCESSES

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 01:17:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 16:35:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct          s_process
     int                     jump[MAX_ARGS_NUMBER];
     unsigned char           *pc;
     t_op                    *op;
-    t_list          list;
+    t_list                  list;
 }                       t_process;
 
 typedef struct			s_vm
@@ -78,6 +78,7 @@ typedef struct			s_vm
     unsigned int            current_cycle;
     unsigned int            last_alive;
     unsigned int            checks;
+	unsigned int 			nb_champion;
     unsigned char           arena[2][MEM_SIZE];
     t_vm_option             option;
     t_header                header[MAX_PLAYERS];
@@ -122,7 +123,7 @@ void        ft_vm_parse_champion(t_vm *vm, char **av);
 ** Read functions
 */
 
-void       ft_vm_read_header(t_vm *vm, int *nb_champion);
+void       ft_vm_read_header(t_vm *vm);
 void       ft_vm_read_header_magic(t_vm *vm, int i);
 void       ft_vm_read_header_name(t_vm *vm, int i);
 void       ft_vm_read_header_size(t_vm *vm, int i);
@@ -132,12 +133,11 @@ void       ft_vm_read_header_comment(t_vm *vm, int i);
 ** Arena functions
 */
 
-void       ft_vm_arena(t_vm *vm, int *nb_champion);
-void       ft_vm_arena_upload(t_vm *vm, const int nb_champion);
+void       ft_vm_arena(t_vm *vm);
+void       ft_vm_arena_upload(t_vm *vm);
 void	   ft_vm_arena_cycle_routine(t_vm *vm);
 void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
 void       ft_vm_arena_round_check(t_vm *vm,
-                                    int *nb_champion,
                                     unsigned int *cycle_end_round,
                                     unsigned int *cycle_to_die);
 
@@ -177,6 +177,10 @@ void       ft_vm_instr_zjmp(t_vm *vm, t_process *proc);
 void       ft_vm_instr_ldi(t_vm *vm, t_process *proc);
 void       ft_vm_instr_sti(t_vm *vm, t_process *proc);
 void       ft_vm_instr_fork(t_vm *vm, t_process *proc);
+void       ft_vm_instr_lld(t_vm *vm, t_process *proc);
+void       ft_vm_instr_lldi(t_vm *vm, t_process *proc);
+void       ft_vm_instr_lfork(t_vm *vm, t_process *proc);
+void       ft_vm_instr_aff(t_vm *vm, t_process *proc);
 
 /*
 ** Log functions
@@ -192,8 +196,8 @@ void			ft_vm_log_arg(t_process *proc);
 void			ft_vm_log_live(t_vm *vm, t_process *proces, t_list *it);
 void			ft_vm_log_ld(t_vm *vm,
                             t_process *proces,
-                            unsigned char *ptr,
-                            unsigned int address);
+                            const unsigned char *ptr,
+                            const unsigned int address);
 void 			ft_vm_log_st(t_vm *vm, t_process *proc, const int dir);
 void 			ft_vm_log_add(t_vm *vm,
                             t_process *proc,
@@ -203,11 +207,11 @@ void 			ft_vm_log_sub(t_vm *vm,
                             const unsigned int sub[3]);
 void 			ft_vm_log_and(t_vm *vm,
 							t_process *proc,
-							unsigned char *ptr,
+							const unsigned char *ptr,
 							const unsigned int and[2]);
 void 			ft_vm_log_or(t_vm *vm,
                             t_process *proc,
-                            unsigned char *ptr,
+                            const unsigned char *ptr,
                             const unsigned int or[2]);
 void 			ft_vm_log_xor(t_vm *vm,
                             t_process *proc,
@@ -218,13 +222,23 @@ void 			ft_vm_log_xor(t_vm *vm,
                             t_process *proc,
                             unsigned char *ptr,
                             const unsigned int xor[2]);
-void					ft_vm_log_ldi(t_vm *vm,
-									t_process *proc,
-									unsigned char *ptr,
-    								const unsigned int value_to_load);
-void                    ft_vm_log_sti(t_vm *vm, t_process *proc,
-                                    const int copy_at_address);
-
-
-
+void			ft_vm_log_ldi(t_vm *vm,
+							t_process *proc,
+							unsigned char *ptr,
+   							const unsigned int value_to_load);
+void            ft_vm_log_sti(t_vm *vm, t_process *proc,
+                            const int copy_at_address);
+void            ft_vm_log_fork(t_vm *vm,
+                            t_process *proc,
+                            const int index);
+void            ft_vm_log_lld(t_vm *vm, t_process *proc,
+                            const unsigned char *ptr,
+                            const unsigned int value_to_load);
+void            ft_vm_log_lldi(t_vm *vm, t_process *proc,
+                            const unsigned char *ptr,
+                            const unsigned int address);
+void            ft_vm_log_lfork(t_vm *vm,
+                            t_process *proc,
+                            const int index);
+void            ft_vm_log_aff(t_vm *vm, t_process *proc);
 #endif

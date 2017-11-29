@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:34:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 01:19:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 12:02:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // TODO : REMOVE EXIT FAIL AND DO A REAL EXIT FUNC
 #include "ft_printf.h"
 #include "macro.h"
-#include "ft_list.h"
 
 void 			ft_vm_new_process(t_vm *vm,
 									const int parent_nb,

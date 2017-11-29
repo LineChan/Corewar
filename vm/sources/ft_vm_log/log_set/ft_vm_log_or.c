@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 13:51:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 14:21:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 14:13:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_log.h"
 
 void 			ft_vm_log_or(t_vm *vm, t_process *proc,
-							unsigned char *ptr,
+							const unsigned char *ptr,
 							const unsigned int or[2])
 
 {

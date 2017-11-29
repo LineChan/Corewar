@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 15:33:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 15:48:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/29 14:12:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void			ft_vm_log_ld(t_vm *vm,
 							t_process *proc,
-							unsigned char *ptr,
-							unsigned int address)
+							const unsigned char *ptr,
+							const unsigned int address)
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "ld");

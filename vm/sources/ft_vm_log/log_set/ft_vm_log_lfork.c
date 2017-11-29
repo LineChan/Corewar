@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_read_header.c                                :+:      :+:    :+:   */
+/*   ft_vm_log_lfork.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 14:21:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 11:43:49 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/29 16:22:19 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/29 16:24:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_log.h"
 
-#include "ft_printf.h"
-void 			ft_vm_read_header(t_vm *vm)
+void			ft_vm_log_lfork(t_vm *vm, t_process *proc, const int index)
 {
-	int			i;
-
-	i = 0;
-	while (i < MAX_PLAYERS)
-	{
-		if (vm->fd[i])
-		{
-			ft_vm_read_header_magic(vm, i);
-			ft_vm_read_header_name(vm, i);
-			ft_vm_read_header_size(vm, i);
-			ft_vm_read_header_comment(vm, i);
-			++vm->nb_champion;
-		}
-		++i;
-	}
+	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
+		-proc->process_nb, "lfork");
+	ft_vm_log_arg(proc);
+	ft_log("\t\tProcess %d created at (%d %% MEM_SIZE)\n", -C_PROCESS(vm->process_head.next)->process_nb, index);
+	ft_log("\t\texec cycle at %d\n", C_PROCESS(vm->process_head.next)->exec_cycle);
 }
