@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:29:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 18:58:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/30 12:58:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 
 void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 {
-	unsigned int		address;
+	int					address;
 	unsigned char		*ptr;
 	extern uint8_t		g_direct_jump_table_from_instr[17];
-	(void)vm;
 
 	/* Set a pointer at the beginnig of the arguments */
 	ptr = proc->pc + 2;
@@ -35,8 +34,8 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 	}
 	else
 	{
-		address =
-			vm->arena[0][proc->pc - vm->arena[0] + (ft_instruction_get_data(2, ptr) % IDX_MOD)];
+		address = proc->pc - vm->arena[0] +
+		(ft_instruction_get_data(2, ptr) % IDX_MOD);
 	}
 	ptr += proc->jump[0];
 	if (!IS_REG(*ptr))
@@ -45,13 +44,13 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 		return ;
 	}
 	/* Load the value in a register */
-	ft_memcpy((void *)&proc->reg[*ptr], (void *)&vm->arena[0][MOD(address)], REG_SIZE);
-	/* Fetch the next instruction */
-	proc->pc += 2 + proc->jump[0] + proc->jump[1];
-	/* Change the carry */
-	proc->carry ^= proc->carry;
+	proc->reg[*ptr] = ft_instruction_get_data(REG_SIZE, &vm->arena[0][MOD(address)]);
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_ld(vm, proc, ptr, address) : 0;
+	/* Fetch the next instruction */
+	proc->pc += 2 + proc->jump[0] + proc->jump[1];
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(proc);
+	/* Change the carry */
+	proc->carry ^= proc->carry;
 }

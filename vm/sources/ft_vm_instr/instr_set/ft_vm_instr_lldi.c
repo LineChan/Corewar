@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:11:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 19:24:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/30 15:31:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 //TODO : libs
 #include <libc.h>
 #include "ft_printf.h"
+#include "ft_log.h"
 void			ft_vm_instr_lldi(t_vm *vm, t_process *proc)
 {
 	int					i;
-	unsigned int		sum;
+	int					sum;
 	unsigned char		*ptr;
 	extern uint8_t		g_direct_jump_table_from_instr[17];
 
@@ -36,15 +37,31 @@ void			ft_vm_instr_lldi(t_vm *vm, t_process *proc)
 				ft_vm_instr_fail(proc, CARRY_CHANGE);
 				return ;
 			}
-			sum += proc->reg[*ptr];
+			if (!i)
+				sum += proc->pc - vm->arena[0] + proc->reg[*ptr];
+			else
+				sum += proc->reg[*ptr];
 		}
 		else if (proc->op->arg_types[i] == T_IND)
 		{
-			//TODO: GET DATA FROM ADDRESS ?
-			sum += proc->pc - vm->arena[0] + ft_instruction_get_data(2, ptr);
+
+			ft_log("IND get_data : %d\n", ft_instruction_get_data(2, ptr));
+			sum += ft_instruction_get_data(2, ptr);
 		}
 		else
-			sum += ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero], ptr);
+		{
+			#if 0
+			if (!i)
+				sum += proc->pc - vm->arena[0] +
+				ft_instruction_get_data(
+				g_direct_jump_table_from_instr[proc->op->numero], ptr);
+			else
+			#endif
+			ft_log("DIR get_data : %d\n", ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero], ptr));
+				sum +=
+				ft_instruction_get_data(
+				g_direct_jump_table_from_instr[proc->op->numero], ptr);
+		}
 		ptr += proc->jump[i];
 		++i;
 	}
@@ -63,5 +80,4 @@ void			ft_vm_instr_lldi(t_vm *vm, t_process *proc)
 	ft_vm_instr_update_exec_cycle(proc);
 	/* Change the carry */
 	proc->carry ^= proc->carry;
-	//getchar();
 }

@@ -6,14 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:57:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 18:13:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/30 12:41:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_log.h"
 #include "ft_string.h"
-#include <unistd.h>
 
 void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 {
@@ -51,7 +49,7 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 		ptr += proc->jump[i];
 		++i;
 	}
-	/* Load a value from a register */
+	/* Store the value in the arena */
 	ft_memcpy((void *)&vm->arena[0][MOD(copy_at_address)], (void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
 	/* Write in a logfile */
 	LOG_OPT ? ft_vm_log_sti(vm, proc, copy_at_address) : 0;

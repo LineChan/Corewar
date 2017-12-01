@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 00:46:50 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/24 13:43:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/30 15:55:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ int          ft_atoi(char *str)
     if ((nb > 2147483647) || ((nb > 2147483648) && IS_NEG(sign)))
       EXIT_FAIL("Error : not an integer");
   }
+  if (*str)
+  	EXIT_FAIL("Error : number not well formated");
   return (IS_NEG(sign) ? -nb : nb);
 }

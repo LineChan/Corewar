@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 18:15:30 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:37:00 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 	number =
 		ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero],
 		proc->pc + 1);
-		ft_vm_print_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
-		getchar();
 	/* Find the champion that benefits from the live instruction */
 	if ((number < 0) && (number > -5) &&
 			(it = ft_vm_find_proc_nb(&vm->process_head, number)))
@@ -38,6 +36,8 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 	}
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_live(vm, proc, it) : 0;
+	/* Display the output on stdout */
+	DISPLAY_1 ? ft_vm_display_live(vm, proc, it) : 0;
 	/* Fetch the next instruction */
 	proc->pc += 1 + g_direct_jump_table_from_instr[proc->op->numero];
 	/* Update the execution cycle with the new instruction */

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_parse_start_c.c                              :+:      :+:    :+:   */
+/*   ft_vm_parse_display.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 13:33:35 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/30 15:29:37 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/30 15:27:08 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/11/30 16:13:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,27 @@
 #include "macro.h"
 #include "ft_printf.h"
 
-void 			ft_vm_parse_start_c(t_vm *vm, char **av)
+void			ft_vm_parse_display(t_vm *vm, char **av)
 {
 	while (*av)
 	{
-		if (!ft_strncmp("-start_c", *av, 8))
+		if (!ft_strncmp("-display", *av, 8))
 		{
 			if (*(*av + 8) == '=')
 			{
-				if (IS_NEG((vm->current_cycle = ft_atoi(*av + 9))))
-					EXIT_FAIL("Error : -start_c takes a positive integer");
+				if (IS_NEG((vm->option.display = ft_atoi(*av + 9))))
+					EXIT_FAIL("Error : -display takes a positive interger");
 			}
 			else if (*(*av + 8) == '\0')
 			{
-				if (!*(*av + 1) ||
-						IS_NEG((vm->current_cycle = ft_atoi(*(av + 1)))))
-					EXIT_FAIL("Error : -start_c takes a positive integer");
+				if (!*(av + 1) ||
+					IS_NEG((vm->option.display = ft_atoi(*(av + 1)))))
+				{
+					EXIT_FAIL("Error : -display takes a positive integer");
+				}
 			}
 			else
-				EXIT_FAIL("Error : did you mean -start_c=nb?");
+				EXIT_FAIL("Error : did you mean -display=nb ?");
 		}
 		++av;
 	}

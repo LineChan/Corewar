@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 00:51:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 13:44:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/30 17:55:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,19 @@ void			ft_vm_arena_round_check(t_vm *vm,
 			C_PROCESS(it)->live ^= C_PROCESS(it)->live;
 		}
 		it = it->next;
+		//TODO: MAX_CHECK
 	}
 	if (live_total >= NBR_LIVE)
 		*cycle_to_die -= CYCLE_DELTA;
+	if (LOG_OPT)
+	{
+		ft_log("\t\tTotal lives : %d\n", live_total);
+		ft_log("\t\tCycle to die : %d\n", *cycle_to_die);
+
+	}
+	DISPLAY_2 ? ft_printf("Cycle to die is now %d\n", *cycle_to_die) : 0;
 	*cycle_end_round += *cycle_to_die;
+	live_total ^= live_total;
 	if (LOG_OPT)
 		ft_log("# --------------------------------------------------\n");
 }

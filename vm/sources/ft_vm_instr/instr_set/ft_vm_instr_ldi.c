@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 17:38:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 19:24:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/11/30 13:59:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,24 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc)
 				ft_vm_instr_fail(proc, CARRY_CHANGE);
 				return ;
 			}
-			sum += proc->reg[*ptr];
+			if (!i)
+				sum += proc->pc - vm->arena[0] + (proc->reg[*ptr] % IDX_MOD);
+			else
+				sum += proc->reg[*ptr];
 		}
 		else if (proc->op->arg_types[i] == T_IND)
 		{
-			// GET DATA FROM ADDRESS ?
-			sum += vm->arena[0][MOD((proc->pc - vm->arena[0] +
-				(ft_instruction_get_data(2, ptr) % IDX_MOD)))];
+			sum += proc->pc - vm->arena[0] +
+				(ft_instruction_get_data(2, ptr) % IDX_MOD);
 		}
-		else if (proc->op->arg_types[i] == T_DIR)
+		else
 		{
-			sum +=
+			if (!i)
+				sum += proc->pc - vm->arena[0] +
+				ft_instruction_get_data(
+				g_direct_jump_table_from_instr[proc->op->numero], ptr) % IDX_MOD;
+			else
+				sum +=
 				ft_instruction_get_data(
 				g_direct_jump_table_from_instr[proc->op->numero], ptr);
 		}
@@ -61,10 +68,10 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc)
 	ft_memcpy((void *)&proc->reg[*ptr],
 		(void *)&vm->arena[0][MOD(proc->pc - vm->arena[0] + (sum % IDX_MOD))],
 		REG_SIZE);
-	/* Fetch the next instruction */
-	proc->pc += 2 + proc->jump[0] + proc->jump[1] + proc->jump[2];
 	/* Write in a log file */
 	LOG_OPT ? ft_vm_log_ldi(vm, proc, ptr, sum) : 0;
+	/* Fetch the next instruction */
+	proc->pc += 2 + proc->jump[0] + proc->jump[1] + proc->jump[2];
 	/* Change the carry */
 	proc->carry ^= proc->carry;
 	/* Update the execution cycle with the new instruction */

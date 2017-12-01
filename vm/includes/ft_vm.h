@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 16:35:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/01 10:31:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,57 @@
 #  define EXIT_SUCCESS 0
 # endif
 
-# define	MOD(x)	        ((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
-# define    IS_INSTR(x)     ((x > 0) && (x <= REG_NUMBER))
-# define	IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
+# define MOD(x)	        ((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
+# define IS_INSTR(x)     ((x > 0) && (x <= REG_NUMBER))
+# define IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
 
-# define    LOG_OPT         (vm->option.log)
-# define    CARRY_CHANGE    1
+# define LOG_OPT        (vm->option.log)
+# define DISP_OPT		(vm->option.display)
+# define DUMP_OPT		(vm->option.dump)
 
-# define	C_PROCESS(it)	CONTAINEROF(it, t_process, list)
+# define CARRY_CHANGE    1
 
+# define C_PROCESS(it)	CONTAINEROF(it, t_process, list)
+
+/*
+** Define flags
+*/
+
+# define FLAG_1		(1 << 0)
+# define FLAG_2		(1 << 1)
+# define FLAG_4		(1 << 2)
+# define FLAG_8		(1 << 3)
+# define FLAG_16	(1 << 4)
+# define FLAG_32	(1 << 5)
+
+/*
+** Comparisons
+*/
+
+# define DISPLAY_1   (vm->option.display & FLAG_1)
+# define DISPLAY_2 (vm->option.display & FLAG_2)
+# define DISPLAY_4 (vm->option.display & FLAG_4)
+# define DISPLAY_8 (vm->option.display & FLAG_8)
+# define DISPLAY_16 (vm->option.display & FLAG_16)
+# define DISPLAY_32 (vm->option.display & FLAG_32)
 /*
 ** Structures
 */
 
+#if 0
+typedef struct          s_display
+{
+    unsigned int        nb;
+    //
+}                       t_display;
+#endif
 typedef struct          s_vm_option
 {
+    //TODO : put everything in one int only
     unsigned char       log;
+    //
+    unsigned int       display;
+    //t_display           display;
     unsigned int        dump;
 }                       t_vm_option;
 
@@ -117,6 +152,7 @@ void        ft_vm_parse(t_vm *vm, char **av);
 void        ft_vm_parse_log(t_vm *vm, char **av);
 void        ft_vm_parse_start_c(t_vm *vm, char **av);
 void        ft_vm_parse_dump(t_vm *vm, char **av);
+void        ft_vm_parse_display(t_vm *vm, char **av);
 void        ft_vm_parse_champion(t_vm *vm, char **av);
 
 /*
@@ -241,4 +277,10 @@ void            ft_vm_log_lfork(t_vm *vm,
                             t_process *proc,
                             const int index);
 void            ft_vm_log_aff(t_vm *vm, t_process *proc);
+
+/*
+** Display functions
+*/
+
+void			ft_vm_display_live(t_vm *vm, t_process *proces, t_list *it);
 #endif
