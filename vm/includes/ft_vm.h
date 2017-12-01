@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 10:31:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/01 18:14:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ typedef struct          s_process
 {
     int                     parent_nb;
     int                     process_nb;
-    unsigned int            live;
+    unsigned int            live[2];
     unsigned int            carry;
     unsigned int            exec_cycle;
     unsigned int            bytecode;
@@ -111,8 +111,8 @@ typedef struct			s_vm
     unsigned int            index[MAX_PLAYERS];
     unsigned int            fd[MAX_PLAYERS];
     unsigned int            current_cycle;
-    unsigned int            last_alive;
-    unsigned int            checks;
+	unsigned int 			last_alive;
+	unsigned int 			total_live;
 	unsigned int 			nb_champion;
     unsigned char           arena[2][MEM_SIZE];
     t_vm_option             option;
@@ -139,6 +139,9 @@ int			ft_instruction_get_data(size_t size, uint8_t *pc);
 */
 int			ft_atoi(char *str);
 void        ft_vm_print_intro(t_vm *vm);
+void		ft_vm_print_death(t_vm *vm,
+                                const unsigned int cycle_end_round,
+                                const int cycle_to_die);
 void		ft_vm_print_arena(void const *data,
 									size_t msize,
 									size_t nb_byte,
@@ -175,7 +178,7 @@ void	   ft_vm_arena_cycle_routine(t_vm *vm);
 void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
 void       ft_vm_arena_round_check(t_vm *vm,
                                     unsigned int *cycle_end_round,
-                                    unsigned int *cycle_to_die);
+                                    int *cycle_to_die);
 
 /*
 ** Process functions
@@ -194,8 +197,8 @@ void		ft_vm_close_process(t_list *node);
 ** Instruction functions
 */
 
-void        ft_vm_instr_fail(t_process *proc, const int carry_change);
-void		ft_vm_instr_update_exec_cycle(t_process *proc);
+void        ft_vm_instr_fail(t_vm *vm, t_process *proc, const int carry_change);
+void		ft_vm_instr_update_exec_cycle(t_vm *vm, t_process *proc);
 int         ft_vm_instr_bytecode_check(t_process *proc);
 /*
 ** Instruction set

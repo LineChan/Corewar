@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:48:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 00:36:44 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:47:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void			ft_vm_instr_zjmp(t_vm *vm, t_process *proc)
 		proc->pc += MOD((proc->pc - vm->arena[0] + (ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero], proc->pc + 1) % IDX_MOD)));
 	LOG_OPT ? ft_vm_log_zjmp(vm, proc) : 0;
 	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(proc);
+	ft_vm_instr_update_exec_cycle(vm, proc);
 }

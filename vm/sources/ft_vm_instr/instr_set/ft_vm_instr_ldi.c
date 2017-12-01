@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 17:38:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/30 13:59:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:49:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc)
 		{
 			if (!IS_REG(*ptr))
 			{
-				ft_vm_instr_fail(proc, CARRY_CHANGE);
+				ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
 				return ;
 			}
 			if (!i)
@@ -61,7 +61,7 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc)
 	/* Load the value in a register */
 	if (!IS_REG(*ptr))
 	{
-		ft_vm_instr_fail(proc, CARRY_CHANGE);
+		ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
 		return ;
 	}
 	/* Load the value in a register */
@@ -75,5 +75,5 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc)
 	/* Change the carry */
 	proc->carry ^= proc->carry;
 	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(proc);
+	ft_vm_instr_update_exec_cycle(vm, proc);
 }

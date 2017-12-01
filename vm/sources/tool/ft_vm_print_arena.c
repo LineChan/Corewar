@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 13:22:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 10:31:44 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/01 16:32:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,18 @@ void			ft_vm_print_arena(void const *data,
 			{
 				if (p == C_PROCESS(it)->pc)
 				{
-					ft_fprintf(2, "{red:%02hhx} ", *p);
+					if (C_PROCESS(it)->parent_nb == 1)
+						ft_fprintf(2, "{red:%02hhx} ", *p);
+					else if (C_PROCESS(it)->parent_nb == 2)
+						ft_fprintf(2, "{blue:%02hhx} ", *p);
+					else if (C_PROCESS(it)->parent_nb == 3)
+						ft_fprintf(2, "{yellow:%02hhx} ", *p);
 					++p;
 					++i;
+					if (0 == (i % nb_byte))
+						ft_fprintf(2,"\n");
+					if ((p - vm->arena[0] == MEM_SIZE))
+						return ;
 				}
 				it = it->next;
 			}

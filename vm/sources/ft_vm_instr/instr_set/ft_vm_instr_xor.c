@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:21:54 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 00:36:27 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:47:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			ft_vm_instr_xor(t_vm *vm, t_process *proc)
 		{
 			if (!IS_REG(*ptr))
 			{
-				ft_vm_instr_fail(proc, CARRY_CHANGE);
+				ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
 				return ;
 			}
 			xor[i] = proc->reg[*ptr];
@@ -50,7 +50,7 @@ void			ft_vm_instr_xor(t_vm *vm, t_process *proc)
 	/* Compute the result and save it in a register */
 	if (!IS_REG(*ptr))
 	{
-		ft_vm_instr_fail(proc, CARRY_CHANGE);
+		ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
 		return ;
 	}
 	proc->reg[*ptr] = xor[0] ^ xor[1];
@@ -61,5 +61,5 @@ void			ft_vm_instr_xor(t_vm *vm, t_process *proc)
 	/* Change the carry */
 	proc->carry ^= proc->carry;
 	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(proc);
+	ft_vm_instr_update_exec_cycle(vm, proc);
 }

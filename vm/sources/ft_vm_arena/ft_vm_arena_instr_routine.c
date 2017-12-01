@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 16:21:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/01 15:01:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 //TODO: libs
 #include <libc.h>
+#if 0
 static void ft_tmp(t_vm *vm, t_process *proc)
 {
 	(void)vm;
@@ -25,6 +26,8 @@ static void ft_tmp(t_vm *vm, t_process *proc)
 	ft_printf("exec func\n");
 	/* code */
 }
+#endif
+
 static const		t_instr_list g_instr_list [] =
 {
 	{0},
@@ -43,27 +46,24 @@ static const		t_instr_list g_instr_list [] =
 	{&ft_vm_instr_lld},
 	{&ft_vm_instr_lldi},
 	{&ft_vm_instr_lfork},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	{&ft_tmp},
-	#if 0
 	{&ft_vm_instr_aff},
-	#endif
 };
 
 void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 {
 	extern t_op			g_op_tab[17];
 
-	(void)vm;
+	#if 0
+	ft_fprintf(2, "instr routine \n");
+	if (vm->current_cycle == 2153)
+	{
+		ft_vm_print_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
+		ft_printf("\n");
+	}
+	#endif
 	if (!IS_INSTR(*proc->pc))
 	{
-		ft_vm_instr_fail(proc, !CARRY_CHANGE);
+		ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
 		return ;
 	}
 	/* Copy all the informations concerning the instruction */
@@ -76,7 +76,7 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 		/* Check if the parameters are valid */
 		if (ft_vm_instr_bytecode_check(proc) == EXIT_FAILURE)
 		{
-			ft_vm_instr_fail(proc, !CARRY_CHANGE);
+			ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
 			return ;
 		}
 	}
