@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 18:14:27 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/03 16:52:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,18 @@
 #  define EXIT_SUCCESS 0
 # endif
 
+# define CARRY_CHANGE    1
+# define INSTR_NUMBER    17
+
 # define MOD(x)	        ((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
-# define IS_INSTR(x)     ((x > 0) && (x <= REG_NUMBER))
+# define IS_INSTR(x)     ((x > 0) && (x <= INST_NUMBER))
 # define IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
 
 # define LOG_OPT        (vm->option.log)
 # define DISP_OPT		(vm->option.display)
 # define DUMP_OPT		(vm->option.dump)
+# define S_DUMP_OPT		(vm->option.s_dump)
 
-# define CARRY_CHANGE    1
 
 # define C_PROCESS(it)	CONTAINEROF(it, t_process, list)
 
@@ -85,17 +88,19 @@ typedef struct          s_vm_option
 {
     //TODO : put everything in one int only
     unsigned char       log;
+	unsigned int		death[4];
     //
     unsigned int       display;
     //t_display           display;
     unsigned int        dump;
+    unsigned int        s_dump;
 }                       t_vm_option;
 
 typedef struct          s_process
 {
     int                     parent_nb;
     int                     process_nb;
-    unsigned int            live[2];
+    unsigned int            live;
     unsigned int            carry;
     unsigned int            exec_cycle;
     unsigned int            bytecode;
@@ -111,6 +116,7 @@ typedef struct			s_vm
     unsigned int            index[MAX_PLAYERS];
     unsigned int            fd[MAX_PLAYERS];
     unsigned int            current_cycle;
+	int                		cycle_to_die;
 	unsigned int 			last_alive;
 	unsigned int 			total_live;
 	unsigned int 			nb_champion;
@@ -139,9 +145,6 @@ int			ft_instruction_get_data(size_t size, uint8_t *pc);
 */
 int			ft_atoi(char *str);
 void        ft_vm_print_intro(t_vm *vm);
-void		ft_vm_print_death(t_vm *vm,
-                                const unsigned int cycle_end_round,
-                                const int cycle_to_die);
 void		ft_vm_print_arena(void const *data,
 									size_t msize,
 									size_t nb_byte,
@@ -155,6 +158,7 @@ void        ft_vm_parse(t_vm *vm, char **av);
 void        ft_vm_parse_log(t_vm *vm, char **av);
 void        ft_vm_parse_start_c(t_vm *vm, char **av);
 void        ft_vm_parse_dump(t_vm *vm, char **av);
+void        ft_vm_parse_s_dump(t_vm *vm, char **av);
 void        ft_vm_parse_display(t_vm *vm, char **av);
 void        ft_vm_parse_champion(t_vm *vm, char **av);
 
@@ -177,8 +181,7 @@ void       ft_vm_arena_upload(t_vm *vm);
 void	   ft_vm_arena_cycle_routine(t_vm *vm);
 void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
 void       ft_vm_arena_round_check(t_vm *vm,
-                                    unsigned int *cycle_end_round,
-                                    int *cycle_to_die);
+                                    unsigned int *cycle_end_round);
 
 /*
 ** Process functions
@@ -285,5 +288,7 @@ void            ft_vm_log_aff(t_vm *vm, t_process *proc);
 ** Display functions
 */
 
-void			ft_vm_display_live(t_vm *vm, t_process *proces, t_list *it);
+void			ft_vm_display_live(t_vm *vm, t_list *it);
+void			ft_vm_display_new_death(t_vm *vm, t_process *proc);
+void    		ft_vm_display_death(t_vm *vm);
 #endif

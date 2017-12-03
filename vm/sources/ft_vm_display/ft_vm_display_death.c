@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_print_death.c                                :+:      :+:    :+:   */
+/*   ft_vm_display_death.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 18:01:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 18:17:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/03 16:38:48 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-
-//TODO: libs
 #include "ft_printf.h"
 
-void			ft_vm_print_death(t_vm *vm,
-									const unsigned int cycle_end_round,
-									const int cycle_to_die)
+void			ft_vm_display_death(t_vm *vm)
 {
-	t_list		*it;
+	int			i;
 
-	it = vm->process_head.next;
-	ft_printf("print death\n");
-	//TODO : PB BC everything removed;
-	while (it != &vm->process_head)
+	i = MAX_PLAYERS;
+	while (i)
 	{
-		ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
-			C_PROCESS(it)->parent_nb, C_PROCESS(it)->live[1] - cycle_end_round,
-			cycle_to_die);
-		it = it->next;
+		if (vm->fd[i - 1])
+		{
+			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+				i, vm->current_cycle - vm->option.death[i - 1] - 1, vm->cycle_to_die);
+		}
+		--i;
 	}
 }

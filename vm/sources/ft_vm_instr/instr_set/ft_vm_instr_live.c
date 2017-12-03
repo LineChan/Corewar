@@ -6,16 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 17:55:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/03 16:59:17 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-// TODO: libs
-#include <libc.h>
-#include "ft_printf.h"
-#include "ft_log.h"
 void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 {
 	int				number;
@@ -32,15 +28,18 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 	{
 		/* The lastest champion to do live wins */
 		vm->last_alive = C_PROCESS(it)->parent_nb;
-		++C_PROCESS(it)->live[0];
-		DISPLAY_8 ? C_PROCESS(it)->live[1] = vm->current_cycle: 0;
+		++C_PROCESS(it)->live;
 	}
 	else
 		++vm->total_live;
+	/* Display additional information */
+	if (DISP_OPT)
+	{
+		DISPLAY_1 ? ft_vm_display_live(vm, it) : 0;
+		DISPLAY_8 ? ft_vm_display_new_death(vm, proc, it) : 0;
+	}
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_live(vm, proc, it) : 0;
-	/* Display the output on stdout */
-	DISPLAY_1 ? ft_vm_display_live(vm, proc, it) : 0;
 	/* Fetch the next instruction */
 	proc->pc += 1 + g_direct_jump_table_from_instr[proc->op->numero];
 	/* Update the execution cycle with the new instruction */
