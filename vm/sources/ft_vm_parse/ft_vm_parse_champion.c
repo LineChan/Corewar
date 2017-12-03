@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:51:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 17:07:25 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/03 17:09:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ void 			ft_vm_parse_champion(t_vm *vm, char **av)
 		}
 		else if (*(int *)".cor" == *(int *)(*av + ft_strlen(*av) - 4))
 		{
-			fd[current_i++] = open(*av, O_RDONLY, 0666);
+			if (IS_NEG((fd[current_i++] = open(*av, O_RDONLY, 0666))))
+				EXIT_FAIL("Error : Cannot read the champion");
 			if ((current_i + champion_found) >= MAX_PLAYERS)
 				EXIT_FAIL("Error : Too many champions want to fight !");
 		}
