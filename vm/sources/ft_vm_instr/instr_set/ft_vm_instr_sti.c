@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:57:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 15:47:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/05 13:36:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 	/* Read arguments */
 	if (!IS_REG(*ptr))
 	{
-		ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
+		ft_vm_instr_fail(vm, proc,
+			2 + proc->jump[0] + proc->jump[1] + proc->jump[2],
+			!CARRY_CHANGE);
 		return ;
 	}
 	ptr += proc->jump[0];
@@ -37,7 +39,9 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 		{
 			if (!IS_REG(*ptr))
 			{
-				ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
+				ft_vm_instr_fail(vm, proc,
+					2 + proc->jump[0] + proc->jump[1] + proc->jump[2],
+					!CARRY_CHANGE);
 				return ;
 			}
 			copy_at_address += proc->reg[*ptr];
@@ -51,6 +55,12 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 	}
 	/* Store the value in the arena */
 	ft_memcpy((void *)&vm->arena[0][MOD(copy_at_address)], (void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
+	/* Display additional informations */
+	if (DISP_OPT)
+	{
+		DISPLAY_16 ? ft_vm_display_pc(vm, proc,
+			2 + proc->jump[0] + proc->jump[1] + proc->jump[2]) : 0;
+	}
 	/* Write in a logfile */
 	LOG_OPT ? ft_vm_log_sti(vm, proc, copy_at_address) : 0;
 	/* Fetch the next instruction */

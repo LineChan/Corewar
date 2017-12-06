@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 00:04:13 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 13:29:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/06 14:55:42 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void			ft_vm_log_sub(t_vm *vm,
 								t_process *proc,
-								const unsigned int sub[3])
+								const int sub[3])
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "sub");

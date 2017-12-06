@@ -6,12 +6,16 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:40:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 15:47:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:43:55 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
+
+//TODO : lisb
+#include "ft_printf.h"
+
 
 void			ft_vm_instr_st(t_vm *vm, t_process *proc)
 {
@@ -22,27 +26,37 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc)
 	{
 		if (!IS_REG(*(proc->pc + 3)) || !IS_REG(*(proc->pc + 2)))
 		{
-			ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
+			ft_vm_instr_fail(vm, proc, 2 + proc->jump[0] + proc->jump[1],
+				!CARRY_CHANGE);
 			return ;
 		}
+		/* Display additional informations */
+		DISPLAY_4 ? ft_vm_display_st(vm, proc) : 0;
 		/* Store the value in a register */
 		proc->reg[*(proc->pc + 3)] = proc->reg[*(proc->pc + 2)];
-		/* Write in the log file */
-		LOG_OPT ? ft_vm_log_st(vm, proc, T_REG) : 0;
 	}
 	else
 	{
 		if (!IS_REG(*(proc->pc + 2)))
 		{
-			ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
+			ft_vm_instr_fail(vm, proc, 2 + proc->jump[0] + proc->jump[1],
+				!CARRY_CHANGE);
 			return ;
 		}
+		/* Display additional informations */
+		DISPLAY_4 ? ft_vm_display_st(vm, proc) : 0;
 		/* Store the value in the arena */
-		ft_memcpy((void *)&vm->arena[0][MOD((proc->pc - vm->arena[0] + (ft_instruction_get_data(2, proc->pc + 3) % IDX_MOD)))],
-		(void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
-		/* Write in the log file */
-		LOG_OPT ? ft_vm_log_st(vm, proc, T_IND) : 0;
+		#if 0
+		ft_printf("pc at : %d\n", proc->pc - vm->arena[0]);
+		ft_printf("MOD(pc + 3) : %d\n", MOD(ft_instruction_get_data(2, proc->pc + 3)));
+		#endif
+		ft_memcpy((void *)&vm->arena[0][(MOD(proc->pc - vm->arena[0] + (ft_instruction_get_data(2, proc->pc + 3) % IDX_MOD)))],
+				(void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
 	}
+	/* Display additional informations */
+	DISPLAY_16 ? ft_vm_display_pc(vm, proc, 2 + proc->jump[0] + proc->jump[1]) : 0;
+	/* Write in the log file */
+	LOG_OPT ? ft_vm_log_st(vm, proc) : 0;
 	/* Fetch the next instruction */
 	proc->pc += 2 + proc->jump[0] + proc->jump[1];
 	/* Update the execution cycle with the new instruction */

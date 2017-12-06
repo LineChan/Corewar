@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:16:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 14:21:06 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/04 17:47:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void				ft_option_usage(void)
 	exit(EXIT_FAILURE);
 }
 #endif
-#include "ft_printf.h"
 void 				ft_vm_parse(t_vm *vm, char **av)
 {
 	ft_vm_parse_log(vm, av);

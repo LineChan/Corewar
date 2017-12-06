@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:45:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 15:46:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/05 13:33:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,18 @@ void				ft_vm_instr_lld(t_vm *vm, t_process *proc)
 	ptr += proc->jump[0];
 	if (!IS_REG(*ptr))
 	{
-		ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
+		ft_vm_instr_fail(vm, proc, 2 + proc->jump[0] + proc->jump[1],
+			CARRY_CHANGE);
 		return ;
 	}
 	/* Load the value in a register */
 	proc->reg[*ptr] = ft_instruction_get_data(REG_SIZE, &vm->arena[0][MOD(address)]);
+	/* Display additional informations */
+	if (DISP_OPT)
+	{
+		DISPLAY_16 ? ft_vm_display_pc(vm, proc,
+					2 + proc->jump[0] + proc->jump[1]) : 0;
+	}
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_lld(vm, proc, ptr, address) : 0;
 	/* Fetch the next instruction */

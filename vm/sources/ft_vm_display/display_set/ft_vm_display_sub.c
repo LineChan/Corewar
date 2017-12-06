@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_log_and.c                                    :+:      :+:    :+:   */
+/*   ft_vm_display_sub.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 12:58:42 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/05 18:56:56 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/06 14:49:42 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/06 14:54:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_log.h"
+#include "ft_printf.h"
 
-void			ft_vm_log_and(t_vm *vm,
-								t_process *proc,
-								const unsigned char *ptr,
-								const int and[2])
+static void		ft_vm_display_instr(t_process *proc, const int sub[3])
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
-		-proc->process_nb, "and");
-	ft_vm_log_arg(proc);
-	ft_log("\t\treg[%d] = %d --> [%d] & [%d]\n",
-		*ptr, proc->reg[*ptr], and[0], and[1]);
+	ft_printf("P    %d | sub r%d r%d r%d\n", proc->parent_nb, sub[0],
+		sub[1], sub[2]);
+}
+
+void			ft_vm_display_sub(t_vm *vm, t_process *proc, const int sub[3])
+{
+	DISPLAY_4 ? ft_vm_display_instr(proc, sub) : 0;
+	DISPLAY_16 ? ft_vm_display_pc(vm, proc,
+		2 + proc->jump[0] + proc->jump[1] + proc->jump[2]) : 0;
 }

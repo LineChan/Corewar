@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 17:52:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 15:44:55 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/04 14:35:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ void				ft_vm_instr_fork(t_vm *vm, t_process *proc)
 	ft_vm_new_process_kid(vm, proc, MOD((proc->pc - vm->arena[0] +
 	(ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero],
 									proc->pc + 1) % IDX_MOD))));
+	/* Display additional informations */
+	if (DISP_OPT)
+	{
+		//1
+		//8
+		DISPLAY_16 ? ft_vm_display_pc(vm, proc, 5) : 0;
+	}
 	/* Write in a log file */
 	LOG_OPT ? ft_vm_log_lfork(vm, proc, proc->pc - vm->arena[0] +
 	(ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero],

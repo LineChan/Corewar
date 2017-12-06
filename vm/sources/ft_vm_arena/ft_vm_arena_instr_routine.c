@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 15:01:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/05 13:13:15 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 	#endif
 	if (!IS_INSTR(*proc->pc))
 	{
-		ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
+		/* Move the Program Counter to the next byte */
+		proc->pc += 1;
+		/* Set the instruction cycle to the next one */
+		ft_vm_instr_update_exec_cycle(vm, proc);
 		return ;
 	}
 	/* Copy all the informations concerning the instruction */
@@ -76,7 +79,10 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 		/* Check if the parameters are valid */
 		if (ft_vm_instr_bytecode_check(proc) == EXIT_FAILURE)
 		{
-			ft_vm_instr_fail(vm, proc, !CARRY_CHANGE);
+			/* Move the Program Counter to the next byte */
+			proc->pc += 1;
+			/* Set the instruction cycle to the next one */
+			ft_vm_instr_update_exec_cycle(vm, proc);
 			return ;
 		}
 	}

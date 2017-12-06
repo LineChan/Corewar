@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 16:52:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/06 18:44:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@
 # define CARRY_CHANGE    1
 # define INSTR_NUMBER    17
 
-# define MOD(x)	        ((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE)
-# define IS_INSTR(x)     ((x > 0) && (x <= INST_NUMBER))
-# define IS_REG(x)		(!IS_NEG(x) && (x < REG_NUMBER))
+# define MOD(x)	        (((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE))
+# define IS_INSTR(x)     (((x) > 0) && ((x) <= INSTR_NUMBER))
+# define IS_REG(x)		(((x) > 0) && ((x) <= REG_NUMBER))
 
 # define LOG_OPT        (vm->option.log)
 # define DISP_OPT		(vm->option.display)
@@ -73,6 +73,7 @@
 # define DISPLAY_8 (vm->option.display & FLAG_8)
 # define DISPLAY_16 (vm->option.display & FLAG_16)
 # define DISPLAY_32 (vm->option.display & FLAG_32)
+
 /*
 ** Structures
 */
@@ -86,10 +87,10 @@ typedef struct          s_display
 #endif
 typedef struct          s_vm_option
 {
-    //TODO : put everything in one int only
+    //TODO : put everything in one int only ?
     unsigned char       log;
-	unsigned int		death[4];
     //
+	unsigned int		death[4];
     unsigned int       display;
     //t_display           display;
     unsigned int        dump;
@@ -104,7 +105,7 @@ typedef struct          s_process
     unsigned int            carry;
     unsigned int            exec_cycle;
     unsigned int            bytecode;
-    int                     reg[REG_NUMBER];
+    int                     reg[REG_NUMBER + 1];
     int                     jump[MAX_ARGS_NUMBER];
     unsigned char           *pc;
     t_op                    *op;
@@ -150,6 +151,7 @@ void		ft_vm_print_arena(void const *data,
 									size_t nb_byte,
 									t_vm *vm);
 t_list		*ft_vm_find_proc_nb(t_list *head, int nb);
+
 /*
 ** Parse functions
 */
@@ -200,9 +202,20 @@ void		ft_vm_close_process(t_list *node);
 ** Instruction functions
 */
 
-void        ft_vm_instr_fail(t_vm *vm, t_process *proc, const int carry_change);
+void        ft_vm_instr_fail(t_vm *vm, t_process *proc,
+                            const int size,
+                            const int carry_change);
 void		ft_vm_instr_update_exec_cycle(t_vm *vm, t_process *proc);
 int         ft_vm_instr_bytecode_check(t_process *proc);
+int	    	ft_vm_instr_and_or_xor_routine(t_vm *vm,
+                            t_process *proc,
+                            unsigned char **ptr,
+                            int tab[2]);
+int	    	ft_vm_instr_add_sub_routine(t_vm *vm,
+                            t_process *proc,
+                            unsigned char **ptr,
+                            int tab[3]);
+
 /*
 ** Instruction set
 */
@@ -240,30 +253,26 @@ void			ft_vm_log_ld(t_vm *vm,
                             t_process *proces,
                             const unsigned char *ptr,
                             const unsigned int address);
-void 			ft_vm_log_st(t_vm *vm, t_process *proc, const int dir);
+void 			ft_vm_log_st(t_vm *vm, t_process *proc);
 void 			ft_vm_log_add(t_vm *vm,
                             t_process *proc,
-                            const unsigned int add[3]);
+                            const int add[3]);
 void 			ft_vm_log_sub(t_vm *vm,
                             t_process *proc,
-                            const unsigned int sub[3]);
+                            const int sub[3]);
 void 			ft_vm_log_and(t_vm *vm,
 							t_process *proc,
 							const unsigned char *ptr,
-							const unsigned int and[2]);
+							const int and[2]);
 void 			ft_vm_log_or(t_vm *vm,
                             t_process *proc,
                             const unsigned char *ptr,
-                            const unsigned int or[2]);
+                            const int or[2]);
 void 			ft_vm_log_xor(t_vm *vm,
                             t_process *proc,
                             unsigned char *ptr,
-                            const unsigned int xor[2]);
+                            const int xor[2]);
 void 			ft_vm_log_zjmp(t_vm *vm, t_process *proc);
-void 			ft_vm_log_xor(t_vm *vm,
-                            t_process *proc,
-                            unsigned char *ptr,
-                            const unsigned int xor[2]);
 void			ft_vm_log_ldi(t_vm *vm,
 							t_process *proc,
 							unsigned char *ptr,
@@ -288,7 +297,37 @@ void            ft_vm_log_aff(t_vm *vm, t_process *proc);
 ** Display functions
 */
 
-void			ft_vm_display_live(t_vm *vm, t_list *it);
-void			ft_vm_display_new_death(t_vm *vm, t_process *proc);
 void    		ft_vm_display_death(t_vm *vm);
+void    		ft_vm_display_pc(t_vm *vm, t_process *proc, const int size);
+
+/*
+** Display set
+*/
+
+void    		ft_vm_display_live(t_vm *vm, t_process *proc,
+                                    t_list *it,
+                                    const int number);
+void			ft_vm_display_ld(t_vm *vm,
+                                    t_process *proces,
+                                    const unsigned char *ptr,
+                                    const unsigned int address);
+void 			ft_vm_display_st(t_vm *vm, t_process *proc);
+void			ft_vm_display_add(t_vm *vm,
+                                   t_process *proc,
+                                   const int add[3]);
+void			ft_vm_display_sub(t_vm *vm,
+                                  t_process *proc,
+                                  const int sub[3]);
+void			ft_vm_display_and(t_vm *vm,
+                                   t_process *proc,
+                                   const unsigned char *ptr,
+                                   const int and[2]);
+void			ft_vm_display_or(t_vm *vm,
+                                   t_process *proc,
+                                   const unsigned char *ptr,
+                                   const int or[2]);
+void			ft_vm_display_xor(t_vm *vm,
+                              t_process *proc,
+                              const unsigned char *ptr,
+                              const int xor[2]);
 #endif

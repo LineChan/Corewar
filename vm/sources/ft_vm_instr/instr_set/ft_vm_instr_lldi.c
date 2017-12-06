@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:11:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 15:46:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/05 13:34:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <libc.h>
 #include "ft_printf.h"
 #include "ft_log.h"
+//TODO : stil debugging
 void			ft_vm_instr_lldi(t_vm *vm, t_process *proc)
 {
 	int					i;
@@ -34,7 +35,9 @@ void			ft_vm_instr_lldi(t_vm *vm, t_process *proc)
 		{
 			if (!IS_REG(*ptr))
 			{
-				ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
+				ft_vm_instr_fail(vm, proc,
+					2 + proc->jump[0] + proc->jump[1] + proc->jump[2],
+					CARRY_CHANGE);
 				return ;
 			}
 			if (!i)
@@ -67,11 +70,19 @@ void			ft_vm_instr_lldi(t_vm *vm, t_process *proc)
 	}
 	if (!IS_REG(*ptr))
 	{
-		ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
+		ft_vm_instr_fail(vm, proc,
+			2 + proc->jump[0] + proc->jump[1] + proc->jump[2],
+			CARRY_CHANGE);
 		return ;
 	}
 	/* Load the value in a register */
 	proc->reg[*ptr] = vm->arena[0][MOD(sum)];
+	/* Display additional informations */
+	if (DISP_OPT)
+	{
+		DISPLAY_16 ? ft_vm_display_pc(vm, proc,
+				2 + proc->jump[0] + proc->jump[1] + proc->jump[2]) : 0;
+	}
 	/* Write in a log file */
 	LOG_OPT ? ft_vm_log_lldi(vm, proc, ptr, sum) : 0;
 	/* Fetch the next instruction */

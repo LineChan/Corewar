@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 23:16:48 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/01 15:44:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/06 14:46:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,16 @@
 
 void			ft_vm_instr_add(t_vm *vm, t_process *proc)
 {
-	int					i;
-	unsigned int		add[3];
+	int		add[3];
 	unsigned char		*ptr;
 
-	/* Set up a pointer at the beginning of the arguments */
-	ptr = proc->pc + 2;
-	/* Read arguments */
-	i = 0;
-	while (i < proc->op->nb_args)
-	{
-		add[i] = *ptr;
-		++ptr;
-		++i;
-	}
-	/* Check if they all are register numbers */
-	if (!(IS_REG(add[0]) && IS_REG(add[1]) && IS_REG(add[2])))
-	{
-		ft_vm_instr_fail(vm, proc, CARRY_CHANGE);
+	ptr = 0;
+	if (ft_vm_instr_add_sub_routine(vm, proc, &ptr, add) == EXIT_FAILURE)
 		return ;
-	}
 	/* Compute the result and load it in a register */
 	proc->reg[add[2]] = MOD(proc->reg[add[0]] + proc->reg[add[1]]);
+	/* Display additional informations */
+	DISP_OPT ? ft_vm_display_add(vm, proc, add) : 0;
 	/* Write in a log file */
 	LOG_OPT ? ft_vm_log_add(vm, proc, add) : 0;
 	/* Fetch the next instruction */

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:51:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 17:09:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/04 13:43:01 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <fcntl.h>
 
 static void 	ft_vm_champion_repartition(t_vm *vm,
-										unsigned int fd[4],
+										int fd[4],
 										const int current_i)
 {
 	int			i;

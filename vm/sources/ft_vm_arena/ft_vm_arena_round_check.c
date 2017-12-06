@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 00:51:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 15:27:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/04 17:33:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void			ft_vm_arena_round_check(t_vm *vm,
 			/* Delete the process if it did not call the live instruction */
 			LOG_OPT ? ft_log("\t\tProcess %d is dead\n",
 								-C_PROCESS(it)->process_nb) : 0 ;
-			//DISPLAY_8 ? ft_vm_display_new_death(vm, it) : 0;
 			ft_vm_close_process(it);
 			--vm->nb_champion;
 		}

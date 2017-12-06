@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 16:59:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/04 17:40:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,8 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 	}
 	else
 		++vm->total_live;
-	/* Display additional information */
-	if (DISP_OPT)
-	{
-		DISPLAY_1 ? ft_vm_display_live(vm, it) : 0;
-		DISPLAY_8 ? ft_vm_display_new_death(vm, proc, it) : 0;
-	}
+	/* Display additional informations */
+	DISP_OPT ? ft_vm_display_live(vm, proc, it, number) : 0;
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_live(vm, proc, it) : 0;
 	/* Fetch the next instruction */

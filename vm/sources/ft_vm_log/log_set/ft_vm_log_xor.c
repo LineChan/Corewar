@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:36:48 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 14:47:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/05 19:15:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void			ft_vm_log_xor(t_vm *vm, t_process *proc,
 								unsigned char *ptr,
-								const unsigned int xor[2])
+								const int xor[2])
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "add");
