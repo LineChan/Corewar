@@ -3,6 +3,7 @@
 
 sti r1, 4095, %0
 sti r1, %4000, %94
-sti r1, %4093, r1
+sti r1, %4093, r6
 sti r2, r2, %4092
-sti r0, 4095, r1
+sti r3, 4095, r6
+sti r3, r1, r5

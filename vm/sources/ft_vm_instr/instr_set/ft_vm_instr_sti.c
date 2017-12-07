@@ -6,15 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:57:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 16:26:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 20:54:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
 
-//TODO: libs
-#include "ft_printf.h"
 void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 {
 	int					i;
@@ -54,17 +52,12 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 		ptr += proc->jump[i];
 		++i;
 	}
+	if (proc->op->arg_types[1] == T_IND)
+		address[0] = ft_instruction_get_data(REG_SIZE, &vm->arena[0][proc->pc - vm->arena[0] + address[0]]);
 	/* Display additional information */
 	DISPLAY_4 ? ft_vm_display_sti(vm, proc, address) : 0;
 	/* Store the value in the arena */
-	if (proc->op->arg_types[1] == T_IND)
-	{
-		ft_memcpy((void *)&vm->arena[0][MOD(proc->pc - vm->arena[0] + (ft_instruction_get_data(2, &vm->arena[0][address[0]]) + address[1]) % IDX_MOD)], (void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
-	}
-	else
-	{
-		ft_memcpy((void *)&vm->arena[0][MOD(proc->pc - vm->arena[0] + (address[0] + address[1]) % IDX_MOD)], (void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
-	}
+	ft_memcpy((void *)&vm->arena[0][MOD(proc->pc - vm->arena[0] + (address[0] + address[1]) % IDX_MOD)], (void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
 	/* Display additional informations */
 	DISPLAY_16 ? ft_vm_display_pc(vm, proc, 2 + proc->jump[0] + proc->jump[1] + proc->jump[2]) : 0;
 	/* Write in a logfile */
