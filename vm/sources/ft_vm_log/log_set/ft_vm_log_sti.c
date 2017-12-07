@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 15:42:38 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/28 22:57:46 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 16:26:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 void				ft_vm_log_sti(t_vm *vm,
 									t_process *proc,
-									const int copy_at_address)
+									const int copy_at_address[2])
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "sti");
 	ft_vm_log_arg(proc);
-	ft_log("\t\tarena[%d] = %d --> reg[%d]\n", MOD(copy_at_address),
-												vm->arena[0][MOD(copy_at_address)],
-												*(proc->pc + 2));
+	ft_log("\t\tarena[%d + %d] = %d --> reg[%d]\n",
+						copy_at_address[0], copy_at_address[1],
+						vm->arena[0][MOD(copy_at_address[0] + copy_at_address[1])],
+						*(proc->pc + 2));
 }

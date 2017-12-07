@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 11:40:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 14:39:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define INSTR_NUMBER    17
 
 # define MOD(x)	        (((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE))
+# define IDX(x)	        (((x) < 0) ? (IDX_MOD + ((x) % IDX_MOD)) : ((x) % IDX_MOD))
 # define IS_INSTR(x)     (((x) > 0) && ((x) <= INSTR_NUMBER))
 # define IS_REG(x)		(((x) > 0) && ((x) <= REG_NUMBER))
 
@@ -278,7 +279,7 @@ void			ft_vm_log_ldi(t_vm *vm,
 							unsigned char *ptr,
    							const unsigned int value_to_load);
 void            ft_vm_log_sti(t_vm *vm, t_process *proc,
-                            const int copy_at_address);
+                            const int copy_at_address[2]);
 void            ft_vm_log_fork(t_vm *vm,
                             t_process *proc,
                             const int index);
@@ -330,4 +331,5 @@ void			ft_vm_display_xor(t_vm *vm,
                               t_process *proc,
                               const unsigned char *ptr,
                               const int xor[2]);
+void			ft_vm_display_sti(t_vm *vm, t_process *proc, int tab[2]);
 #endif
