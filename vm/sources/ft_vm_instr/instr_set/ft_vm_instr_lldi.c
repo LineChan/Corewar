@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:11:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/05 13:34:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:48:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,21 @@ void			ft_vm_instr_lldi(t_vm *vm, t_process *proc)
 		else if (proc->op->arg_types[i] == T_IND)
 		{
 
-			ft_log("IND get_data : %d\n", ft_instruction_get_data(2, ptr));
-			sum += ft_instruction_get_data(2, ptr);
+			sum += ft_vm_instr_get_data(2, ptr, vm);
 		}
 		else
 		{
 			#if 0
 			if (!i)
 				sum += proc->pc - vm->arena[0] +
-				ft_instruction_get_data(
+				ft_vm_instr_get_data(
 				g_direct_jump_table_from_instr[proc->op->numero], ptr);
 			else
 			#endif
-			ft_log("DIR get_data : %d\n", ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero], ptr));
+			//ft_log("DIR get_data : %d\n", ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero], ptr));
 				sum +=
-				ft_instruction_get_data(
-				g_direct_jump_table_from_instr[proc->op->numero], ptr);
+				ft_vm_instr_get_data(
+				g_direct_jump_table_from_instr[proc->op->numero], ptr, vm);
 		}
 		ptr += proc->jump[i];
 		++i;

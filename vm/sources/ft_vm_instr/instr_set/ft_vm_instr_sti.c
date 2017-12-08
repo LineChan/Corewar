@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:57:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 20:54:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:36:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,22 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc)
 			address[i - 1] = proc->reg[*ptr];
 		}
 		else if (proc->op->arg_types[i] == T_DIR)
-			address[i - 1] = ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero], ptr);
+		{
+			address[i - 1] =
+			ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero],
+			ptr, vm);
+
+		}
 		else if (proc->op->arg_types[i] == T_IND)
-			address[i - 1] = ft_instruction_get_data(2, ptr);
+			address[i - 1] = ft_vm_instr_get_data(2, ptr, vm);
 		ptr += proc->jump[i];
 		++i;
 	}
 	if (proc->op->arg_types[1] == T_IND)
-		address[0] = ft_instruction_get_data(REG_SIZE, &vm->arena[0][proc->pc - vm->arena[0] + address[0]]);
+	{
+		address[0] = ft_vm_instr_get_data(REG_SIZE,
+			&vm->arena[0][proc->pc - vm->arena[0] + address[0]], vm);
+	}
 	/* Display additional information */
 	DISPLAY_4 ? ft_vm_display_sti(vm, proc, address) : 0;
 	/* Store the value in the arena */

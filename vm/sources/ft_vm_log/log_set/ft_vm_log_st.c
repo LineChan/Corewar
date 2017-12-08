@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 17:03:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 11:40:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:46:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void 				ft_vm_log_st(t_vm *vm, t_process *proc)
 	if (proc->op->arg_types[1]== T_IND)
 	{
 		ft_log("\t\tarena[%d] = %d --> reg[%d]\n",
-			MOD((proc->pc - vm->arena[0]+ (ft_instruction_get_data(2, proc->pc + 3) % IDX_MOD))),
-			vm->arena[0][MOD(proc->pc - vm->arena[0] + ft_instruction_get_data(2, proc->pc + 3) % IDX_MOD)],
+			MOD((proc->pc - vm->arena[0]+ (ft_vm_instr_get_data(2, proc->pc + 3, vm) % IDX_MOD))),
+			vm->arena[0][MOD(proc->pc - vm->arena[0] + ft_vm_instr_get_data(2, proc->pc + 3, vm) % IDX_MOD)],
 			*(proc->pc + 2));
 	}
 	else

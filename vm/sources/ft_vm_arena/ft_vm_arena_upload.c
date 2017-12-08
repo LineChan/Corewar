@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:59:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/05 17:33:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 21:02:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			ft_vm_arena_upload(t_vm *vm)
 				EXIT_FAIL("Error : Failed read");
 			/* Create a new process */
 			ft_vm_new_process(vm, i + 1, -i - 1, index);
-			/* Put the champion's number in the 2nd register */
+			/* Put the champion's number in the 1st register */
 			C_PROCESS(vm->process_head.next)->reg[1] = -i - 1;
 			/* Close the champion's File Descriptor */
 			close(vm->fd[i]);

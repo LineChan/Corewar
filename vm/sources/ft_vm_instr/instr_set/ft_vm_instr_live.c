@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/04 17:40:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:45:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 
 	/* Fetch the champion's number */
 	number =
-		ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero],
-		proc->pc + 1);
+		ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero],
+		proc->pc + 1, vm);
 	/* Find the champion that benefits from the live instruction */
 	if ((number < 0) && (number > -5) &&
 			(it = ft_vm_find_proc_nb(&vm->process_head, number)))

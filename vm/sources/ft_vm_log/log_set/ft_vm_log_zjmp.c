@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 15:12:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 16:59:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:48:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ void			ft_vm_log_zjmp(t_vm *vm, t_process *proc)
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "zjmp");
 	ft_vm_log_arg(proc);
-	ft_log("\t\tJump of %d %% IDX_MOD\n", ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero], proc->pc + 1));
+	ft_log("\t\tJump of %d %% IDX_MOD\n", ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero], proc->pc + 1, vm));
 }

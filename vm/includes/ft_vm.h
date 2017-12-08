@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 14:39:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:27:58 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,6 @@ typedef struct			s_instr_list
 */
 
 /*
-** Commun function
-*/
-int			ft_instruction_get_data(size_t size, uint8_t *pc);
-
-/*
 ** Tool and Print functions
 */
 int			ft_atoi(char *str);
@@ -208,6 +203,7 @@ void        ft_vm_instr_fail(t_vm *vm, t_process *proc,
                             const int carry_change);
 void		ft_vm_instr_update_exec_cycle(t_vm *vm, t_process *proc);
 int         ft_vm_instr_bytecode_check(t_process *proc);
+int			ft_vm_instr_get_data(size_t size, uint8_t *pc, t_vm *vm);
 int	    	ft_vm_instr_and_or_xor_routine(t_vm *vm,
                             t_process *proc,
                             unsigned char **ptr,
@@ -277,7 +273,7 @@ void 			ft_vm_log_zjmp(t_vm *vm, t_process *proc);
 void			ft_vm_log_ldi(t_vm *vm,
 							t_process *proc,
 							unsigned char *ptr,
-   							const unsigned int value_to_load);
+   							const int tab[2]);
 void            ft_vm_log_sti(t_vm *vm, t_process *proc,
                             const int copy_at_address[2]);
 void            ft_vm_log_fork(t_vm *vm,
@@ -331,5 +327,6 @@ void			ft_vm_display_xor(t_vm *vm,
                               t_process *proc,
                               const unsigned char *ptr,
                               const int xor[2]);
-void			ft_vm_display_sti(t_vm *vm, t_process *proc, int tab[2]);
+void			ft_vm_display_sti(t_vm *vm, t_process *proc, const int tab[2]);
+void			ft_vm_display_ldi(t_vm *vm, t_process *proc, const int tab[2], const unsigned char *ptr);
 #endif

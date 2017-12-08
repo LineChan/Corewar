@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:40:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 11:40:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:35:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc)
 		/* Display additional informations */
 		DISPLAY_4 ? ft_vm_display_st(vm, proc) : 0;
 		/* Store the value in the arena */
-		ft_memcpy((void *)&vm->arena[0][(MOD(proc->pc - vm->arena[0] + (ft_instruction_get_data(2, proc->pc + 3) % IDX_MOD)))],
+		ft_memcpy((void *)&vm->arena[0][(MOD(proc->pc - vm->arena[0] + (ft_vm_instr_get_data(2, proc->pc + 3, vm) % IDX_MOD)))],
 				(void *)&proc->reg[*(proc->pc + 2)], REG_SIZE);
 	}
 	/* Display additional informations */

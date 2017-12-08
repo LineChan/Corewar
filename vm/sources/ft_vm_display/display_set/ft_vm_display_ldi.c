@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_log_ldi.c                                    :+:      :+:    :+:   */
+/*   ft_vm_display_ldi.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/28 15:06:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 21:25:52 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/07 21:26:34 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/07 23:28:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_log.h"
+#include "ft_printf.h"
 
-void					ft_vm_log_ldi(t_vm *vm,
-										t_process *proc,
-										unsigned char *ptr,
-										const int tab[2])
+void			ft_vm_display_ldi(t_vm *vm, t_process *proc, const int tab[2],
+									const unsigned char *ptr)
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
-		-proc->process_nb, "ldi");
-	ft_vm_log_arg(proc);
-	ft_log("\t\treg[%d] =  %d --> arena[PC + %d %% MEM_SIZE]\n",
-						*ptr, proc->reg[*ptr], tab[0] + tab[1]);
-	ft_log("\t\tpc at : %d\n", proc->pc - vm->arena[0]);
+	ft_printf("P    %d | ldi %d %d r%d\n", proc->parent_nb, tab[0], tab[1], *ptr);
+	ft_printf("       | -> load from %d + %d = %d (with pc and mod %d)\n",
+					tab[0], tab[1], tab[0] + tab[1],
+					proc->pc - vm->arena[0] + (tab[0] + tab[1]) % IDX_MOD);
 }

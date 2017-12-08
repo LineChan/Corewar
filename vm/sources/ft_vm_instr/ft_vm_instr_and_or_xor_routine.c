@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 18:37:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/06 13:43:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:30:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ int			ft_vm_instr_and_or_xor_routine(t_vm *vm, t_process *proc,
 		}
 		else if (proc->op->arg_types[i] == T_IND)
 		{
-			tab[i] = ft_instruction_get_data(REG_SIZE,
-				&vm->arena[0][MOD(ft_instruction_get_data(2, *ptr))]);
+			tab[i] = ft_vm_instr_get_data(REG_SIZE,
+				&vm->arena[0][MOD(ft_vm_instr_get_data(2, *ptr, vm))], vm);
 				#if 0
 				&vm->arena[0][MOD(proc->pc - vm->arena[0]
-					+ ft_instruction_get_data(2, *ptr))]);
+					+ ft_vm_instr_get_data(2, *ptr))]);
 					#endif
 		}
 		else
 		{
-			tab[i] = ft_instruction_get_data(
-				g_direct_jump_table_from_instr[proc->op->numero], *ptr);
+			tab[i] = ft_vm_instr_get_data(
+				g_direct_jump_table_from_instr[proc->op->numero], *ptr, vm);
 		}
 		*ptr += proc->jump[i];
 		++i;

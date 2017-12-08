@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 16:10:06 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/05 18:37:07 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 21:06:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void 				ft_vm_instr_fail(t_vm *vm,
 	/* Set the instruction cycle to the next one */
 	ft_vm_instr_update_exec_cycle(vm, proc);
 	/* Set the carry to 1 if necessary */
-	(carry_change == CARRY_CHANGE) ? (proc->carry = 1) : 0;
+	carry_change ? (proc->carry = 1) : 0;
 }

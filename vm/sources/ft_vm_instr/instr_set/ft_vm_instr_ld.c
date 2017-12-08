@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:29:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/05 13:30:44 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/07 23:30:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 	if (proc->op->arg_types[0] == T_DIR)
 	{
 		address =
-		ft_instruction_get_data(g_direct_jump_table_from_instr[proc->op->numero],
-		ptr);
+		ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero],
+		ptr, vm);
 	}
 	else
 	{
-		address = proc->pc - vm->arena[0] + ft_instruction_get_data(2, ptr) % IDX_MOD;
+		address = proc->pc - vm->arena[0] +
+			ft_vm_instr_get_data(2, ptr, vm) % IDX_MOD;
 	}
 	ptr += proc->jump[0];
 	if (!IS_REG(*ptr))
@@ -45,7 +46,7 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 		return ;
 	}
 	/* Load the value in a register */
-	proc->reg[*ptr] = ft_instruction_get_data(REG_SIZE, &vm->arena[0][MOD(address)]);
+	proc->reg[*ptr] = ft_vm_instr_get_data(REG_SIZE, &vm->arena[0][MOD(address)], vm);
 	/* Display additional informations */
 	DISP_OPT ?  ft_vm_display_ld(vm, proc, ptr, address) : 0;
 	/* Write in the log file */
