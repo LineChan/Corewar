@@ -6,13 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:45:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 23:34:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/08 18:16:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
-
+//TODO:Libraries
+#include "ft_printf.h"
 void				ft_vm_instr_lld(t_vm *vm, t_process *proc)
 {
 	int					address;
@@ -30,8 +31,8 @@ void				ft_vm_instr_lld(t_vm *vm, t_process *proc)
 	}
 	else
 	{
-		address = proc->pc - vm->arena[0] +
-		(ft_vm_instr_get_data(2, ptr, vm) % IDX_MOD);
+		address = proc->pc - vm->arena[0] + ft_vm_instr_get_data(2, ptr, vm);
+		//ft_printf("IND address : %d\n", address);
 	}
 	ptr += proc->jump[0];
 	if (!IS_REG(*ptr))
@@ -40,15 +41,27 @@ void				ft_vm_instr_lld(t_vm *vm, t_process *proc)
 			CARRY_CHANGE);
 		return ;
 	}
-	/* Load the value in a register */
-	proc->reg[*ptr] =
-		ft_vm_instr_get_data(REG_SIZE, &vm->arena[0][MOD(address)], vm);
+	if (proc->op->arg_types[0] == T_DIR)
+	{
+		/* Load the value in a register */
+		proc->reg[*ptr] =
+			ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm);
+	}
+	else
+	{
+		/* Load the value in a register */
+		proc->reg[*ptr] =
+			ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm);
+	}
 	/* Display additional informations */
+	DISP_OPT ? ft_vm_display_lld(vm, proc, ptr, address) : 0;
+	/*
 	if (DISP_OPT)
 	{
 		DISPLAY_16 ? ft_vm_display_pc(vm, proc,
 					2 + proc->jump[0] + proc->jump[1]) : 0;
 	}
+	*/
 	/* Write in the log file */
 	LOG_OPT ? ft_vm_log_lld(vm, proc, ptr, address) : 0;
 	/* Fetch the next instruction */

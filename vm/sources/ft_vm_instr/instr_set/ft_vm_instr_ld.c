@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:29:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 23:30:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/08 18:16:47 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void			ft_vm_instr_ld(t_vm *vm, t_process *proc)
 	ptr += proc->jump[0];
 	if (!IS_REG(*ptr))
 	{
-		ft_vm_instr_fail(vm,
-			proc, 2 + proc->jump[0] + proc->jump[1],
+		ft_vm_instr_fail(vm, proc, 2 + proc->jump[0] + proc->jump[1],
 			CARRY_CHANGE);
 		return ;
 	}

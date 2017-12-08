@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/07 23:27:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/08 18:16:48 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,8 @@ int	    	ft_vm_instr_add_sub_routine(t_vm *vm,
                             t_process *proc,
                             unsigned char **ptr,
                             int tab[3]);
-
+void		ft_vm_instr_upload_data(t_vm *vm, t_process *proc,
+                                    const unsigned char *ptr, uint8_t *pc);
 /*
 ** Instruction set
 */
@@ -329,4 +330,8 @@ void			ft_vm_display_xor(t_vm *vm,
                               const int xor[2]);
 void			ft_vm_display_sti(t_vm *vm, t_process *proc, const int tab[2]);
 void			ft_vm_display_ldi(t_vm *vm, t_process *proc, const int tab[2], const unsigned char *ptr);
+void			ft_vm_display_lld(t_vm *vm,
+                                    t_process *proces,
+                                    const unsigned char *ptr,
+                                    const int address);
 #endif

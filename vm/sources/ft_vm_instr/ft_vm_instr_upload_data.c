@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction_jump_table.c                        :+:      :+:    :+:   */
+/*   ft_vm_instr_upload_data.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/12/08 16:11:41 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/08 18:09:05 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/08 18:16:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "instruction.h"
+#include "ft_vm.h"
 
-uint8_t	g_direct_jump_table_from_instr[17] =
+void			ft_vm_instr_upload_data(t_vm *vm, t_process *proc,
+										const unsigned char *ptr,
+										uint8_t *pc)
 {
-	0, 4, 4, -1, -1, -1, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, -1
-};
+	uint32_t		tmp;
+	int8_t			i;
+
+	while (i < REG_SIZE)
+	{
+		
+		++i;
+	}
+}
