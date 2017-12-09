@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/30 15:27:08 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/30 16:13:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:12:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,14 @@ void			ft_vm_parse_display(t_vm *vm, char **av)
 		if (!ft_strncmp("-display", *av, 8))
 		{
 			if (*(*av + 8) == '=')
-			{
-				if (IS_NEG((vm->option.display = ft_atoi(*av + 9))))
-					EXIT_FAIL("Error : -display takes a positive interger");
-			}
+				ASSERT(IS_NEG((vm->option.display = ft_atoi(*av + 9))));
 			else if (*(*av + 8) == '\0')
 			{
-				if (!*(av + 1) ||
-					IS_NEG((vm->option.display = ft_atoi(*(av + 1)))))
-				{
-					EXIT_FAIL("Error : -display takes a positive integer");
-				}
+				ASSERT(!*(av + 1) ||
+					IS_NEG((vm->option.display = ft_atoi(*(av + 1)))));
 			}
 			else
-				EXIT_FAIL("Error : did you mean -display=nb ?");
+				ASSERT(0);
 		}
 		++av;
 	}

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:51:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/04 13:43:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 14:44:47 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,18 @@ void 			ft_vm_parse_champion(t_vm *vm, char **av)
 				n = ft_atoi(*av);
 			}
 			/* Check if the number is valid and if it hasn't been given yet */
-			if ((n < 1) || (n > MAX_PLAYERS) || vm->fd[n - 1])
-				EXIT_FAIL("Error : The player number is invalid");
+			ASSERT((n < 1) || (n > MAX_PLAYERS) || vm->fd[n - 1]);
 			++av;
 			/* Check the extension of a champion's file (.cor) */
-			if (*(int *)".cor" != *(int *)(*av + ft_strlen(*av) - 4))
-				EXIT_FAIL("Error : not a champion's file (.cor)");
+			ASSERT(*(int *)".cor" != *(int *)(*av + ft_strlen(*av) - 4));
 			/* Exit if the file can't be opened */
-			if (IS_NEG((vm->fd[n - 1] = open(*av, O_RDONLY, 0666))))
-				EXIT_FAIL("Error : Cannot read the champion");
+			ASSERT(IS_NEG((vm->fd[n - 1] = open(*av, O_RDONLY, 0666))));
 			++champion_found;
 		}
 		else if (*(int *)".cor" == *(int *)(*av + ft_strlen(*av) - 4))
 		{
-			if (IS_NEG((fd[current_i++] = open(*av, O_RDONLY, 0666))))
-				EXIT_FAIL("Error : Cannot read the champion");
-			if ((current_i + champion_found) >= MAX_PLAYERS)
-				EXIT_FAIL("Error : Too many champions want to fight !");
+			ASSERT(IS_NEG((fd[current_i++] = open(*av, O_RDONLY, 0666))));
+			ASSERT((current_i + champion_found) >= MAX_PLAYERS);
 		}
 		++av;
 	}

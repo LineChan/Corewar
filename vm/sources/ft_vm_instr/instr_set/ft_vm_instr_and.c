@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 00:26:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/05 19:05:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:34:17 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			ft_vm_instr_and(t_vm *vm, t_process *proc)
 	/* Fetch the next instruction */
 	proc->pc += 2 + proc->jump[0] + proc->jump[1] + proc->jump[2];
 	/* Change the carry */
-	proc->carry ^= proc->carry;
+	proc->carry = 0;
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(vm, proc);
 }

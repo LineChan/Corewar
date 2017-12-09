@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/02 02:56:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 14:40:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ int				main(int ac, char **av)
 	ft_vm_parse(&vm, av);
 	/* Read each champion's header */
 	ft_vm_read_header(&vm);
+	ASSERT(vm.nb_champion);
+	#if 0
 	if (!vm.nb_champion)
 		return (0);
+	#endif
 	/* Print presentation before the battle starts */
 	ft_vm_print_intro(&vm);
 	/* Handle the battle */

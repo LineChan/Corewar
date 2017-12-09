@@ -6,14 +6,16 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 23:50:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 13:28:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 16:27:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_log.h"
 
-void			ft_vm_log_live(t_vm *vm, t_process *proc, t_list *it)
+void			ft_vm_log_live(t_vm *vm,
+								t_process const *proc,
+								t_list const *it)
 {
 	if (it)
 	{

@@ -6,14 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 18:01:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 16:38:48 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:50:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_printf.h"
 
-void			ft_vm_display_death(t_vm *vm)
+void			ft_vm_display_death(t_vm const *vm)
 {
 	int			i;
 

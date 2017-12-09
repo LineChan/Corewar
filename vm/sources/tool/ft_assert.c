@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_upload_data.c                          :+:      :+:    :+:   */
+/*   ft_assert.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 18:09:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/08 19:35:35 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/09 14:11:40 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/09 15:20:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_printf.h"
 
-void			ft_vm_instr_upload_data(t_vm *vm, t_process *proc,
-										const unsigned char *ptr,
-										uint8_t *pc)
+void			ft_assert(char const *condition,
+						  char const *function_name,
+						  int const line_number,
+						  const int code_condition)
 {
-	(void)vm;
-	(void)proc;
-	(void)ptr;
-	(void)pc;
-	#if 0
-	uint32_t		tmp;
-	int8_t			i;
-
-	while (i < REG_SIZE)
+	if (0 == code_condition)
 	{
-
-		++i;
+		ft_printf("%s(%d): assert(%s)\n", function_name, line_number, condition);
+		exit(1);
 	}
-	#endif
 }

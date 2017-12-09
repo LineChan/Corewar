@@ -6,14 +6,16 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:49:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/04 18:07:29 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 16:21:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_printf.h"
 
-static void		ft_vm_display_instr(t_process *proc, t_list *it, const int nb)
+static void		ft_vm_display_instr(t_process const *proc,
+									t_list const *it,
+									const int nb)
 {
 	if (it)
 	{
@@ -26,7 +28,7 @@ static void		ft_vm_display_instr(t_process *proc, t_list *it, const int nb)
 	}
 }
 
-static void			ft_vm_display_alive(t_vm *vm, t_list *it)
+static void			ft_vm_display_alive(t_vm *vm, t_list const *it)
 {
 	if (!it)
 		return ;
@@ -35,19 +37,28 @@ static void			ft_vm_display_alive(t_vm *vm, t_list *it)
 				vm->header[C_PROCESS(it)->parent_nb - 1].prog_name);
 }
 
-static void			ft_vm_display_new_death(t_vm *vm, t_process *proc)
+static void			ft_vm_display_new_death(t_vm *vm,
+											t_process const *proc)
 {
 	vm->option.death[-proc->process_nb - 1] = vm->current_cycle;
 }
 
-void			ft_vm_display_live(t_vm *vm, t_process *proc,
-									t_list *it, const int nb)
+void			ft_vm_display_live(t_vm *vm,
+									t_process const *proc,
+									t_list const *it,
+									const int nb)
 {
 	extern int8_t	g_direct_jump_table_from_instr[17];
 
-	DISPLAY_4 ? ft_vm_display_instr(proc, it, nb) : 0;
-	DISPLAY_1 ? ft_vm_display_alive(vm, it) : 0;
-	DISPLAY_8 ? ft_vm_display_new_death(vm, proc) : 0;
-	DISPLAY_16 ? ft_vm_display_pc(vm, proc,
-			1 + g_direct_jump_table_from_instr[proc->op->numero]) : 0;
+	if (DISPLAY_4)
+		ft_vm_display_instr(proc, it, nb);
+	if (DISPLAY_1)
+		ft_vm_display_alive(vm, it);
+	if (DISPLAY_8)
+		ft_vm_display_new_death(vm, proc);
+	if (DISPLAY_16)
+	{
+		ft_vm_display_pc(vm, proc,
+			1 + g_direct_jump_table_from_instr[proc->op->numero]);
+	}
 }

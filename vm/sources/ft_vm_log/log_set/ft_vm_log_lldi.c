@@ -6,15 +6,15 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:40:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/30 14:19:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 16:27:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_log.h"
 
-void			ft_vm_log_lldi(t_vm *vm, t_process *proc,
-								const unsigned char *ptr,
+void			ft_vm_log_lldi(t_vm *vm, t_process const *proc,
+								unsigned char const *ptr,
 								const unsigned int address)
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,

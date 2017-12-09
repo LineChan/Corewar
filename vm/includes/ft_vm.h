@@ -6,9 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/08 18:16:48 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 16:30:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** Generate zaz output:
+for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i > zaz_dump/ldi_${i}; done
+*/
 
 #ifndef FT_VM_H
 # define FT_VM_H
@@ -42,8 +47,10 @@
 
 # define MOD(x)	        (((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE))
 # define IDX(x)	        (((x) < 0) ? (IDX_MOD + ((x) % IDX_MOD)) : ((x) % IDX_MOD))
-# define IS_INSTR(x)     (((x) > 0) && ((x) <= INSTR_NUMBER))
-# define IS_REG(x)		(((x) > 0) && ((x) <= REG_NUMBER))
+# define ASSERT(x)      ft_assert(# x, __FUNCTION__, __LINE__, x)
+
+# define IS_INSTR(x)    ((unsigned int)((x) - 1) < INSTR_NUMBER)
+# define IS_REG(x)      ((unsigned int)((x) - 1) < REG_NUMBER)
 
 # define LOG_OPT        (vm->option.log)
 # define DISP_OPT		(vm->option.display)
@@ -88,14 +95,14 @@ typedef struct          s_display
 #endif
 typedef struct          s_vm_option
 {
-    //TODO : put everything in one int only ?
-    unsigned char       log;
-    //
 	unsigned int		death[4];
     unsigned int       display;
     //t_display           display;
     unsigned int        dump;
     unsigned int        s_dump;
+    //TODO : put everything in one int only ?
+    unsigned char       log;
+    //
 }                       t_vm_option;
 
 typedef struct          s_process
@@ -128,10 +135,7 @@ typedef struct			s_vm
     t_list                  process_head;
 }			            t_vm;
 
-typedef struct			s_instr_list
-{
-	void			(*func)(t_vm *vm, t_process *proc);
-}						t_instr_list;
+typedef void            (*t_func)(t_vm *, t_process *);
 
 /*
 ** Prototypes
@@ -141,7 +145,11 @@ typedef struct			s_instr_list
 ** Tool and Print functions
 */
 int			ft_atoi(char *str);
-void        ft_vm_print_intro(t_vm *vm);
+void		ft_assert(char const *condition,
+                      char const *function_name,
+                      int const line_number,
+                      const int code_condition);
+void        ft_vm_print_intro(t_vm const *vm);
 void		ft_vm_print_arena(void const *data,
 									size_t msize,
 									size_t nb_byte,
@@ -239,99 +247,101 @@ void       ft_vm_instr_aff(t_vm *vm, t_process *proc);
 ** Log functions
 */
 
-void			ft_vm_log_intro(t_vm *vm);
-void			ft_vm_log_arg(t_process *proc);
+void			ft_vm_log_intro(t_vm const *vm);
+void			ft_vm_log_arg(t_process const *proc);
 
 /*
 ** Log set
 */
 
-void			ft_vm_log_live(t_vm *vm, t_process *proces, t_list *it);
+void			ft_vm_log_live(t_vm *vm,
+                            t_process const *proces,
+                            t_list const *it);
 void			ft_vm_log_ld(t_vm *vm,
-                            t_process *proces,
-                            const unsigned char *ptr,
+                            t_process const *proces,
+                            unsigned char const *ptr,
                             const unsigned int address);
-void 			ft_vm_log_st(t_vm *vm, t_process *proc);
+void 			ft_vm_log_st(t_vm *vm, t_process const *proc);
 void 			ft_vm_log_add(t_vm *vm,
-                            t_process *proc,
+                            t_process const *proc,
                             const int add[3]);
 void 			ft_vm_log_sub(t_vm *vm,
-                            t_process *proc,
+                            t_process const *proc,
                             const int sub[3]);
 void 			ft_vm_log_and(t_vm *vm,
-							t_process *proc,
-							const unsigned char *ptr,
+							t_process const *proc,
+							unsigned char const *ptr,
 							const int and[2]);
 void 			ft_vm_log_or(t_vm *vm,
-                            t_process *proc,
-                            const unsigned char *ptr,
+                            t_process const *proc,
+                            unsigned char const *ptr,
                             const int or[2]);
 void 			ft_vm_log_xor(t_vm *vm,
-                            t_process *proc,
-                            unsigned char *ptr,
+                            t_process const *proc,
+                            unsigned char const *ptr,
                             const int xor[2]);
-void 			ft_vm_log_zjmp(t_vm *vm, t_process *proc);
+void 			ft_vm_log_zjmp(t_vm *vm, t_process const *proc);
 void			ft_vm_log_ldi(t_vm *vm,
-							t_process *proc,
-							unsigned char *ptr,
+							t_process const *proc,
+							unsigned char const *ptr,
    							const int tab[2]);
-void            ft_vm_log_sti(t_vm *vm, t_process *proc,
+void            ft_vm_log_sti(t_vm *vm, t_process const *proc,
                             const int copy_at_address[2]);
 void            ft_vm_log_fork(t_vm *vm,
-                            t_process *proc,
+                            t_process const *proc,
                             const int index);
-void            ft_vm_log_lld(t_vm *vm, t_process *proc,
-                            const unsigned char *ptr,
+void            ft_vm_log_lld(t_vm *vm, t_process const *proc,
+                            unsigned char const *ptr,
                             const unsigned int value_to_load);
-void            ft_vm_log_lldi(t_vm *vm, t_process *proc,
-                            const unsigned char *ptr,
+void            ft_vm_log_lldi(t_vm *vm, t_process const *proc,
+                            unsigned char const *ptr,
                             const unsigned int address);
 void            ft_vm_log_lfork(t_vm *vm,
-                            t_process *proc,
+                            t_process const *proc,
                             const int index);
-void            ft_vm_log_aff(t_vm *vm, t_process *proc);
+void            ft_vm_log_aff(t_vm *vm, t_process const *proc);
 
 /*
 ** Display functions
 */
 
-void    		ft_vm_display_death(t_vm *vm);
-void    		ft_vm_display_pc(t_vm *vm, t_process *proc, const int size);
+void    		ft_vm_display_death(t_vm const *vm);
+void    		ft_vm_display_pc(t_vm const *vm, t_process const *proc, const int size);
 
 /*
 ** Display set
 */
 
-void    		ft_vm_display_live(t_vm *vm, t_process *proc,
-                                    t_list *it,
+void    		ft_vm_display_live(t_vm *vm, t_process const *proc,
+                                    t_list const *it,
                                     const int number);
 void			ft_vm_display_ld(t_vm *vm,
-                                    t_process *proces,
-                                    const unsigned char *ptr,
+                                    t_process const *proces,
+                                    unsigned char const *ptr,
                                     const unsigned int address);
-void 			ft_vm_display_st(t_vm *vm, t_process *proc);
+void 			ft_vm_display_st(t_vm *vm, t_process const *proc);
 void			ft_vm_display_add(t_vm *vm,
-                                   t_process *proc,
+                                   t_process const *proc,
                                    const int add[3]);
 void			ft_vm_display_sub(t_vm *vm,
-                                  t_process *proc,
+                                  t_process const *proc,
                                   const int sub[3]);
 void			ft_vm_display_and(t_vm *vm,
-                                   t_process *proc,
-                                   const unsigned char *ptr,
+                                   t_process const *proc,
+                                   unsigned char const *ptr,
                                    const int and[2]);
 void			ft_vm_display_or(t_vm *vm,
-                                   t_process *proc,
-                                   const unsigned char *ptr,
+                                   t_process const *proc,
+                                   unsigned char const *ptr,
                                    const int or[2]);
 void			ft_vm_display_xor(t_vm *vm,
-                              t_process *proc,
-                              const unsigned char *ptr,
+                              t_process const *proc,
+                              unsigned char const *ptr,
                               const int xor[2]);
-void			ft_vm_display_sti(t_vm *vm, t_process *proc, const int tab[2]);
-void			ft_vm_display_ldi(t_vm *vm, t_process *proc, const int tab[2], const unsigned char *ptr);
+void			ft_vm_display_sti(t_vm *vm, t_process const *proc, const int tab[2]);
+void			ft_vm_display_ldi(t_vm *vm, t_process const *proc, const int tab[2], unsigned char const *ptr);
 void			ft_vm_display_lld(t_vm *vm,
-                                    t_process *proces,
-                                    const unsigned char *ptr,
+                                    t_process const *proc,
+                                    unsigned char const *ptr,
                                     const int address);
 #endif

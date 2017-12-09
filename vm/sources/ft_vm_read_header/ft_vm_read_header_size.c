@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 14:48:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/24 17:04:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:15:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,10 @@
 
 void 			ft_vm_read_header_size(t_vm *vm, int index)
 {
-	if (IS_NEG(read(vm->fd[index], &vm->header[index].prog_size,
-		sizeof(vm->header[index].prog_size))))
-		EXIT_FAIL("Error : champion's size can't be read");
+	ASSERT(IS_NEG(read(vm->fd[index], &vm->header[index].prog_size,
+		sizeof(vm->header[index].prog_size))));
 	if (IS_LITTLE_ENDIAN)
 		vm->header[index].prog_size =
 		ft_endian_convert_uint32(vm->header[index].prog_size);
-	if (vm->header[index].prog_size > CHAMP_MAX_SIZE)
-		EXIT_FAIL("Error : champion's size too big");
-
+	ASSERT(vm->header[index].prog_size > CHAMP_MAX_SIZE);
 }

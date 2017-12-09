@@ -6,14 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 23:00:42 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/27 17:31:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:56:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_log.h"
 
-void			ft_vm_log_intro(t_vm *vm)
+void			ft_vm_log_intro(t_vm const *vm)
 {
 	int			i;
 

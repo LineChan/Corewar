@@ -6,13 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 14:21:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/11/29 11:43:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:15:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-#include "ft_printf.h"
 void 			ft_vm_read_header(t_vm *vm)
 {
 	int			i;

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:47:10 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/03 14:51:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/09 15:19:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,11 @@ void 				ft_vm_parse_dump(t_vm *vm, char **av)
 		if (!ft_strncmp("-dump", *av, 5))
 		{
 			if (*(*av + 5) == '=')
-			{
-				if (IS_NEG((vm->option.dump = ft_atoi(*av + 6))))
-					EXIT_FAIL("Error : -dump takes a positive integer");
-			}
+				ASSERT(IS_NEG((vm->option.dump = ft_atoi(*av + 6))));
 			else if (*(*av + 5) == '\0')
-			{
-				if (!*(av + 1) || IS_NEG((vm->option.dump = ft_atoi(*(av + 1)))))
-					EXIT_FAIL("Error : -dump takes a positive integer");
-			}
+				ASSERT(!*(av + 1) || IS_NEG((vm->option.dump = ft_atoi(*(av + 1)))));
 			else
-				EXIT_FAIL("Error : did you mean -dump=nb ?");
+				ASSERT(0);
 		}
 		++av;
 	}
