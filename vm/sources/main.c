@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 14:40:06 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 20:43:36 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,18 @@ int				main(int ac, char **av)
 	t_vm		vm;
 
 	if (ac < 2)
-		return (EXIT_FAILURE);
-	++av;
+		return (0);
 	/* Initialize the main structure */
 	ft_memset((void *)&vm, '\0', sizeof(t_vm));
 	INIT_LIST_HEAD(vm.process_head);
 	/* Parse arguments */
-	ft_vm_parse(&vm, av);
+	++av;
+	ft_vm_parse(&vm, ac, av);
+	ft_printf("display : %d\n", vm.option.display);
+	return (0);
+	#if 0
 	/* Read each champion's header */
 	ft_vm_read_header(&vm);
-	ASSERT(vm.nb_champion);
 	#if 0
 	if (!vm.nb_champion)
 		return (0);
@@ -40,5 +42,6 @@ int				main(int ac, char **av)
 	/* Close the logfile */
 	vm.option.log ? ft_log_close() : 0;
 	//CLOSE ALL THE PROCESSES
+	#endif
 	return (0);
 }

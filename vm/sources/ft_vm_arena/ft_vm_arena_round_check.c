@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 00:51:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/04 17:33:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 20:21:17 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 
 void			ft_vm_arena_round_check(t_vm *vm,
-										unsigned int *cycle_end_round)
+										int *cycle_end_round)
 {
 	t_list				*it;
 	static int			check = 0;

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 16:30:33 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 20:43:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,42 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 ** Structures
 */
 
-#if 0
-typedef struct          s_display
+typedef struct		s_option_map
 {
-    unsigned int        nb;
-    //
-}                       t_display;
-#endif
+	char			*opt;
+	size_t			len;
+	int				state;
+}					t_option_map;
+
+typedef enum		e_option_parse_state
+{
+	OPT_STATE_DEFAULT = 0,
+	OPT_STATE_N,
+	OPT_STATE_S,
+	OPT_STATE_CTMO,
+	OPT_STATE_DUMP,
+	OPT_STATE_NUMBER,
+	OPT_STATE_DISPLAY,
+	OPT_STATE_STEALTH,
+	OPT_STATE_CHAMPION,
+	OPT_STATE_START_CYCLE,
+	OPT_STATE_ROUND_LIMIT,
+	OPT_STATE_PROCESS_LIMIT,
+	OPT_ERROR
+}					t_option_parse_state;
+
 typedef struct          s_vm_option
 {
+
 	unsigned int		death[4];
-    unsigned int       display;
+    int       display;
     //t_display           display;
-    unsigned int        dump;
-    unsigned int        s_dump;
+    int        			dump;
+    int        s_dump;
+    int                 state;
+    int                 *next_arg;
+    int                 ac;
+    char                **av;
     //TODO : put everything in one int only ?
     unsigned char       log;
     //
@@ -111,7 +133,7 @@ typedef struct          s_process
     int                     process_nb;
     unsigned int            live;
     unsigned int            carry;
-    unsigned int            exec_cycle;
+    int            exec_cycle;
     unsigned int            bytecode;
     int                     reg[REG_NUMBER + 1];
     int                     jump[MAX_ARGS_NUMBER];
@@ -123,8 +145,9 @@ typedef struct          s_process
 typedef struct			s_vm
 {
     unsigned int            index[MAX_PLAYERS];
-    unsigned int            fd[MAX_PLAYERS];
-    unsigned int            current_cycle;
+    int            			fd[MAX_PLAYERS];
+    int            			fd_tmp[MAX_PLAYERS];
+    int            			current_cycle;
 	int                		cycle_to_die;
 	unsigned int 			last_alive;
 	unsigned int 			total_live;
@@ -137,6 +160,8 @@ typedef struct			s_vm
 
 typedef void            (*t_func)(t_vm *, t_process *);
 
+typedef void			(*t_state_machine)(t_vm *vm);
+
 /*
 ** Prototypes
 */
@@ -144,6 +169,7 @@ typedef void            (*t_func)(t_vm *, t_process *);
 /*
 ** Tool and Print functions
 */
+void		ft_exit(char const *str);
 int			ft_atoi(char *str);
 void		ft_assert(char const *condition,
                       char const *function_name,
@@ -160,13 +186,19 @@ t_list		*ft_vm_find_proc_nb(t_list *head, int nb);
 ** Parse functions
 */
 
-void        ft_vm_parse(t_vm *vm, char **av);
+void        ft_vm_parse(t_vm *vm, int const ac, char **av);
+void		ft_vm_parse_default(t_vm *vm);
+void        ft_vm_parse_champion(t_vm *vm);
+void		ft_vm_parse_n(t_vm *vm);
+void		ft_vm_parse_number(t_vm *vm);
+void 		ft_vm_parse_champion_repartition(t_vm *vm);
+void        ft_vm_parse_display(t_vm *vm);
+#if 0
 void        ft_vm_parse_log(t_vm *vm, char **av);
 void        ft_vm_parse_start_c(t_vm *vm, char **av);
 void        ft_vm_parse_dump(t_vm *vm, char **av);
 void        ft_vm_parse_s_dump(t_vm *vm, char **av);
-void        ft_vm_parse_display(t_vm *vm, char **av);
-void        ft_vm_parse_champion(t_vm *vm, char **av);
+#endif
 
 /*
 ** Read functions
@@ -187,7 +219,7 @@ void       ft_vm_arena_upload(t_vm *vm);
 void	   ft_vm_arena_cycle_routine(t_vm *vm);
 void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
 void       ft_vm_arena_round_check(t_vm *vm,
-                                    unsigned int *cycle_end_round);
+                                    int *cycle_end_round);
 
 /*
 ** Process functions

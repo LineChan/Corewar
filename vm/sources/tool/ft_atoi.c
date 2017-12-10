@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/19 00:46:50 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 15:29:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 20:03:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "ft_ctype.h"
 #include "macro.h"
 
+//TODO:libs
+#include "ft_printf.h"
 int          ft_atoi(char *str)
 {
   int           sign;
@@ -29,8 +31,10 @@ int          ft_atoi(char *str)
   while (ft_isdigit(*str))
   {
     nb = (nb << 3) + (nb << 1) + *str++ - 48;
-    ASSERT((nb > 2147483647) || ((nb > 2147483648) && IS_NEG(sign)));
+    if ((nb > 2147483647) || ((nb > 2147483648) && IS_NEG(sign)))
+      ft_exit("Not a positive integer");
   }
-  ASSERT(*str);
+  if (*str)
+    ft_exit("Number not well formated");
   return (IS_NEG(sign) ? -nb : nb);
 }

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:16:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/04 17:47:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 20:25:07 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,42 @@ void				ft_option_usage(void)
 	exit(EXIT_FAILURE);
 }
 #endif
-void 				ft_vm_parse(t_vm *vm, char **av)
+
+static const t_state_machine	g_option_state_machine[] =
 {
-	ft_vm_parse_log(vm, av);
-	ft_vm_parse_start_c(vm, av);
-	ft_vm_parse_dump(vm, av);
-	ft_vm_parse_s_dump(vm, av);
-	ft_vm_parse_display(vm, av);
-	ft_vm_parse_champion(vm, av);
+	[OPT_STATE_DEFAULT] = &ft_vm_parse_default,
+	[OPT_STATE_N] = &ft_vm_parse_n,
+	#if 0
+	[OPT_STATE_S] = &ft_option_parse_s,
+	[OPT_STATE_CTMO] = &ft_option_parse_ctmo,
+	[OPT_STATE_DUMP] = &ft_option_parse_dump,
+	#endif
+	[OPT_STATE_NUMBER] = &ft_vm_parse_number,
+	[OPT_STATE_DISPLAY] = &ft_vm_parse_display,
+	#if 0
+	[OPT_STATE_STEALTH] = &ft_option_parse_stealth,
+	#endif
+	[OPT_STATE_CHAMPION] = &ft_vm_parse_champion,
+	#if 0
+	[OPT_STATE_START_CYCLE] = &ft_option_parse_start_cycle,
+	[OPT_STATE_ROUND_LIMIT] = &ft_option_parse_round_limit,
+	[OPT_STATE_PROCESS_LIMIT] = &ft_vm_process_limit,
+	#endif
+};
+
+//TODO:Libraries
+#include <stdio.h>
+#include "ft_printf.h"
+void 				ft_vm_parse(t_vm *vm, int const ac, char **av)
+{
+	vm->option.ac = ac - 1;
+	vm->option.av = av;
+	vm->option.next_arg = 0;
+	vm->option.state = OPT_STATE_DEFAULT;
+	/* State Machine loop */
+	while ((0 != vm->option.ac) && (0 != vm->option.av))
+		g_option_state_machine[vm->option.state](vm);
+	if (0 == vm->nb_champion)
+		ft_exit("No champion in the arena");
+	ft_vm_parse_champion_repartition(vm);
 }

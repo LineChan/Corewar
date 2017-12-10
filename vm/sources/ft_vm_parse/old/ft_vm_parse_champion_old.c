@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:51:46 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 14:44:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 12:53:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void 	ft_vm_champion_repartition(t_vm *vm,
 	}
 }
 
-void 			ft_vm_parse_champion(t_vm *vm, char **av)
+void 			ft_vm_parse_champion_old(t_vm *vm, char **av)
 {
 	static int					fd[4] = {0};
 	unsigned int				n;
