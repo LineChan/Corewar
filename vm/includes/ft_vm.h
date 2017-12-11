@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 00:32:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:39:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,23 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 ** Define flags
 */
 
-# define FLAG_1		(1 << 0)
-# define FLAG_2		(1 << 1)
-# define FLAG_4		(1 << 2)
-# define FLAG_8		(1 << 3)
-# define FLAG_16	(1 << 4)
-# define FLAG_32	(1 << 5)
+# define FLAG_1			(1 << 0)
+# define FLAG_2			(1 << 1)
+# define FLAG_4			(1 << 2)
+# define FLAG_8			(1 << 3)
+# define FLAG_16		(1 << 4)
+# define FLAG_32		(1 << 5)
 
 /*
 ** Comparisons
 */
 
-# define DISPLAY_1   (vm->option.display & FLAG_1)
-# define DISPLAY_2 (vm->option.display & FLAG_2)
-# define DISPLAY_4 (vm->option.display & FLAG_4)
-# define DISPLAY_8 (vm->option.display & FLAG_8)
-# define DISPLAY_16 (vm->option.display & FLAG_16)
-# define DISPLAY_32 (vm->option.display & FLAG_32)
+# define DISPLAY_1		(vm->option.display & FLAG_1)
+# define DISPLAY_2		(vm->option.display & FLAG_2)
+# define DISPLAY_4		(vm->option.display & FLAG_4)
+# define DISPLAY_8		(vm->option.display & FLAG_8)
+# define DISPLAY_16		(vm->option.display & FLAG_16)
+# define DISPLAY_32		(vm->option.display & FLAG_32)
 
 /*
 ** Structures
@@ -133,6 +133,7 @@ typedef struct          s_process
     int                     parent_nb;
     int                     process_nb;
     unsigned int            live;
+	unsigned int 			has_lived;
     unsigned int            carry;
     int            			exec_cycle;
     unsigned int            bytecode;
@@ -253,8 +254,7 @@ int	    	ft_vm_instr_add_sub_routine(t_vm *vm,
                             t_process *proc,
                             unsigned char **ptr,
                             int tab[3]);
-void		ft_vm_instr_upload_data(t_vm *vm, t_process *proc,
-                                    const unsigned char *ptr, uint8_t *pc);
+void		ft_vm_instr_st_data(t_vm *vm, const unsigned char *ptr, int *reg);
 /*
 ** Instruction set
 */

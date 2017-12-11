@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:16:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 00:47:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 13:40:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,4 @@ void 				ft_vm_parse(t_vm *vm, int const ac, char **av)
 	if (0 == vm->nb_champion)
 		ft_exit("No champion in the arena");
 	ft_vm_parse_champion_repartition(vm);
-	ft_printf("after repartition nb_champion : %d\n", vm->nb_champion);
 }

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 01:11:51 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 15:04:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,13 @@ void			ft_vm_arena(t_vm *vm)
 					return ;
 			}
 			++vm->current_cycle;
-		}
+			}
 		ft_vm_arena_round_check(vm, &cycle_end_round);
-		getchar();
 	}
-	DISPLAY_8 ? ft_vm_display_death(vm) : 0;
-	if (vm->last_alive)
-	{
-		ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
-			vm->header[vm->last_alive - 1].prog_name);
-	}
-	else
-		ft_printf("{red:Nobody} won the battle !\n");
+	#if 0
+	if (DISPLAY_8)
+		ft_vm_display_death(vm);
+		#endif
+	ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
+		vm->header[vm->last_alive - 1].prog_name);
 }

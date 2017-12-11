@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 00:58:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 15:23:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 15:56:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void			ft_vm_new_process_kid(t_vm *vm,
 									t_process *proc,
 									const unsigned int index)
 {
-	extern t_op			g_op_tab[17];
 	t_process			*new;
 	static int			current_proc_nb = -5;
+	extern t_op			g_op_tab[17];
 
 	/* Allocate a new proceess */
-	ASSERT(!(new = ft_memalloc(sizeof(t_process))));
+	if (!(new = ft_memalloc(sizeof(t_process))))
+		ft_exit("Failed memory allocation");
 	/* Copy data from parent */
 	ft_memcpy((void *)new, proc, sizeof(t_process));
-	(void)proc;
 	/* Change the process' reference */
 	new->process_nb = current_proc_nb--;
 	/* Set up the Program Counter to the new location  */

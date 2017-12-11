@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 01:17:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 14:48:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 
 	++vm->total_live;
 	/* Fetch the champion's number */
+	proc->has_lived = vm->current_cycle;
 	number =
 		ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero],
 		proc->pc + 1, vm);
@@ -33,7 +34,6 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 		/* The lastest champion to do live wins */
 		vm->last_alive = C_PROCESS(it)->parent_nb;
 		++C_PROCESS(it)->live;
-		getchar();
 	}
 	/* Display additional informations */
 	DISP_OPT ? ft_vm_display_live(vm, proc, it, number) : 0;

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:45:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/08 18:16:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 18:14:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				ft_vm_instr_lld(t_vm *vm, t_process *proc)
 	}
 	else
 	{
-		address = proc->pc - vm->arena[0] + ft_vm_instr_get_data(2, ptr, vm);
+		address = (int)(proc->pc - vm->arena[0] + ft_vm_instr_get_data(2, ptr, vm));
 		//ft_printf("IND address : %d\n", address);
 	}
 	ptr += proc->jump[0];
@@ -41,6 +41,9 @@ void				ft_vm_instr_lld(t_vm *vm, t_process *proc)
 			CARRY_CHANGE);
 		return ;
 	}
+	proc->reg[*ptr] =
+		ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm);
+	#if 0
 	if (proc->op->arg_types[0] == T_DIR)
 	{
 		/* Load the value in a register */
@@ -53,6 +56,7 @@ void				ft_vm_instr_lld(t_vm *vm, t_process *proc)
 		proc->reg[*ptr] =
 			ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm);
 	}
+	#endif
 	/* Display additional informations */
 	DISP_OPT ? ft_vm_display_lld(vm, proc, ptr, address) : 0;
 	/*

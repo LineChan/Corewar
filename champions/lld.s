@@ -1,8 +1,8 @@
 .name "lld"
 .comment "lld"
 
-lld      -0, r12
-st       r3, -5
+lld      0, r12
+st       r12, -5
 st       r12, -10
 
 
