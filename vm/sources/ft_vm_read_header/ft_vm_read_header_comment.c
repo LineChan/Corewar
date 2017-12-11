@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 14:53:42 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 15:13:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 23:41:36 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@
 
 void				ft_vm_read_header_comment(t_vm *vm, int index)
 {
-    ASSERT(IS_NEG(read(vm->fd[index], vm->header[index].comment,
+    ASSERT(!IS_NEG(read(vm->fd[index], vm->header[index].comment,
         ALIGN_4(sizeof(vm->header[index].comment)))));
 }

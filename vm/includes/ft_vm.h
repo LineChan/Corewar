@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/10 20:43:33 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 00:32:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 # define LOG_OPT        (vm->option.log)
 # define DISP_OPT		(vm->option.display)
 # define DUMP_OPT		(vm->option.dump)
-# define S_DUMP_OPT		(vm->option.s_dump)
+# define S_DUMP_OPT		(vm->option.s)
 
 
 # define C_PROCESS(it)	CONTAINEROF(it, t_process, list)
@@ -107,6 +107,7 @@ typedef enum		e_option_parse_state
 	OPT_STATE_START_CYCLE,
 	OPT_STATE_ROUND_LIMIT,
 	OPT_STATE_PROCESS_LIMIT,
+	OPT_STATE_LOG,
 	OPT_ERROR
 }					t_option_parse_state;
 
@@ -117,7 +118,7 @@ typedef struct          s_vm_option
     int       display;
     //t_display           display;
     int        			dump;
-    int        s_dump;
+    int					s;
     int                 state;
     int                 *next_arg;
     int                 ac;
@@ -133,7 +134,7 @@ typedef struct          s_process
     int                     process_nb;
     unsigned int            live;
     unsigned int            carry;
-    int            exec_cycle;
+    int            			exec_cycle;
     unsigned int            bytecode;
     int                     reg[REG_NUMBER + 1];
     int                     jump[MAX_ARGS_NUMBER];
@@ -193,11 +194,11 @@ void		ft_vm_parse_n(t_vm *vm);
 void		ft_vm_parse_number(t_vm *vm);
 void 		ft_vm_parse_champion_repartition(t_vm *vm);
 void        ft_vm_parse_display(t_vm *vm);
+void        ft_vm_parse_dump(t_vm *vm);
+void        ft_vm_parse_s(t_vm *vm);
+void        ft_vm_parse_log(t_vm *vm);
 #if 0
-void        ft_vm_parse_log(t_vm *vm, char **av);
 void        ft_vm_parse_start_c(t_vm *vm, char **av);
-void        ft_vm_parse_dump(t_vm *vm, char **av);
-void        ft_vm_parse_s_dump(t_vm *vm, char **av);
 #endif
 
 /*

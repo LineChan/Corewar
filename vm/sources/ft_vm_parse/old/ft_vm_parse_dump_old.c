@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_read_header.c                                :+:      :+:    :+:   */
+/*   ft_vm_parse_dump_old.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 14:21:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 00:50:37 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/11/24 13:47:10 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/10 23:17:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "macro.h"
+#include "ft_string.h"
+#include "ft_printf.h"
 
-void 			ft_vm_read_header(t_vm *vm)
+
+void 				ft_vm_parse_dump_old(t_vm *vm, char **av)
 {
-	int			i;
-
-	i = 0;
-	while (i < MAX_PLAYERS)
+    while (*av)
 	{
-		if (vm->fd[i])
+		if (!ft_strncmp("-dump", *av, 5))
 		{
-			ft_vm_read_header_magic(vm, i);
-			ft_vm_read_header_name(vm, i);
-			ft_vm_read_header_size(vm, i);
-			ft_vm_read_header_comment(vm, i);
+			if (*(*av + 5) == '=')
+				ASSERT(IS_NEG((vm->option.dump = ft_atoi(*av + 6))));
+			else if (*(*av + 5) == '\0')
+				ASSERT(!*(av + 1) || IS_NEG((vm->option.dump = ft_atoi(*(av + 1)))));
+			else
+				ASSERT(0);
 		}
-		++i;
+		++av;
 	}
 }

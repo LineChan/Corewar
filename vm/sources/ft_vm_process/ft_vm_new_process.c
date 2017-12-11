@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:34:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 15:22:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 23:52:29 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void 			ft_vm_new_process(t_vm *vm,
 	t_process			*new;
 
 	/* Allocate a new process */
-	ASSERT(!(new = ft_memalloc(sizeof(t_process))));
+	if (!(new = ft_memalloc(sizeof(t_process))))
+		ft_exit("Memory allocation failed");
 	/* Reference to the champion who created the process */
 	new->parent_nb = parent_nb;
 	/* Process reference */

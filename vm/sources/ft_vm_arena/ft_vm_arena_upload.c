@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:59:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 14:42:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/10 23:48:48 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ void			ft_vm_arena_upload(t_vm *vm)
 			/* Set up the starting position in the arena */
 			vm->index[i] = index;
 			/* Copy the champion in the arena */
-			ASSERT(IS_NEG(read(vm->fd[i], &vm->arena[0][index], vm->header[i].prog_size)));
-			#if 0
-			if
-				EXIT_FAIL("Error : Failed read");
-				#endif
+			if (IS_NEG(read(vm->fd[i], &vm->arena[0][index], vm->header[i].prog_size)))
+				ft_exit("Can't upload champions in the arena");
 			/* Create a new process */
 			ft_vm_new_process(vm, i + 1, -i - 1, index);
 			/* Put the champion's number in the 1st register */

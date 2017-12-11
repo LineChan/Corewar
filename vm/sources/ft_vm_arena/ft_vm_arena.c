@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/10 20:22:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/11 01:11:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 void			ft_vm_arena(t_vm *vm)
 {
 	int			cycle_end_round;
-	//int						vm->cycle_to_die;
 
 	/* Place champions on the arena at the right position and set them up */
 	ft_vm_arena_upload(vm);
