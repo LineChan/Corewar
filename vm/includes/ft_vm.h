@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/15 17:48:30 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/16 20:44:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,8 +277,8 @@ void       ft_vm_instr_or(t_vm *vm, t_process *proc, t_instr *instr);
 void       ft_vm_instr_xor(t_vm *vm, t_process *proc, t_instr *instr);
 void       ft_vm_instr_zjmp(t_vm *vm, t_process *proc, t_instr *instr);
 void       ft_vm_instr_ldi(t_vm *vm, t_process *proc, t_instr *instr);
-#if 	0
 void       ft_vm_instr_sti(t_vm *vm, t_process *proc, t_instr *instr);
+#if 	0
 void       ft_vm_instr_fork(t_vm *vm, t_process *proc, t_instr *instr);
 void       ft_vm_instr_lld(t_vm *vm, t_process *proc, t_instr *instr);
 void       ft_vm_instr_lldi(t_vm *vm, t_process *proc, t_instr *instr);
@@ -297,6 +297,7 @@ void			ft_vm_log_arg(t_process const *proc);
 ** Log set
 */
 
+#if 0
 void			ft_vm_log_live(t_vm *vm,
                             t_process const *proces,
                             t_list const *it);
@@ -343,6 +344,7 @@ void            ft_vm_log_lfork(t_vm *vm,
                             t_process const *proc,
                             const int index);
 void            ft_vm_log_aff(t_vm *vm, t_process const *proc);
+#endif
 
 /*
 ** Display functions
@@ -383,8 +385,14 @@ void			ft_vm_display_xor(t_vm *vm,
                               t_process const *proc,
                               unsigned char const *ptr,
                               const int xor[2]);
-void			ft_vm_display_sti(t_vm *vm, t_process const *proc, const int tab[2]);
-void			ft_vm_display_ldi(t_vm *vm, t_process const *proc, const int tab[2], unsigned char const *ptr);
+#endif
+void			ft_vm_display_ldi(t_vm *vm,
+									t_process const *proc,
+									t_instr const *instr);
+void			ft_vm_display_sti(t_vm *vm,
+									t_process const *proc,
+									t_instr const *instr);
+#if 0
 void			ft_vm_display_lld(t_vm *vm,
                                     t_process const *proc,
                                     unsigned char const *ptr,

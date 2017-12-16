@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/13 11:08:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/16 16:29:37 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int				main(int ac, char **av)
 	/* Handle the battle */
 	ft_vm_arena(&vm);
 	/* Close the logfile */
-	vm.option.log ? ft_log_close() : 0;
+	if (vm.option.log)
+		ft_log_close();
 	//CLOSE ALL THE PROCESSES
 	return (0);
 }

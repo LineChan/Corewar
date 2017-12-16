@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/15 17:48:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/16 20:59:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static const t_func g_instr_list[] =
 	&ft_vm_instr_xor,
 	&ft_vm_instr_zjmp,
 	&ft_vm_instr_ldi,
-	#if 0
 	&ft_vm_instr_sti,
+	#if 0
 	&ft_vm_instr_fork,
 	&ft_vm_instr_lld,
 	&ft_vm_instr_lldi,

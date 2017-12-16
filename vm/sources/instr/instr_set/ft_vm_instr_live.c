@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/12 17:22:44 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/16 20:10:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,13 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc, t_instr *instr)
 		++C_PROCESS(it)->live;
 	}
 	/* Display additional informations */
-	DISP_OPT ? ft_vm_display_live(vm, proc, it, instr) : 0;
+	if (DISP_OPT)
+		ft_vm_display_live(vm, proc, it, instr);
 	/* Write in the log file */
-	LOG_OPT ? ft_vm_log_live(vm, proc, it) : 0;
+	#if 0
+	if (LOG_OPT)
+		ft_vm_log_live(vm, proc, it);
+	#endif
 	/* Fetch the next instruction */
 	proc->pc = instr->new_pc;
 	/* Update the execution cycle with the new instruction */
