@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction_jump_table.c                        :+:      :+:    :+:   */
+/*   ft_instruction_parse.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/12/12 13:23:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/15 16:23:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_instruction.h"
+#ifndef FT_INSTRUCTION_PARSE_H
+# define FT_INSTRUCTION_PARSE_H
 
-uint8_t	g_direct_jump_table_from_instr[17] =
-{
-	0, 4, 4, -1, -1, -1, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, -1
-};
+# include "ft_instruction.h"
+
+int32_t		ft_instruction_parse(t_instr *this,
+								 uint8_t *context,
+								 uint8_t bytecode,
+								 int *error);
+
+uint8_t		ft_instruction_setup(t_instr *this,
+								 uint8_t *pc,
+								 uint8_t *context);
+
+#endif

@@ -1,5 +1,22 @@
 .name "or"
-.comment "Apply an | (bit-to-bit OR) over the first two arguments and store the result in a registry, which is the third argument. It will change the carry."
+.comment "Apply an | (bit-to-bit OR) over the first two arguments or store the result in a registry, which is the third argument. It will change the carry."
+
+or r3, %0, r2
+st r2, 0
+or 4080, r1, r3
+st r3, 0
+or r3, -32, r4
+st r4, 0
+or %4080, r1, r5
+st r5, 0
+or r2, %-920, r6
+st r6, 0
+or 758, %80, r7
+st r7, 0
+or %-093, %504, r8
+st r8, 0
+or %7000000, %-20, r9
+st r9, 0
 
 or r2, 4096, r4
 or r2, 4096, r5
@@ -31,5 +48,3 @@ or r4, -40, r1
 or %4093, 0, r5
 or -10000, 50, r1
 or 90, r3, r1
-or r0, 0, r1
-or r17, r1, r1

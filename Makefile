@@ -6,7 +6,7 @@
 #    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/11/24 12:47:31 by mvillemi         ###   ########.fr        #
+#*   Updated: 2017/12/12 13:11:59 by mvillemi         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,29 +19,29 @@ ASM_DIR := "asm"
 DSM_DIR := "disass"
 
 all:
-	@make -C $(ASM_DIR);
-	@make -C $(DSM_DIR);
 	@make -C $(VM_DIR);
+	#make -C $(ASM_DIR);
+	#@make -C $(DSM_DIR);
 
 clean:
 	@make -C $(VM_DIR) clean;
-	@make -C $(ASM_DIR) clean;
-	@make -C $(DSM_DIR) clean;
+	#@make -C $(ASM_DIR) clean;
+	#@make -C $(DSM_DIR) clean;
 
 fclean:
 	@make -C $(VM_DIR) fclean;
-	@make -C $(ASM_DIR) fclean;
-	@make -C $(DSM_DIR) fclean;
+	#@make -C $(ASM_DIR) fclean;
+	#@make -C $(DSM_DIR) fclean;
 	@rm -rf "docs/html";
 	@rm -rf "trash";
 
 debug:
 	@make DEBUG=1 -C $(VM_DIR);
-	@make DEBUG=1 -C $(ASM_DIR);
-	@make DEBUG=1 -C $(DSM_DIR);
+	#@make DEBUG=1 -C $(ASM_DIR);
+	#@make DEBUG=1 -C $(DSM_DIR);
 
 asm:
-	@make -C $(ASM_DIR);
+	#@make -C $(ASM_DIR);
 
 asm_test: asm
 	@sh unit_test_asm.sh
@@ -53,7 +53,7 @@ vm:
 	@make -C $(VM_DIR);
 
 disass:
-	@make -C $(DSM_DIR)
+	#@make -C $(DSM_DIR)
 
 
 re: fclean all

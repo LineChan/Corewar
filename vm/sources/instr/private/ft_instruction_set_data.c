@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction_jump_table.c                        :+:      :+:    :+:   */
+/*   ft_instruction_set_data.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/12/12 13:23:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/15 14:50:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_instruction.h"
+#include "ft_instruction_parse.h"
+#include "endian.h"
 
-uint8_t	g_direct_jump_table_from_instr[17] =
+/* ASM is assumed to be little endian */
+void	ft_instruction_set_data(size_t bytes,
+								uint8_t *pc,
+								uint8_t *context,
+								uint8_t *arena)
 {
-	0, 4, 4, -1, -1, -1, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, -1
-};
+	while (0 != bytes--)
+		context[LOOP(context + bytes - arena)] = pc[LOOP(pc + bytes - arena)];
+}

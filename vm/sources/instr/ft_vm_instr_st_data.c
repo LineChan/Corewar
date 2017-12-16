@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction_jump_table.c                        :+:      :+:    :+:   */
+/*   ft_vm_instr_st_data.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/12/12 13:23:43 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/08 18:09:05 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/15 16:12:42 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_instruction.h"
+#include "ft_vm.h"
 
-uint8_t	g_direct_jump_table_from_instr[17] =
+void			ft_vm_instr_st_data(void *dst,
+									void const *src,
+									int size)
 {
-	0, 4, 4, -1, -1, -1, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, -1
-};
+	while (size--)
+		*(char *)dst++ = *(char*)src++;
+}

@@ -1,19 +1,11 @@
 .name "sub"
-.comment "Take three registries, substract the first two, and place the result in the third, right before modifying the carry"
+.comment "Take three registries, substract the first two, or place the result in the third, right before modifying the carry"
 
-sub r0, r1, r1
-sub r1, r2, r2
-sub r1, r1, r2
-
-sub r0, r1, r3
-sub r0, r3, r1
-sub r1, r0, r2
-sub r0, r1, r3
-sub r3, r2, r4
-
-
-sub r1, r2, r3
-sub r1, r1, r2
-sub r10, r15, r1
-sub r16, r17, r2
-sub r1, r3, r4
+or r1, r1, r2
+or 4080, r1, r3
+or r3, -32, r4
+or %4080, r1, r5
+or r2, %-920, r6
+or 758, %80, r7
+or %-093, %504, r8
+or %7000000, %-20, r9

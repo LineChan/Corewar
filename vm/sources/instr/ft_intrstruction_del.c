@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instruction_jump_table.c                        :+:      :+:    :+:   */
+/*   ft_intrstruction_del.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/12/12 13:23:43 by mvillemi         ###   ########.fr       */
+/*   Created: 2016/10/04 11:33:27 by Zoellingam        #+#    #+#             */
+/*   Updated: 2017/12/11 22:11:58 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_instruction.h"
+#include "ft_string.h"
 
-uint8_t	g_direct_jump_table_from_instr[17] =
+void	ft_instruction_del(t_instr **ptr)
 {
-	0, 4, 4, -1, -1, -1, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, -1
-};
+	ft_memdel((void **)ptr);
+}
