@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 12:51:53 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/16 20:57:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:24:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_printf.h"
+#include "ft_instruction.h"
 
 void			ft_vm_display_sti(t_vm *vm,
 								t_process const *proc,

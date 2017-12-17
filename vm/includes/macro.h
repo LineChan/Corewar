@@ -6,17 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 16:04:44 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 14:28:25 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:07:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MACRO_H
 # define MACRO_H
-
-/*
-** Standard libraries
-*/
-# include <stdlib.h>
 
 /*
 ** Number of bits and mask sign

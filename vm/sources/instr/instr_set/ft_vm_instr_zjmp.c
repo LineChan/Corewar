@@ -6,11 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:48:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/15 17:48:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:13:47 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_instruction.h"
 
 void			ft_vm_instr_zjmp(t_vm *vm, t_process *proc, t_instr *instr)
 {

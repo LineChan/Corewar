@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:49:28 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/12 17:11:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:25:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_printf.h"
+#include "ft_instruction.h"
 #include <unistd.h>
 
 void			ft_vm_display_pc(t_vm const *vm,

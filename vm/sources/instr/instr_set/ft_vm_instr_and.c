@@ -6,11 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 00:26:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/13 18:11:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:12:13 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_instruction.h"
 
 void			ft_vm_instr_and(t_vm *vm, t_process *proc, t_instr *instr)
 {

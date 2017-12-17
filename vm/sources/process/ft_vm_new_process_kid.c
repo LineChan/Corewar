@@ -6,13 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 00:58:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/15 16:25:27 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:29:13 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
-// TODO : REMOVE EXIT FAIL AND DO A REAL EXIT FUNC
+#include "ft_instruction.h"
 #include "ft_printf.h"
 #include "macro.h"
 

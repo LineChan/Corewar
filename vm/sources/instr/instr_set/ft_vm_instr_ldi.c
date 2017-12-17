@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 17:38:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/16 20:13:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 17:20:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
+#include "ft_instruction.h"
 #include "endian.h"
 
 void				ft_vm_instr_ldi(t_vm *vm, t_process *proc, t_instr *instr)
@@ -35,19 +36,18 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc, t_instr *instr)
 		++i;
 	}
 	/* Load the value in a register */
-	proc->reg[instr->args[2].data] =
-		ft_instruction_get_data(REG_SIZE,
-			&vm->arena[0][MOD(proc->pc - vm->arena[0] +
-				(instr->args[0].data + instr->args[1].data) % IDX_MOD)],
+	proc->reg[instr->args[2].data] = ft_instruction_get_data(REG_SIZE,
+			&vm->arena[0][MOD(proc->pc - vm->arena[0] + (instr->args[0].data + instr->args[1].data) % IDX_MOD)],
 			&vm->arena[0][0],
 			IS_BIG_ENDIAN);
+	/*Display additional informations */
 	if (DISP_OPT)
 		ft_vm_display_ldi(vm, proc, instr);
 	/* Write in a log file */
-	//TODO : Logfile
+	//TODO ; logfile
 	/* Fetch the next instruction */
 	proc->pc = instr->new_pc;
-	/* Chage the carry */
+	/* Change the carry */
 	proc->carry = 0;
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(vm, proc);

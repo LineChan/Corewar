@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:40:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/16 20:56:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:13:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
+#include "ft_instruction.h"
 
 //TODO : lisb
 #include "ft_printf.h"

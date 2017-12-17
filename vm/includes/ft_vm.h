@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/16 20:44:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 17:11:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 # include "op.h"
 # include "ft_list.h"
 # include "macro.h"
-# include "ft_instruction.h"
+
 /*
 ** Standard Libraries
 */
@@ -90,6 +90,7 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 /*
 ** Structures
 */
+struct s_instr;
 
 /*
 ** State machine
@@ -151,7 +152,7 @@ typedef struct          s_process
     t_op                    *op;
 	//
     unsigned char           *pc;
-	//t_instr					instr;
+	//struct s_instr					instr;
     t_list                  list;
 }                       t_process;
 
@@ -171,7 +172,7 @@ typedef struct			s_vm
     t_list                  process_head;
 }			            t_vm;
 
-typedef void            (*t_func)(t_vm *, t_process *, t_instr *instr);
+typedef void            (*t_func)(t_vm *, t_process *, struct s_instr *instr);
 
 typedef void			(*t_state_machine)(t_vm *vm);
 
@@ -252,14 +253,14 @@ void		ft_vm_close_process(t_list *node);
 */
 
 void		ft_vm_instr_fail(t_vm *vm, t_process *proc,
-							t_instr const *instr,
+							struct s_instr const *instr,
 							const int carry_change);
 void		ft_vm_instr_update_exec_cycle(t_vm *vm, t_process *proc);
 int         ft_vm_instr_bytecode_check(t_process *proc);
 int			ft_vm_instr_get_data(size_t size, uint8_t *pc, t_vm *vm);
 void    	ft_vm_instr_and_or_xor_routine(t_vm *vm,
 							t_process *proc,
-							t_instr *instr);
+							struct s_instr *instr);
 void		ft_vm_instr_st_data(void *dst,
 							void const *src,
 							int size);
@@ -267,23 +268,23 @@ void		ft_vm_instr_st_data(void *dst,
 ** Instruction set
 */
 
-void		ft_vm_instr_live(t_vm *vm, t_process *proc, t_instr *instr);
-void		ft_vm_instr_ld(t_vm *vm, t_process *proc, t_instr *instr);
-void		ft_vm_instr_st(t_vm *vm, t_process *proc, t_instr *instr);
-void		ft_vm_instr_add(t_vm *vm, t_process *proc, t_instr *instr);
-void		ft_vm_instr_sub(t_vm *vm, t_process *proc, t_instr *instr);
-void		ft_vm_instr_and(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_or(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_xor(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_zjmp(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_ldi(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_sti(t_vm *vm, t_process *proc, t_instr *instr);
+void		ft_vm_instr_live(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_ld(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_st(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_add(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_sub(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_and(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_or(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_xor(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_zjmp(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_ldi(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_sti(t_vm *vm, t_process *proc, struct s_instr *instr);
 #if 	0
-void       ft_vm_instr_fork(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_lld(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_lldi(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_lfork(t_vm *vm, t_process *proc, t_instr *instr);
-void       ft_vm_instr_aff(t_vm *vm, t_process *proc, t_instr *instr);
+void       ft_vm_instr_fork(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_lld(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_lldi(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_lfork(t_vm *vm, t_process *proc, struct s_instr *instr);
+void       ft_vm_instr_aff(t_vm *vm, t_process *proc, struct s_instr *instr);
 #endif
 
 /*
@@ -351,7 +352,7 @@ void            ft_vm_log_aff(t_vm *vm, t_process const *proc);
 */
 
 void    		ft_vm_display_death(t_vm const *vm);
-void    		ft_vm_display_pc(t_vm const *vm, t_process const *proc, t_instr const *instr);
+void    		ft_vm_display_pc(t_vm const *vm, t_process const *proc, struct s_instr const *instr);
 
 /*
 ** Display set
@@ -360,22 +361,22 @@ void    		ft_vm_display_pc(t_vm const *vm, t_process const *proc, t_instr const 
 void    		ft_vm_display_live(t_vm *vm,
 									t_process const *proc,
                                     t_list const *it,
-                                    t_instr const *instr);
+                                    struct s_instr const *instr);
 void			ft_vm_display_ld(t_vm *vm,
                                     t_process const *proc,
-                                    t_instr const *instr);
+                                    struct s_instr const *instr);
 void 			ft_vm_display_st(t_vm *vm,
 									t_process const *proc,
-									t_instr const *instr);
+									struct s_instr const *instr);
 void			ft_vm_display_add(t_vm *vm,
                                    t_process const *proc,
-								   t_instr const *instr);
+								   struct s_instr const *instr);
 void			ft_vm_display_sub(t_vm *vm,
                                   t_process const *proc,
-								  t_instr const *instr);
+								  struct s_instr const *instr);
 void			ft_vm_display_and(t_vm *vm,
                                    t_process const *proc,
-                                   t_instr const *instr);
+                                   struct s_instr const *instr);
 #if 0
 void			ft_vm_display_or(t_vm *vm,
                                    t_process const *proc,
@@ -388,10 +389,10 @@ void			ft_vm_display_xor(t_vm *vm,
 #endif
 void			ft_vm_display_ldi(t_vm *vm,
 									t_process const *proc,
-									t_instr const *instr);
+									struct s_instr const *instr);
 void			ft_vm_display_sti(t_vm *vm,
 									t_process const *proc,
-									t_instr const *instr);
+									struct s_instr const *instr);
 #if 0
 void			ft_vm_display_lld(t_vm *vm,
                                     t_process const *proc,

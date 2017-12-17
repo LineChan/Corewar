@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 15:04:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:15:12 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
+#include "ft_instruction.h"
 
 //TODO:Libraries
 #include <libc.h>

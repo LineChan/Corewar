@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:45:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/12 16:40:06 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/17 14:13:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
+#include "ft_instruction.h"
 //TODO:Libraries
 #include "ft_printf.h"
 void				ft_vm_instr_lld(t_vm *vm, t_process *proc, t_instr *instr)
