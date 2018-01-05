@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:40:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/12 14:39:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/22 16:34:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ft_vm_log_lldi(t_vm *vm, t_process const *proc,
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "lldi");
-	ft_vm_log_arg(proc);
+	//ft_vm_log_arg(proc);
 	ft_log("\t\treg[%d] = %d --> arena[%d + %d %% MEM_SIZE]\n",
 												*ptr, proc->reg[*ptr],
 												proc->pc - vm->arena[0], address);

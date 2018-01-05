@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_display_ld.c                                 :+:      :+:    :+:   */
+/*   ft_vm_display_lldi.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 17:48:18 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:23:44 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/18 18:19:19 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/21 14:55:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,24 @@
 #include "ft_printf.h"
 #include "ft_instruction.h"
 
-static void		ft_vm_display_instr(t_process const *proc, t_instr const *instr)
-{
-	if (instr->args[0].type == IND_CODE)
-	{
-		ft_printf("P    %d | ld %d r%d\n",
-					proc->parent_nb,
-					proc->reg[instr->args[1].data],
-					instr->args[1].data);
-		return ;
-	}
-	ft_printf("P    %d | ld %d r%d\n",
-				proc->parent_nb,
-				instr->args[0].data,
-				instr->args[1].data);
-}
-
-void			ft_vm_display_ld(t_vm *vm,
-								t_process const *proc,
-								t_instr const *instr)
+void				ft_vm_display_lldi(t_vm *vm,
+										t_process const *proc,
+										t_instr const *instr)
 {
 	if (DISPLAY_4)
-		ft_vm_display_instr(proc, instr);
+	{
+		ft_printf("P %4d | lldi %d %d r%d\n",
+						-proc->process_nb,
+						instr->args[0].data,
+						instr->args[1].data,
+						instr->args[2].data);
+		ft_printf("       | -> load from %d + %d = %d (with pc %d)\n",
+						instr->args[0].data,
+						instr->args[1].data,
+						instr->args[0].data + instr->args[1].data,
+						proc->pc - vm->arena[0] +
+						instr->args[0].data + instr->args[1].data);
+	}
 	if (DISPLAY_16)
 		ft_vm_display_pc(vm, proc, instr);
 }

@@ -6,16 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 00:51:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 15:06:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/21 17:02:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_log.h"
 #include "ft_printf.h"
-
-//TODO:libs
-#include <libc.h>
 
 void			ft_vm_arena_round_check(t_vm *vm,
 										int *cycle_end_round)
@@ -27,12 +24,16 @@ void			ft_vm_arena_round_check(t_vm *vm,
 	if (LOG_OPT)
 	{
 		ft_log("# ---------------- ROUND CHECK ---------------------\n");
-		ft_log("  Cycle %-7d\n", vm->current_cycle);
+		ft_log("  Cycle %-7d\n", vm->current_cycle - 1);
 	}
 	while (it != &vm->process_head)
 	{
 		//if (!C_PROCESS(it)->live)
+		#if 0
 		if ((!C_PROCESS(it)->live)
+			&& ((int)C_PROCESS(it)->has_lived < (vm->current_cycle - vm->cycle_to_die)))
+			#endif
+		if (!C_PROCESS(it)->dead
 			&& ((int)C_PROCESS(it)->has_lived < (vm->current_cycle - vm->cycle_to_die)))
 		{
 			/* Delete the process if it did not call the live instruction */
@@ -49,27 +50,30 @@ void			ft_vm_arena_round_check(t_vm *vm,
 
 			}
 			#endif
-			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", C_PROCESS(it)->parent_nb , vm->current_cycle - 1 - C_PROCESS(it)->has_lived, vm->cycle_to_die);
-			ft_vm_close_process(it);
+			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+					-C_PROCESS(it)->process_nb ,
+					vm->current_cycle - 1 - C_PROCESS(it)->has_lived,
+					vm->cycle_to_die);
+			//ft_vm_close_process(it);
+			C_PROCESS(it)->dead = 1;
 			--vm->nb_champion;
-			getchar();
 		}
 		else
 			C_PROCESS(it)->live = 0;
 		it = it->next;
 	}
-	if ((vm->total_live >= NBR_LIVE) || (check >= MAX_CHECKS))
+	++check;
+	if ((vm->total_live >= NBR_LIVE) || (check == MAX_CHECKS))
 	{
 		vm->cycle_to_die -= CYCLE_DELTA;
 		DISPLAY_2 ? ft_printf("Cycle to die is now %d\n", vm->cycle_to_die) : 0;
 		check = 0;
 	}
-	else
-		++check;
 	if (LOG_OPT)
 	{
 		ft_log("\t\tTotal lives : %d\n", vm->total_live);
 		ft_log("\t\tCycle to die : %d\n", vm->cycle_to_die);
+		ft_log("\t\tLast check : %d\n", check);
 	}
 	*cycle_end_round += vm->cycle_to_die;
 	vm->total_live = 0;

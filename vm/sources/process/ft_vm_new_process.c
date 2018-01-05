@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:34:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/10 23:52:29 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/19 14:52:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void 			ft_vm_new_process(t_vm *vm,
 	new->pc = &vm->arena[0][index];
 	/* Initialize the process with the 1st instruction */
 	new->exec_cycle = g_op_tab[*new->pc].nb_cycles;
+	#if 0
+	/* Set the carry */
+	new->carry = 1;
+	#endif
 	/* Add the process to the list */
 	ft_list_add(&new->list, &vm->process_head);
 }

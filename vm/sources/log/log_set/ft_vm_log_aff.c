@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 16:38:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 16:26:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/22 16:33:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void				ft_vm_log_aff(t_vm *vm, t_process const *proc)
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s : %hhx\n", vm->current_cycle,
 		-proc->process_nb, "aff", *(proc->pc + 2) % 256);
-	ft_vm_log_arg(proc);
+	//ft_vm_log_arg(proc);
 }

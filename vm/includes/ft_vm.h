@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 17:11:33 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/04 17:57:11 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ typedef struct          s_vm_option
 
 typedef struct          s_process
 {
+	int						dead;
     int                     parent_nb;
     int                     process_nb;
     unsigned int            live;
@@ -161,6 +162,7 @@ typedef struct			s_vm
     unsigned int            index[MAX_PLAYERS];
     int            			fd[MAX_PLAYERS];
     int            			fd_tmp[MAX_PLAYERS];
+	int						current_proc_nb;
     int            			current_cycle;
 	int                		cycle_to_die;
 	unsigned int 			last_alive;
@@ -218,28 +220,27 @@ void        ft_vm_parse_start_c(t_vm *vm, char **av);
 ** Read functions
 */
 
-void       ft_vm_read_header(t_vm *vm);
-void       ft_vm_read_header_magic(t_vm *vm, int i);
-void       ft_vm_read_header_name(t_vm *vm, int i);
-void       ft_vm_read_header_size(t_vm *vm, int i);
-void       ft_vm_read_header_comment(t_vm *vm, int i);
+void		ft_vm_read_header(t_vm *vm);
+void		ft_vm_read_header_magic(t_vm *vm, int i);
+void		ft_vm_read_header_name(t_vm *vm, int i);
+void		ft_vm_read_header_size(t_vm *vm, int i);
+void		ft_vm_read_header_comment(t_vm *vm, int i);
 
 /*
 ** Arena functions
 */
 
-void       ft_vm_arena(t_vm *vm);
-void       ft_vm_arena_upload(t_vm *vm);
-void	   ft_vm_arena_cycle_routine(t_vm *vm);
-void       ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
-void       ft_vm_arena_round_check(t_vm *vm,
-							int *cycle_end_round);
+void		ft_vm_arena(t_vm *vm);
+void		ft_vm_arena_upload(t_vm *vm);
+void		ft_vm_arena_cycle_routine(t_vm *vm);
+void		ft_vm_arena_instr_routine(t_vm *vm, t_process *proc);
+void		ft_vm_arena_round_check(t_vm *vm, int *cycle_end_round);
 
 /*
 ** Process functions
 */
 
-void       ft_vm_new_process(t_vm *vm,
+void		ft_vm_new_process(t_vm *vm,
 							const int master_nb,
 							const int process_nb,
 							const unsigned int index);
@@ -274,34 +275,32 @@ void		ft_vm_instr_st(t_vm *vm, t_process *proc, struct s_instr *instr);
 void		ft_vm_instr_add(t_vm *vm, t_process *proc, struct s_instr *instr);
 void		ft_vm_instr_sub(t_vm *vm, t_process *proc, struct s_instr *instr);
 void		ft_vm_instr_and(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_or(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_xor(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_zjmp(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_ldi(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_sti(t_vm *vm, t_process *proc, struct s_instr *instr);
-#if 	0
-void       ft_vm_instr_fork(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_lld(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_lldi(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_lfork(t_vm *vm, t_process *proc, struct s_instr *instr);
-void       ft_vm_instr_aff(t_vm *vm, t_process *proc, struct s_instr *instr);
-#endif
+void		ft_vm_instr_or(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_xor(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_zjmp(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_ldi(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_sti(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_fork(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_lld(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_lldi(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_lfork(t_vm *vm, t_process *proc, struct s_instr *instr);
+void		ft_vm_instr_aff(t_vm *vm, t_process *proc, struct s_instr *instr);
 
 /*
 ** Log functions
 */
 
 void			ft_vm_log_intro(t_vm const *vm);
-void			ft_vm_log_arg(t_process const *proc);
+void			ft_vm_log_arg(struct s_instr const *instr);
 
 /*
 ** Log set
 */
 
-#if 0
 void			ft_vm_log_live(t_vm *vm,
                             t_process const *proces,
                             t_list const *it);
+#if 0
 void			ft_vm_log_ld(t_vm *vm,
                             t_process const *proces,
                             unsigned char const *ptr,
@@ -325,7 +324,11 @@ void 			ft_vm_log_xor(t_vm *vm,
                             t_process const *proc,
                             unsigned char const *ptr,
                             const int xor[2]);
-void 			ft_vm_log_zjmp(t_vm *vm, t_process const *proc);
+#endif
+void 			ft_vm_log_zjmp(t_vm *vm,
+								t_process const *proc,
+								struct s_instr const *instr);
+#if 0
 void			ft_vm_log_ldi(t_vm *vm,
 							t_process const *proc,
 							unsigned char const *ptr,
@@ -353,6 +356,10 @@ void            ft_vm_log_aff(t_vm *vm, t_process const *proc);
 
 void    		ft_vm_display_death(t_vm const *vm);
 void    		ft_vm_display_pc(t_vm const *vm, t_process const *proc, struct s_instr const *instr);
+void			ft_vm_display_arena(void const *data,
+									size_t msize,
+									size_t nb_byte,
+									t_vm *vm);
 
 /*
 ** Display set
@@ -362,11 +369,7 @@ void    		ft_vm_display_live(t_vm *vm,
 									t_process const *proc,
                                     t_list const *it,
                                     struct s_instr const *instr);
-void			ft_vm_display_ld(t_vm *vm,
-                                    t_process const *proc,
-                                    struct s_instr const *instr);
-void 			ft_vm_display_st(t_vm *vm,
-									t_process const *proc,
+void 			ft_vm_display_st(t_process const *proc,
 									struct s_instr const *instr);
 void			ft_vm_display_add(t_vm *vm,
                                    t_process const *proc,
@@ -377,26 +380,22 @@ void			ft_vm_display_sub(t_vm *vm,
 void			ft_vm_display_and(t_vm *vm,
                                    t_process const *proc,
                                    struct s_instr const *instr);
-#if 0
-void			ft_vm_display_or(t_vm *vm,
-                                   t_process const *proc,
-                                   unsigned char const *ptr,
-                                   const int or[2]);
-void			ft_vm_display_xor(t_vm *vm,
-                              t_process const *proc,
-                              unsigned char const *ptr,
-                              const int xor[2]);
-#endif
 void			ft_vm_display_ldi(t_vm *vm,
+									t_process const *proc,
+									struct s_instr const *instr);
+void			ft_vm_display_lldi(t_vm *vm,
 									t_process const *proc,
 									struct s_instr const *instr);
 void			ft_vm_display_sti(t_vm *vm,
 									t_process const *proc,
 									struct s_instr const *instr);
-#if 0
-void			ft_vm_display_lld(t_vm *vm,
-                                    t_process const *proc,
-                                    unsigned char const *ptr,
-                                    const int address);
-#endif
+void			ft_vm_display_ld_lld(t_vm *vm,
+									t_process const *proc,
+									struct s_instr const *instr);
+void			ft_vm_display_fork(t_vm *vm,
+									t_process const *proc,
+									struct s_instr const *instr);
+void			ft_vm_display_lfork(t_vm *vm,
+									t_process const *proc,
+									struct s_instr const *instr);
 #endif

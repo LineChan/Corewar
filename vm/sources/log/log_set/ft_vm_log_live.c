@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 23:50:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 16:27:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/05 22:36:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			ft_vm_log_live(t_vm *vm,
 {
 	if (it)
 	{
-		ft_log("  Cycle %-7d Process %d --- %-5s : Player %d\n",
+		ft_log("  Cycle %-7d Process %2d --- %-5s : Player %d\n",
 							vm->current_cycle,
 							-proc->process_nb,
 							"live",
@@ -27,7 +27,7 @@ void			ft_vm_log_live(t_vm *vm,
 	}
 	else
 	{
-		ft_log("  Cycle %-7d Process %d --- %-5s : failed\n",
+		ft_log("  Cycle %-7d Process %2d --- %-5s : failed\n",
 							vm->current_cycle,
 							-proc->process_nb,
 							"live");

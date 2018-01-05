@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:49:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:23:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/05 16:17:24 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ static void		ft_vm_display_instr(t_process const *proc,
 {
 	if (it)
 	{
-		ft_printf("P    %d | live %d\n", proc->parent_nb,
-									C_PROCESS(it)->process_nb);
+		ft_printf("P %4d | live %d\n", -proc->process_nb,
+								C_PROCESS(it)->process_nb);
 	}
 	else
 	{
-		ft_printf("P    %d | live %d\n", proc->parent_nb, instr->args[0].data);
+		if (!IS_NEG(instr->args[0].data))
+			ft_printf("P %4d | live %d\n", -proc->process_nb, instr->args[0].data);
 	}
 }
 
@@ -41,7 +42,7 @@ static void			ft_vm_display_alive(t_vm *vm, t_list const *it)
 static void			ft_vm_display_new_death(t_vm *vm,
 											t_process const *proc)
 {
-	vm->option.death[-proc->process_nb - 1] = vm->current_cycle;
+	vm->option.death[proc->parent_nb - 1] = vm->current_cycle;
 }
 
 void			ft_vm_display_live(t_vm *vm,
@@ -49,8 +50,6 @@ void			ft_vm_display_live(t_vm *vm,
 									t_list const *it,
 									t_instr const *instr)
 {
-	extern int8_t	g_direct_jump_table_from_instr[17];
-
 	if (DISPLAY_4)
 		ft_vm_display_instr(proc, it, instr);
 	if (DISPLAY_1)
@@ -59,4 +58,4 @@ void			ft_vm_display_live(t_vm *vm,
 		ft_vm_display_new_death(vm, proc);
 	if (DISPLAY_16)
 		ft_vm_display_pc(vm, proc, instr);
-	}
+}

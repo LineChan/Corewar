@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 23:26:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 16:26:13 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/22 16:33:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ void 				ft_vm_log_add(t_vm *vm,
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "add");
-	ft_vm_log_arg(proc);
+	//ft_vm_log_arg(proc);
 	ft_log("\t\treg[%d] = %d --> [%d] + [%d]\n", add[2], proc->reg[add[2]], add[0], add[1]);
 }

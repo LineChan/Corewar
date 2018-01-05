@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 14:08:43 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 16:27:13 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/22 16:34:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void				ft_vm_log_lld(t_vm *vm,
 {
 	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
 		-proc->process_nb, "or");
-	ft_vm_log_arg(proc);
+	//ft_vm_log_arg(proc);
 	ft_log("\t\treg[%d] = %d --> arena[%d %% MEM_SIZE]\n", *ptr, proc->reg[*ptr],
 																value_to_load);
 }

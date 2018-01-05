@@ -6,13 +6,15 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 00:00:48 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/15 16:23:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/05 16:59:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
 
+//TODO : libs
+#include "ft_printf.h"
 void		ft_vm_instr_update_exec_cycle(t_vm *vm, t_process *proc)
 {
 	extern t_op			g_op_tab[17];

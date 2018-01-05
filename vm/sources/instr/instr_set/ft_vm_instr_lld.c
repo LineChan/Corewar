@@ -6,81 +6,36 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:45:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:13:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:56:17 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_string.h"
 #include "ft_instruction.h"
-//TODO:Libraries
-#include "ft_printf.h"
+#include "endian.h"
+
 void				ft_vm_instr_lld(t_vm *vm, t_process *proc, t_instr *instr)
 {
-	(void)instr;
-	(void)vm;
-	(void)proc;
-	#if 0
-	int					address;
-	unsigned char		*ptr;
-	extern uint8_t 		g_direct_jump_table_from_instr[17];
-
-	(void)instr;
-	/* Set up a pointer at the beginning of the arguments */
-	ptr = proc->pc + 2;
-	/* Read arguments */
-	if (proc->op->arg_types[0] == T_DIR)
+	if (instr->args[0].type == IND_CODE)
 	{
-		address =
-		ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero],
-		ptr, vm);
+		instr->args[0].data =
+			proc->pc - vm->arena[0] + instr->args[0].data;
 	}
-	else
-	{
-		address = proc->pc - vm->arena[0] + ft_vm_instr_get_data(2, ptr, vm);
-		//ft_printf("IND address : %d\n", address);
-	}
-	ptr += proc->jump[0];
-	if (!IS_REG(*ptr))
-	{
-		ft_vm_instr_fail(vm, proc, 2 + proc->jump[0] + proc->jump[1],
-			CARRY_CHANGE);
-		return ;
-	}
-	proc->reg[*ptr] =
-		ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm);
-	ft_printf("get data : %08x\n", ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm));
-	ft_printf("registre : %08x\n", proc->reg[*ptr]);
-	#if 0
-	if (proc->op->arg_types[0] == T_DIR)
-	{
-		/* Load the value in a register */
-		proc->reg[*ptr] =
-			ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm);
-	}
-	else
-	{
-		/* Load the value in a register */
-		proc->reg[*ptr] =
-			ft_vm_instr_get_data(IND_SIZE, &vm->arena[0][MOD(address)], vm);
-	}
-	#endif
+	/* Load the value in a register */
+	proc->reg[instr->args[1].data] =
+		ft_instruction_get_data(IND_SIZE,
+			&vm->arena[0][MOD(instr->args[0].data)],
+			&vm->arena[0][0],
+			IS_BIG_ENDIAN);
 	/* Display additional informations */
-	DISP_OPT ? ft_vm_display_lld(vm, proc, ptr, address) : 0;
-	/*
-	if (DISP_OPT)
-	{
-		DISPLAY_16 ? ft_vm_display_pc(vm, proc,
-					2 + proc->jump[0] + proc->jump[1]) : 0;
-	}
-	*/
-	/* Write in the log file */
-	LOG_OPT ? ft_vm_log_lld(vm, proc, ptr, address) : 0;
+	DISP_OPT ?  ft_vm_display_ld_lld(vm, proc, instr) : 0;
 	/* Fetch the next instruction */
-	proc->pc += 2 + proc->jump[0] + proc->jump[1];
+	proc->pc = instr->new_pc;
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(vm, proc);
 	/* Change the carry */
-	proc->carry ^= proc->carry;
-	#endif
+	if (!instr->args[0].data)
+		proc->carry = 1;
+	else
+		proc->carry = 0;
 }

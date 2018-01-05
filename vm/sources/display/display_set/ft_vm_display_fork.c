@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_display_xor.c                                :+:      :+:    :+:   */
+/*   ft_vm_display_fork.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/05 19:25:52 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:24:26 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/18 18:56:36 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/05 22:40:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,17 @@
 #include "ft_printf.h"
 #include "ft_instruction.h"
 
-static void		ft_vm_display_instr(t_process const *proc,
-									unsigned char const *ptr,
-									const int xor[2])
-{
-	ft_printf("P    %d | xor %d %d r%d\n",
-			proc->parent_nb,
-			xor[0],
-			xor[1],
-			*ptr);
-}
-
-void			ft_vm_display_xor(t_vm *vm,
-								t_process const *proc,
-								unsigned char const *ptr,
-								const int xor[2])
+void			ft_vm_display_fork(t_vm *vm,
+									t_process const *proc,
+									t_instr const *instr)
 {
 	if (DISPLAY_4)
-		ft_vm_display_instr(proc, ptr, xor);
-		/*
-	if (DISPLAY_16)
 	{
-		ft_vm_display_pc(vm, proc,
-			2 + proc->jump[0] + proc->jump[1] + proc->jump[2]);
+		ft_printf("P %4d | fork %d (%d)\n",
+					-proc->process_nb,
+					instr->args[0].data,
+					proc->pc - vm->arena[0] + (instr->args[0].data % IDX_MOD));
 	}
-	*/
+	if (DISPLAY_16)
+		ft_vm_display_pc(vm, proc, instr);
 }

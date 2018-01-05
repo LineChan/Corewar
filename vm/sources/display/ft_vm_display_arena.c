@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_display_st.c                           :+:      :+:    :+:   */
+/*   ft_vm_display_arena.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/06 16:09:17 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:24:30 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/04 17:54:53 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/04 18:12:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_printf.h"
-#include "ft_instruction.h"
 
-void			ft_vm_display_st(t_vm *vm,
-								t_process const *proc,
-								t_instr const *instr)
+void			ft_vm_display_arena(void const *data,
+									size_t msize,
+									size_t nb_byte,
+									t_vm *vm)
 {
-	if (DISPLAY_4)
+	unsigned char	*p;
+	size_t			i;
+
+	i = 0;
+	p = (unsigned char *)data;
+	while (i < msize)
 	{
-		ft_printf("P    %d | st r%d %d\n",
-				proc->parent_nb,
-				instr->args[0].data,
-				instr->args[1].data);
+		if (!(i % nb_byte))
+		{
+			ft_printf("%#0.4x : ", p - vm->arena[0]);
+		}
+		ft_printf("%02hhx ",*p);
+		++p;
+		++i;
+		if (!(i % nb_byte))
+			ft_printf("\n");
 	}
-	if (DISPLAY_16)
-		ft_vm_display_pc(vm, proc, instr);
 }

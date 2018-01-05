@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 18:09:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/15 16:12:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/05 16:03:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@ void			ft_vm_instr_st_data(void *dst,
 									int size)
 {
 	while (size--)
+	{
 		*(char *)dst++ = *(char*)src++;
+	}
 }

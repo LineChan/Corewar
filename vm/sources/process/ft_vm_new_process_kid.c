@@ -6,14 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 00:58:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:29:13 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/21 18:02:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
 #include "ft_instruction.h"
-#include "ft_printf.h"
 #include "macro.h"
 
 void			ft_vm_new_process_kid(t_vm *vm,
@@ -21,7 +20,6 @@ void			ft_vm_new_process_kid(t_vm *vm,
 									const unsigned int index)
 {
 	t_process			*new;
-	static int			current_proc_nb = -5;
 	extern t_op			g_op_tab[17];
 
 	/* Allocate a new proceess */
@@ -30,7 +28,7 @@ void			ft_vm_new_process_kid(t_vm *vm,
 	/* Copy data from parent */
 	ft_memcpy((void *)new, proc, sizeof(t_process));
 	/* Change the process' reference */
-	new->process_nb = current_proc_nb--;
+	new->process_nb = --vm->current_proc_nb;
 	/* Set up the Program Counter to the new location  */
 	new->pc = &vm->arena[0][index];
 	/* Update the execution cycle */

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 18:37:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/15 17:51:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/21 14:53:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void			ft_vm_instr_and_or_xor_routine(t_vm *vm,
 
 	i = 0;
 	if (DISPLAY_4)
-		ft_printf("P    %d | %s ", proc->parent_nb, instr->op->name);
+		ft_printf("P %4d | %s ", -proc->process_nb, instr->op->name);
 	while (i < (instr->op->nb_args - 1))
 	{
 		if (instr->args[i].type == REG_CODE)

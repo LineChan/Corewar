@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:26:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 17:23:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/21 14:54:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void			ft_vm_display_ldi(t_vm *vm,
 {
 	if (DISPLAY_4)
 	{
-		ft_printf("P    %d | ldi %d %d r%d\n",
-						proc->parent_nb,
+		ft_printf("P %4d | ldi %d %d r%d\n",
+						-proc->process_nb,
 						instr->args[0].data,
 						instr->args[1].data,
 						instr->args[2].data);

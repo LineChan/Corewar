@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:15:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/04 18:04:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,33 @@ void			ft_vm_arena(t_vm *vm)
 	//TODO : some adjusment for the option start_c
 	vm->current_cycle = 1;
 	/* Loop until there is no champion in the arena */
-	while ((vm->nb_champion > 0) && (!IS_NEG(vm->cycle_to_die)))
+	while (vm->nb_champion > 0)
 	{
 		while (vm->current_cycle <= cycle_end_round)
 		{
 
-			DISPLAY_2 ? ft_printf("It is now cycle %d\n", vm->current_cycle) : 0;
+			if (DISPLAY_2)
+				ft_printf("It is now cycle %d\n", vm->current_cycle);
 			ft_vm_arena_cycle_routine(vm);
 			/* Dump memory */
 			if ((vm->current_cycle == DUMP_OPT) || (vm->current_cycle == S_DUMP_OPT))
 			{
-				ft_vm_print_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
+				//ft_vm_print_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
+				ft_vm_display_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
 				if (vm->current_cycle == DUMP_OPT)
 					return ;
 			}
 			++vm->current_cycle;
-			}
+		}
 		ft_vm_arena_round_check(vm, &cycle_end_round);
+		if (IS_NEG(vm->cycle_to_die))
+		{
+			if (DISPLAY_2)
+				ft_printf("It is now cycle %d\n", vm->current_cycle);
+			++vm->current_cycle;
+			ft_vm_arena_round_check(vm, &cycle_end_round);
+			break ;
+		}
 	}
 	#if 0
 	if (DISPLAY_8)

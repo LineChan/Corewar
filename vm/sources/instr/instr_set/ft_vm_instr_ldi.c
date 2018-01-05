@@ -6,12 +6,11 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 17:38:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 17:20:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/18 18:13:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_string.h"
 #include "ft_instruction.h"
 #include "endian.h"
 

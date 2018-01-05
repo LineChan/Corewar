@@ -6,95 +6,51 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:11:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:13:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:58:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
+#include "endian.h"
 
-//TODO : libs
-#include <libc.h>
-#include "ft_printf.h"
-#include "ft_log.h"
-//TODO : stil debugging
 void			ft_vm_instr_lldi(t_vm *vm, t_process *proc, t_instr *instr)
 {
-	(void)vm;
-	(void)proc;
-	(void)instr;
-	#if 0
-	int					i;
-	int					sum;
-	unsigned char		*ptr;
-	extern uint8_t		g_direct_jump_table_from_instr[17];
+	int			i;
 
-	(void)instr;
-	/* Set up a pointer at the beginning of the arguments */
-	ptr = proc->pc + 2;
-	sum = 0;
 	i = 0;
-	/* Read arguments */
-	while (i < (proc->op->nb_args - 1))
+	while (i < (instr->op->nb_args - 1))
 	{
-		if (proc->op->arg_types[i] == T_REG)
+		if (instr->args[i].type == REG_CODE)
+			instr->args[i].data = proc->reg[instr->args[i].data];
+		else if (instr->args[i].type == IND_CODE)
 		{
-			if (!IS_REG(*ptr))
-			{
-				ft_vm_instr_fail(vm, proc,
-					2 + proc->jump[0] + proc->jump[1] + proc->jump[2],
-					CARRY_CHANGE);
-				return ;
-			}
-			if (!i)
-				sum += proc->pc - vm->arena[0] + proc->reg[*ptr];
-			else
-				sum += proc->reg[*ptr];
+			instr->args[i].data =
+				ft_instruction_get_data(REG_SIZE,
+				&vm->arena[0][MOD(proc->pc -
+					vm->arena[0] + instr->args[i].data)],
+				&vm->arena[0][0],
+				IS_BIG_ENDIAN);
 		}
-		else if (proc->op->arg_types[i] == T_IND)
-		{
-
-			sum += ft_vm_instr_get_data(2, ptr, vm);
-		}
-		else
-		{
-			#if 0
-			if (!i)
-				sum += proc->pc - vm->arena[0] +
-				ft_vm_instr_get_data(
-				g_direct_jump_table_from_instr[proc->op->numero], ptr);
-			else
-			#endif
-			//ft_log("DIR get_data : %d\n", ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero], ptr));
-				sum +=
-				ft_vm_instr_get_data(
-				g_direct_jump_table_from_instr[proc->op->numero], ptr, vm);
-		}
-		ptr += proc->jump[i];
 		++i;
 	}
-	if (!IS_REG(*ptr))
-	{
-		ft_vm_instr_fail(vm, proc,
-			2 + proc->jump[0] + proc->jump[1] + proc->jump[2],
-			CARRY_CHANGE);
-		return ;
-	}
 	/* Load the value in a register */
-	proc->reg[*ptr] = vm->arena[0][MOD(sum)];
-	/* Display additional informations */
+	proc->reg[instr->args[2].data] = ft_instruction_get_data(REG_SIZE,
+			&vm->arena[0][MOD(proc->pc - vm->arena[0] + (instr->args[0].data + instr->args[1].data) % IDX_MOD)],
+			&vm->arena[0][0],
+			IS_BIG_ENDIAN);
+	/*Display additional informations */
 	if (DISP_OPT)
-	{
-		DISPLAY_16 ? ft_vm_display_pc(vm, proc,
-				2 + proc->jump[0] + proc->jump[1] + proc->jump[2]) : 0;
-	}
+		ft_vm_display_lldi(vm, proc, instr);
 	/* Write in a log file */
-	LOG_OPT ? ft_vm_log_lldi(vm, proc, ptr, sum) : 0;
+	//TODO ; logfile
 	/* Fetch the next instruction */
-	proc->pc += 2 + proc->jump[0] + proc->jump[1] + proc->jump[2];
+	proc->pc = instr->new_pc;
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(vm, proc);
 	/* Change the carry */
-	proc->carry ^= proc->carry;
-	#endif
+	if (!instr->args[0].data)
+		proc->carry = 1;
+	else
+		proc->carry = 0;
 }

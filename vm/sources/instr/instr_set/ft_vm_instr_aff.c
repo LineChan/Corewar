@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 16:28:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:11:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/18 18:43:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,19 @@
 
 void			ft_vm_instr_aff(t_vm *vm, t_process *proc, t_instr *instr)
 {
-	(void)vm;
-	(void)proc;
-	(void)instr;
+	ft_printf("%c\n", proc->reg[instr->args[0].data] % 256);
+	/* Display additional informations */
+	if (DISPLAY_16)
+		ft_vm_display_pc(vm, proc, instr);
+
+	/* Write in a logfile */
+	// TODO : logfile
+	/* Fetch the next instruction */
+	proc->pc = instr->new_pc;
+	/* Change the carry */
+	proc->carry = 0;
+	/* Update the instruction cycle with the new instruction */
+	ft_vm_instr_update_exec_cycle(vm, proc);
 	#if 0
 	(void)instr;
 	/* Check is the value is a register number */

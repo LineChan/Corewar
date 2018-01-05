@@ -6,14 +6,15 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 15:40:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 16:19:56 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/22 16:37:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_log.h"
+#include "ft_instruction.h"
 
-void			ft_vm_log_arg(t_process const *proc)
+void			ft_vm_log_arg(t_instr const *instr)
 {
 	int		i;
 	char	type[3];
@@ -21,11 +22,11 @@ void			ft_vm_log_arg(t_process const *proc)
 	i = 0;
 	while (i < MAX_ARGS_NUMBER)
 	{
-		if (proc->op->arg_types[i] == T_REG)
+		if (instr->op->arg_types[i] == REG_CODE)
 			type[i] = 'R';
-		else if (proc->op->arg_types[i] == T_IND)
+		else if (instr->op->arg_types[i] == IND_CODE)
 			type[i] = 'I';
-		else if (proc->op->arg_types[i] == T_DIR)
+		else if (instr->op->arg_types[i] == DIR_CODE)
 			type[i] = 'D';
 		else
 			type[i] = 'X';

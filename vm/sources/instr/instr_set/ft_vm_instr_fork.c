@@ -6,41 +6,31 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 17:52:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/17 14:12:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/05 22:39:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
 
+//TODO : libs
+#include "ft_printf.h"
 void				ft_vm_instr_fork(t_vm *vm, t_process *proc, t_instr *instr)
 {
-	(void)vm;
-	(void)proc,
-	(void)instr;
-	#if 0
-	extern uint8_t g_direct_jump_table_from_instr[17];
-
-	(void)instr;
 	/* Create a new process, copy data from parent */
 	/* and link it to the champion's structure at the right location */
-	ft_vm_new_process_kid(vm, proc, MOD((proc->pc - vm->arena[0] +
-	(ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero],
-									proc->pc + 1, vm) % IDX_MOD))));
+	ft_vm_new_process_kid(vm, proc, MOD(proc->pc - vm->arena[0] +
+			(instr->args[0].data % IDX_MOD)));
 	/* Display additional informations */
 	if (DISP_OPT)
-	{
-		//1
-		//8
-		//DISPLAY_16 ? ft_vm_display_pc(vm, proc, 5) : 0;
-	}
-	/* Write in a log file */
-	LOG_OPT ? ft_vm_log_lfork(vm, proc, proc->pc - vm->arena[0] +
-	(ft_vm_instr_get_data(g_direct_jump_table_from_instr[proc->op->numero],
-									proc->pc + 1, vm) % IDX_MOD)) : 0;
-	/* Fetch the next instruction */
-	proc->pc += 5;
+		ft_vm_display_fork(vm, proc, instr);
+		/*
+	if (DISPLAY_16)
+		ft_vm_display_pc(vm, proc, instr);
+		*/
+	/* Write in the logfile */
+	// TODO : logfile
+	proc->pc = instr->new_pc;
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(vm, proc);
-	#endif
 }

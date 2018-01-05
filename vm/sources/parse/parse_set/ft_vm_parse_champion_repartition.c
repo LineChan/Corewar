@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 00:17:31 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 01:10:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2017/12/21 18:03:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void 	ft_vm_parse_champion_repartition(t_vm *vm)
 		++i;
 	}
 	vm->last_alive = j;
+	vm->current_proc_nb = -j;
 }

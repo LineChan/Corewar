@@ -4,16 +4,6 @@
 lld      0, r12
 st       r12, -0
 st       r12, -10
-
-
-
-
-
-
-
-
-
-
 lld      1, r12
 lld      0, r1
 lld      0, r1

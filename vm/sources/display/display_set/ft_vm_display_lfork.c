@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_find_proc_nb.c                               :+:      :+:    :+:   */
+/*   ft_vm_display_lfork.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 22:39:30 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/18 20:19:49 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/21 16:01:06 by mvillemi          #+#    #+#             */
+/*   Updated: 2017/12/21 16:02:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-
-//TODO : libs
 #include "ft_printf.h"
-static int             ft_vm_find_proc_nb_helper(t_list *it, void const *context)
-{
-   return (C_PROCESS(it)->process_nb == *(int *)context);
-}
+#include "ft_instruction.h"
 
-t_list                 *ft_vm_find_proc_nb(t_list *head, int nb)
+void			ft_vm_display_lfork(t_vm *vm,
+									t_process const *proc,
+									t_instr const *instr)
 {
-       return (ft_list_find_data(head, (void const *)&nb,
-				   &ft_vm_find_proc_nb_helper));
+	if (DISPLAY_4)
+	{
+		ft_printf("P %4d | lfork %d (%d)\n",
+					-proc->process_nb,
+					instr->args[0].data,
+					proc->pc - vm->arena[0] + instr->args[0].data);
+	}
+	if (DISPLAY_16)
+		ft_vm_display_pc(vm, proc, instr);
 }
