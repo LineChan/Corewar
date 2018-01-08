@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/04 17:57:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/07 16:07:43 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ typedef struct          s_process
 	int						dead;
     int                     parent_nb;
     int                     process_nb;
+	int						error;
     unsigned int            live;
 	unsigned int 			has_lived;
     unsigned int            carry;
@@ -151,6 +152,7 @@ typedef struct          s_process
 	// TODO : remove
     int                     jump[MAX_ARGS_NUMBER];
     t_op                    *op;
+	struct s_instr			*instr;
 	//
     unsigned char           *pc;
 	//struct s_instr					instr;
@@ -247,7 +249,8 @@ void		ft_vm_new_process(t_vm *vm,
 void		ft_vm_new_process_kid(t_vm *vm,
 							t_process *proc,
 							const unsigned int index);
-void		ft_vm_close_process(t_list *node);
+void		ft_vm_new_process_init_instr(t_vm *vm, t_process *new);
+void		ft_vm_close_process(t_vm *vm);
 
 /*
 ** Instruction functions
@@ -262,7 +265,8 @@ int			ft_vm_instr_get_data(size_t size, uint8_t *pc, t_vm *vm);
 void    	ft_vm_instr_and_or_xor_routine(t_vm *vm,
 							t_process *proc,
 							struct s_instr *instr);
-void		ft_vm_instr_st_data(void *dst,
+void		ft_vm_instr_st_data(t_vm *vm,
+							void *dst,
 							void const *src,
 							int size);
 /*
@@ -300,11 +304,8 @@ void			ft_vm_log_arg(struct s_instr const *instr);
 void			ft_vm_log_live(t_vm *vm,
                             t_process const *proces,
                             t_list const *it);
+void		ft_vm_log_ld_lld(t_vm *vm, t_process const *proc);
 #if 0
-void			ft_vm_log_ld(t_vm *vm,
-                            t_process const *proces,
-                            unsigned char const *ptr,
-                            const unsigned int address);
 void 			ft_vm_log_st(t_vm *vm, t_process const *proc);
 void 			ft_vm_log_add(t_vm *vm,
                             t_process const *proc,
@@ -325,9 +326,8 @@ void 			ft_vm_log_xor(t_vm *vm,
                             unsigned char const *ptr,
                             const int xor[2]);
 #endif
-void 			ft_vm_log_zjmp(t_vm *vm,
-								t_process const *proc,
-								struct s_instr const *instr);
+void 			ft_vm_log_zjmp(t_vm *vm, t_process const *proc);
+void				ft_vm_log_sti(t_vm *vm, t_process const *proc);
 #if 0
 void			ft_vm_log_ldi(t_vm *vm,
 							t_process const *proc,
@@ -355,7 +355,7 @@ void            ft_vm_log_aff(t_vm *vm, t_process const *proc);
 */
 
 void    		ft_vm_display_death(t_vm const *vm);
-void    		ft_vm_display_pc(t_vm const *vm, t_process const *proc, struct s_instr const *instr);
+void    		ft_vm_display_pc(t_vm *vm, t_process const *proc, struct s_instr const *instr);
 void			ft_vm_display_arena(void const *data,
 									size_t msize,
 									size_t nb_byte,

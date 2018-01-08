@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 23:50:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/05 22:36:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/06 17:32:07 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void			ft_vm_log_live(t_vm *vm,
 							-proc->process_nb,
 							"live");
 	}
+	ft_log("\t\t------------------------------- %4d\n", proc->pc - vm->arena[0]);
 }

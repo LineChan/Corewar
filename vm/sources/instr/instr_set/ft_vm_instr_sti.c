@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:57:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/05 16:01:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/07 16:49:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,6 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc, t_instr *instr)
 				return ;
 			}
 			instr->args[i].data = proc->reg[instr->args[i].data];
-			#if 0
-			if (!REG_IS_VALID(instr->args[i].data))
-			{
-
-					if (DISPLAY_16)
-						ft_vm_display_pc(vm, proc, instr);
-				/* Write in a logfile */
-				// TODO : logfile
-				/* Fetch the next instruction */
-				proc->pc = instr->new_pc;
-				/* Update the execution cycle with the new instruction */
-				ft_vm_instr_update_exec_cycle(vm, proc);
-				return ;
-			}
-			#endif
 		}
 		else if (instr->args[i].type == IND_CODE)
 		{
@@ -75,10 +60,6 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc, t_instr *instr)
 					&vm->arena[0][0],
 					IS_BIG_ENDIAN);
 		}
-		#if 0
-		else
-			instr->args[i].data = ft_endian_convert_int32(instr->args[i].data);
-			#endif
 		++i;
 	}
 	/* Convert the register to little endian */
@@ -89,35 +70,27 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc, t_instr *instr)
 		if (DISPLAY_16)
 			ft_vm_display_pc(vm, proc, instr);
 		proc->pc = instr->new_pc;
-		ft_vm_instr_update_exec_cycle(vm, proc);
-		return ;
 	}
 	else
 	{
 		/* Display additional informations */
 		if (DISPLAY_4)
 			ft_vm_display_sti(vm, proc, instr);
+		/* Write in the log file */
+		ft_vm_log_sti(vm, proc);
 		instr->args[0].data = ft_endian_convert_int32(proc->reg[instr->args[0].data]);
 		/* Store the value in the arena */
-		ft_vm_instr_st_data(&vm->arena[0][MOD(proc->pc - vm->arena[0]
+		ft_vm_instr_st_data(vm,
+							&vm->arena[0][MOD(proc->pc - vm->arena[0]
 							+ (instr->args[1].data + instr->args[2].data) % IDX_MOD)],
 							&instr->args[0].data,
 							REG_SIZE);
+		/* Display additional informations */
+		if (DISPLAY_16)
+			ft_vm_display_pc(vm, proc, instr);
+		/* Fetch the next instruction */
+		proc->pc = instr->new_pc;
 	}
-	//proc->reg[instr->args[0].data] = ft_endian_convert_int32(proc->reg[instr->args[0].data]);
-	#if 0
-	ft_vm_instr_st_data(&vm->arena[0][MOD(proc->pc - vm->arena[0]
-						+ (instr->args[1].data + instr->args[2].data) % IDX_MOD)],
-						&proc->reg[instr->args[0].data],
-						REG_SIZE);
-	#endif
-	/* Display additional informations */
-	if (DISPLAY_16)
-		ft_vm_display_pc(vm, proc, instr);
-	/* Write in a logfile */
-	// TODO : logfile
-	/* Fetch the next instruction */
-	proc->pc = instr->new_pc;
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(vm, proc);
 }

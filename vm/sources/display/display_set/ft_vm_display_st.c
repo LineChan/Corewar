@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_log_ld.c                                     :+:      :+:    :+:   */
+/*   ft_vm_display_st.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/26 15:33:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/22 16:33:36 by mvillemi         ###   ########.fr       */
+/*   Created: 2017/12/06 16:09:17 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/05 23:19:11 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_log.h"
+#include "ft_printf.h"
+#include "ft_instruction.h"
 
-void			ft_vm_log_ld(t_vm *vm,
-							t_process const *proc,
-							unsigned char const *ptr,
-							const unsigned int address)
+void			ft_vm_display_st(t_process const *proc,
+								t_instr const *instr)
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
-		-proc->process_nb, "ld");
-	//ft_vm_log_arg(proc);
-	ft_log("\t\treg[%d] = %d --> (arena[%d %% IDX_MOD])\n", *ptr, proc->reg[*ptr], MOD(address));
-}
+	ft_printf("P %4d | st r%d %d\n",
+			-proc->process_nb,
+			instr->args[0].data,
+			instr->args[1].data);
+	}

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:40:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/22 12:07:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/06 22:37:13 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc, t_instr *instr)
 		/* Convert the register to little endian */
 		instr->args[0].data = ft_endian_convert_int32(proc->reg[instr->args[0].data]);
 		/* Store the value in the arena */
-		ft_vm_instr_st_data(&vm->arena[0][MOD(proc->pc - vm->arena[0]
+		ft_vm_instr_st_data(vm,
+							&vm->arena[0][MOD(proc->pc - vm->arena[0]
 								+ (instr->args[1].data % IDX_MOD))],
 							&instr->args[0].data,
 							REG_SIZE);

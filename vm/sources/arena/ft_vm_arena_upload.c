@@ -6,13 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:59:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/05 23:17:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/05 23:45:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "macro.h"
 #include "ft_printf.h"
+#include "ft_instruction.h"
 #include <unistd.h>
 
 void			ft_vm_arena_upload(t_vm *vm)
@@ -37,8 +38,6 @@ void			ft_vm_arena_upload(t_vm *vm)
 				ft_exit("Can't upload champions in the arena");
 			/* Create a new process */
 			ft_vm_new_process(vm, i + 1, -i - 1, index);
-			/* Put the champion's number in the 1st register */
-			C_PROCESS(vm->process_head.next)->reg[1] = -i - 1;
 			/* Close the champion's File Descriptor */
 			close(vm->fd[i]);
 			/* Move the starting point for the next champion */

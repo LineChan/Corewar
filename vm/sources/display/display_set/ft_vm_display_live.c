@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:49:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/05 16:17:24 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/06 18:30:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static void		ft_vm_display_instr(t_process const *proc,
 	}
 	else
 	{
-		if (!IS_NEG(instr->args[0].data))
-			ft_printf("P %4d | live %d\n", -proc->process_nb, instr->args[0].data);
+		ft_printf("P %4d | live %d\n", -proc->process_nb, instr->args[0].data);
 	}
 }
 
