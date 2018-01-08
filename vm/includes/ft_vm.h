@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/07 16:07:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 15:20:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ typedef struct          s_process
 	unsigned int 			has_lived;
     unsigned int            carry;
     int            			exec_cycle;
-    unsigned int            bytecode;
+    //unsigned int            bytecode;
     int                     reg[REG_NUMBER + 1];
 	// TODO : remove
     int                     jump[MAX_ARGS_NUMBER];
@@ -304,7 +304,7 @@ void			ft_vm_log_arg(struct s_instr const *instr);
 void			ft_vm_log_live(t_vm *vm,
                             t_process const *proces,
                             t_list const *it);
-void		ft_vm_log_ld_lld(t_vm *vm, t_process const *proc);
+void			ft_vm_log_ld_lld(t_vm *vm, t_process const *proc);
 #if 0
 void 			ft_vm_log_st(t_vm *vm, t_process const *proc);
 void 			ft_vm_log_add(t_vm *vm,

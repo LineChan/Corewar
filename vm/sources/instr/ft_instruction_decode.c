@@ -6,13 +6,27 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/12/15 16:22:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 16:57:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_instruction_parse.h"
-#include "ft_string.h"
+#include "ft_vm.h"
+#include "ft_instruction.h"
 
+void		ft_instruction_decode(t_vm *vm, t_process *proc)
+{
+    uint8_t         bytecode;
+
+	/* Check if the OP code is valid */
+    if (!OPCODE_IS_VALID(*proc->pc))
+        return ;
+	/* Decode the bytecode */
+    bytecode = ft_instruction_setup(vm, proc);
+	/* Parse instruction */
+	ft_instruction_parse(vm, proc, bytecode);
+}
+
+#if 0
 t_instr		*ft_instruction_decode(uint8_t *pc, uint8_t *context, int *error)
 {
 	extern t_op		g_op_tab[17];
@@ -31,3 +45,4 @@ t_instr		*ft_instruction_decode(uint8_t *pc, uint8_t *context, int *error)
 	ft_instruction_parse(this, context, bytecode, error);
 	return (this);
 }
+#endif

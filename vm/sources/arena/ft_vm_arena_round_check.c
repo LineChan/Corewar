@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 00:51:33 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/06 00:11:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 14:43:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,12 @@ void			ft_vm_arena_round_check(t_vm *vm,
 	}
 	while (it != &vm->process_head)
 	{
-		//if (!C_PROCESS(it)->live)
-		#if 0
-		if ((!C_PROCESS(it)->live)
-			&& ((int)C_PROCESS(it)->has_lived < (vm->current_cycle - vm->cycle_to_die)))
-			#endif
 		if (!C_PROCESS(it)->dead
 			&& ((int)C_PROCESS(it)->has_lived < (vm->current_cycle - vm->cycle_to_die)))
 		{
 			/* Delete the process if it did not call the live instruction */
-			//ft_printf("proc %d : has lived[%d]< current_c[%d] - ctd[%d]\n", C_PROCESS(it)->process_nb,C_PROCESS(it)->has_lived, vm->current_cycle , vm->cycle_to_die);
-			LOG_OPT ? ft_log("\t\tProcess %d is dead\n",
-								-C_PROCESS(it)->process_nb) : 0 ;
+			if (LOG_OPT)
+				ft_log("\t\tProcess %d is dead\n", -C_PROCESS(it)->process_nb);
 			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 					-C_PROCESS(it)->process_nb ,
 					vm->current_cycle - 1 - C_PROCESS(it)->has_lived,
@@ -68,15 +62,6 @@ void			ft_vm_arena_round_check(t_vm *vm,
 	vm->total_live = 0;
 	if (LOG_OPT)
 	{
-		#if 0
-		it = vm->process_head.next;
-		while (it != &vm->process_head)
-		{
-			ft_printf("process left : %d\n", C_PROCESS(it)->process_nb);
-			it = it->next;
-		}
-		#endif
 		ft_log("# --------------------------------------------------\n");
-
 	}
 }

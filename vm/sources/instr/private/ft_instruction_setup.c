@@ -6,12 +6,35 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2017/12/15 14:50:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 16:53:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_instruction_parse.h"
+#include "ft_vm.h"
+#include "ft_instruction.h"
 
+uint8_t		ft_instruction_setup(t_vm *vm, t_process *proc)
+{
+    extern t_op		g_op_tab[17];
+	uint8_t			bytecode;
+
+	/* Fetch the right instruction */
+	proc->instr->op = g_op_tab + *proc->pc;
+	/* Read the param_byte and setup the first argument */
+	if (0 != proc->instr->op->param_byte)
+	{
+		bytecode = vm->arena[0][LOOP(proc->pc + 1 - vm->arena[0])];
+		proc->instr->new_pc = vm->arena[0] + LOOP(proc->pc + 2 - vm->arena[0]);
+	}
+	/* Create a new bytecode with a default DIR_CODE */
+	else
+	{
+		bytecode = DIR_CODE << 6;
+		proc->instr->new_pc = vm->arena[0] + LOOP(proc->pc + 1 - vm->arena[0]);
+	}
+	return (bytecode);
+}
+#if 0
 uint8_t		ft_instruction_setup(t_instr *this, uint8_t *pc, uint8_t *context)
 {
 	extern t_op		g_op_tab[17];
@@ -35,3 +58,4 @@ uint8_t		ft_instruction_setup(t_instr *this, uint8_t *pc, uint8_t *context)
 	}
 	return (bytecode);
 }
+#endif

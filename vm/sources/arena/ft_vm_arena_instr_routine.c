@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/07 00:51:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 15:59:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,14 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 		g_instr_list[proc->instr->op->numero](vm, proc, proc->instr);
 	}
 	/* Decode the new instruction */
+	#if 0
 	ft_instruction_del(&proc->instr);
+	// TODO : DECODE
+	//  ft_instruction_decode(vm, proc);
 	proc->instr = ft_instruction_decode(proc->pc,
 										vm->arena[0],
 										&proc->error);
+	#endif
 }
 
 #if 0
