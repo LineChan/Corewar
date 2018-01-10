@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/10 22:25:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/10 22:50:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_instruction.h"
 
 //TODO : libs
-#include "ft_macro.h"
+#include "macro.h"
 #include "ft_printf.h"
 static const t_func g_instr_list[] =
 {
@@ -37,6 +37,7 @@ static const t_func g_instr_list[] =
 	&ft_vm_instr_aff,
 };
 
+#if 0
 static void 	ft_vm_check_instruction_at_exec_cycle(t_vm *vm, t_process *proc)
 {
 	size_t		i;
@@ -48,18 +49,21 @@ static void 	ft_vm_check_instruction_at_exec_cycle(t_vm *vm, t_process *proc)
 		if (*ptr != )
 	}
 }
+#endif
 
 void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 {
 	extern t_op		g_op_tab[17];
 
 	/* Check if the instruction changed since the beginning of the sleep time */
+	#if 0
 	if (proc->instr->op->numero != 12 ) && (proc->instr->op->numero != 15))
 	{
 		ft_printf("NEED TO BE CHANGED\n");
 	}
 	if (!proc->instr)
 		ft_instruction_decode(vm, proc);
+	#endif
 	if (!proc->instr)
 	{
 		/* The OP number is invalid */
@@ -78,7 +82,7 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 			ft_vm_display_pc(vm, proc, proc->instr);
 		/* Fetch the next instruction */
 		proc->pc = proc->instr->new_pc;
-		#if 0
+		#if 1
 		/* Decode the new instruction */
 		ft_vm_instruction_del(proc->instr);
 		proc->instr = ft_instruction_decode(proc->pc,
@@ -97,7 +101,7 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 	#if 1
 	/* If the nezt instruction is fork or lfork, the instruction is decoded now */
 	ft_instruction_del(&proc->instr);
-	if (*proc->pc != 12 && *proc->pc != 15)
+	//if (*proc->pc != 12 && *proc->pc != 15)
 		ft_instruction_decode(vm, proc);
 	// TODO : DECODE
 	#endif
