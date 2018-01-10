@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:40:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/10 16:43:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 14:27:07 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,6 @@
 #include "ft_printf.h"
 void			ft_vm_instr_st(t_vm *vm, t_process *proc, t_instr *instr)
 {
-	#if 0
-	ft_instruction_del(&proc->instr);
-	ft_instruction_decode(vm, proc);
-	#endif
-	if (!REG_IS_VALID(proc->instr->args[0].data))
-	{
-		//ft_printf("ST REG NOT VALID\n");
-		ft_vm_display_pc(vm, proc, instr);
-		proc->pc = instr->new_pc;
-		return ;
-	}
 	/* Display additional informations */
 	if (DISPLAY_4)
 		ft_vm_display_st(proc, instr);
@@ -37,7 +26,7 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc, t_instr *instr)
 		/* Store the value in a register */
 		proc->reg[instr->args[1].data] = proc->reg[instr->args[0].data];
 	}
-	else if (instr->args[1].type == IND_CODE)
+	else
 	{
 		/* Convert the register to little endian */
 		instr->args[0].data = ft_endian_convert_int32(proc->reg[instr->args[0].data]);
@@ -48,8 +37,6 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc, t_instr *instr)
 							&instr->args[0].data,
 							REG_SIZE);
 	}
-	else
-		ft_exit("error sti");
 	/* Display additional informations */
 	if (DISPLAY_16)
 		ft_vm_display_pc(vm, proc, instr);
