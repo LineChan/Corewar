@@ -6,13 +6,16 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 22:18:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/10 17:18:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
 
+//TODO : libs
+#include "ft_macro.h"
+#include "ft_printf.h"
 static const t_func g_instr_list[] =
 {
 	0,
@@ -34,10 +37,27 @@ static const t_func g_instr_list[] =
 	&ft_vm_instr_aff,
 };
 
+static void 	ft_vm_check_instruction_at_exec_cycle(t_vm *vm, t_process *proc)
+{
+	size_t		i;
+	unsigned char *ptr;
+
+	i = (size_t)ABS(MOD((instr->new_pc - proc->pc)));
+	while (i--)
+	{
+		if (*ptr != )
+	}
+}
+
 void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 {
 	extern t_op		g_op_tab[17];
 
+	/* Check if the instruction changed since the beginning of the sleep time */
+	if (proc->instr->op->numero != 12 ) && (proc->instr->op->numero != 15))
+	{
+		ft_printf("NEED TO BE CHANGED\n");
+	}
 	if (!proc->instr)
 	{
 		/* The OP number is invalid */
