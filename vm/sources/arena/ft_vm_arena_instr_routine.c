@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 22:18:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/10 22:22:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 {
 	extern t_op		g_op_tab[17];
 
+	if (!proc->instr)
+		ft_instruction_decode(vm, proc);
 	if (!proc->instr)
 	{
 		/* The OP number is invalid */
@@ -73,10 +75,11 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 	}
 	/* Decode the new instruction */
 	#if 1
+	/* If the nezt instruction is fork or lfork, the instruction is decoded now */
 	ft_instruction_del(&proc->instr);
+	if (*proc->pc != 12 && *proc->pc != 15)
+		ft_instruction_decode(vm, proc);
 	// TODO : DECODE
-	//  ft_instruction_decode(vm, proc);
-	ft_instruction_decode(vm, proc);
 	#endif
 }
 
