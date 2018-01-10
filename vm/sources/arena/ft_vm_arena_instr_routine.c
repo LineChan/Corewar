@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/10 22:50:18 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/10 23:10:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 		ft_printf("NEED TO BE CHANGED\n");
 	}
 	if (!proc->instr)
-		ft_instruction_decode(vm, proc);
 	#endif
+		ft_instruction_decode(vm, proc);
 	if (!proc->instr)
 	{
 		/* The OP number is invalid */
@@ -82,7 +82,7 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 			ft_vm_display_pc(vm, proc, proc->instr);
 		/* Fetch the next instruction */
 		proc->pc = proc->instr->new_pc;
-		#if 1
+		#if 0
 		/* Decode the new instruction */
 		ft_vm_instruction_del(proc->instr);
 		proc->instr = ft_instruction_decode(proc->pc,
@@ -101,8 +101,8 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 	#if 1
 	/* If the nezt instruction is fork or lfork, the instruction is decoded now */
 	ft_instruction_del(&proc->instr);
-	//if (*proc->pc != 12 && *proc->pc != 15)
-		ft_instruction_decode(vm, proc);
+	//if (*proc->pc == 12 && *proc->pc == 15)
+		//ft_instruction_decode(vm, proc);
 	// TODO : DECODE
 	#endif
 }
