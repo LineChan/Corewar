@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 15:20:26 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/10 23:26:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -261,7 +261,8 @@ void		ft_vm_instr_fail(t_vm *vm, t_process *proc,
 							const int carry_change);
 void		ft_vm_instr_update_exec_cycle(t_vm *vm, t_process *proc);
 int         ft_vm_instr_bytecode_check(t_process *proc);
-int			ft_vm_instr_get_data(size_t size, uint8_t *pc, t_vm *vm);
+//int			ft_vm_instr_get_data(size_t size, uint8_t *pc, t_vm *vm);
+int			ft_vm_instr_check_before_exec(t_vm *vm, t_process *proc);
 void    	ft_vm_instr_and_or_xor_routine(t_vm *vm,
 							t_process *proc,
 							struct s_instr *instr);

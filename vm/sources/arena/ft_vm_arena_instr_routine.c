@@ -5,17 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 14:56:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/10 23:10:32 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/10 23:15:20 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/10 23:25:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
 
-//TODO : libs
-#include "macro.h"
-#include "ft_printf.h"
 static const t_func g_instr_list[] =
 {
 	0,
@@ -37,33 +36,10 @@ static const t_func g_instr_list[] =
 	&ft_vm_instr_aff,
 };
 
-#if 0
-static void 	ft_vm_check_instruction_at_exec_cycle(t_vm *vm, t_process *proc)
-{
-	size_t		i;
-	unsigned char *ptr;
-
-	i = (size_t)ABS(MOD((instr->new_pc - proc->pc)));
-	while (i--)
-	{
-		if (*ptr != )
-	}
-}
-#endif
-
 void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 {
 	extern t_op		g_op_tab[17];
 
-	/* Check if the instruction changed since the beginning of the sleep time */
-	#if 0
-	if (proc->instr->op->numero != 12 ) && (proc->instr->op->numero != 15))
-	{
-		ft_printf("NEED TO BE CHANGED\n");
-	}
-	if (!proc->instr)
-	#endif
-		ft_instruction_decode(vm, proc);
 	if (!proc->instr)
 	{
 		/* The OP number is invalid */
@@ -82,72 +58,15 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 			ft_vm_display_pc(vm, proc, proc->instr);
 		/* Fetch the next instruction */
 		proc->pc = proc->instr->new_pc;
-		#if 0
-		/* Decode the new instruction */
-		ft_vm_instruction_del(proc->instr);
-		proc->instr = ft_instruction_decode(proc->pc,
-											vm->arena[0],
-											proc->instr->error);
-		#endif
 		/* Update the execution cycle with the new instruction */
 		ft_vm_instr_update_exec_cycle(vm, proc);
 	}
-	else
+	else if (ft_vm_instr_check_before_exec(vm, proc))
 	{
 		/* Execute the decoded instruction */
 		g_instr_list[proc->instr->op->numero](vm, proc, proc->instr);
 	}
 	/* Decode the new instruction */
-	#if 1
-	/* If the nezt instruction is fork or lfork, the instruction is decoded now */
 	ft_instruction_del(&proc->instr);
-	//if (*proc->pc == 12 && *proc->pc == 15)
-		//ft_instruction_decode(vm, proc);
-	// TODO : DECODE
-	#endif
+	ft_instruction_decode(vm, proc);
 }
-
-#if 0
-void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
-{
-	t_instr			*instr;
-	int				error;
-	extern t_op		g_op_tab[17];
-
-	//ft_printf("proc %d carry : %d\n", proc->process_nb, proc->carry);
-	instr = ft_instruction_decode(proc->pc, vm->arena[0], &error);
-	if (0 == instr)
-	{
-		/* The OP number is invalid */
-		/* Move the Program Counter to the next byte */
-		++proc->pc;
-		/* Set the instruction cycle to the next one */
-		if (OPCODE_IS_VALID(*proc->pc))
-			proc->exec_cycle += g_op_tab[*proc->pc].nb_cycles;
-		else
-			++proc->exec_cycle;
-		return ;
-	}
-	else if (0 != error)
-	{
-		/* The OP number is valid, */
-		/* but an error was found while decoding the instruction */
-		/* Display additional informations */
-		if (DISPLAY_16)
-			ft_vm_display_pc(vm, proc, instr);
-		/* Fetch the next instruction */
-		proc->pc = instr->new_pc;
-		// TODO : carry change ?
-		// proc->carry = 0;
-		/* Update the execution cycle with the new instruction */
-		ft_vm_instr_update_exec_cycle(vm, proc);
-	}
-	else
-	{
-		/* Execute the decoded instruction */
-		g_instr_list[instr->op->numero](vm, proc, instr);
-	}
-	//TODO : ft_vm_notif_instr()
-	ft_instruction_del(&instr);
-}
-#endif
