@@ -6,20 +6,26 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/08 16:53:56 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 22:19:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
+#include "ft_string.h"
 
+#include "ft_printf.h"
 uint8_t		ft_instruction_setup(t_vm *vm, t_process *proc)
 {
     extern t_op		g_op_tab[17];
 	uint8_t			bytecode;
 
+	/* Create new instruction */
+	proc->instr = ft_memalloc(sizeof(t_instr));
 	/* Fetch the right instruction */
 	proc->instr->op = g_op_tab + *proc->pc;
+	//proc->instr->op = &g_op_tab[*proc->pc];
+	//ft_printf("{blue:SEGFAULT\n}");
 	/* Read the param_byte and setup the first argument */
 	if (0 != proc->instr->op->param_byte)
 	{

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 00:26:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/19 18:53:29 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/09 19:01:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,11 @@ void			ft_vm_instr_and(t_vm *vm, t_process *proc, t_instr *instr)
 	/* Update the execution cycle with the new instruction */
 	ft_vm_instr_update_exec_cycle(vm, proc);
 	/* Change the carry */
-	if (!proc->reg[instr->args[2].data])
-		proc->carry = 1;
+	//if (!proc->reg[instr->args[2].data])
+	proc->carry = !proc->reg[instr->args[2].data];
+		//proc->carry = 1;
+		#if 0
 	else
 		proc->carry = 0;
+		#endif
 }

@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/08 17:15:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/09 18:21:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ static int32_t		ft_instruction_parse_data(t_vm *vm,
 													proc->instr->new_pc,
 													&vm->arena[0][0],
 													IS_BIG_ENDIAN);
-													#if 0
-	this->args[i].data = ft_instruction_get_data(this->args[i].size,
-												 this->new_pc,
-												 context,
-												 IS_BIG_ENDIAN);
-												 #endif
 	/* Check if the register's number is valid */
 	if ((REG_CODE == proc->instr->args[i].type)
 		 && !REG_IS_VALID(proc->instr->args[i].data))

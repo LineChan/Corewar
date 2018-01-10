@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 18:37:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 17:01:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/09 19:04:42 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			ft_vm_instr_and_or_xor_routine(t_vm *vm,
 		{
 			if (DISPLAY_4)
 				ft_printf("%d ", instr->args[i].data);
-			instr->args[i].data = ft_endian_convert_int32(instr->args[i].data);
+			//instr->args[i].data = ft_endian_convert_int32(instr->args[i].data);
 		}
 		++i;
 	}

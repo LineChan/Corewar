@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:59:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/05 23:45:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 21:54:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "ft_instruction.h"
 #include <unistd.h>
 
+//TODO : libs
+#include "ft_printf.h"
 void			ft_vm_arena_upload(t_vm *vm)
 {
 	int			step;

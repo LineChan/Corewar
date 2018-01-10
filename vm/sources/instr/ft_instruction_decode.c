@@ -6,13 +6,14 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/08 16:57:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 22:19:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
 
+#include "ft_printf.h"
 void		ft_instruction_decode(t_vm *vm, t_process *proc)
 {
     uint8_t         bytecode;
@@ -21,6 +22,7 @@ void		ft_instruction_decode(t_vm *vm, t_process *proc)
     if (!OPCODE_IS_VALID(*proc->pc))
         return ;
 	/* Decode the bytecode */
+	//ft_printf("{red:SEGFAULT\n}");
     bytecode = ft_instruction_setup(vm, proc);
 	/* Parse instruction */
 	ft_instruction_parse(vm, proc, bytecode);

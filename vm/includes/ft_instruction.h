@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/08 17:15:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 22:16:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ uint8_t				ft_instruction_setup(struct s_vm *vm, struct s_process *proc);
 void				ft_instruction_parse(struct s_vm *vm,
 										struct s_process *proc,
 										uint8_t bytecode);
+void				ft_instruction_del(t_instr **ptr);
 #if 0
 int32_t				ft_instruction_get_data(size_t byte,
 										struct s_process *proc,
@@ -73,7 +74,6 @@ t_instr				*ft_instruction_decode(uint8_t *pc,
 										   uint8_t *context,
 										   int *error);
 
-void				ft_instruction_del(t_instr **ptr);
 
 
 void				ft_instruction_set_data(size_t bytes,

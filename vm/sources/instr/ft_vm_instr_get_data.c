@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 23:18:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 17:07:07 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/08 21:48:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int32_t			ft_instruction_get_data(size_t byte,
 	return (*(int32_t *)value);
 }
 #endif
-#if 1
+#if 0
 int32_t		ft_instruction_get_data(size_t bytes,
 									uint8_t *pc,
 									uint8_t *context,
