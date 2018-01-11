@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 01:06:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 17:40:42 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,9 +333,9 @@ void			ft_vm_log_ldi(t_vm *vm,
    							const int tab[2]);
 void            ft_vm_log_sti(t_vm *vm, t_process const *proc,
                             const int copy_at_address[2]);
-void            ft_vm_log_fork(t_vm *vm,
-                            t_process const *proc,
-                            const int index);
+#endif
+void            ft_vm_log_fork(t_vm *vm, t_process const *proc);
+#if 0
 void            ft_vm_log_lld(t_vm *vm, t_process const *proc,
                             unsigned char const *ptr,
                             const unsigned int value_to_load);

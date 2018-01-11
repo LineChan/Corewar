@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 17:52:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:06:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 17:39:42 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void				ft_vm_instr_fork(t_vm *vm, t_process *proc, t_instr *instr)
 	/* Display additional informations */
 	if (DISP_OPT)
 		ft_vm_display_fork(vm, proc, instr);
+	if (LOG_OPT)
+		ft_vm_log_fork(vm, proc);
 		/*
 	if (DISPLAY_16)
 		ft_vm_display_pc(vm, proc, instr);

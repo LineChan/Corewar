@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 23:15:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 01:12:18 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 17:59:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "ft_vm.h"
 #include "ft_instruction.h"
 
+//TODO : Libraries
+#include "ft_printf.h"
 static const t_func g_instr_list[] =
 {
 	0,
@@ -66,8 +68,14 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 	ft_vm_instr_update_exec_cycle(vm, proc);
 	/* Set up the next instruction */
 	proc->next_op = *proc->pc;
-	if (proc->instr != 0)
+	ft_fprintf(2, "cycle : %d\n", vm->current_cycle);
+	if ((proc->instr != 0) || (proc->next_op != 12) || (proc->next_op != 15))
+	{
+		if (vm->current_cycle == 5316)
+			ft_fprintf(2,"player %d going to free : address instr : %x\n",
+			proc->process_nb, &proc->instr);
 		ft_instruction_del(&proc->instr);
+	}
 }
 #if 0
 {
