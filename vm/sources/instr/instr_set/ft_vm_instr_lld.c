@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 13:45:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/06 17:33:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 00:07:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ void				ft_vm_instr_lld(t_vm *vm, t_process *proc, t_instr *instr)
 	/* Write in the logfile */
 	if (LOG_OPT)
 		ft_vm_log_ld_lld(vm, proc);
-	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(vm, proc);
 	/* Change the carry */
-	if (!instr->args[0].data)
-		proc->carry = 1;
-	else
-		proc->carry = 0;
+	proc->carry = !instr->args[0].data;
 }

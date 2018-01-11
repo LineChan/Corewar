@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/09 18:21:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 13:56:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,62 @@
 #include "ft_instruction.h"
 #include "endian.h"
 
+static uint8_t		ft_instruction_parse_data(t_vm *vm,
+												t_process *proc,
+												uint8_t const i,
+												uint8_t const bytecode)
+{
+	extern t_op		g_op_tab[17];
+
+	/* Parse size */
+	proc->instr->args[i].type = (bytecode >> 6) & 0x3;
+	/* Get size from arguments' type */
+	if (REG_CODE == proc->instr->args[i].type)
+		proc->instr->args[i].size = 1;
+	else if (DIR_CODE == proc->instr->args[i].type)
+		proc->instr->args[i].size =  (!proc->instr->op->has_index) ? 4 : 2;
+	else if (IND_CODE == proc->instr->args[i].type)
+		proc->instr->args[i].size = 2;
+	else
+		return (EXIT_FAILURE);
+	/* Read data byte by byte */
+	proc->instr->args[i].data = ft_instruction_get_data(proc->instr->args[i].size,
+													proc->instr->new_pc,
+													&vm->arena[0][0],
+													IS_BIG_ENDIAN);
+	/* Check if the register's number is valid */
+	if ((REG_CODE == proc->instr->args[i].type)
+		 && !REG_IS_VALID((proc->instr->args[i].data))
+		 return (EXIT_FAILURE);
+	 /* Check if the type match the instruction */
+	 if ((proc->instr->args[i].type & g_op_tab[proc->next_op].arg_types[i]) == 0)
+		 return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
+
+uint8_t				ft_instruction_parse(t_vm *vm,
+											t_process *proc,
+											uint8_t bytecode)
+{
+	uint8_t		i;
+	uint8_t		ret;
+
+	i = 0;
+	ret = EXIT_SUCCESS;
+	while (i < proc->instr->op->nb_args)
+	{
+		if (ft_instruction_parse_data(vm, proc, i, bytecode) == EXIT_FAILURE)
+			ret = EXIT_FAILURE;
+		/* Next loop, setup the bytecode, handle the pc jump */
+		bytecode <<=2;
+		proc->instr->new_pc = vm->arena[0] + LOOP(proc->instr->new_pc +
+			proc->instr->args[i].size - vm->arena[0]);
+		++i;
+
+	}
+	return (ret);
+}
+#if 0
 static int32_t		ft_instruction_parse_data(t_vm *vm,
 												t_process *proc,
 												int const i,
@@ -68,6 +124,7 @@ void				ft_instruction_parse(t_vm *vm,
 	return (1);
 	#endif
 }
+#endif
 #if 0
 static int32_t	ft_instruction_parse_data(t_instr *this,
 										  uint8_t *context,

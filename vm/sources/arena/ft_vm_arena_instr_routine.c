@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 23:15:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/10 23:25:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 01:12:18 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,39 @@ static const t_func g_instr_list[] =
 };
 
 void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
+{
+	uint8_t			ret;
+
+	ret = ft_instruction_decode(vm, proc);
+	if (ret == OPCODE_NOT_VALID)
+	{
+		/* Move the Program Counter to the next byte */
+		++proc->pc;
+	}
+	else if (ret == EXIT_FAILURE)
+	{
+		/* The OP number is valid, */
+		/* but an error was found while decoding the instruction */
+
+		/* Display additional informations */
+		if (DISPLAY_16)
+			ft_vm_display_pc(vm, proc, proc->instr);
+		/* Fetch the new instruction */
+		proc->pc = proc->instr->new_pc;
+	}
+	else
+	{
+		/* Execute the decoded instruction */
+		g_instr_list[proc->next_op](vm, proc, proc->instr);
+	}
+	/* Update the execution cycle with the new instruction */
+	ft_vm_instr_update_exec_cycle(vm, proc);
+	/* Set up the next instruction */
+	proc->next_op = *proc->pc;
+	if (proc->instr != 0)
+		ft_instruction_del(&proc->instr);
+}
+#if 0
 {
 	extern t_op		g_op_tab[17];
 
@@ -70,3 +103,4 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 	ft_instruction_del(&proc->instr);
 	ft_instruction_decode(vm, proc);
 }
+#endif

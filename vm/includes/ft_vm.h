@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/10 23:26:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 01:06:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,13 +149,10 @@ typedef struct          s_process
     int            			exec_cycle;
     //unsigned int            bytecode;
     int                     reg[REG_NUMBER + 1];
-	// TODO : remove
-    int                     jump[MAX_ARGS_NUMBER];
     t_op                    *op;
 	struct s_instr			*instr;
-	//
     unsigned char           *pc;
-	//struct s_instr					instr;
+	unsigned char			next_op;
     t_list                  list;
 }                       t_process;
 

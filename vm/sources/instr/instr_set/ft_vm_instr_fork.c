@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 17:52:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/05 22:39:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 00:06:00 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,4 @@ void				ft_vm_instr_fork(t_vm *vm, t_process *proc, t_instr *instr)
 	/* Write in the logfile */
 	// TODO : logfile
 	proc->pc = instr->new_pc;
-	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(vm, proc);
 }

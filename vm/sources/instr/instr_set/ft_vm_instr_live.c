@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/05 16:17:29 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 00:07:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,4 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc, t_instr *instr)
 		ft_vm_log_live(vm, proc, it);
 	/* Fetch the next instruction */
 	proc->pc = instr->new_pc;
-	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(vm, proc);
-	//ft_printf("next_exec cycle : %d and next instr : %d\n", proc->exec_cycle, *proc->pc);
 }

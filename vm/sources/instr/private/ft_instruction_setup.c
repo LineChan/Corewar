@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/08 22:19:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 00:22:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,30 @@
 #include "ft_string.h"
 
 #include "ft_printf.h"
+uint8_t		ft_instruction_setup(t_vm *vm, t_process *proc)
+{
+	extern t_op		g_op_tab[17];
+	uint8_t			bytecode;
+
+	/* Create a new instruction */
+	proc->instr = ft_memalloc(sizeof(t_instr));
+	/* Fetch the instruction according to the next_op */
+	proc->instr->op = g_op_tab + proc->next_op;
+	/* Read the byte if there is one and setup the first arugment */
+	if (proc->instr->op->param_byte)
+	{
+		bytecode = vm->arena[0][LOOP(proc->pc + 1 - vm->arena[0])];
+		proc->instr->new_pc = vm->arena[0] + LOOP(proc->pc + 2 - vm->arena[0]);
+	}
+	/* Create a new bytecode with a default DIR_CODE */
+	else
+	{
+		bytecode = DIR_CODE << 6;
+		proc->instr->new_pc = vm->arena[0] + LOOP(proc->pc + 1 - vm->arena[0]);
+	}
+	return (bytecode);
+}
+#if 0
 uint8_t		ft_instruction_setup(t_vm *vm, t_process *proc)
 {
     extern t_op		g_op_tab[17];
@@ -64,4 +88,5 @@ uint8_t		ft_instruction_setup(t_instr *this, uint8_t *pc, uint8_t *context)
 	}
 	return (bytecode);
 }
+#endif
 #endif

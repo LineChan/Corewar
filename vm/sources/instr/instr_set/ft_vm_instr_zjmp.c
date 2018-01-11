@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:48:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/06 18:05:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 00:10:46 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,4 @@ void			ft_vm_instr_zjmp(t_vm *vm, t_process *proc, t_instr *instr)
 		/* Set the Program Counter at its new position */
 		proc->pc = &vm->arena[0][MOD(proc->pc - vm->arena[0] + (instr->args[0].data % IDX_MOD))];
 	}
-	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(vm, proc);
 }

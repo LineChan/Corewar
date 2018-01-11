@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 17:38:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/18 18:13:43 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 00:07:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,5 @@ void				ft_vm_instr_ldi(t_vm *vm, t_process *proc, t_instr *instr)
 	/* Fetch the next instruction */
 	proc->pc = instr->new_pc;
 	/* Change the carry */
-	proc->carry = 0;
-	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(vm, proc);
+	proc->carry = !proc->reg[instr->args[2].data];
 }

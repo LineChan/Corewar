@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/08 22:19:23 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 00:27:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,17 @@
 #include "ft_instruction.h"
 
 #include "ft_printf.h"
-void		ft_instruction_decode(t_vm *vm, t_process *proc)
+uint8_t		ft_instruction_decode(t_vm *vm, t_process *proc)
 {
     uint8_t         bytecode;
 
 	/* Check if the OP code is valid */
     if (!OPCODE_IS_VALID(*proc->pc))
-        return ;
+        return (OPCODE_NOT_VALID);
 	/* Decode the bytecode */
-	//ft_printf("{red:SEGFAULT\n}");
     bytecode = ft_instruction_setup(vm, proc);
 	/* Parse instruction */
-	ft_instruction_parse(vm, proc, bytecode);
+	return (ft_instruction_parse(vm, proc, bytecode));
 }
 
 #if 0
