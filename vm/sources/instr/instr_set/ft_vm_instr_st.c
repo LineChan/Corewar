@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 16:40:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:08:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 21:26:13 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			ft_vm_instr_st(t_vm *vm, t_process *proc, t_instr *instr)
 	/* Display additional informations */
 	if (DISPLAY_4)
 		ft_vm_display_st(proc, instr);
-	if (instr->args[1].type == REG_CODE)
+	if (instr->args[1].type == T_REG)
 	{
 		/* Store the value in a register */
 		proc->reg[instr->args[1].data] = proc->reg[instr->args[0].data];

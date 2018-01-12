@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/11 00:22:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 20:47:45 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ uint8_t		ft_instruction_setup(t_vm *vm, t_process *proc)
 	uint8_t			bytecode;
 
 	/* Create a new instruction */
-	proc->instr = ft_memalloc(sizeof(t_instr));
+	//proc->instr = ft_memalloc(sizeof(t_instr));
 	/* Fetch the instruction according to the next_op */
 	proc->instr->op = g_op_tab + proc->next_op;
 	/* Read the byte if there is one and setup the first arugment */

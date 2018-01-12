@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/06 18:13:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/10 23:54:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 20:48:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
+#include "ft_string.h"
 
 void		ft_vm_new_process_init_instr(t_vm *vm, t_process *new)
 {
@@ -23,6 +24,7 @@ void		ft_vm_new_process_init_instr(t_vm *vm, t_process *new)
 	else
 		new->exec_cycle += 1;
 	new->next_op = *new->pc;
+	new->instr = ft_memalloc(sizeof(t_instr));
 	#if 0
 	extern t_op			g_op_tab[17];
 

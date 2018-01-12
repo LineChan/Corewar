@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 14:57:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:09:30 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 21:26:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc, t_instr *instr)
 	/* Convert arguments */
 	while (i < instr->op->nb_args)
 	{
-		if (instr->args[i].type == REG_CODE)
+		if (instr->args[i].type == T_REG)
 		{
 			if (!REG_IS_VALID(instr->args[i].data))
 			{
@@ -39,7 +39,7 @@ void                ft_vm_instr_sti(t_vm *vm, t_process *proc, t_instr *instr)
 			}
 			instr->args[i].data = proc->reg[instr->args[i].data];
 		}
-		else if (instr->args[i].type == IND_CODE)
+		else if (instr->args[i].type == T_IND)
 		{
 			instr->args[i].data =
 				ft_instruction_get_data(REG_SIZE,

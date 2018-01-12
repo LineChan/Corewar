@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 14:29:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:06:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 21:24:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void			ft_vm_instr_ld(t_vm *vm, t_process *proc, t_instr *instr)
 {
-	if (instr->args[0].type == IND_CODE)
+	if (instr->args[0].type == T_IND)
 	{
 		instr->args[0].data =
 			proc->pc - vm->arena[0] + (instr->args[0].data % IDX_MOD);

@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/11 17:24:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 21:32:12 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,19 @@ static uint8_t		ft_instruction_parse_data(t_vm *vm,
 	if (REG_CODE == proc->instr->args[i].type)
 	{
 		//ft_printf("REG\n");
+		proc->instr->args[i].type = T_REG;
 		proc->instr->args[i].size = 1;
 	}
 	else if (DIR_CODE == proc->instr->args[i].type)
 	{
 		//ft_printf("DIR\n");
+		proc->instr->args[i].type = T_DIR;
 		proc->instr->args[i].size =  (!proc->instr->op->has_index) ? 4 : 2;
 	}
 	else if (IND_CODE == proc->instr->args[i].type)
 	{
 		//ft_printf("IND\n");
+		proc->instr->args[i].type = T_IND;
 		proc->instr->args[i].size = 2;
 	}
 	else
@@ -70,11 +73,7 @@ static uint8_t		ft_instruction_parse_data(t_vm *vm,
 	ft_printf("proc->instr->args[i].type = %b\n", proc->instr->args[i].type);
 	ft_printf(" & --> %b\n", (short)(t_arg_type)g_op_tab[proc->next_op].arg_types[i] & (short)(t_arg_type)proc->instr->args[i].type);
 	#endif
-	#if 0
 	if ((proc->instr->args[i].type & g_op_tab[proc->next_op].arg_types[i]) == 0)
-	#endif
-	if ((proc->instr->args[i].type & g_op_tab[proc->next_op].arg_types[i]) !=
-			proc->instr->args[i].type)
 	{
 		//ft_printf("The argument type is not compatible\n");
 		return (EXIT_FAILURE);

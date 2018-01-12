@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 15:40:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/07 00:45:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 21:30:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void			ft_vm_log_arg(t_instr const *instr)
 	i = 0;
 	while (i < MAX_ARGS_NUMBER)
 	{
-		if (instr->args[i].type == REG_CODE)
+		if (instr->args[i].type == T_REG)
 			type[i] = 'R';
-		else if (instr->args[i].type == IND_CODE)
+		else if (instr->args[i].type == T_IND)
 			type[i] = 'I';
-		else if (instr->args[i].type == DIR_CODE)
+		else if (instr->args[i].type == T_DIR)
 			type[i] = 'D';
 		else
 			type[i] = 'X';

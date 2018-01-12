@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 15:11:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:08:13 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 21:25:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void			ft_vm_instr_lldi(t_vm *vm, t_process *proc, t_instr *instr)
 	i = 0;
 	while (i < (instr->op->nb_args - 1))
 	{
-		if (instr->args[i].type == REG_CODE)
+		if (instr->args[i].type == T_REG)
 			instr->args[i].data = proc->reg[instr->args[i].data];
-		else if (instr->args[i].type == IND_CODE)
+		else if (instr->args[i].type == T_IND)
 		{
 			instr->args[i].data =
 				ft_instruction_get_data(REG_SIZE,

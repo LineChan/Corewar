@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 17:40:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/11 20:51:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ void		ft_vm_new_process_kid(t_vm *vm,
 							t_process *proc,
 							const unsigned int index);
 void		ft_vm_new_process_init_instr(t_vm *vm, t_process *new);
-void		ft_vm_close_process(t_vm *vm);
+void		ft_vm_del_list(t_vm *vm);
 
 /*
 ** Instruction functions
