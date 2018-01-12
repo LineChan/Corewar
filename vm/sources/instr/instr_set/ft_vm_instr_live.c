@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:07:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/12 17:09:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc, t_instr *instr)
 {
 	t_list			*it;
 
+	//ft_printf("live by proc %d\n", -proc->process_nb);
 	++vm->total_live;
 	proc->has_lived = vm->current_cycle;
 	it = 0;

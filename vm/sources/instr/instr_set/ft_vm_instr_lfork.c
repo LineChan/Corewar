@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 16:10:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:07:14 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:17:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void				ft_vm_instr_lfork(t_vm *vm, t_process *proc, t_instr *instr)
 	/* and link it to the champion's structure at the right location */
 	ft_vm_new_process_kid(vm, proc, MOD(proc->pc - vm->arena[0]
 							+ instr->args[0].data));
-	if (DISPLAY_16)
-		ft_vm_display_pc(vm, proc, instr);
+	/* Display additional informations */
+	if (DISP_OPT)
+		ft_vm_display_lfork(vm, proc);
 	/* Write in a logfile */
-	// TODO : logfile
+	ft_vm_log_lfork(vm, proc);
 	/* Fetch the next instruction */
 	proc->pc = instr->new_pc;
 }

@@ -6,11 +6,9 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/10 23:15:20 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 21:53:26 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/12 17:09:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
@@ -43,9 +41,11 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 {
 	uint8_t			ret;
 
-	ret = 0;
-	if ((proc->next_op != 12) && (proc->next_op != 15))
-		ret = ft_instruction_decode(vm, proc);
+	ret = ft_instruction_decode(vm, proc);
+	#if 0
+	ft_printf("cycle : %d proc : %d with ret : %d\n", vm->current_cycle, -proc->process_nb, ret);
+	ft_printf("next_op : %d \n", proc->next_op);
+	#endif
 	if (ret == OPCODE_NOT_VALID)
 	{
 		/* Move the Program Counter to the next byte */
@@ -60,25 +60,33 @@ void			ft_vm_arena_instr_routine(t_vm *vm, t_process *proc)
 		if (DISPLAY_16)
 			ft_vm_display_pc(vm, proc, proc->instr);
 		/* Fetch the new instruction */
+		/*
+		if ((proc->instr->new_pc - vm->arena[0]) > MEM_SIZE)
+			proc->instr->new_pc = vm->arena[0] + ((proc->instr->new_pc - vm->arena[0]) % MEM_SIZE);
+		*/
 		proc->pc = proc->instr->new_pc;
 	}
 	else
 	{
+		//ft_printf("execute fork\n");
 		/* Execute the decoded instruction */
 		g_instr_list[proc->next_op](vm, proc, proc->instr);
 	}
-	/* Update the execution cycle with the new instruction */
-	ft_vm_instr_update_exec_cycle(vm, proc);
+	if (proc->pc - vm->arena[0] > MEM_SIZE)
+		proc->pc = vm->arena[0] + (proc->pc - vm->arena[0]) % MEM_SIZE;
+	//ft_printf("pc is at arena[%d]\n", proc->pc - vm->arena[0]);
 	/* Set up the next instruction */
 	proc->next_op = *proc->pc;
+	/* Update the execution cycle with the new instruction */
+	ft_vm_instr_update_exec_cycle(vm, proc);
 	ft_memset((void *)proc->instr, 0, sizeof(t_instr));
-	#if 1
+	//ft_printf("end turn next_op : %d\n", proc->next_op);
+	#if 0
 	if ((proc->next_op == 12) || (proc->next_op == 15))
 	{
 		ft_instruction_decode(vm, proc);
 	}
 	#endif
-	//ft_instruction_del(&proc->instr);
 }
 #if 0
 {

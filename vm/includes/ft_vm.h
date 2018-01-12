@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 20:51:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:20:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 #endif
 # define ASSERT(x)      ft_assert(# x, __FUNCTION__, __LINE__, x)
 
-#if 0
-# define IS_INSTR(x)    ((unsigned int)((x) - 1) < INSTR_NUMBER)
-# define IS_REG(x)      ((unsigned int)((x) - 1) < REG_NUMBER)
-#endif
 # define VM_DIR_SIZE(x)	((x) ? 2 : 4)
 
 # define LOG_OPT        (vm->option.log)
@@ -342,9 +338,9 @@ void            ft_vm_log_lld(t_vm *vm, t_process const *proc,
 void            ft_vm_log_lldi(t_vm *vm, t_process const *proc,
                             unsigned char const *ptr,
                             const unsigned int address);
-void            ft_vm_log_lfork(t_vm *vm,
-                            t_process const *proc,
-                            const int index);
+#endif
+void            ft_vm_log_lfork(t_vm *vm, t_process const *proc);
+#if 0
 void            ft_vm_log_aff(t_vm *vm, t_process const *proc);
 #endif
 
@@ -394,6 +390,5 @@ void			ft_vm_display_fork(t_vm *vm,
 									t_process const *proc,
 									struct s_instr const *instr);
 void			ft_vm_display_lfork(t_vm *vm,
-									t_process const *proc,
-									struct s_instr const *instr);
+									t_process const *proc);
 #endif

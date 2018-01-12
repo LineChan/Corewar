@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/11 00:27:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/12 16:09:17 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ uint8_t		ft_instruction_decode(t_vm *vm, t_process *proc)
     uint8_t         bytecode;
 
 	/* Check if the OP code is valid */
-    if (!OPCODE_IS_VALID(*proc->pc))
+    if (!OPCODE_IS_VALID(proc->next_op))
         return (OPCODE_NOT_VALID);
 	/* Decode the bytecode */
     bytecode = ft_instruction_setup(vm, proc);
