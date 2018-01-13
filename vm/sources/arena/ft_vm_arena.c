@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 21:53:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/13 15:54:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void			ft_vm_arena(t_vm *vm)
 	/* Place champions on the arena at the right position and set them up */
 	ft_vm_arena_upload(vm);
 	/* Write in the log file */
-	LOG_OPT ? ft_vm_log_intro(vm): 0;
+	if (LOG_OPT)
+		ft_vm_log_intro(vm);
 	/* Set up cycle_end_round */
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	cycle_end_round = vm->cycle_to_die;
@@ -55,15 +56,12 @@ void			ft_vm_arena(t_vm *vm)
 		{
 			if (DISPLAY_2)
 				ft_printf("It is now cycle %d\n", vm->current_cycle);
+			ft_vm_arena_cycle_routine(vm);
 			++vm->current_cycle;
 			ft_vm_arena_round_check(vm, &cycle_end_round);
 			break ;
 		}
 	}
-	#if 0
-	if (DISPLAY_8)
-		ft_vm_display_death(vm);
-		#endif
 	ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
 		vm->header[vm->last_alive - 1].prog_name);
 }

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 20:18:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/13 15:24:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int				main(int ac, char **av)
 	if (vm.option.log)
 		ft_log_close();
 	ft_vm_del_list(&vm);
-	//CLOSE ALL THE PROCESSES
 	return (0);
 }
