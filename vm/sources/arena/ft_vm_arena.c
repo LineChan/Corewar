@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:51:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/13 15:54:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 14:59:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,33 @@ void			ft_vm_arena(t_vm *vm)
 	/* Loop until there is no champion in the arena */
 	while (vm->nb_champion > 0)
 	{
+		/* Round routine */
 		while (vm->current_cycle <= cycle_end_round)
 		{
 
-			if (DISPLAY_2)
-				ft_printf("It is now cycle %d\n", vm->current_cycle);
+			/* Cycle routine */
 			ft_vm_arena_cycle_routine(vm);
 			/* Dump memory */
 			if ((vm->current_cycle == DUMP_OPT) || (vm->current_cycle == S_DUMP_OPT))
 			{
-				//ft_vm_print_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
 				ft_vm_display_arena((void *)vm->arena[0], MEM_SIZE, 64, vm);
 				if (vm->current_cycle == DUMP_OPT)
 					return ;
 			}
 			++vm->current_cycle;
 		}
+		/* Round Check */
 		ft_vm_arena_round_check(vm, &cycle_end_round);
+		/* The battle stops if cycle_to_die is negative */
 		if (IS_NEG(vm->cycle_to_die))
 		{
-			if (DISPLAY_2)
-				ft_printf("It is now cycle %d\n", vm->current_cycle);
 			ft_vm_arena_cycle_routine(vm);
 			++vm->current_cycle;
 			ft_vm_arena_round_check(vm, &cycle_end_round);
 			break ;
 		}
 	}
+	/* Print the ouput of the game */
 	ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
 		vm->header[vm->last_alive - 1].prog_name);
 }

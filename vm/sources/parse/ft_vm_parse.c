@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 13:16:51 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/19 16:03:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 13:28:48 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,9 @@ static const t_state_machine	g_option_state_machine[] =
 	[OPT_STATE_LOG] = &ft_vm_parse_log,
 };
 
-//TODO:Libraries
-#include <stdio.h>
-#include "ft_printf.h"
 void 				ft_vm_parse(t_vm *vm, int const ac, char **av)
 {
+	/* Initialize the State Machine */
 	vm->option.ac = ac - 1;
 	vm->option.av = av;
 	vm->option.next_arg = 0;
@@ -89,7 +87,9 @@ void 				ft_vm_parse(t_vm *vm, int const ac, char **av)
 	/* State Machine loop */
 	while ((0 != vm->option.ac) && (0 != vm->option.av))
 		g_option_state_machine[vm->option.state](vm);
+	/* The program exits if no process is upload */
 	if (0 == vm->nb_champion)
 		ft_exit("No champion in the arena");
+	/* Order processes in the list */
 	ft_vm_parse_champion_repartition(vm);
 }

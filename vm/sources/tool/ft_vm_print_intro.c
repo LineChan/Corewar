@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 15:00:47 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/09 15:40:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 14:37:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void 			ft_vm_print_intro(t_vm const *vm)
 	int			i;
 
 	i = 0;
+	/* Print a small presentation of each process */
 	ft_printf("Introducing contestants...\n");
 	while (i < MAX_PLAYERS)
 	{
+		/* Apply routine to each opened process */
 		if (vm->fd[i])
 		{
 			ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 14:48:01 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/11 00:10:46 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 20:21:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 #include "ft_instruction.h"
 #include "ft_printf.h"
 
-void			ft_vm_instr_zjmp(t_vm *vm, t_process *proc, t_instr *instr)
+void			ft_vm_instr_zjmp(t_vm *vm, t_process *proc)
 {
 	/* Execute the instruction only if the carry value is 1 */
 	if (!proc->carry)
 	{
+		/* Display additional informations */
 		if (DISPLAY_4)
 		{
 			ft_printf("P %4d | zjmp %d FAILED\n",
 							-proc->process_nb,
-							instr->args[0].data);
+							proc->instr->args[0].data);
 		}
 		if (DISPLAY_16)
-			ft_vm_display_pc(vm, proc, instr);
+			ft_vm_display_pc(vm, proc);
 		/* Fetch the next instruction */
 		proc->pc += 3;
+		#if 0
 		/* Write in the logfile */
 		ft_vm_log_zjmp(vm, proc);
+		#endif
 	}
 	else
 	{
@@ -38,12 +41,17 @@ void			ft_vm_instr_zjmp(t_vm *vm, t_process *proc, t_instr *instr)
 		{
 			ft_printf("P %4d | zjmp %d OK\n",
 							-proc->process_nb,
-							instr->args[0].data);
-							//proc->pc - instr->new_pc);
+							proc->instr->args[0].data);
 		}
+		#if 0
 		/* Write in the logfile */
 		ft_vm_log_zjmp(vm, proc);
+		#endif
 		/* Set the Program Counter at its new position */
-		proc->pc = &vm->arena[0][MOD(proc->pc - vm->arena[0] + (instr->args[0].data % IDX_MOD))];
+		proc->pc = &vm->arena[0][MOD(proc->pc - vm->arena[0] + (proc->instr->args[0].data % IDX_MOD))];
+		#if 0
+		/* Set up the next instruction */
+		proc->next_op = *proc->pc;
+		#endif
 	}
 }

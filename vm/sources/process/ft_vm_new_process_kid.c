@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 00:58:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/06 18:23:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 15:52:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			ft_vm_new_process_kid(t_vm *vm,
 	/* Set up the Program Counter to the new location  */
 	new->pc = &vm->arena[0][index];
 	/* Initialize the first instruction */
-	ft_vm_new_process_init_instr(vm, new);
+	ft_vm_new_process_init_instr(new);
 	/* Add the new process to the list */
 	ft_list_add(&new->list, &vm->process_head);
 	/* Update the champions number */

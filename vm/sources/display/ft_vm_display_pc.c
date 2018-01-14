@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 13:49:28 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 22:23:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 02:30:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@
 #include <unistd.h>
 #include "macro.h"
 
-void			ft_vm_display_pc(t_vm *vm,
-								t_process const *proc,
-								t_instr const *instr)
+void			ft_vm_display_pc(t_vm *vm, t_process const *proc)
 {
 	size_t			i;
 	unsigned char	*ptr;
 
-	i = (size_t)ABS(MOD((instr->new_pc - proc->pc)));
-	ft_printf("ADV %d (%#0.4x -> %#0.4x) ", i,
+	i = (size_t)ABS(MOD((proc->instr->new_pc - proc->pc)));
+	ft_printf("ADV %d (0x%04x -> 0x%04x) ", i,
 					proc->pc - vm->arena[0],
 					proc->pc + i - vm->arena[0]);
 	ptr = proc->pc;

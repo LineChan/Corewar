@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 16:34:55 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/08 21:55:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 15:56:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void 			ft_vm_new_process(t_vm *vm,
 	/* Set up the Program Counter */
 	new->pc = &vm->arena[0][index];
 	/* Initialize the first instruction */
-	ft_vm_new_process_init_instr(vm, new);
+	ft_vm_new_process_init_instr(new);
 	/* Add the process to the list */
 	ft_list_add(&new->list, &vm->process_head);
 }

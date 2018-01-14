@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 17:28:19 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/11 00:39:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 14:13:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,19 @@ void			ft_vm_parse_default(t_vm *vm)
 	size_t		i;
 
 	i = 0;
+	/* Search from the option in the array */
 	while (i < SIZEOF_TAB(g_option_map))
 	{
 		if (0 == ft_strncmp(*vm->option.av,
 							g_option_map[i].opt,
 							g_option_map[i].len))
 		{
+			/* Assing the corresponding state and quit */
 			vm->option.state = g_option_map[i].state;
 			return ;
 		}
 		++i;
 	}
+	/* If no option was found, the argument must be a process */
 	vm->option.state = OPT_STATE_CHAMPION;
 }

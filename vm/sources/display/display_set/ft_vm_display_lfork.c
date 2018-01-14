@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 16:01:06 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/12 16:15:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/14 12:53:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ void			ft_vm_display_lfork(t_vm *vm, t_process const *proc)
 					proc->pc - vm->arena[0] + proc->instr->args[0].data);
 	}
 	if (DISPLAY_16)
-		ft_vm_display_pc(vm, proc, proc->instr);
+		ft_vm_display_pc(vm, proc);
 }
