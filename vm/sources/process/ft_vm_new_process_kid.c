@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/29 00:58:40 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/14 15:52:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:58:15 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,5 @@ void			ft_vm_new_process_kid(t_vm *vm,
 	/* Add the new process to the list */
 	ft_list_add(&new->list, &vm->process_head);
 	/* Update the champions number */
-	vm->nb_champion += 1;
+	++vm->nb_champion;
 }

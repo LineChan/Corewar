@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/14 12:48:46 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/15 15:44:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "ft_string.h"
 #include "ft_log.h"
 
-//TODO : libs
-#include "ft_printf.h"
 int				main(int ac, char **av)
 {
 	t_vm		vm;

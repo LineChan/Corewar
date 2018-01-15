@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 00:17:31 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/14 13:32:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/15 17:43:00 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,11 @@ void 	ft_vm_parse_champion_repartition(t_vm *vm)
 		vm->fd[j] = vm->fd_tmp[i];
 		++i;
 	}
+	#if 0
 	/* If no process execute the live instruction during the 1st round, */
 	/* the last one parsed wins */
-	vm->last_alive = j;
-	/* Processes' number are negative */
-	vm->current_proc_nb = -j;
+	vm->last_alive = i;
+	/* Save the lastest champion's number as a reference for new processes */
+	vm->current_proc_nb = -i;
+	#endif
 }
