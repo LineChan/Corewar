@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/04 16:49:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/14 03:07:09 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/16 16:34:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,29 @@
 static void		ft_vm_display_instr(t_process const *proc,
 									t_list const *it)
 {
-	if (it)
+	(void)it;
+	//if (proc->instr->args[0].data > -MAX_PLAYERS)
 	{
-		ft_printf("P %4d | live %d\n", -proc->process_nb,
-								C_PROCESS(it)->process_nb);
-	}
-	else
-	{
-		ft_printf("P %4d | live %d\n",
-		-proc->process_nb,
-		proc->instr->args[0].data);
+		#if 0
+		if (it)
+		{
+			ft_printf("P %4d | live %d\n", -proc->process_nb,
+									C_PROCESS(it)->process_nb);
+		}
+		else
+		//if (it)
+		#endif
+		{
+			ft_printf("P %4d | live %d\n",
+			-proc->process_nb,
+			proc->instr->args[0].data);
+		}
 	}
 }
 
 static void			ft_vm_display_alive(t_vm *vm, t_list const *it)
 {
-	if (!it)
-		return ;
+	if (it)
 	ft_printf("Player %d (%s) is said to be alive\n",
 				C_PROCESS(it)->parent_nb,
 				vm->header[C_PROCESS(it)->parent_nb - 1].prog_name);

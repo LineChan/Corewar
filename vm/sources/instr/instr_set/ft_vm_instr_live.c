@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/25 17:21:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/15 18:08:47 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/16 16:35:24 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,26 @@ void           ft_vm_instr_live(t_vm *vm, t_process *proc)
 
 	++vm->total_live;
 	proc->has_lived = vm->current_cycle;
+	#if 0
+	if (*proc->pc != 1)
+	{
+		++proc->pc;
+		return ;
+	}
+	#endif
 	it = 0;
 	/* Find the process that benefits from the live instruction */
-	if ((proc->instr->args[0].data > 0) && (proc->instr->args[0].data < 4) &&
-		((it = ft_vm_find_proc_nb(&vm->process_head, proc->instr->args[0].data))))
-		if ((it = ft_vm_find_proc_nb(&vm->process_head, proc->instr->args[0].data)))
+	#if 0
+	if ((it = ft_vm_find_proc_nb(&vm->process_head, proc->instr->args[0].data))
+	&& (proc->instr->args[0].data >= -MAX_PLAYERS))
+	#endif
+	if ((it = ft_vm_find_proc_nb(&vm->process_head, proc->instr->args[0].data)))
 	{
+		#if 0
 		ft_fprintf(2, "proc->instr->args[0].data : %d\n", proc->instr->args[0].data);
 		ft_fprintf(2, "current_cycle : %d\n", vm->current_cycle);
 		ft_fprintf(2, "C_PROCESS(it)->process_nb : %d found !\n", C_PROCESS(it)->process_nb);
+		#endif
 		/* The lastest champion to do live wins */
 		vm->last_alive = C_PROCESS(it)->parent_nb;
 		++C_PROCESS(it)->live;
