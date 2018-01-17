@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_instr_st_data.c                              :+:      :+:    :+:   */
+/*   ft_header_comment.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 18:09:05 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/07 00:08:27 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 15:12:31 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 15:54:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include <unistd.h>
 
-//TODO : libs
-#include "ft_printf.h"
-void			ft_vm_instr_st_data(t_vm *vm,
-									void *dst,
-									void const *src,
-									int size)
+void			ft_header_comment(t_vm *vm, int const index)
 {
-
-	while (size--)
-	{
-		if (!(((unsigned char *)dst - vm->arena[0]) % MEM_SIZE))
-		{
-			dst = vm->arena[0];
-		}
-		if (!(((unsigned char *)src - vm->arena[0]) % MEM_SIZE))
-		{
-			src = vm->arena[0];
-		}
-		*(char *)dst++ = *(char*)src++;
-	}
+	/* Check read's return and align bits if necessary */
+	ASSERT(!IS_NEG(read(vm->fd[index], vm->header[index].comment,
+		ALIGN_4(sizeof(vm->header[index].comment)))));
 }

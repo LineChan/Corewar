@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 00:05:35 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/17 17:45:09 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "ft_string.h"
 #include "ft_log.h"
 
+#include "ft_instruction.h"
+#include "ft_printf.h"
 int				main(int ac, char **av)
 {
 	t_vm		vm;
@@ -26,9 +28,36 @@ int				main(int ac, char **av)
 	/* Parse arguments */
 	++av;
 	ft_parse(&vm, ac, av);
-	#if 0
 	/* Read each champion's header */
-	ft_vm_read_header(&vm);
+	ft_header(&vm);
+	/* Print presentation before the battle starts */
+	ft_print_intro(&vm);
+	/* Handle the battle */
+	ft_arena(&vm);
+	#if 0
+	int i = 0;
+	while (i < MAX_PLAYERS)
+	{
+		ft_printf("name : %s comment : %s, size : %d\n",
+			vm.header[i].prog_name,
+			vm.header[i].comment,
+			vm.header[i].prog_size);
+		++i;
+	}
+	#endif
+	#if 0
+	t_list *it;
+	it = vm.proc_head.next;
+	while (it != NULL)
+	{
+		ft_printf("name : %s, comment : %s, size : %d \n",
+				C_PROCESS(it)->prog_name,
+				C_PROCESS(it)->comment,
+				C_PROCESS(it)->prog_size);
+		it = it->next;
+	}
+	#endif
+	#if 0
 	/* Print presentation before the battle starts */
 	ft_vm_print_intro(&vm);
 	/* Handle the battle */

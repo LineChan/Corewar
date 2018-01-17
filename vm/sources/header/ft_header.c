@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_find_proc_nb.c                               :+:      :+:    :+:   */
+/*   ft_header.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/25 22:39:30 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/18 20:19:49 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 14:48:39 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 17:45:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 
-//TODO : libs
 #include "ft_printf.h"
-static int             ft_vm_find_proc_nb_helper(t_list *it, void const *context)
+void			ft_header(t_vm *vm)
 {
-   return (C_PROCESS(it)->process_nb == *(int *)context);
-}
+	int			i;
 
-t_list                 *ft_vm_find_proc_nb(t_list *head, int nb)
-{
-       return (ft_list_find_data(head, (void const *)&nb,
-				   &ft_vm_find_proc_nb_helper));
+	i = 0;
+	while (i < MAX_PLAYERS)
+	{
+		/* Apply routine to each process */
+		if (vm->fd[i])
+		{
+			/* Check if the Magic Number is valid */
+			ft_header_magic(vm, i);
+			/* Read the process' name */
+			ft_header_name(vm, i);
+			/* Read the process' size */
+			ft_header_size(vm, i);
+			/* Read the process' comment */
+			ft_header_comment(vm, i);
+		}
+		++i;
+	}
 }

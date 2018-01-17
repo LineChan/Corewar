@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 01:14:03 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 02:22:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/17 17:45:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		ft_parse_proc(t_vm *vm, t_parse *parse)
 	static int			max_proc = 0;
 	static unsigned		current_proc = 0;
 
-	ft_printf("parse proc\n");
 	/* 4 processes have already been found */
 	if (1 == max_proc)
 		ft_exit("Too many processes want to fight");

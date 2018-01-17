@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 02:33:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/17 17:56:50 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 #endif
 
 
-# define C_PROCESS(it)	CONTAINEROF(it, t_process, list)
+# define C_PROCESS(it)	CONTAINEROF(it, t_proc, list)
 
 /*
 ** Define flags
@@ -136,6 +136,23 @@ typedef struct		s_opt
 	int				state;
 }					t_opt;
 
+typedef struct		s_proc
+{
+	int				dead;
+	int				parent_nb;
+	int				proc_nb;
+	int				error;
+	int				live;
+	int				has_lived;
+	int				carry;
+	int				exec_cycle;
+	int				reg[REG_NUMBER + 1];
+	int				pc;
+	unsigned char	next_op;
+	t_op			*op;
+	t_list			list;
+}					t_proc;
+
 typedef struct		s_vm
 {
 	int				fd[MAX_PLAYERS];
@@ -167,6 +184,7 @@ void		ft_assert(char const *condition,
 						char const *function_name,
 						int const line_number,
 						const int code_condition);
+void		ft_print_intro(t_vm const *vm);
 
 /*
 ** Parse functions
@@ -179,5 +197,34 @@ void		ft_parse_proc(t_vm *vm, t_parse *parse);
 void		ft_parse_n(t_vm *vm, t_parse *parse);
 void		ft_parse_dump(t_vm *vm, t_parse *parse);
 void		ft_parse_display(t_vm *vm, t_parse *parse);
+void		ft_parse_proc_repartition(t_vm *vm, t_parse *parse);
+
+/*
+** Header functions
+*/
+
+void		ft_header(t_vm *vm);
+void		ft_header_magic(t_vm *vm, int const i);
+void		ft_header_name(t_vm *vm, int const i);
+void		ft_header_size(t_vm *vm, int const i);
+void		ft_header_comment(t_vm *vm, int const i);
+
+/* Arena functions */
+
+void		ft_arena(t_vm *vm);
+void		ft_arena_upload(t_vm *vm);
+void		ft_arena_cycle_routine(t_vm *vm);
+
+/*
+** Processses functions
+*/
+
+void		ft_new_proc(t_vm *vm, int const i, int const index);
+
+/*
+** Instruction functions
+*/
+
+void		ft_instr_update_exec_cycle(t_vm *vm, t_proc *proc);
 
 #endif

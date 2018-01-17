@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_display_st.c                                 :+:      :+:    :+:   */
+/*   ft_print_intro.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/06 16:09:17 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/14 12:24:47 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 16:33:16 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 17:44:37 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_printf.h"
-#include "ft_instruction.h"
 
-void			ft_vm_display_st(t_process const *proc)
+void			ft_print_intro(t_vm const *vm)
 {
-	ft_printf("P %4d | st r%d %d\n",
-			-proc->process_nb,
-			proc->instr->args[0].data,
-			proc->instr->args[1].data);
+	int			i;
+
+	i = 0;
+	/* Print a small presentation of each process */
+	ft_printf("Introducing contestants...\n");
+	while (i < MAX_PLAYERS)
+	{
+		if (vm->fd[i])
+		{
+			ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
+				i + 1,
+				vm->header[i].prog_size,
+				vm->header[i].prog_name,
+				vm->header[i].comment);
+		}
+		++i;
 	}
+}

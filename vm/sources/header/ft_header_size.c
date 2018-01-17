@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_read_header_magic.c                          :+:      :+:    :+:   */
+/*   ft_header_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 14:27:02 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/14 14:34:25 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 15:56:00 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 16:00:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "macro.h"
 #include "endian.h"
-#include "ft_printf.h"
 #include <unistd.h>
 
-
-void 			ft_vm_read_header_magic(t_vm *vm, int index)
+void			ft_header_size(t_vm *vm, int const index)
 {
-    /* Check read's return */
-	ASSERT(!IS_NEG(read(vm->fd[index],
-		&vm->header[index].magic,
-		sizeof(vm->header[index].magic))));
-	/* Convert the Magic Number to big endian */
+	/* Check read's return and align bits if necessary */
+	ASSERT(!IS_NEG(read(vm->fd[index], &vm->header[index].prog_size,
+			sizeof(vm->header[index].prog_size))));
+	/* Convert the process' size to big endian */
 	if (IS_LITTLE_ENDIAN)
-		vm->header[index].magic =
-		ft_endian_convert_uint32(vm->header[index].magic);
-	/* Check if the proces' magic number is valid */
-	ASSERT(vm->header[index].magic == COREWAR_EXEC_MAGIC);
+	{
+		vm->header[index].prog_size =
+			ft_endian_convert_uint32(vm->header[index].prog_size);
+	}
+	/* Check if the process' magic number is valid */
+	ASSERT(vm->header[index].prog_size <= CHAMP_MAX_SIZE);
 }

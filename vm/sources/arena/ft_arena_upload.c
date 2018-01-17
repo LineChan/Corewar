@@ -1,51 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_arena_upload.c                               :+:      :+:    :+:   */
+/*   ft_arena_upload.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/24 15:59:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/15 17:42:54 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 16:39:58 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 17:41:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "macro.h"
 #include <unistd.h>
 
-void			ft_vm_arena_upload(t_vm *vm)
+void			ft_arena_upload(t_vm *vm)
 {
 	int			step;
 	int			index;
 	int			i;
 
-	/* Find the distance between 2 champions */
-	step = MEM_SIZE / vm->nb_champion;
-	index = 0;
 	i = 0;
+	index = 0;
+	step = MEM_SIZE / vm->nb_proc;
 	while (i < MAX_PLAYERS)
 	{
-		/* If the champion's File Descriptor is open */
 		if (vm->fd[i])
 		{
-			/* Set up the starting position in the arena */
-			vm->index[i] = index;
-			/* Copy the champion in the arena */
-			if (IS_NEG(read(vm->fd[i], &vm->arena[0][index], vm->header[i].prog_size)))
-				ft_exit("Can't upload champions in the arena");
 			/* Create a new process */
-			ft_vm_new_process(vm, i + 1, -(i + 1), index);
-			/* Close the champion's File Descriptor */
+			ft_new_proc(vm, i, index);
+			/* Copy the process in the arena */
+			if (IS_NEG(read(vm->fd[i], &vm->arena[0][index], vm->header[i].prog_size)))
+				ft_exit("Can't upload process in the arena");
+			/* Initialize the 1st instruction */
+			ft_instr_update_exec_cycle(vm, C_PROCESS(vm->proc_head.next));
+			/* Close the process File Descriptor */
 			close(vm->fd[i]);
-			/* Move the starting point for the next champion */
+			/* Move the starting point for the next process */
 			index += step;
 		}
 		++i;
 	}
 	/* If no process executes the live instruction during the 1st round, */
 	/* the last one parsed wins */
-	vm->current_proc_nb = C_PROCESS(vm->process_head.next)->process_nb;
-	/* Save th lastest process' number as a reference for new processses */
+	vm->current_proc_nb = C_PROCESS(vm->proc_head.next)->proc_nb;
+	/* Save the latest process' number as a reference for new processes */
 	vm->last_alive = -vm->current_proc_nb;
 }
