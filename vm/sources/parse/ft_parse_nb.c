@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_log_lldi.c                                   :+:      :+:    :+:   */
+/*   ft_parse_nb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/29 15:40:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/22 16:34:44 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 00:42:37 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 02:09:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_log.h"
 
-void			ft_vm_log_lldi(t_vm *vm, t_process const *proc,
-								unsigned char const *ptr,
-								const unsigned int address)
+void		ft_parse_nb(t_vm *vm, t_parse *parse)
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
-		-proc->process_nb, "lldi");
-	//ft_vm_log_arg(proc);
-	ft_log("\t\treg[%d] = %d --> arena[%d + %d %% MEM_SIZE]\n",
-												*ptr, proc->reg[*ptr],
-												proc->pc - vm->arena[0], address);
+	(void)vm;
+	if (0 == parse->next_arg)
+		ft_exit("Parsing error");
+	/* Options' values can't be negative */
+	if (IS_NEG((*parse->next_arg = ft_atoi(*parse->av))))
+		ft_exit("Not a positive int");
+	++parse->av;
+	--parse->ac;
+	/* Reset the State Machine to default */
+	parse->state = OPT_STATE_DEFAULT;
+	parse->next_arg = 0;
 }

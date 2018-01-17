@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/15 15:44:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/17 00:05:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int				main(int ac, char **av)
 		return (0);
 	/* Initialize the main structure */
 	ft_memset((void *)&vm, '\0', sizeof(t_vm));
-	INIT_LIST_HEAD(vm.process_head);
+	INIT_LIST_HEAD(vm.proc_head);
 	/* Parse arguments */
 	++av;
-	ft_vm_parse(&vm, ac, av);
+	ft_parse(&vm, ac, av);
+	#if 0
 	/* Read each champion's header */
 	ft_vm_read_header(&vm);
 	/* Print presentation before the battle starts */
@@ -36,5 +37,6 @@ int				main(int ac, char **av)
 	if (vm.option.log)
 		ft_log_close();
 	ft_vm_del_list(&vm);
+	#endif
 	return (0);
 }

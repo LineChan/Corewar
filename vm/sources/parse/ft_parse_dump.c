@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vm_log_xor.c                                    :+:      :+:    :+:   */
+/*   ft_parse_dump.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/27 14:36:48 by mvillemi          #+#    #+#             */
-/*   Updated: 2017/12/22 16:35:12 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 02:25:53 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 02:37:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_log.h"
 
-void			ft_vm_log_xor(t_vm *vm, t_process const *proc,
-								unsigned char const *ptr,
-								const int xor[2])
+void			ft_parse_dump(t_vm *vm, t_parse *parse)
 {
-	ft_log("  Cycle %-7d Player %d --- %-5s\n", vm->current_cycle,
-		-proc->process_nb, "add");
-	//ft_vm_log_arg(proc);
-	ft_log("\t\treg[%d] = %d --> [%d] ^ [%d]\n", *ptr, proc->reg[*ptr],
-		xor[0], xor[1]);
+	/* Set the next_arg on the options' structure */
+	parse->next_arg = &vm->opt.dump;
+	++parse->av;
+	--parse->ac;
+	/* An error occurs if there is no argument left */
+	if (0 == parse->ac)
+		ft_exit("Parsing error near -dump");
+	/* Set the next state to get the display value */
+	parse->state = OPT_STATE_NUMBER;
 }

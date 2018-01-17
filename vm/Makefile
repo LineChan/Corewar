@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Zoellingam <Zoellingam@student.42.fr>      +#+  +:+       +#+         #
+#    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2017/12/15 20:03:11 by Zoellingam       ###   ########.fr        #
+#    Updated: 2018/01/17 00:30:51 by mvillemi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ INCLUDES 		:= -I$(COMN) -I$(INCS) -I$(DLIB)/$(INCS)
 LIBS			:= -lncurses -L $(DLIB) -lft
 
 # Search source files
-C_FILES			:= $(shell find $(SRCS) -type f)
+C_FILES			:= $(shell find $(SRCS) -type f -name "*.c")
 C_FILES			+= $(shell find $(COMN) -type f -name "*.c")
 C_DIRS		 	:= $(shell find $(SRCS) -type d)
 C_DIRS			+= $(COMN)
