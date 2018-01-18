@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/18 14:48:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/18 18:12:46 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int				main(int ac, char **av)
 	/* Handle the battle */
 	ft_arena(&vm);
 	/* Free the processes' list */
-	ft_del_proc(&vm);
+	ft_del_proc_list(&vm);
 	#if 0
 	int i = 0;
 	while (i < MAX_PLAYERS)

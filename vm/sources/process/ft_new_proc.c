@@ -6,11 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:50:08 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 17:43:51 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/18 17:22:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_instruction.h"
 #include "ft_string.h"
 
 void				ft_new_proc(t_vm *vm, const int ref, const int index)
@@ -19,6 +20,8 @@ void				ft_new_proc(t_vm *vm, const int ref, const int index)
 
 	/* Allocate a new process */
 	if (!(new = ft_memalloc(sizeof(t_proc))))
+		ft_exit("Memory allocation failed");
+	if (!(new->instr = ft_memalloc(sizeof(t_instr))))
 		ft_exit("Memory allocation failed");
 	/* Reference to the champion who created the process */
 	new->parent_nb = ref + 1;

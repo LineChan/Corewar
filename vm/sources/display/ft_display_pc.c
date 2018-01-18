@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arena_cycle_routine.c                           :+:      :+:    :+:   */
+/*   ft_display_pc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 13:51:30 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/18 16:24:50 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/18 16:49:37 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/18 17:06:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_instruction.h"
 #include "ft_printf.h"
+#include <unistd.h>
 
-void			ft_arena_cycle_routine(t_vm *vm)
+void		ft_display_pc(t_vm *vm, t_proc const *proc)
 {
-	t_list		*it;
+	size_t			i;
+	unsigned char	*ptr;
 
-	it = vm->proc_head.next;
-	if (DISPLAY_2)
-		ft_printf("It is now cycle %d\n", vm->current_cycle);
-	/* Loop on every process */
-	while (it != &vm->proc_head)
+	i = (size_t)ABS(MOD((proc->instr->new_pc - proc->pc)));
+	ft_printf("ADV %d (0x%04x -> 0x%04x) ", i, proc->pc, proc->instr->new_pc);
+	ptr = &vm->arena[0][proc->pc];
+	while (i--)
 	{
-		/* The instruction's routine is applied when its sleep time is over */
-		if (C_PROCESS(it)->exec_cycle == vm->current_cycle)
-			ft_arena_instr_routine(vm, C_PROCESS(it));
-		it = it->next;
+		if ((ptr - vm->arena[0] == MEM_SIZE))
+			ptr = (unsigned char *)vm->arena[0];
+		ft_printf("%02hhx ", *ptr);
+		++ptr;
 	}
+	write(1, "\n", 1);
 }

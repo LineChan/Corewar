@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/18 14:48:22 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/18 18:12:48 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,10 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 
 # define VM_DIR_SIZE(x)	((x) ? 2 : 4)
 
-#if 0
-# define LOG_OPT        (vm->option.log)
-# define DISP_OPT		(vm->option.display)
-# define DUMP_OPT		(vm->option.dump)
-# define S_DUMP_OPT		(vm->option.s)
-#endif
+//# define LOG_OPT        (vm->option.log)
+# define DISP_OPT		(vm->opt.display)
+# define DUMP_OPT		(vm->opt.dump)
+//# define S_DUMP_OPT		(vm->option.s)
 
 
 # define C_PROCESS(it)	CONTAINEROF(it, t_proc, list)
@@ -134,6 +132,7 @@ typedef struct		s_opt
 	int				display;
 	int				dump;
 	int				state;
+	int				death[MAX_PLAYERS];
 }					t_opt;
 
 typedef struct		s_proc
@@ -149,7 +148,7 @@ typedef struct		s_proc
 	int				reg[REG_NUMBER + 1];
 	int				pc;
 	unsigned char	next_op;
-	t_op			*op;
+	struct s_instr			*instr;
 	t_list			list;
 }					t_proc;
 
@@ -168,8 +167,9 @@ typedef struct		s_vm
 	t_list			proc_head;
 }					t_vm;
 
-//typedef void            (*t_func)(t_vm *, t_process *);
+/* Typedef */
 
+typedef void            (*t_func)(t_vm *, t_proc *);
 typedef void			(*t_state_machine)(t_vm *vm, t_parse *parse);
 /*
 ** Prototypes
@@ -214,6 +214,8 @@ void		ft_header_comment(t_vm *vm, int const i);
 void		ft_arena(t_vm *vm);
 void		ft_arena_upload(t_vm *vm);
 void		ft_arena_cycle_routine(t_vm *vm);
+void		ft_arena_instr_routine(t_vm *vm, t_proc *proc);
+
 
 /*
 ** Processses functions
@@ -222,13 +224,21 @@ void		ft_arena_cycle_routine(t_vm *vm);
 void		ft_new_proc(t_vm *vm, int const i, int const index);
 void		ft_del_proc_list(t_vm *vm);
 void		ft_del_proc(t_list *node);
+t_list		*ft_find_proc(t_list *head, int nb);
+
+/*
+** Display functions
+*/
+
+void		ft_display_arena(void const *data, size_t msize, size_t nb_byte, t_vm *vm);
+void		ft_display_pc(t_vm *vm, t_proc const *proc);
+void		ft_display_live(t_vm *vm, t_proc const *proc, t_list const *it);
 
 /*
 ** Instruction functions
 */
 
 void		ft_instr_update_exec_cycle(t_vm *vm, t_proc *proc);
-void		ft_instr_decode(t_vm *vm, t_proc *proc);
-void		ft_instr_parse(t_vm *vm, t_proc *proc, int const bytecode);
+void		ft_instr_live(t_vm *vm, t_proc *proc);
 
 #endif

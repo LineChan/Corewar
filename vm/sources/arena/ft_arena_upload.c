@@ -6,13 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:39:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 17:41:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/18 18:12:47 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include <unistd.h>
 
+#include "ft_printf.h"
 void			ft_arena_upload(t_vm *vm)
 {
 	int			step;
@@ -32,6 +33,7 @@ void			ft_arena_upload(t_vm *vm)
 			if (IS_NEG(read(vm->fd[i], &vm->arena[0][index], vm->header[i].prog_size)))
 				ft_exit("Can't upload process in the arena");
 			/* Initialize the 1st instruction */
+			C_PROCESS(vm->proc_head.next)->next_op = vm->arena[0][index];
 			ft_instr_update_exec_cycle(vm, C_PROCESS(vm->proc_head.next));
 			/* Close the process File Descriptor */
 			close(vm->fd[i]);
