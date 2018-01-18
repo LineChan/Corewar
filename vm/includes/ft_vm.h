@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 17:56:50 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/18 14:48:22 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 ** Comparisons
 */
 
-#if 0
-# define DISPLAY_1		(vm->option.display & FLAG_1)
-# define DISPLAY_2		(vm->option.display & FLAG_2)
-# define DISPLAY_4		(vm->option.display & FLAG_4)
-# define DISPLAY_8		(vm->option.display & FLAG_8)
-# define DISPLAY_16		(vm->option.display & FLAG_16)
-# define DISPLAY_32		(vm->option.display & FLAG_32)
+#if 1
+# define DISPLAY_1		(vm->opt.display & FLAG_1)
+# define DISPLAY_2		(vm->opt.display & FLAG_2)
+# define DISPLAY_4		(vm->opt.display & FLAG_4)
+# define DISPLAY_8		(vm->opt.display & FLAG_8)
+# define DISPLAY_16		(vm->opt.display & FLAG_16)
+# define DISPLAY_32		(vm->opt.display & FLAG_32)
 #endif
 
 /*
@@ -138,7 +138,7 @@ typedef struct		s_opt
 
 typedef struct		s_proc
 {
-	int				dead;
+	//int				dead;
 	int				parent_nb;
 	int				proc_nb;
 	int				error;
@@ -220,11 +220,15 @@ void		ft_arena_cycle_routine(t_vm *vm);
 */
 
 void		ft_new_proc(t_vm *vm, int const i, int const index);
+void		ft_del_proc_list(t_vm *vm);
+void		ft_del_proc(t_list *node);
 
 /*
 ** Instruction functions
 */
 
 void		ft_instr_update_exec_cycle(t_vm *vm, t_proc *proc);
+void		ft_instr_decode(t_vm *vm, t_proc *proc);
+void		ft_instr_parse(t_vm *vm, t_proc *proc, int const bytecode);
 
 #endif

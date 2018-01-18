@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:37:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 17:51:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/18 14:48:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		ft_arena(t_vm *vm)
 				return ;
 			}
 		}
+		++vm->current_cycle;
 	}
 	#if 0
 	#endif
