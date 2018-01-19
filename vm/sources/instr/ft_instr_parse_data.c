@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:39:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/18 16:41:33 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/19 10:11:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,13 @@ uint8_t			ft_instr_parse_data(t_vm *vm,
 	else
 		return (EXIT_FAILURE);
 	/* Read data byte by byte */
+	#if 0
 	proc->instr->args[i].data =
 		ft_instr_get_data(vm, proc, proc->instr->args[i].size, IS_BIG_ENDIAN);
+		#endif
+	proc->instr->args[i].data = ft_instr_get_data(proc->instr->args[i].size,
+												&vm->arena[0][proc->instr->new_pc],
+												IS_BIG_ENDIAN);
 	/* Check is the argument's type matches op.c */
 	if (((proc->instr->args[i].type & proc->instr->op->arg_types[i]) == 0) ||
 	/* If the argument is a register, check if its number is valid */

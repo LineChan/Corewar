@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/18 18:12:48 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/19 17:40:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,17 +138,17 @@ typedef struct		s_opt
 typedef struct		s_proc
 {
 	//int				dead;
+	int				live;
+	int				has_lived;
 	int				parent_nb;
 	int				proc_nb;
 	int				error;
-	int				live;
-	int				has_lived;
 	int				carry;
 	int				exec_cycle;
 	int				reg[REG_NUMBER + 1];
 	int				pc;
 	unsigned char	next_op;
-	struct s_instr			*instr;
+	struct s_instr	*instr;
 	t_list			list;
 }					t_proc;
 
@@ -215,6 +215,7 @@ void		ft_arena(t_vm *vm);
 void		ft_arena_upload(t_vm *vm);
 void		ft_arena_cycle_routine(t_vm *vm);
 void		ft_arena_instr_routine(t_vm *vm, t_proc *proc);
+void		ft_arena_round_check(t_vm *vm, int *cycle_end_round);
 
 
 /*
@@ -224,7 +225,32 @@ void		ft_arena_instr_routine(t_vm *vm, t_proc *proc);
 void		ft_new_proc(t_vm *vm, int const i, int const index);
 void		ft_del_proc_list(t_vm *vm);
 void		ft_del_proc(t_list *node);
+void		ft_new_proc_kid(t_vm *vm, t_proc *pro, unsigned int const index);
 t_list		*ft_find_proc(t_list *head, int nb);
+
+
+/*
+** Instruction functions
+*/
+
+void		ft_instr_update_exec_cycle(t_proc *proc);
+void		ft_instr_and_or_xor_routine(t_vm *vm, t_proc *proc);
+void		ft_instr_live(t_vm *vm, t_proc *proc);
+void		ft_instr_ld(t_vm *vm, t_proc *proc);
+void		ft_instr_st(t_vm *vm, t_proc *proc);
+void		ft_instr_add(t_vm *vm, t_proc *proc);
+void		ft_instr_sub(t_vm *vm, t_proc *proc);
+void		ft_instr_and(t_vm *vm, t_proc *proc);
+void		ft_instr_or(t_vm *vm, t_proc *proc);
+void		ft_instr_xor(t_vm *vm, t_proc *proc);
+void		ft_instr_zjmp(t_vm *vm, t_proc *proc);
+void		ft_instr_ldi(t_vm *vm, t_proc *proc);
+void		ft_instr_sti(t_vm *vm, t_proc *proc);
+void		ft_instr_fork(t_vm *vm, t_proc *proc);
+void		ft_instr_lld(t_vm *vm, t_proc *proc);
+void		ft_instr_lldi(t_vm *vm, t_proc *proc);
+void		ft_instr_lfork(t_vm *vm, t_proc *proc);
+void		ft_instr_aff(t_vm *vm, t_proc *proc);
 
 /*
 ** Display functions
@@ -233,12 +259,12 @@ t_list		*ft_find_proc(t_list *head, int nb);
 void		ft_display_arena(void const *data, size_t msize, size_t nb_byte, t_vm *vm);
 void		ft_display_pc(t_vm *vm, t_proc const *proc);
 void		ft_display_live(t_vm *vm, t_proc const *proc, t_list const *it);
-
-/*
-** Instruction functions
-*/
-
-void		ft_instr_update_exec_cycle(t_vm *vm, t_proc *proc);
-void		ft_instr_live(t_vm *vm, t_proc *proc);
-
+void		ft_display_ld_lld(t_vm *vm, t_proc const *proc);
+void		ft_display_st(t_proc const *proc);
+void		ft_display_add_sub(t_vm *vm, t_proc const *proc);
+void		ft_display_ldi(t_vm *vm, t_proc const *proc);
+void		ft_display_sti(t_proc const *proc);
+void		ft_display_fork(t_vm *vm, t_proc const *proc);
+void		ft_display_lldi(t_vm *vm, t_proc const *proc);
+void		ft_display_lfork(t_vm *vm, t_proc const *proc);
 #endif

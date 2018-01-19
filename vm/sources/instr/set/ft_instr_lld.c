@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instr_ld.c                                      :+:      :+:    :+:   */
+/*   ft_instr_lld.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 18:07:56 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 11:11:31 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/19 15:42:34 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/19 16:09:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,19 @@
 #include "ft_instruction.h"
 #include "endian.h"
 
-#include "ft_printf.h"
-void			ft_instr_ld(t_vm *vm, t_proc *proc)
+void			ft_instr_lld(t_vm *vm, t_proc *proc)
 {
+	/* Compute index = PC + argument */
 	if (proc->instr->args[0].type == T_IND)
-	{
-		proc->instr->args[0].data =
-			ft_instr_get_data(REG_SIZE,
-				&vm->arena[0][proc->pc + (proc->instr->args[0].data % IDX_MOD)],
-				IS_BIG_ENDIAN);
-	}
-	/* Load the value in a resgister */
-	proc->reg[proc->instr->args[1].data] = proc->instr->args[0].data;
-	/* Display additionnal informations */
+		proc->instr->args[0].data = proc->pc + proc->instr->args[0].data;
+	/* Load the value in a register from arena[PC + index] */
+	proc->reg[proc->instr->args[1].data] =
+		ft_instr_get_data(IND_SIZE,
+						&vm->arena[0][MOD(proc->instr->args[0].data)],
+						IS_BIG_ENDIAN);
+	/* Display additional informations */
 	if (DISP_OPT)
 		ft_display_ld_lld(vm, proc);
-	/* Change the carry */
-	proc->carry = !proc->reg[proc->instr->args[1].data];
+	/* Carry the carry */
+	proc->carry = !proc->instr->args[0].data;
 }

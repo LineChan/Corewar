@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/18 16:43:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/19 11:01:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,14 @@ uint8_t		ft_instr_parse_data(struct s_vm *vm,
 								uint8_t const bytecode);
 uint8_t		ft_instr_setup(struct s_vm *vm, struct s_proc *proc);
 uint8_t		ft_instr_decode(struct s_vm *vm, struct s_proc *proc);
+int32_t		ft_instr_get_data(size_t bytes,
+								uint8_t *context,
+								int	endian_mode);
+void		ft_instr_st_data(size_t bytes, void *dst, void *src, struct s_vm *vm);
+#if 0
 uint32_t	ft_instr_get_data(struct s_vm *vm,
 								struct s_proc *proc,
 								size_t const byte,
 								int const endian_mode);
-
+#endif
 #endif
