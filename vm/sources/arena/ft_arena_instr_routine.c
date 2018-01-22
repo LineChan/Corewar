@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:58:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 16:32:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 22:10:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void			ft_arena_instr_routine(t_vm *vm, t_proc *proc)
 		//ft_display_arena((void *)&vm->arena[0], MEM_SIZE, 64, vm);
 		/* Move the Program Counter to the next byte */
 		proc->instr->new_pc = proc->pc + 1;
-		++proc->pc;
 	}
 	else if (ret == EXIT_FAILURE)
 	{
@@ -81,8 +80,10 @@ void			ft_arena_instr_routine(t_vm *vm, t_proc *proc)
 	}
 	/* Fetch the next instruction */
 	proc->pc = proc->instr->new_pc;
+	#if 0
 	/* Check if Program Counter isn't out of the arena */
 	proc->pc = (proc->instr->new_pc % MEM_SIZE);
+	#endif
 	/* Setup the next instructon */
 	proc->next_op = vm->arena[0][proc->pc];
 	/* Update the execution cycle with the new instruction */

@@ -6,15 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 11:14:46 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 16:07:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
-#include "ft_log.h"
 
-#include "ft_instruction.h"
 #include "ft_printf.h"
 int				main(int ac, char **av)
 {
@@ -26,7 +24,6 @@ int				main(int ac, char **av)
 	ft_memset((void *)&vm, '\0', sizeof(t_vm));
 	INIT_LIST_HEAD(vm.proc_head);
 	/* Parse arguments */
-	++av;
 	ft_parse(&vm, ac, av);
 	/* Read each champion's header */
 	ft_header(&vm);

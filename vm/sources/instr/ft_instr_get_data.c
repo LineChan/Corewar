@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:53:45 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 15:45:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 22:32:00 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include "ft_instruction.h"
 #include "endian.h"
 
-int32_t		ft_instr_get_data(size_t bytes,
-									uint8_t *context,
+int32_t		ft_instr_get_data(t_vm *vm,
+									size_t bytes,
+									uint8_t *pc,
 									int	endian_mode)
 {
 	uint8_t value[4];
@@ -25,7 +26,8 @@ int32_t		ft_instr_get_data(size_t bytes,
 	i = 0;
 	while (i < bytes)
 	{
-		value[i] = *(context + i);
+		//value[i] = *(context + i);
+		value[i] = vm->arena[0][LOOP(pc + i - vm->arena[0])];
 		++i;
 	}
 	/* Apply conversion if the endian mode is different from the

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:07:56 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 11:11:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/21 13:17:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			ft_instr_ld(t_vm *vm, t_proc *proc)
 	if (proc->instr->args[0].type == T_IND)
 	{
 		proc->instr->args[0].data =
-			ft_instr_get_data(REG_SIZE,
+			ft_instr_get_data(vm, REG_SIZE,
 				&vm->arena[0][proc->pc + (proc->instr->args[0].data % IDX_MOD)],
 				IS_BIG_ENDIAN);
 	}

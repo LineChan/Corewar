@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:21:03 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 10:29:45 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 22:00:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ft_instr_update_exec_cycle(t_proc *proc)
 {
 	extern t_op			g_op_tab[17];
 
-	/* If the op number is valid, the 1st instrucion starts aftr its sleep time */
+	/* If the op number is valid, the 1st instrucion starts after its sleep time */
 	if (OPCODE_IS_VALID(proc->next_op))
 		proc->exec_cycle += g_op_tab[proc->next_op].nb_cycles;
 	/* Otherwsise it starts at the next cycle */
