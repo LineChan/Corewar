@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:14:07 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/18 14:48:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/22 19:46:48 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void			ft_del_proc(t_list *node)
 {
 	t_proc		*ptr;
 
+	if (!node)
+		return ;
 	ptr = C_PROCESS(node);
 	if (!ptr)
 		return ;
-	if (ptr->instr)
+	if (!ptr->instr)
 		ft_memdel((void **)&ptr->instr);
 	ft_list_del(node);
 	ft_memdel((void **)&ptr);

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:22:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 17:37:02 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 21:48:00 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void			ft_parse_proc_repartition(t_vm *vm, t_parse *parse)
 
 	i = 0;
 	j = 0;
-	/* Processes with no specific numbers are inserted at empty spots in the */
-	/* process' array */
+	/* Processes with no specific numbers are inserted at empty spots in the
+		process' array */
 	while (i < MAX_PLAYERS)
 	{
 		/* Check if a File Descriptor has been opened */
@@ -30,8 +30,8 @@ void			ft_parse_proc_repartition(t_vm *vm, t_parse *parse)
 		++j;
 		++i;
 	}
-	/* If no process execute the live instruction during the 1st round, */
-	/* the last one parsed wins */
+	/* If any process has executed the live instruction during the 1st round,
+		the last one parsed wins */
 	vm->last_alive = i;
 	/* Save the lastest process' number as a reference for new processes */
 	vm->current_proc_nb = -i;

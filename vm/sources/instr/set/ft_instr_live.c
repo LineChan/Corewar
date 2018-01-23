@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:33:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 17:49:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/22 19:51:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void			ft_instr_live(t_vm *vm, t_proc *proc)
 	if ((it = ft_find_proc(&vm->proc_head, proc->instr->args[0].data)))
 	{
 		vm->last_alive = C_PROCESS(it)->parent_nb;
-		++C_PROCESS(it)->live;
+		//++C_PROCESS(it)->live;
 		//++C_PROCESS(it)->live ----> counting the nb of live instruction ?
 		// C_PROCESS(it)->has_lived : pdady corewar, but not sure it matches zaz vm. NEED TO BE CHECKED
 	}

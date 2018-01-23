@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 14:11:11 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/18 16:41:07 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 22:20:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ uint8_t		ft_instr_parse(t_vm *vm, t_proc *proc, int bytecode)
 		/* Next loop, setup the bytecode, handle the pc jump */
 		bytecode <<= 2;
 		proc->instr->new_pc += proc->instr->args[i].size;
+		proc->instr->new_pc %= MEM_SIZE;
+		proc->instr->size += proc->instr->args[i].size;
 		++i;
 	}
 	return (ret);

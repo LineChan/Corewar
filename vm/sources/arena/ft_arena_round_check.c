@@ -6,13 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:47:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 14:56:44 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:01:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_printf.h"
 
+#include "ft_printf.h"
 void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 {
 	t_list			*it;
@@ -39,7 +40,6 @@ void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 			C_PROCESS(it)->live = 0;
 		it = it->next;
 	}
-	++check;
 	/* If the total number of live instruction is bigger than NBR_LIVE
 		or if cycle_to_die hasn't been decreased since MAX_CHECKS round */
 	if ((vm->total_live >= NBR_LIVE) || (check == MAX_CHECKS))
@@ -51,6 +51,10 @@ void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 		/* The number of checks is reset */
 		check = 0;
 	}
+	else
+		++check;
 	/* Update the end of the next round */
 	*cycle_end_round += vm->cycle_to_die;
+	/* The total number of live instructions is reset */
+	vm->total_live = 0;
 }

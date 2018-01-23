@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 01:14:03 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 17:45:40 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 16:13:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void		ft_parse_proc(t_vm *vm, t_parse *parse)
 	/* 4 processes have already been found */
 	if (1 == max_proc)
 		ft_exit("Too many processes want to fight");
-	/* Processes's numbers can be chosen with the -n option. */
-	/* If not, the File Descriptor is stored in a temporary array */
+	/* Processes's numbers can be chosen with the -n option.
+		If not, the File Descriptor is stored in a temporary array */
 	if (0 == parse->next_arg)
 		parse->next_arg = &parse->fd[current_proc++];
 	/* Check if the extension (.cor) is valid */
@@ -33,7 +33,7 @@ void		ft_parse_proc(t_vm *vm, t_parse *parse)
 		ft_exit("Extension .cor not found");
 	/* Open the file */
 	if (IS_NEG((*parse->next_arg = open(*parse->av, O_RDONLY, 0666))))
-		ft_exit("The file can't be read");
+		ft_exit("The file can't be opened");
 	++vm->nb_proc;
 	if (vm->nb_proc == MAX_PLAYERS)
 		max_proc = 1;

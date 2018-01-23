@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 00:05:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 15:41:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 16:07:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void				ft_option_usage(void)
 static const t_state_machine	g_option_state_machine[] =
 {
 	[OPT_STATE_DEFAULT] = &ft_parse_default,
-	//[OPT_STATE_N] = &ft_parse_n,
+	[OPT_STATE_N] = &ft_parse_n,
 	#if 0
 	[OPT_STATE_S] = &ft_vm_parse_s,
 	[OPT_STATE_CTMO] = &ft_option_parse_ctmo,
@@ -85,10 +85,10 @@ void			ft_parse(t_vm *vm, int const ac, char **av)
 {
 	t_parse		parse;
 
-	ft_memset((void *)&parse, 0, sizeof(t_parse));
 	/* Initialize the State Machine */
+	ft_memset((void *)&parse, 0, sizeof(t_parse));
 	parse.ac = ac - 1;
-	parse.av = av;
+	parse.av = av + 1;
 	parse.state = OPT_STATE_DEFAULT;
 	/* State Machine loop */
 	while ((0 != parse.ac) && (0 != parse.av))

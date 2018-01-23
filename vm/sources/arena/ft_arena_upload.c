@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:39:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 10:30:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/20 22:01:07 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void			ft_arena_upload(t_vm *vm)
 		}
 		++i;
 	}
-	/* If no process executes the live instruction during the 1st round, */
-	/* the last one parsed wins */
+	/* If no process executes the live instruction during the 1st round,
+		the last one parsed wins */
 	vm->current_proc_nb = C_PROCESS(vm->proc_head.next)->proc_nb;
 	/* Save the latest process' number as a reference for new processes */
 	vm->last_alive = -vm->current_proc_nb;

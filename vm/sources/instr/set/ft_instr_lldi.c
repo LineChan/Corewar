@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:48:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 16:12:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/21 13:21:28 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 		{
 			/* Get index with PC + argument */
 			proc->instr->args[i].data =
-				ft_instr_get_data(REG_SIZE,
+				ft_instr_get_data(vm, REG_SIZE,
 					&vm->arena[0][MOD(proc->pc + proc->instr->args[i].data)],
 					IS_BIG_ENDIAN);
 		}
 		++i;
 	}
 	/* Load the value in a register from arena[PC + index] */
-	proc->reg[proc->instr->args[2].data] = ft_instr_get_data(REG_SIZE,
+	proc->reg[proc->instr->args[2].data] = ft_instr_get_data(vm, REG_SIZE,
 			&vm->arena[0][MOD(proc->pc +
 				(proc->instr->args[0].data + proc->instr->args[1].data) % IDX_MOD)],
 			IS_BIG_ENDIAN);
