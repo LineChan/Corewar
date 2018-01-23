@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:33:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/22 19:51:20 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:52:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void			ft_instr_live(t_vm *vm, t_proc *proc)
 	/* Count of live instructions during the current round */
 	++vm->total_live;
 	proc->has_lived = vm->current_cycle;
+	#if 0
+	if ((proc->instr->args[0].data > -5) && (proc->instr->args[0].data < 0))
+	{
+		vm->last_alive = -(proc->instr->args[0].data - 1);
+	}
+	#endif
 	#if 1
 	if ((it = ft_find_proc(&vm->proc_head, proc->instr->args[0].data)))
 	{

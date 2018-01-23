@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 12:13:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 13:50:55 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 15:21:53 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			ft_instr_zjmp(t_vm *vm, t_proc *proc)
 		}
 		if (DISPLAY_16)
 			ft_display_pc(vm, proc);
-		proc->instr->new_pc = proc->pc + 3;
+		proc->instr->new_pc = MOD(proc->pc + 3);
 	}
 	else
 	{
