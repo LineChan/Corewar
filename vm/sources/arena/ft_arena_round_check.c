@@ -6,11 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:47:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 17:49:57 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 14:56:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_printf.h"
 
 void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 {
@@ -19,7 +20,7 @@ void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 
 	it = vm->proc_head.next;
 	/* Loop on all the processes */
-	while (it != vm->proc_head)
+	while (it != &vm->proc_head)
 	{
 		/* If the process is still alive and its last live instruction was
 			executed during the last round */
@@ -27,7 +28,7 @@ void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 		{
 			/* Delete the process if it did not call the live instruction */
 			ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
-					-C_PROCESS(it)->process_nb ,
+					-C_PROCESS(it)->proc_nb ,
 					vm->current_cycle - 1 - C_PROCESS(it)->has_lived,
 					vm->cycle_to_die);
 			ft_del_proc(it);
@@ -52,5 +53,4 @@ void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 	}
 	/* Update the end of the next round */
 	*cycle_end_round += vm->cycle_to_die;
-	/*
 }
