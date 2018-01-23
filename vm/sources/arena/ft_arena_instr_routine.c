@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:58:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/20 22:10:10 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/22 21:03:01 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void			ft_arena_instr_routine(t_vm *vm, t_proc *proc)
 
 	/* Decode the instruction */
 	ret = ft_instr_decode(vm, proc);
+	//ft_printf("instr proc : %d\n", proc->proc_nb);
 	if (ret == OPCODE_NOT_VALID)
 	{
 		//ft_display_arena((void *)&vm->arena[0], MEM_SIZE, 64, vm);
