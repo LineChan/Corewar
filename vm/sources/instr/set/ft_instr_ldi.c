@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:30:02 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/21 13:15:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 23:22:02 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,4 @@ void			ft_instr_ldi(t_vm *vm, t_proc *proc)
 	/* Display additional informations */
 	if (DISP_OPT)
 		ft_display_ldi(vm, proc);
-	/* Change the carry */
-	proc->carry = !proc->reg[proc->instr->args[2].data];
 }

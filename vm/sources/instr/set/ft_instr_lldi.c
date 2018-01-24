@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:48:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/21 13:21:28 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 23:22:01 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 			/* Get index with PC + argument */
 			proc->instr->args[i].data =
 				ft_instr_get_data(vm, REG_SIZE,
-					&vm->arena[0][MOD(proc->pc + proc->instr->args[i].data)],
+					&vm->arena[0][MOD(proc->pc + (proc->instr->args[i].data % IDX_MOD))],
 					IS_BIG_ENDIAN);
 		}
 		++i;
@@ -44,5 +44,5 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 	if (DISP_OPT)
 		ft_display_lldi(vm, proc);
 	/* Change the carry */
-	proc->carry = !proc->instr->args[0].data;
+	proc->carry = !proc->reg[proc->instr->args[2].data];
 }

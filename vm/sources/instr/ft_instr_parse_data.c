@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:39:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/21 13:18:32 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 23:22:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ uint8_t			ft_instr_parse_data(t_vm *vm,
 	/* Check is the argument's type matches op.c */
 	if (((proc->instr->args[i].type & proc->instr->op->arg_types[i]) == 0) ||
 	/* If the argument is a register, check if its number is valid */
-		((REG_CODE == proc->instr->args[i].type)
+		((T_REG == proc->instr->args[i].type)
 		&& !REG_IS_VALID(proc->instr->args[i].data)))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
