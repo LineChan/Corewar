@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:37:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 15:16:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/24 17:14:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,30 @@
 
 void		ft_arena(t_vm *vm)
 {
-	int			cycle_end_round;
-	//int			end_battle;
+	//int			cycle_end_round;
+	int			limit;
 
-	/* Place processes at their right position */
-	ft_arena_upload(vm);
-	/* Setup parameters before the battle */
-	vm->cycle_to_die = CYCLE_TO_DIE;
-	cycle_end_round = CYCLE_TO_DIE;
-	vm->current_cycle = 1;
+	ft_arena_setup(vm/*, &cycle_end_round*/, &limit);
 	/* Loop until there is no process left in the arena */
 	while (vm->nb_proc > 0)
 	{
+		++limit;
+		/* Cycle routine */
+		if (ft_arena_cycle_routine(vm) == EXIT_FAILURE)
+			return ;
+		/* Round check */
+		//if (cycle_end_round <= limit)
+		if (vm->cycle_to_die <= limit)
+		{
+			ft_arena_round_check(vm/*, &cycle_end_round*/);
+			limit = 0;
+		}
+	}
+	/* Print the output of the game */
+	ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
+		vm->header[vm->last_alive - 1].prog_name);
+}
+#if 0
 		/* Round routine */
 		while (vm->current_cycle <= cycle_end_round)
 		{
@@ -48,10 +60,6 @@ void		ft_arena(t_vm *vm)
 			ft_arena_round_check(vm, &cycle_end_round);
 			break ;
 		}
-	}
-	/* Print the output of the game */
-	ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
-		vm->header[vm->last_alive - 1].prog_name);
+		#endif
 	#if 0
 	#endif
-}

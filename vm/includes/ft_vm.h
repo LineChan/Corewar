@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 17:40:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/24 17:13:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,10 +212,11 @@ void		ft_header_comment(t_vm *vm, int const i);
 /* Arena functions */
 
 void		ft_arena(t_vm *vm);
+void		ft_arena_setup(t_vm *vm/*, int *cycle_end_round*/, int *limit);
 void		ft_arena_upload(t_vm *vm);
-void		ft_arena_cycle_routine(t_vm *vm);
-void		ft_arena_instr_routine(t_vm *vm, t_proc *proc);
-void		ft_arena_round_check(t_vm *vm, int *cycle_end_round);
+int			ft_arena_cycle_routine(t_vm *vm);
+void		ft_arena_instr_routine(t_list *it, void *context);
+void		ft_arena_round_check(t_vm *vm/*, int *cycle_end_round*/);
 
 
 /*
@@ -226,6 +227,7 @@ void		ft_new_proc(t_vm *vm, int const i, int const index);
 void		ft_del_proc_list(t_vm *vm);
 void		ft_del_proc(t_list *node);
 void		ft_new_proc_kid(t_vm *vm, t_proc *pro, unsigned int const index);
+void		ft_proc_check(t_list *it, void *context);
 t_list		*ft_find_proc(t_list *head, int nb);
 
 
@@ -256,7 +258,7 @@ void		ft_instr_aff(t_vm *vm, t_proc *proc);
 ** Display functions
 */
 
-void		ft_display_arena(void const *data, size_t msize, size_t nb_byte, t_vm *vm);
+int			ft_display_arena(t_vm *vm);
 void		ft_display_pc(t_vm *vm, t_proc const *proc);
 void		ft_display_live(t_vm *vm, t_proc const *proc, t_list const *it);
 void		ft_display_ld_lld(t_vm *vm, t_proc const *proc);

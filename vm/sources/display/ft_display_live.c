@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:46:42 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 15:14:37 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/24 17:48:31 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			ft_display_live(t_vm *vm, t_proc const *proc, t_list const *it)
 			-proc->proc_nb, proc->instr->args[0].data);
 	}
 	/* Display live */
-	if (DISPLAY_1 && it)
+	if ((DISPLAY_1 && it) || ((C_PROCESS(it)->parent_nb < 0) && (C_PROCESS(it)->parent_nb > -5)))
 	{
 		ft_printf("Player %d (%s) is said to be alive\n",
 					C_PROCESS(it)->parent_nb,

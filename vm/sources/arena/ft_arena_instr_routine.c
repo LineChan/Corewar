@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:58:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 15:43:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/24 17:03:37 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,38 @@ void			ft_display_arena(void const *data,
 								size_t msize,
 								size_t nb_byte,
 								t_vm *vm)
-								#endif
+#endif
+void			ft_arena_instr_routine(t_list *it, void *context)
+{
+	t_vm		*vm;
+	t_proc		*proc;
+	int			ret;
+
+	/* Setup variables */
+	vm = (t_vm *)context;
+	proc = C_PROCESS(it);
+	if (proc->exec_cycle != vm->current_cycle)
+		return ;
+	ft_memset((void *)proc->instr, 0, sizeof(t_instr));
+	/* Decode arguments and check their validity */
+	ret = ft_instr_decode(vm, proc);
+	/* Move the Program Counter to the next byte */
+	if (ret == OPCODE_NOT_VALID)
+		proc->instr->new_pc = (proc->pc + 1) % MEM_SIZE;
+	/* The OP number is valid, but an error occured while
+		decoding the instruction */
+	else if ((ret == EXIT_FAILURE) && DISPLAY_16)
+		ft_display_pc(vm, proc);
+	/* Execute the decoded instruction */
+	else
+		g_instr_list[proc->next_op](vm, proc);
+	/* Fetch the new instruction */
+	proc->pc = proc->instr->new_pc;
+	proc->next_op = vm->arena[0][proc->pc];
+	/* Update the execution cycle with the new instruction */
+	ft_instr_update_exec_cycle(proc);
+}
+#if 0
 void			ft_arena_instr_routine(t_vm *vm, t_proc *proc)
 {
 	uint8_t			ret;
@@ -91,3 +122,4 @@ void			ft_arena_instr_routine(t_vm *vm, t_proc *proc)
 	/* Reset the instruction */
 	ft_memset((void *)proc->instr, 0, sizeof(t_instr));
 }
+#endif

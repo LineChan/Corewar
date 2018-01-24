@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:47:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 15:03:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/24 17:13:47 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,30 @@
 #include "ft_printf.h"
 
 #include "ft_printf.h"
+void			ft_arena_round_check(t_vm *vm/*, int *cycle_end_round*/)
+{
+	static int		check = 0;
+
+	//ft_printf("arena round check\n");
+	++check;
+	ft_list_apply_data(&vm->proc_head, (void *)vm, &ft_proc_check);
+	/* If the total number of live instruction is bigger than NBR_LIVE
+		or if cycle_to_die hasn't been decreased since MAX_CHECKS round */
+	if ((vm->total_live >= NBR_LIVE) || (check >= MAX_CHECKS))
+	{
+		/* cycle_to_die is decreased of CYCLE_DELTA */
+		vm->cycle_to_die -= CYCLE_DELTA;
+		if (DISPLAY_2)
+			ft_printf("Cycle to die is now %d\n", vm->cycle_to_die);
+		/* The number of checks is reset */
+		check = 0;
+	}
+	/* Update the end of the next round */
+	//*cycle_end_round += vm->cycle_to_die;
+	/* The total number of live instructions is reset */
+	vm->total_live = 0;
+}
+#if 0
 void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 {
 	t_list			*it;
@@ -58,3 +82,4 @@ void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 	/* The total number of live instructions is reset */
 	vm->total_live = 0;
 }
+#endif
