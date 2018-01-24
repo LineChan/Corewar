@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:47:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 15:03:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 23:22:03 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void			ft_arena_round_check(t_vm *vm, int *cycle_end_round)
 		}
 		/* Live count is reset */
 		else
+			//TODO REMOVE LIVE
 			C_PROCESS(it)->live = 0;
 		it = it->next;
 	}

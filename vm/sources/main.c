@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/20 16:07:16 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/23 23:22:07 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int				main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	/* Initialize the main structure */
-	ft_memset((void *)&vm, '\0', sizeof(t_vm));
+	ft_memset((void *)&vm, 0, sizeof(t_vm));
 	INIT_LIST_HEAD(vm.proc_head);
 	/* Parse arguments */
 	ft_parse(&vm, ac, av);
