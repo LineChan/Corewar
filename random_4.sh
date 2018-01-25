@@ -17,10 +17,11 @@ else
 fi
 
 while true; do
-	c1="$(cat /tmp/.champions_list | sort -R | head -n1)";
-	c2="$(cat /tmp/.champions_list | sort -R | head -n1)";
-	c3="$(cat /tmp/.champions_list | sort -R | head -n1)";
-	c4="$(cat /tmp/.champions_list | sort -R | head -n1)";
+	make;
+	c1="$(gshuf /tmp/.champions_list | head -n1)";
+	c2="$(gshuf /tmp/.champions_list | head -n1)";
+	c3="$(gshuf /tmp/.champions_list | head -n1)";
+	c4="$(gshuf /tmp/.champions_list | head -n1)";
 	printf "$(basename "$c1") vs $(basename "$c2") vs $(basename "$c3") vs $(basename "$c4"): ";
 	./vm/corewar -dump $DUMP -v 31 $c1 $c2 $c3 $c4 > $f1;
 	./docs/ressources/corewar -d $DUMP -v 31 $c1 $c2 $c3 $c4 > $f2;

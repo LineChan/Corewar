@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 00:43:26 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:30:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 #endif
 # define ASSERT(x)      ft_assert(# x, __FUNCTION__, __LINE__, x)
 
-# define VM_DIR_SIZE(x)	((x) ? 2 : 4)
+//# define VM_DIR_SIZE(x)	((x) ? 2 : 4)
 
 //# define LOG_OPT        (vm->option.log)
 # define DISP_OPT		(vm->opt.display)

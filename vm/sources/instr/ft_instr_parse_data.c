@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:39:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 23:22:04 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 18:16:12 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ uint8_t			ft_instr_parse_data(t_vm *vm,
 	#if 0
 	proc->instr->args[i].data =
 		ft_instr_get_data(vm, proc, proc->instr->args[i].size, IS_BIG_ENDIAN);
-		#endif
+	#endif
 	proc->instr->args[i].data = ft_instr_get_data(vm,
 												proc->instr->args[i].size,
 												&vm->arena[0][proc->instr->new_pc],

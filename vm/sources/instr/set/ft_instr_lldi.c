@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:48:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 23:22:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 18:31:49 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "ft_instruction.h"
 #include "endian.h"
 
+#include "ft_printf.h"
 void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 {
 	int		i;
@@ -24,7 +25,15 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 	{
 		/* Compute index = PC + argument */
 		if (proc->instr->args[i].type == T_REG)
-			proc->instr->args[i].data = proc->reg[proc->instr->args[i].data];
+		{
+			if (REG_IS_VALID(proc->instr->args[i].data))
+				proc->instr->args[i].data = proc->reg[proc->instr->args[i].data];
+			else
+			{
+				//proc->carry = 0;
+				return ;
+			}
+		}
 		else if (proc->instr->args[i].type == T_IND)
 		{
 			/* Get index with PC + argument */
@@ -36,13 +45,17 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 		++i;
 	}
 	/* Load the value in a register from arena[PC + index] */
-	proc->reg[proc->instr->args[2].data] = ft_instr_get_data(vm, REG_SIZE,
-			&vm->arena[0][MOD(proc->pc +
-				(proc->instr->args[0].data + proc->instr->args[1].data) % IDX_MOD)],
-			IS_BIG_ENDIAN);
+	//if (REG_IS_VALID(proc->instr->args[2].data))
+	{
+		proc->reg[proc->instr->args[2].data] = ft_instr_get_data(vm, REG_SIZE,
+				&vm->arena[0][MOD(proc->pc +
+					(proc->instr->args[0].data + proc->instr->args[1].data) % IDX_MOD)],
+				IS_BIG_ENDIAN);
+		/* Change the carry */
+		proc->carry = !proc->reg[proc->instr->args[2].data];
+	}
 	/* Display additional informations */
 	if (DISP_OPT)
 		ft_display_lldi(vm, proc);
-	/* Change the carry */
-	proc->carry = !proc->reg[proc->instr->args[2].data];
+	//ft_printf("CARRY : %d\n", proc->carry);
 }

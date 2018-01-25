@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:51:30 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/24 16:50:35 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 13:14:13 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int				ft_arena_cycle_routine(t_vm *vm)
 	ft_list_apply_data(&vm->proc_head, (void *)vm, &ft_arena_instr_routine);
 	return (EXIT_SUCCESS);
 }
+
 #if 0
 void			ft_arena_cycle_routine(t_vm *vm)
 {

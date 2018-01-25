@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 12:13:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 23:21:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 18:20:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 void			ft_instr_zjmp(t_vm *vm, t_proc *proc)
 {
 	/* Execute the instruction only if the carry is equal to 1 */
+	//ft_printf("CARRY zjmp : %d\n", proc->carry);
 	if (!proc->carry)
 	{
 		if (DISPLAY_4)
