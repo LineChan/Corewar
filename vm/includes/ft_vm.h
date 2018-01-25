@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/24 17:13:23 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 00:43:26 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ typedef enum		e_opt_parse_state
 	OPT_STATE_DEFAULT = 0,
 	OPT_STATE_N,
 	OPT_STATE_S,
+	OPT_STATE_AFF,
 	OPT_STATE_CTMO,
 	OPT_STATE_DUMP,
 	OPT_STATE_NUMBER,
@@ -130,6 +131,7 @@ typedef struct		s_parse
 typedef struct		s_opt
 {
 	int				display;
+	int				display_aff;
 	int				dump;
 	int				state;
 	int				death[MAX_PLAYERS];
@@ -192,6 +194,7 @@ void		ft_print_intro(t_vm const *vm);
 
 void		ft_parse(t_vm *vm, int const ac, char **av);
 void		ft_parse_nb(t_vm *vm, t_parse *parse);
+void		ft_parse_aff(t_vm *vm, t_parse *parse);
 void		ft_parse_default(t_vm *vm, t_parse *parse);
 void		ft_parse_proc(t_vm *vm, t_parse *parse);
 void		ft_parse_n(t_vm *vm, t_parse *parse);

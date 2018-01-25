@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 00:49:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 02:09:39 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 00:03:01 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static const t_option_map	g_option_map[] =
 	{ "-stealth", 8, OPT_STATE_STEALTH },
 	#endif
 	{ "-display", 8, OPT_STATE_DISPLAY },
+	{ "-v", 2, OPT_STATE_DISPLAY },
+	{ "-a", 2, OPT_STATE_AFF },
 	{ "-dump", 5, OPT_STATE_DUMP },
 	#if 0
 	{ "-ctmo", 5, OPT_STATE_CTMO },

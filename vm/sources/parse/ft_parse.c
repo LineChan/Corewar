@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 00:05:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/20 16:07:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 00:00:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static const t_state_machine	g_option_state_machine[] =
 {
 	[OPT_STATE_DEFAULT] = &ft_parse_default,
 	[OPT_STATE_N] = &ft_parse_n,
+	[OPT_STATE_AFF] = &ft_parse_aff,
 	#if 0
 	[OPT_STATE_S] = &ft_vm_parse_s,
 	[OPT_STATE_CTMO] = &ft_option_parse_ctmo,
