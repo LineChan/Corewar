@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 12:13:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 18:20:38 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 16:58:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 void			ft_instr_zjmp(t_vm *vm, t_proc *proc)
 {
 	/* Execute the instruction only if the carry is equal to 1 */
-	//ft_printf("CARRY zjmp : %d\n", proc->carry);
 	if (!proc->carry)
 	{
 		if (DISPLAY_4)
@@ -28,7 +27,7 @@ void			ft_instr_zjmp(t_vm *vm, t_proc *proc)
 		}
 		if (DISPLAY_16)
 			ft_display_pc(vm, proc);
-		proc->instr->new_pc = MOD(proc->pc + 3);
+		proc->instr->new_pc = LOOP(proc->pc + 3);
 	}
 	else
 	{
@@ -39,6 +38,6 @@ void			ft_instr_zjmp(t_vm *vm, t_proc *proc)
 							proc->instr->args[0].data);
 		}
 		/* Get the new position for the Program Counter */
-		proc->instr->new_pc = MOD(proc->pc + (proc->instr->args[0].data % IDX_MOD));
+		proc->instr->new_pc = LOOP(proc->pc + (proc->instr->args[0].data % IDX_MOD));
 	}
 }

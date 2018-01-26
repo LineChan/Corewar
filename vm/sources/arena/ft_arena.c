@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:37:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 23:16:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:06:20 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ft_arena(t_vm *vm)
 {
 	int			limit;
 
-	ft_arena_setup(vm/*, &cycle_end_round*/, &limit);
+	ft_arena_setup(vm, &limit);
 	/* Loop until there is no process left in the arena */
 	while (vm->nb_proc > 0)
 	{
@@ -28,7 +28,7 @@ void		ft_arena(t_vm *vm)
 		/* Round check */
 		if (vm->cycle_to_die <= limit)
 		{
-			ft_arena_round_check(vm/*, &cycle_end_round*/);
+			ft_arena_round_check(vm);
 			limit = 0;
 		}
 	}

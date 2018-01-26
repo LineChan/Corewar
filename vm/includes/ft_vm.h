@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/26 00:50:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 17:00:19 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 # define CARRY_CHANGE    1
 # define INSTR_NUMBER    17
 
-#if 1
-# define MOD(x)	        (((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE))
 # define IDX(x)	        (((x) < 0) ? (IDX_MOD + ((x) % IDX_MOD)) : ((x) % IDX_MOD))
 # define LOOP(x)				(((x) % MEM_SIZE) + (((x) < 0) ? MEM_SIZE : 0))
-#endif
 # define ASSERT(x)      ft_assert(# x, __FUNCTION__, __LINE__, x)
 
 //# define VM_DIR_SIZE(x)	((x) ? 2 : 4)
@@ -78,14 +75,12 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 ** Comparisons
 */
 
-#if 1
 # define DISPLAY_1		(vm->opt.display & FLAG_1)
 # define DISPLAY_2		(vm->opt.display & FLAG_2)
 # define DISPLAY_4		(vm->opt.display & FLAG_4)
 # define DISPLAY_8		(vm->opt.display & FLAG_8)
 # define DISPLAY_16		(vm->opt.display & FLAG_16)
 # define DISPLAY_32		(vm->opt.display & FLAG_32)
-#endif
 
 /*
 ** Structures
@@ -145,7 +140,6 @@ typedef struct		s_proc
 	int				has_lived;
 	int				parent_nb;
 	int				proc_nb;
-	//int				error;
 	int				carry;
 	int				exec_cycle;
 	int				reg[REG_NUMBER + 1];
@@ -174,6 +168,7 @@ typedef struct		s_vm
 
 typedef void            (*t_func)(t_vm *, t_proc *);
 typedef void			(*t_state_machine)(t_vm *vm, t_parse *parse);
+
 /*
 ** Prototypes
 */
@@ -216,16 +211,17 @@ void		ft_header_comment(t_vm *vm, int const i);
 /* Arena functions */
 
 void		ft_arena(t_vm *vm);
-void		ft_arena_setup(t_vm *vm/*, int *cycle_end_round*/, int *limit);
+void		ft_arena_setup(t_vm *vm, int *limit);
 void		ft_arena_upload(t_vm *vm);
 int			ft_arena_cycle_routine(t_vm *vm);
 void		ft_arena_instr_routine(t_list *it, void *context);
-void		ft_arena_round_check(t_vm *vm/*, int *cycle_end_round*/);
+void		ft_arena_round_check(t_vm *vm);
 
 int8_t		ft_arena_get_int8(t_vm *arena, int pc);
 int16_t		ft_arena_get_int16(t_vm *vm, int pc);
 int32_t		ft_arena_get_int32(t_vm *vm, int pc);
 void		ft_arena_set_int8(t_vm *vm, int pc, int val);
+void		ft_arena_set_int32(t_vm *vm, int pc, int val);
 
 /*
 ** Processses functions
@@ -243,19 +239,7 @@ t_list		*ft_find_proc(t_list *head, int nb);
 ** Instruction functions
 */
 
-#if 0
-int8_t	ft_arena_get_int8(uint8_t *arena, int32_t pc);
-void	ft_arena_set_int8(uint8_t *arena, int32_t pc, int8_t val);
-
-int16_t	ft_arena_get_int16(uint8_t *arena, int32_t pc);
-
-int32_t	ft_arena_get_int32(uint8_t *arena, int32_t pc);
-void	ft_arena_set_int32(uint8_t *arena, int32_t pc, int32_t val);
-#endif
-
-
 void		ft_instr_update_exec_cycle(t_proc *proc);
-
 void		ft_instr_and_or_xor_routine(t_vm *vm, t_proc *proc);
 void		ft_instr_live(t_vm *vm, t_proc *proc);
 void		ft_instr_ld(t_vm *vm, t_proc *proc);
@@ -289,4 +273,5 @@ void		ft_display_sti(t_proc const *proc);
 void		ft_display_fork(t_vm *vm, t_proc const *proc);
 void		ft_display_lldi(t_vm *vm, t_proc const *proc);
 void		ft_display_lfork(t_vm *vm, t_proc const *proc);
+
 #endif

@@ -6,14 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:33:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/26 01:35:52 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:52:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
 #include "ft_printf.h"
-#include "endian.h"
 
 void			ft_instr_and_or_xor_routine(t_vm *vm, t_proc *proc)
 {
