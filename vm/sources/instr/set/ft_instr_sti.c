@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:53:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 17:53:51 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 21:03:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ void			ft_instr_sti(t_vm *vm, t_proc *proc)
 		/* Get the value from a register */
 		if (proc->instr->args[i].type == T_REG)
 		{
-			if (REG_IS_VALID(proc->instr->args[i].data))
+			//if (REG_IS_VALID(proc->instr->args[i].data))
 				proc->instr->args[i].data = proc->reg[proc->instr->args[i].data];
+				/*
 			else
 				return ;
+				*/
 		}
 		/* Get the value from index = PC + (arg % IDX_MOD) */
 		else if (proc->instr->args[i].type == T_IND)

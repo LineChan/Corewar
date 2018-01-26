@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 18:07:56 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 18:30:03 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:29:52 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void			ft_instr_ld(t_vm *vm, t_proc *proc)
 	if (proc->instr->args[0].type == T_IND)
 	{
 		proc->instr->args[0].data =
+		//ft_arena_get_int8(vm, proc->pc + (proc->instr->args[0].data % IDX_MOD));
+			#if 1
 			ft_instr_get_data(vm, REG_SIZE,
 				&vm->arena[0][proc->pc + (proc->instr->args[0].data % IDX_MOD)],
 				IS_BIG_ENDIAN);
+			#endif
 	}
 	/* Load the value in a resgister */
 	proc->reg[proc->instr->args[1].data] = proc->instr->args[0].data;

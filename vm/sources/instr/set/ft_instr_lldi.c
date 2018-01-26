@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:48:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 18:31:49 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 21:15:13 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,22 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 		/* Compute index = PC + argument */
 		if (proc->instr->args[i].type == T_REG)
 		{
-			if (REG_IS_VALID(proc->instr->args[i].data))
+			//if (REG_IS_VALID(proc->instr->args[i].data))
 				proc->instr->args[i].data = proc->reg[proc->instr->args[i].data];
+				// Can be removed ?
+				#if 0
 			else
 			{
-				//proc->carry = 0;
 				return ;
 			}
+			#endif
 		}
 		else if (proc->instr->args[i].type == T_IND)
 		{
 			/* Get index with PC + argument */
 			proc->instr->args[i].data =
 				ft_instr_get_data(vm, REG_SIZE,
-					&vm->arena[0][MOD(proc->pc + (proc->instr->args[i].data % IDX_MOD))],
+					&vm->arena[0][MOD(proc->pc + proc->instr->args[i].data)],
 					IS_BIG_ENDIAN);
 		}
 		++i;
@@ -49,7 +51,7 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 	{
 		proc->reg[proc->instr->args[2].data] = ft_instr_get_data(vm, REG_SIZE,
 				&vm->arena[0][MOD(proc->pc +
-					(proc->instr->args[0].data + proc->instr->args[1].data) % IDX_MOD)],
+					proc->instr->args[0].data + proc->instr->args[1].data)],
 				IS_BIG_ENDIAN);
 		/* Change the carry */
 		proc->carry = !proc->reg[proc->instr->args[2].data];
@@ -57,5 +59,4 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 	/* Display additional informations */
 	if (DISP_OPT)
 		ft_display_lldi(vm, proc);
-	//ft_printf("CARRY : %d\n", proc->carry);
 }

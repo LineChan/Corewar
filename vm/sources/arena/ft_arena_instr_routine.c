@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:58:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 01:04:44 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 23:18:10 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,6 @@
 #include "ft_string.h"
 
 #include "ft_printf.h"
-
-#if 0
-static void			ft_instr_default(t_vm *vm, t_proc *proc)
-{
-	ft_printf("instr default\n");
-	(void)proc;
-	(void)vm;
-	++proc->pc;
-}
-#endif
-
 static const t_func g_instr_list[] =
 {
 	0,
@@ -47,12 +36,6 @@ static const t_func g_instr_list[] =
 	&ft_instr_aff,
 };
 
-#if 0
-void			ft_display_arena(void const *data,
-								size_t msize,
-								size_t nb_byte,
-								t_vm *vm)
-#endif
 void			ft_arena_instr_routine(t_list *it, void *context)
 {
 	extern t_op			g_op_tab[17];
@@ -82,7 +65,6 @@ void			ft_arena_instr_routine(t_list *it, void *context)
 
 	ft_memset((void *)proc->instr, 0, sizeof(t_instr));
 	/* Decode arguments and check their validity */
-//	proc->next_op = vm->arena[0][proc->pc];
 	ret = ft_instr_decode(vm, proc);
 	/* The OP number is valid, but an error occured while
 		decoding the instruction */

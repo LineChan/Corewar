@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/21 13:22:18 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 00:32:55 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stddef.h>
 # include "op.h"
 
-# define LOOP(x)				(((x) % MEM_SIZE) + (((x) < 0) ? MEM_SIZE : 0))
 
 # define OPCODE_IS_VALID(x)		(16 > (uint32_t)((x) - 1))
 # define REG_IS_VALID(x)		(REG_NUMBER > (uint32_t)((x) - 1))

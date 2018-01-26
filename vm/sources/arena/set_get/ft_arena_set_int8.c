@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_instr_decode.c                                  :+:      :+:    :+:   */
+/*   ft_arena_set_int8.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 14:05:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 23:22:24 by mvillemi         ###   ########.fr       */
+/*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
+/*   Updated: 2018/01/26 00:45:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_instruction.h"
 
-uint8_t			ft_instr_decode(t_vm *vm, t_proc *proc)
+void		ft_arena_set_int8(t_vm *vm, int pc, int val)
 {
-	return (ft_instr_parse(vm, proc, ft_instr_setup(vm,proc)));
+	vm->arena[0][LOOP(pc)] = val;
 }

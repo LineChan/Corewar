@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 13:30:56 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 00:50:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 ** Standard Libraries
 */
 #include <stdlib.h>
+#include <stdint.h>
 
 /*
 ** Defines
@@ -48,6 +49,7 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 #if 1
 # define MOD(x)	        (((x) < 0) ? (MEM_SIZE + ((x) % MEM_SIZE)) : ((x) % MEM_SIZE))
 # define IDX(x)	        (((x) < 0) ? (IDX_MOD + ((x) % IDX_MOD)) : ((x) % IDX_MOD))
+# define LOOP(x)				(((x) % MEM_SIZE) + (((x) < 0) ? MEM_SIZE : 0))
 #endif
 # define ASSERT(x)      ft_assert(# x, __FUNCTION__, __LINE__, x)
 
@@ -139,12 +141,11 @@ typedef struct		s_opt
 
 typedef struct		s_proc
 {
-	//int				dead;
 	int				live;
 	int				has_lived;
 	int				parent_nb;
 	int				proc_nb;
-	int				error;
+	//int				error;
 	int				carry;
 	int				exec_cycle;
 	int				reg[REG_NUMBER + 1];
@@ -221,6 +222,10 @@ int			ft_arena_cycle_routine(t_vm *vm);
 void		ft_arena_instr_routine(t_list *it, void *context);
 void		ft_arena_round_check(t_vm *vm/*, int *cycle_end_round*/);
 
+int8_t		ft_arena_get_int8(t_vm *arena, int pc);
+int16_t		ft_arena_get_int16(t_vm *vm, int pc);
+int32_t		ft_arena_get_int32(t_vm *vm, int pc);
+void		ft_arena_set_int8(t_vm *vm, int pc, int val);
 
 /*
 ** Processses functions
@@ -238,7 +243,19 @@ t_list		*ft_find_proc(t_list *head, int nb);
 ** Instruction functions
 */
 
+#if 0
+int8_t	ft_arena_get_int8(uint8_t *arena, int32_t pc);
+void	ft_arena_set_int8(uint8_t *arena, int32_t pc, int8_t val);
+
+int16_t	ft_arena_get_int16(uint8_t *arena, int32_t pc);
+
+int32_t	ft_arena_get_int32(uint8_t *arena, int32_t pc);
+void	ft_arena_set_int32(uint8_t *arena, int32_t pc, int32_t val);
+#endif
+
+
 void		ft_instr_update_exec_cycle(t_proc *proc);
+
 void		ft_instr_and_or_xor_routine(t_vm *vm, t_proc *proc);
 void		ft_instr_live(t_vm *vm, t_proc *proc);
 void		ft_instr_ld(t_vm *vm, t_proc *proc);

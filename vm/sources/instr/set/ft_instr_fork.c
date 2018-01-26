@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 14:05:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/22 21:03:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:26:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,4 @@ void			ft_instr_fork(t_vm *vm, t_proc *proc)
 		MOD(proc->pc + (proc->instr->args[0].data % IDX_MOD)));
 	if (DISP_OPT)
 		ft_display_fork(vm, proc);
-	//ft_printf("-->new->pc : %x -->exec_cycle  : %d -->next_op : %d\n", proc->instr->new_pc, proc->exec_cycle, vm->arena[0][proc->instr->new_pc]);
 }

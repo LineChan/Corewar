@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:26:12 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 18:18:18 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:26:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,8 @@ void		ft_instr_and(t_vm *vm, t_proc *proc)
 	/* Read arguments */
 	ft_instr_and_or_xor_routine(vm, proc);
 	/* Compute the result and store it in a register */
-	if (REG_IS_VALID(proc->instr->args[2].data))
-	{
-		proc->reg[proc->instr->args[2].data] =
-			proc->instr->args[0].data & proc->instr->args[1].data;
-	}
-	#if 0
-	/* Fetch the next instruction */
-	proc->pc = proc->instr->new_pc;
-	#endif
+	proc->reg[proc->instr->args[2].data] =
+		proc->instr->args[0].data & proc->instr->args[1].data;
 	/* Change the carry */
 	proc->carry = !proc->reg[proc->instr->args[2].data];
 }

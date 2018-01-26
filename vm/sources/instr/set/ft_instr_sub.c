@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 11:22:18 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 23:22:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/25 21:15:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void			ft_instr_sub(t_vm *vm, t_proc *proc)
 	/* Display additional informations */
 	if (DISP_OPT)
 		ft_display_add_sub(vm, proc);
-	/* Write in the log file */
-	//TODO : log
 	/* Change the carry */
 	proc->carry = !proc->reg[proc->instr->args[2].data];
 }

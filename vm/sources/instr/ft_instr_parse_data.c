@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 15:39:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 18:16:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/26 01:19:46 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,33 @@ uint8_t			ft_instr_parse_data(t_vm *vm,
 	if (REG_CODE == proc->instr->args[i].type)
 	{
 		proc->instr->args[i].type = T_REG;
-		proc->instr->args[i].size = 1;
+		proc->instr->size += 1;
+		proc->instr->args[i].data = ft_arena_get_int8(vm, proc->instr->new_pc);
+		proc->instr->new_pc += 1;
+		proc->instr->new_pc %= MEM_SIZE;
 	}
 	else if (DIR_CODE == proc->instr->args[i].type)
 	{
 		proc->instr->args[i].type = T_DIR;
-		proc->instr->args[i].size = (!proc->instr->op->has_index) ? 4 : 2;
+		if (proc->instr->op->has_index)
+			proc->instr->args[i].data = ft_arena_get_int16(vm, proc->instr->new_pc);
+		else
+			proc->instr->args[i].data = ft_arena_get_int32(vm, proc->instr->new_pc);
+		proc->instr->size += (!proc->instr->op->has_index) ? 4 : 2;
+		proc->instr->new_pc += (!proc->instr->op->has_index) ? 4 : 2;
+		proc->instr->new_pc %= MEM_SIZE;
 	}
 	else if (IND_CODE == proc->instr->args[i].type)
 	{
 		proc->instr->args[i].type = T_IND;
-		proc->instr->args[i].size = 2;
+		proc->instr->size += 2;
+		proc->instr->args[i].data = ft_arena_get_int16(vm, proc->instr->new_pc);
+		proc->instr->new_pc += 2;
+		proc->instr->new_pc %= MEM_SIZE;
 	}
 	else
 		return (EXIT_FAILURE);
 	/* Read data byte by byte */
-	#if 0
-	proc->instr->args[i].data =
-		ft_instr_get_data(vm, proc, proc->instr->args[i].size, IS_BIG_ENDIAN);
-	#endif
-	proc->instr->args[i].data = ft_instr_get_data(vm,
-												proc->instr->args[i].size,
-												&vm->arena[0][proc->instr->new_pc],
-												IS_BIG_ENDIAN);
 	/* Check is the argument's type matches op.c */
 	if (((proc->instr->args[i].type & proc->instr->op->arg_types[i]) == 0) ||
 	/* If the argument is a register, check if its number is valid */
