@@ -6,12 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/23 23:22:07 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/27 00:57:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
+#include "ft_curse.h"
 
 #include "ft_printf.h"
 int				main(int ac, char **av)
@@ -21,6 +22,7 @@ int				main(int ac, char **av)
 	if (ac < 2)
 		return (0);
 	/* Initialize the main structure */
+	//ft_printf("coucou 1\n");
 	ft_memset((void *)&vm, 0, sizeof(t_vm));
 	INIT_LIST_HEAD(vm.proc_head);
 	/* Parse arguments */
@@ -31,8 +33,15 @@ int				main(int ac, char **av)
 	ft_print_intro(&vm);
 	/* Handle the battle */
 	ft_arena(&vm);
+	ft_printf("after arena\n");
 	/* Free the processes' list */
 	ft_del_proc_list(&vm);
+	//if (&DISPLAY_32)
+	//ft_printf("coucou 2\n");
+	#if 0
+	if (vm.opt.display & FLAG_32)
+		ft_curse_del();
+		#endif
 	#if 0
 	int i = 0;
 	while (i < MAX_PLAYERS)
