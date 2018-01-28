@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 17:46:42 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 21:29:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/27 15:47:41 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,4 @@ void			ft_display_live(t_vm *vm, t_proc const *proc, t_list const *it)
 	/* Display the number of cycle since the last live */
 	if (DISPLAY_8)
 		vm->opt.death[proc->parent_nb - 1] = vm->current_cycle;
-	if (DISPLAY_16)
-		ft_display_pc(vm, proc);
 }

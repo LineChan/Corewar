@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:42:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/26 13:52:15 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/27 16:13:06 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void			ft_instr_lld(t_vm *vm, t_proc *proc)
 	/* Load the value in a register from arena[PC + index] */
 	proc->reg[proc->instr->args[1].data] = proc->instr->args[0].data;
 	/* Display additional informations */
-	if (DISP_OPT)
-		ft_display_ld_lld(vm, proc);
+	if (DISPLAY_4)
+		ft_display_ld_lld(proc);
 	/* Carry the carry */
 	proc->carry = !proc->instr->args[0].data;
 }

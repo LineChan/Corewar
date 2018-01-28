@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/26 16:56:17 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/27 15:34:05 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ typedef struct		s_instr_decode
 typedef struct		s_instr
 {
 	t_op			*op;
-	//uint8_t			*new_pc;
 	int				new_pc;
 	int				size;
+	int				zjmp_success;
 	t_instr_decode	args[4];
 }					t_instr;
 

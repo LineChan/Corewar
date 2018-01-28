@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 16:49:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/22 21:06:25 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:04:40 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void		ft_display_pc(t_vm *vm, t_proc const *proc)
 	unsigned char	*ptr;
 
 	i = proc->instr->size;
-	//i = (size_t)ABS(MOD((proc->instr->new_pc - proc->pc)));
 	ft_printf("ADV %d (0x%04x -> 0x%04x) ", i, proc->pc, proc->pc + i);
-	ptr = &vm->arena[0][proc->pc];
+	ptr = &vm->arena[proc->pc];
 	while (i--)
 	{
-		if ((ptr - vm->arena[0] == MEM_SIZE))
-			ptr = (unsigned char *)vm->arena[0];
+		if ((ptr - vm->arena == MEM_SIZE))
+			ptr = (unsigned char *)vm->arena;
 		ft_printf("%02hhx ", *ptr);
 		++ptr;
 	}

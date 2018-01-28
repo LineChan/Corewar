@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_st.c                                    :+:      :+:    :+:   */
+/*   ft_visual_end.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/19 10:55:26 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/19 10:59:02 by mvillemi         ###   ########.fr       */
+/*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
+/*   Updated: 2018/01/27 22:04:04 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_vm.h"
-#include "ft_printf.h"
-#include "ft_instruction.h"
+#include "ft_visual.h"
+#include <ncurses.h>
 
-void			ft_display_st(t_proc const *proc)
+void	ft_visual_end(t_visual *this)
 {
-		ft_printf("P %4d | st r%d %d\n",
-				-proc->proc_nb,
-				proc->instr->args[0].data,
-				proc->instr->args[1].data);
+  	nocbreak();
+	curs_set(1);
+  	echo();
+  	delwin(this->win);
+	endwin();
 }

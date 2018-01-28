@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:16:28 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 21:20:33 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:08:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			ft_display_arena(t_vm *vm)
 	ft_printf("0x0000 : ");
 	while (i < MEM_SIZE)
 	{
-		ft_printf("%02hhx ", vm->arena[0][i++]);
+		ft_printf("%02hhx ", vm->arena[i++]);
 		if (0 == (i & 63))
 			ft_printf("\n");
 		if (0 == (i & 63) && (0 != i % MEM_SIZE))

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/25 21:21:53 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/25 21:28:48 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/27 15:40:36 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void			ft_instr_live(t_vm *vm, t_proc *proc)
 	}
 	if (DISPLAY_8)
 		vm->opt.death[proc->parent_nb - 1] = vm->current_cycle;
+	#if 0
 	if (DISPLAY_16)
 		ft_display_pc(vm, proc);
+		#endif
 }

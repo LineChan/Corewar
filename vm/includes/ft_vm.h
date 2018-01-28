@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/26 17:00:19 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/28 22:15:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 
 # include "op.h"
 # include "ft_list.h"
+#include "ft_visual.h"
 # include "macro.h"
 
 /*
 ** Standard Libraries
 */
-#include <stdlib.h>
-#include <stdint.h>
+# include <stdlib.h>
+# include <stdint.h>
 
 /*
 ** Defines
@@ -46,11 +47,9 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 # define CARRY_CHANGE    1
 # define INSTR_NUMBER    17
 
-# define IDX(x)	        (((x) < 0) ? (IDX_MOD + ((x) % IDX_MOD)) : ((x) % IDX_MOD))
 # define LOOP(x)				(((x) % MEM_SIZE) + (((x) < 0) ? MEM_SIZE : 0))
 # define ASSERT(x)      ft_assert(# x, __FUNCTION__, __LINE__, x)
 
-//# define VM_DIR_SIZE(x)	((x) ? 2 : 4)
 
 //# define LOG_OPT        (vm->option.log)
 # define DISP_OPT		(vm->opt.display)
@@ -158,9 +157,11 @@ typedef struct		s_vm
 	int				cycle_to_die;
 	int				last_alive;
 	int				total_live;
-	unsigned char	arena[2][MEM_SIZE];
+	int				check;
+	unsigned char	arena[MEM_SIZE];
 	t_opt			opt;
 	t_header		header[MAX_PLAYERS];
+	t_visual		visual;
 	t_list			proc_head;
 }					t_vm;
 
@@ -182,7 +183,7 @@ void		ft_assert(char const *condition,
 						char const *function_name,
 						int const line_number,
 						const int code_condition);
-void		ft_print_intro(t_vm const *vm);
+void		ft_print_intro(t_vm *vm);
 
 /*
 ** Parse functions
@@ -234,7 +235,6 @@ void		ft_new_proc_kid(t_vm *vm, t_proc *pro, unsigned int const index);
 void		ft_proc_check(t_list *it, void *context);
 t_list		*ft_find_proc(t_list *head, int nb);
 
-
 /*
 ** Instruction functions
 */
@@ -265,13 +265,10 @@ void		ft_instr_aff(t_vm *vm, t_proc *proc);
 int			ft_display_arena(t_vm *vm);
 void		ft_display_pc(t_vm *vm, t_proc const *proc);
 void		ft_display_live(t_vm *vm, t_proc const *proc, t_list const *it);
-void		ft_display_ld_lld(t_vm *vm, t_proc const *proc);
-void		ft_display_st(t_proc const *proc);
-void		ft_display_add_sub(t_vm *vm, t_proc const *proc);
-void		ft_display_ldi(t_vm *vm, t_proc const *proc);
+void		ft_display_ld_lld(t_proc const *proc);
+void		ft_display_add_sub(t_proc const *proc);
+void		ft_display_ldi(t_proc const *proc);
 void		ft_display_sti(t_proc const *proc);
-void		ft_display_fork(t_vm *vm, t_proc const *proc);
-void		ft_display_lldi(t_vm *vm, t_proc const *proc);
-void		ft_display_lfork(t_vm *vm, t_proc const *proc);
+void		ft_display_lldi(t_proc const *proc);
 
 #endif

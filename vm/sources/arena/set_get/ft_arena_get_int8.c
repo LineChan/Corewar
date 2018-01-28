@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/26 00:35:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/28 20:50:51 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int8_t	ft_arena_get_int8(t_vm *vm, int pc)
 {
-	return (vm->arena[0][LOOP(pc)]);
+	return (vm->arena[LOOP(pc)]);
 }

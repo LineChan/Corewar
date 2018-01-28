@@ -6,15 +6,13 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:48:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/26 16:11:36 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/27 16:41:00 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
-#include "endian.h"
 
-#include "ft_printf.h"
 void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 {
 	int		i;
@@ -41,6 +39,6 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 	/* Change the carry */
 	proc->carry = !proc->reg[proc->instr->args[2].data];
 	/* Display additional informations */
-	if (DISP_OPT)
-		ft_display_lldi(vm, proc);
+	if (DISPLAY_4)
+		ft_display_lldi(proc);
 }

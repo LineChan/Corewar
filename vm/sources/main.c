@@ -6,13 +6,12 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/27 00:57:41 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/28 22:52:01 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_string.h"
-#include "ft_curse.h"
 
 #include "ft_printf.h"
 int				main(int ac, char **av)
@@ -33,47 +32,9 @@ int				main(int ac, char **av)
 	ft_print_intro(&vm);
 	/* Handle the battle */
 	ft_arena(&vm);
-	ft_printf("after arena\n");
 	/* Free the processes' list */
 	ft_del_proc_list(&vm);
-	//if (&DISPLAY_32)
-	//ft_printf("coucou 2\n");
-	#if 0
 	if (vm.opt.display & FLAG_32)
-		ft_curse_del();
-		#endif
-	#if 0
-	int i = 0;
-	while (i < MAX_PLAYERS)
-	{
-		ft_printf("name : %s comment : %s, size : %d\n",
-			vm.header[i].prog_name,
-			vm.header[i].comment,
-			vm.header[i].prog_size);
-		++i;
-	}
-	#endif
-	#if 0
-	t_list *it;
-	it = vm.proc_head.next;
-	while (it != NULL)
-	{
-		ft_printf("name : %s, comment : %s, size : %d \n",
-				C_PROCESS(it)->prog_name,
-				C_PROCESS(it)->comment,
-				C_PROCESS(it)->prog_size);
-		it = it->next;
-	}
-	#endif
-	#if 0
-	/* Print presentation before the battle starts */
-	ft_vm_print_intro(&vm);
-	/* Handle the battle */
-	ft_vm_arena(&vm);
-	/* Close the logfile */
-	if (vm.option.log)
-		ft_log_close();
-	ft_vm_del_list(&vm);
-	#endif
+		ft_visual_end(&vm.visual);
 	return (0);
 }

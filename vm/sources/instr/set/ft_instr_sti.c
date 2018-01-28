@@ -6,15 +6,14 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:53:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/26 16:47:35 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/27 16:39:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
 #include "ft_instruction.h"
-#include "endian.h"
-
 #include "ft_printf.h"
+
 void			ft_instr_sti(t_vm *vm, t_proc *proc)
 {
 	int			i;
@@ -40,7 +39,4 @@ void			ft_instr_sti(t_vm *vm, t_proc *proc)
 	ft_arena_set_int32(vm,
 		proc->pc + (proc->instr->args[1].data + proc->instr->args[2].data)% IDX_MOD,
 		proc->reg[proc->instr->args[0].data]);
-	/* Display additional informations */
-	if (DISPLAY_16)
-		ft_display_pc(vm, proc);
 }
