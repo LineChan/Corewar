@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/28 22:15:32 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 13:35:54 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,16 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 # define C_PROCESS(it)	CONTAINEROF(it, t_proc, list)
 
 /*
-** Define flags
-*/
-
-# define FLAG_1			(1 << 0)
-# define FLAG_2			(1 << 1)
-# define FLAG_4			(1 << 2)
-# define FLAG_8			(1 << 3)
-# define FLAG_16		(1 << 4)
-# define FLAG_32		(1 << 5)
-
-/*
 ** Comparisons
 */
 
-# define DISPLAY_1		(vm->opt.display & FLAG_1)
-# define DISPLAY_2		(vm->opt.display & FLAG_2)
-# define DISPLAY_4		(vm->opt.display & FLAG_4)
-# define DISPLAY_8		(vm->opt.display & FLAG_8)
-# define DISPLAY_16		(vm->opt.display & FLAG_16)
-# define DISPLAY_32		(vm->opt.display & FLAG_32)
+# define DISPLAY_1		(vm->opt.display & (1 << 0))
+# define DISPLAY_2		(vm->opt.display & (1 << 1))
+# define DISPLAY_4		(vm->opt.display & (1 << 2))
+# define DISPLAY_8		(vm->opt.display & (1 << 3))
+# define DISPLAY_16		(vm->opt.display & (1 << 4))
+# define DISPLAY_32		(vm->opt.display & (1 << 5))
+
 
 /*
 ** Structures
@@ -99,6 +89,7 @@ typedef struct		s_opt_map
 typedef enum		e_opt_parse_state
 {
 	OPT_STATE_DEFAULT = 0,
+	OPT_STATE_HELP,
 	OPT_STATE_N,
 	OPT_STATE_S,
 	OPT_STATE_AFF,
@@ -129,6 +120,7 @@ typedef struct		s_opt
 	int				display;
 	int				display_aff;
 	int				dump;
+	int				s;
 	int				state;
 	int				death[MAX_PLAYERS];
 }					t_opt;
@@ -195,9 +187,11 @@ void		ft_parse_aff(t_vm *vm, t_parse *parse);
 void		ft_parse_default(t_vm *vm, t_parse *parse);
 void		ft_parse_proc(t_vm *vm, t_parse *parse);
 void		ft_parse_n(t_vm *vm, t_parse *parse);
+void		ft_parse_s(t_vm *vm, t_parse *parse);
 void		ft_parse_dump(t_vm *vm, t_parse *parse);
 void		ft_parse_display(t_vm *vm, t_parse *parse);
 void		ft_parse_proc_repartition(t_vm *vm, t_parse *parse);
+void		ft_parse_help(t_vm *vm, t_parse *parse);
 
 /*
 ** Header functions
@@ -221,8 +215,14 @@ void		ft_arena_round_check(t_vm *vm);
 int8_t		ft_arena_get_int8(t_vm *arena, int pc);
 int16_t		ft_arena_get_int16(t_vm *vm, int pc);
 int32_t		ft_arena_get_int32(t_vm *vm, int pc);
-void		ft_arena_set_int8(t_vm *vm, int pc, int val);
-void		ft_arena_set_int32(t_vm *vm, int pc, int val);
+void		ft_arena_set_int8(t_vm *vm,
+								int const pc,
+								int const val,
+								int const nb);
+void		ft_arena_set_int32(t_vm *vm,
+								int const pc,
+								int const val,
+								int const nb);
 
 /*
 ** Processses functions

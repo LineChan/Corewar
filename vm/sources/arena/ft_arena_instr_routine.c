@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:58:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/28 21:43:45 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:59:42 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void			ft_arena_instr_routine(t_list *it, void *context)
 		ft_display_pc(vm, proc);
 	if (DISPLAY_32)
 	{
+		ft_visual_update_arena(vm, proc);
 		#if 0
 		vm->arena[1][proc->pc] -= MAX_PLAYERS;
 		vm->arena[1][proc->instr->new_pc] += proc->parent_nb + MAX_PLAYERS;

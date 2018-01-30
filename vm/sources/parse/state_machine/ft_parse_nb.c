@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_arena.c                                 :+:      :+:    :+:   */
+/*   ft_parse_nb.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/18 13:16:28 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/29 15:35:16 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/17 00:42:37 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/17 02:09:23 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
-#include "ft_printf.h"
 
-int			ft_display_arena(t_vm *vm)
+void		ft_parse_nb(t_vm *vm, t_parse *parse)
 {
-	size_t		i;
-
-	i = 0;
-	ft_printf("0x0000 : ");
-	while (i < MEM_SIZE)
-	{
-		ft_printf("%02hhx ", vm->arena[i++]);
-		if (0 == (i & 63))
-			ft_printf("\n");
-		if (0 == (i & 63) && (0 != i % MEM_SIZE))
-			ft_printf("0x%04x : ", i);
-	}
-	return (EXIT_FAILURE);
+	(void)vm;
+	if (0 == parse->next_arg)
+		ft_exit("Parsing error");
+	/* Options' values can't be negative */
+	if (IS_NEG((*parse->next_arg = ft_atoi(*parse->av))))
+		ft_exit("Not a positive int");
+	++parse->av;
+	--parse->ac;
+	/* Reset the State Machine to default */
+	parse->state = OPT_STATE_DEFAULT;
+	parse->next_arg = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 12:13:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/27 15:47:12 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/29 21:24:35 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void			ft_instr_zjmp(t_vm *vm, t_proc *proc)
 							-proc->proc_nb,
 							proc->instr->args[0].data);
 		}
-		proc->instr->new_pc = LOOP(proc->pc + 3);
 	}
 	else
 	{
@@ -36,7 +35,9 @@ void			ft_instr_zjmp(t_vm *vm, t_proc *proc)
 							proc->instr->args[0].data);
 		}
 		proc->instr->zjmp_success = 1;
+		vm->visual.pc_position[proc->pc] = 0;
 		/* Get the new position for the Program Counter */
 		proc->instr->new_pc = LOOP(proc->pc + (proc->instr->args[0].data % IDX_MOD));
+		vm->visual.pc_position[proc->instr->new_pc] = proc->parent_nb;
 	}
 }

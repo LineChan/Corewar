@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:37:36 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/28 23:59:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 13:37:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void		ft_arena(t_vm *vm)
 {
 	int			limit;
 
+	/* Setup the arena before the battle starts */
 	ft_arena_setup(vm, &limit);
 	if (DISPLAY_32)
 		ft_visual_start(vm);
@@ -43,4 +44,7 @@ void		ft_arena(t_vm *vm)
 		ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
 			vm->header[vm->last_alive - 1].prog_name);
 	}
+	else
+		ft_visual_end(&vm->visual);
+
 }

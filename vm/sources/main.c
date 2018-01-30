@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 12:30:22 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/28 22:52:01 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 13:37:21 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,5 @@ int				main(int ac, char **av)
 	ft_arena(&vm);
 	/* Free the processes' list */
 	ft_del_proc_list(&vm);
-	if (vm.opt.display & FLAG_32)
-		ft_visual_end(&vm.visual);
 	return (0);
 }

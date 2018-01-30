@@ -6,7 +6,7 @@
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/28 22:50:32 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/29 18:05:59 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		ft_visual_refresh(t_visual const *this, t_vm const *vm)
 		color = ft_visual_refresh_get_color(this, i);
 		wattron(this->win, color);
 		//val = (0 == vm->option.stealth) ? this->arena[i] : 0;
-		val = this->arena[i];
+		val = vm->arena[i];
 		mvwprintw(this->win, 1 + (i >> 6), 2 + (i & 63) * 3, "%02hhx", val);
 		wattroff(this->win, color);
 		++i;

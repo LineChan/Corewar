@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 14:05:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/27 15:59:26 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/29 20:48:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void			ft_instr_fork(t_vm *vm, t_proc *proc)
 		to the Processses' list */
 	ft_new_proc_kid(vm, proc,
 		LOOP(proc->pc + (proc->instr->args[0].data % IDX_MOD)));
+
 	if (DISPLAY_4)
 	{
 		ft_printf("P %4d | fork %d (%d)\n",
