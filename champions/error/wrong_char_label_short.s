@@ -1,9 +1,13 @@
-.name		"9month"
-.comment	"RoJoBest"
+.name		"Wrong Char Label Short"
+.comment	"Wrong char label short"
 
-l_0:
+l_0,:
 	sti		r1, %140, %1
 	fork	%:l_1
+	fork	%:l_2
+	ld		%0, r4
+	ld		%-471, r3
+	ldi		%105, %0, r2
 	xor		r16, r16, r16
 	zjmp	%:l_3
 
