@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:58:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/31 15:41:58 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/31 20:43:33 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void			ft_arena_instr_routine(t_list *it, void *context)
 		}
 		return ;
 	}
+	/* Check if it is the time the execute the instruction */
 	if (proc->exec_cycle != vm->current_cycle)
 		return ;
 	/* Decode arguments and check their validity */
@@ -67,8 +68,7 @@ void			ft_arena_instr_routine(t_list *it, void *context)
 								proc->instr->op->name,
 								proc->parent_nb);
 	}
-	if (DISPLAY_16 && !proc->instr->zjmp_success)
-		ft_display_pc(vm, proc);
+	ft_display_pc(vm, proc);
 	/* Fetch the new instruction */
 	vm->visual.board.pc_position[proc->pc] = 0;
 	proc->pc = proc->instr->new_pc;
