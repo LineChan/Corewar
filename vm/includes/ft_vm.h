@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/30 13:35:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/31 13:48:34 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,12 @@ for i in {1..150}; do ./docs/ressources/corewar ./champions/lld.cor -v 20 -d $i 
 # define ASSERT(x)      ft_assert(# x, __FUNCTION__, __LINE__, x)
 
 
-//# define LOG_OPT        (vm->option.log)
-# define DISP_OPT		(vm->opt.display)
-# define DUMP_OPT		(vm->opt.dump)
-//# define S_DUMP_OPT		(vm->option.s)
+# define DISP_OPT			(vm->opt.display)
+# define DUMP_OPT			(vm->opt.dump)
+# define S_DUMP_OPT			(vm->opt.s)
+# define ROUND_LIMIT_OPT	(vm->opt.round_limit)
+# define STEALTH_OPT		(vm->opt.stealth)
+# define PROC_LIMIT_OPT		(vm->opt.proc_limit)
 
 
 # define C_PROCESS(it)	CONTAINEROF(it, t_proc, list)
@@ -102,7 +104,6 @@ typedef enum		e_opt_parse_state
 	OPT_STATE_START_CYCLE,
 	OPT_STATE_ROUND_LIMIT,
 	OPT_STATE_PROCESS_LIMIT,
-	OPT_STATE_LOG,
 	OPT_ERROR
 }					t_option_parse_state;
 
@@ -121,14 +122,17 @@ typedef struct		s_opt
 	int				display_aff;
 	int				dump;
 	int				s;
+	int				stealth;
 	int				state;
+	int				proc_limit;
+	int				round_limit;
 	int				death[MAX_PLAYERS];
 }					t_opt;
 
 typedef struct		s_proc
 {
-	int				live;
 	int				has_lived;
+	int				live_per_round;
 	int				parent_nb;
 	int				proc_nb;
 	int				carry;
@@ -192,6 +196,10 @@ void		ft_parse_dump(t_vm *vm, t_parse *parse);
 void		ft_parse_display(t_vm *vm, t_parse *parse);
 void		ft_parse_proc_repartition(t_vm *vm, t_parse *parse);
 void		ft_parse_help(t_vm *vm, t_parse *parse);
+void		ft_parse_start_cycle(t_vm *vm, t_parse *parse);
+void		ft_parse_stealth(t_vm *vm, t_parse *parse);
+void		ft_parse_round_limit(t_vm *vm, t_parse *parse);
+void		ft_parse_proc_limit(t_vm *vm, t_parse *parse);
 
 /*
 ** Header functions
@@ -206,7 +214,7 @@ void		ft_header_comment(t_vm *vm, int const i);
 /* Arena functions */
 
 void		ft_arena(t_vm *vm);
-void		ft_arena_setup(t_vm *vm, int *limit);
+void		ft_arena_setup(t_vm *vm, int *limit, int *round_limit);
 void		ft_arena_upload(t_vm *vm);
 int			ft_arena_cycle_routine(t_vm *vm);
 void		ft_arena_instr_routine(t_list *it, void *context);
@@ -263,6 +271,7 @@ void		ft_instr_aff(t_vm *vm, t_proc *proc);
 */
 
 int			ft_display_arena(t_vm *vm);
+void		ft_display_winner(t_vm *vm);
 void		ft_display_pc(t_vm *vm, t_proc const *proc);
 void		ft_display_live(t_vm *vm, t_proc const *proc, t_list const *it);
 void		ft_display_ld_lld(t_proc const *proc);

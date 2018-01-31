@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_visual_end.c                                    :+:      :+:    :+:   */
+/*   ft_visual_init_footer.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 22:43:08 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 23:29:20 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_visual.h"
-#include <ncurses.h>
+#include "visual/ft_visual_footer.h"
 
-void	ft_visual_end(t_visual *this)
+void        ft_visual_init_footer(t_visual_footer *this)
 {
-	size_t	i;
-
-  	nocbreak();
-	curs_set(1);
-  	echo();
-  	i = 0;
-  	while (i < 4)
-  	{
-  		if (0 != this->player.win[i])
-  			delwin(this->player.win[i]);
-  		++i;
-  	}
-  	delwin(this->footer.win);
-  	delwin(this->header.win);
-  	delwin(this->board.win);
-	endwin();
+    this->win = newwin(3, 285, 67, 0);
+    box(this->win, '|', '-');
+    wattron(this->win, COLOR_PAIR(0) | A_BOLD);
+    mvwprintw(this->win, 5, 15, "Live per round: 0");
+    mvwprintw(this->win, 7, 15, "Last cycle: 0");
+    wattroff(this->win, COLOR_PAIR(0) | A_BOLD);
+    wrefresh(this->win);
 }

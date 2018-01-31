@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:58:32 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/29 21:59:42 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/31 13:48:30 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,9 @@ void			ft_arena_instr_routine(t_list *it, void *context)
 			proc->exec_cycle += g_op_tab[proc->next_op].nb_cycles;
 		else
 		{
-			if (DISPLAY_32)
-			{
-				#if 0
-				vm->arena[1][proc->pc] -= MAX_PLAYERS;
-				vm->arena[1][proc->pc + 1] += MAX_PLAYERS;
-				ft_curse_refresh_arena(vm);
-				#endif
-			}
+			vm->visual.board.pc_position[proc->pc] = 0;
 			proc->pc = LOOP(proc->pc + 1);
+			vm->visual.board.pc_position[proc->pc] = proc->parent_nb;
 			++proc->exec_cycle;
 		}
 		return ;
@@ -67,19 +61,17 @@ void			ft_arena_instr_routine(t_list *it, void *context)
 		return ;
 	/* Decode arguments and check their validity */
 	if (ft_instr_decode(vm, proc) == EXIT_SUCCESS)
-		g_instr_list[proc->next_op](vm, proc);
-	if (DISPLAY_16 && !proc->instr->zjmp_success)
-		ft_display_pc(vm, proc);
-	if (DISPLAY_32)
 	{
-		ft_visual_update_arena(vm, proc);
-		#if 0
-		vm->arena[1][proc->pc] -= MAX_PLAYERS;
-		vm->arena[1][proc->instr->new_pc] += proc->parent_nb + MAX_PLAYERS;
-		ft_curse_refresh_arena(vm);
-		#endif
+		g_instr_list[proc->next_op](vm, proc);
+		ft_visual_refresh_footer(&vm->visual.footer,
+								proc->instr->op->name,
+								proc->parent_nb);
 	}
+	if (DISPLAY_16)
+		ft_display_pc(vm, proc);
 	/* Fetch the new instruction */
+	vm->visual.board.pc_position[proc->pc] = 0;
 	proc->pc = proc->instr->new_pc;
+	vm->visual.board.pc_position[proc->pc] = proc->parent_nb;
 	proc->next_op = 0;
 }

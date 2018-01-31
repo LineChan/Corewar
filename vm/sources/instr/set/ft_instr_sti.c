@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 13:53:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/29 17:27:31 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 18:57:55 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void			ft_instr_sti(t_vm *vm, t_proc *proc)
 	if (DISPLAY_4)
 		ft_display_sti(proc);
 	ft_arena_set_int32(vm,
-		proc->pc + (proc->instr->args[1].data + proc->instr->args[2].data)% IDX_MOD,
-		proc->reg[proc->instr->args[0].data], -(proc->proc_nb - 1));
+		proc->pc + (proc->instr->args[1].data + proc->instr->args[2].data) % IDX_MOD,
+		proc->reg[proc->instr->args[0].data], proc->parent_nb);
 }

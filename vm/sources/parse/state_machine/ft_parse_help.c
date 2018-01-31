@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 13:17:48 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/30 13:25:54 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 13:42:16 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char const	*g_subject_usage[] =
 	"\nUsage: corewar <options> champion.cor [...]",
 	"### CONTESTANT ######################################################",
 	"your_champion.cor: Champion compiled with the asm",
-	"-n N:              Set champion number for the next champion",
+	"-n N:              Set champion's number for the next champion",
 	"### LIMIT ###########################################################",
     "-process-limit N:  Use a pool of maximum N processes",
     "-round-limit N:    Play maximum of N rounds",

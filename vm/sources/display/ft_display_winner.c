@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_nb.c                                      :+:      :+:    :+:   */
+/*   ft_display_winner.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/17 00:42:37 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/17 02:09:23 by mvillemi         ###   ########.fr       */
+/*   Created: 2018/01/30 17:26:31 by mvillemi          #+#    #+#             */
+/*   Updated: 2018/01/30 17:41:57 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_vm.h"
+#include "ft_printf.h"
 
-void		ft_parse_nb(t_vm *vm, t_parse *parse)
+void			ft_display_winner(t_vm *vm)
 {
 	(void)vm;
-	if (0 == parse->next_arg)
-		ft_exit("Parsing error");
-	/* Options' values can't be negative */
-	if (IS_NEG((*parse->next_arg = ft_atoi(*parse->av))))
-		ft_exit("Not a positive int");
-	++parse->av;
-	--parse->ac;
-	/* Reset the State Machine to default */
-	parse->state = OPT_STATE_DEFAULT;
-	parse->next_arg = 0;
+	/* Print the output of the game */
+	if (DISPLAY_32)
+		ft_visual_end(&vm->visual);
+	else
+	{
+		ft_printf("Contestant %d, \"%s\", has won !\n", vm->last_alive,
+			vm->header[vm->last_alive - 1].prog_name);
+	}
 }

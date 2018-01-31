@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:39:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/29 00:32:59 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 22:10:04 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void			ft_arena_upload(t_vm *vm)
 			{
 				/* fill color */
 				//ft_memset(&vm->visual[index], i + 1, vm->header[i].prog_size/*ch->header.prog_size*/);
-				ft_memset(vm->visual.color + index, i + 1, vm->header[i].prog_size);
-				vm->visual.pc_position[index] = i + 1;
+				ft_memset(vm->visual.board.color + index, i + 1, vm->header[i].prog_size);
+				vm->visual.board.pc_position[index] = i + 1;
 				//vm->visual.board.pc_position[index] = i + 1;
 				#if 0
 				ft_curse_assign_cell(vm, index, vm->header[i].prog_size, i + 1);

@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_arena_set_int8.c                                :+:      :+:    :+:   */
+/*   ft_visual_refresh_player.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Zoelling <Zoelling@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/04 11:33:27 by Zoelling          #+#    #+#             */
-/*   Updated: 2018/01/31 13:48:37 by mvillemi         ###   ########.fr       */
+/*   Created: 2015/09/15 11:17:11 by Zoelling          #+#    #+#             */
+/*   Updated: 2018/01/31 13:48:38 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_visual.h"
 #include "ft_vm.h"
+#include <unistd.h>
 
-void		ft_arena_set_int8(t_vm *vm,
-								int const pc,
-								int const val,
-								int const nb)
+void	ft_visual_refresh_player(t_visual_player const *this, t_proc const *process)
 {
-	vm->arena[LOOP(pc)] = val;
-	vm->visual.board.color[LOOP(pc)] = nb;
+	WINDOW	*win;
+
+	win = this->win[process->parent_nb - 1];
+	wattron(win, COLOR_PAIR(0) | A_BOLD);
+	mvwprintw(win, 5, 15, "Live per round: %d", process->live_per_round);
+	mvwprintw(win, 7, 15, "Last cycle: %d", process->has_lived);
+	wattroff(win, COLOR_PAIR(0) | A_BOLD);
+    wrefresh(win);
 }

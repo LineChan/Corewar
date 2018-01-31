@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 14:15:34 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/29 20:48:08 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/31 13:48:39 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void		ft_new_proc_kid(t_vm *vm, t_proc *proc, unsigned int const index)
 {
 	t_proc		*new;
 
+	/* -proc-limit option */
+	if (vm->nb_proc == PROC_LIMIT_OPT)
+		return ;
 	/* Allocate a new process */
 	if (!(new = ft_memalloc(sizeof(t_proc)))
 		|| !(new->instr = ft_memalloc(sizeof(t_instr))))
@@ -31,7 +34,7 @@ void		ft_new_proc_kid(t_vm *vm, t_proc *proc, unsigned int const index)
 	/* Initialize the 1st instruction */
 	new->next_op = 0;
 	/* Update the visual */
-	vm->visual.pc_position[index] = proc->parent_nb;
+	vm->visual.board.pc_position[index] = proc->parent_nb;
 	/* Add the new process to the list */
 	ft_list_add(&new->list, &vm->proc_head);
 	/* Update the number of processes */

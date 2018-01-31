@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 00:49:14 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/30 13:26:53 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 17:40:14 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 
 static const t_option_map	g_option_map[] =
 {
-	#if 0
 	{ "-process-limit", 14, OPT_STATE_PROCESS_LIMIT },
 	{ "-round-limit", 12, OPT_STATE_ROUND_LIMIT },
 	{ "-start-cycle", 12, OPT_STATE_START_CYCLE },
 	{ "-stealth", 8, OPT_STATE_STEALTH },
-	#endif
 	{ "-display", 8, OPT_STATE_DISPLAY },
 	{ "-v", 2, OPT_STATE_DISPLAY },
 	{ "-a", 2, OPT_STATE_AFF },
@@ -30,8 +28,7 @@ static const t_option_map	g_option_map[] =
 	#endif
 	{ "-s", 2, OPT_STATE_S },
 	{ "-n", 2, OPT_STATE_N },
-	//{"--log", 5, OPT_STATE_LOG}
-	{ "--help", 6, OPT_STATE_HELP},
+	{ "-help", 5, OPT_STATE_HELP},
 };
 
 void			ft_parse_default(t_vm *vm, t_parse *parse)
@@ -40,7 +37,7 @@ void			ft_parse_default(t_vm *vm, t_parse *parse)
 
 	(void)vm;
 	i = 0;
-	/* Search from the option in the array */
+	/* Look for the options in the array */
 	while (i < SIZEOF_TAB(g_option_map))
 	{
 		if (0 == ft_strncmp(*parse->av,

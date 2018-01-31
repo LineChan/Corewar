@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_visual_end.c                                    :+:      :+:    :+:   */
+/*   ft_visual_board.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/01/28 22:43:08 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/28 23:15:28 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_visual.h"
-#include <ncurses.h>
+#ifndef FT_VISUAL_BOARD_H
+# define FT_VISUAL_BOARD_H
 
-void	ft_visual_end(t_visual *this)
+# include <stdint.h>
+# include <ncurses.h>
+# include "op.h"
+
+# define VISUAL_PC(x)	((x) + MAX_PLAYERS)
+
+struct s_vm;
+
+typedef struct			s_visual_board
 {
-	size_t	i;
+	WINDOW				*win;
+	uint8_t				arena[MEM_SIZE];
+	uint8_t				color[MEM_SIZE];
+	uint8_t				pc_position[MEM_SIZE];
+}						t_visual_board;
 
-  	nocbreak();
-	curs_set(1);
-  	echo();
-  	i = 0;
-  	while (i < 4)
-  	{
-  		if (0 != this->player.win[i])
-  			delwin(this->player.win[i]);
-  		++i;
-  	}
-  	delwin(this->footer.win);
-  	delwin(this->header.win);
-  	delwin(this->board.win);
-	endwin();
-}
+void					ft_visual_init_board(t_visual_board *this);
+
+void					ft_visual_refresh_board(t_visual_board const *this, struct s_vm const *vm);
+
+#endif

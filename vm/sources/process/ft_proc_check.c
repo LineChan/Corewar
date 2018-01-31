@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/24 16:33:21 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/29 15:54:11 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/30 22:17:32 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void				ft_proc_check(t_list *it, void *context)
 					vm->cycle_to_die);
 		}
 		/* Clean the PC's position for the visual */
-		vm->visual.pc_position[C_PROCESS(it)->pc] = 0;
+		vm->visual.board.pc_position[C_PROCESS(it)->pc] = 0;
 		if ((C_PROCESS(it)->proc_nb == -C_PROCESS(it)->parent_nb) && DISPLAY_32)
-			ft_visual_refresh_player_kill(&vm->visual, C_PROCESS(it));
+			ft_visual_refresh_player_kill(&vm->visual.player, C_PROCESS(it));
 		ft_del_proc(it);
 		--vm->nb_proc;
 	}
