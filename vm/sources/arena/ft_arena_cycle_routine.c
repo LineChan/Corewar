@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/18 13:51:30 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/30 16:11:55 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/31 15:38:44 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "ft_printf.h"
 #include <unistd.h>
 
-#include "ft_printf.h"
 int				ft_arena_cycle_routine(t_vm *vm)
 {
 	/* Dump if necessary and the battle stops */
