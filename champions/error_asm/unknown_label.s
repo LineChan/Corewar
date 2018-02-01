@@ -24,7 +24,7 @@ l_1:
 	ld		%-471, r3
 	ldi		%52, %0, r2
 	xor		r16, r16, r16
-	zjmp	%:l_error
+	zjmp	%:l_unknown
 
 l_4:
 	ld		%12, r4

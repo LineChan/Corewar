@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 15:56:00 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/21 13:19:21 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/01/31 22:50:27 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			ft_header_size(t_vm *vm, int const index)
 		vm->header[index].prog_size =
 			ft_endian_convert_uint32(vm->header[index].prog_size);
 	}
-	/* Check if the process' magic number is valid */
-	ASSERT(vm->header[index].prog_size <= CHAMP_MAX_SIZE);
+	/* Check if the process' size is valid */
+	ASSERT((vm->header[index].prog_size <= CHAMP_MAX_SIZE) &&
+	(vm->header[index].prog_size > 0));
 }
