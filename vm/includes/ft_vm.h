@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/24 11:24:09 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/31 13:48:34 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/02/01 23:15:08 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ typedef enum		e_opt_parse_state
 	OPT_STATE_N,
 	OPT_STATE_S,
 	OPT_STATE_AFF,
-	OPT_STATE_CTMO,
 	OPT_STATE_DUMP,
 	OPT_STATE_NUMBER,
 	OPT_STATE_DISPLAY,
