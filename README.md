@@ -16,8 +16,8 @@ The arena is an enclosed system, once Warriors are loaded into memory at a rando
 
 It consists of pitting little programs (called *Warriors*) against one another in a virtual arena.
 They are written in a simple Assembly dialect inspired from *Redcode*.
-The arena is an enclosed system witg , once Warriors are loaded into memory at a random location, each one execute one instruction in turn.
-Each program’s objective is to "survive", that is to say executing a special instruction ("live") that means **I’m still alive**.
+The arena is an enclosed system with a circular memory , once Warriors are loaded into memory at a random location, each one execute one instruction in turn.
+Each program’s objective is to "survive", that is to say executing a special instruction ("live") that means "**I’m still alive**".
 These programs simultaneously execute in the virtual machine and in the same memory zone, which enables them to write on one another.
 The winner of the game is the last one to have executed the "live" instruction.
 
@@ -33,7 +33,6 @@ Instructions are composed of 3 elements:
 - An instruction code (called *opcode*). The instructions that the machine knows are defined in the op_tab array, which is delcared in op.c.
 - Some instructions need a *bytecode* to describes the parameters types (see :arrow_down: for details on these types).
 - Instruction *parameters*, from 0 to MAX_ARGS_NUMBER, separated by commas.
-
 - An optional *label*, followed by the LABEL_CHAR character. Labels can be any of the
 character strings that are composed of elements from the LABEL_CHARS string.
 
@@ -48,7 +47,7 @@ For instance, ld 4,r5 loads the REG_SIZE bytes found at the PC+4 address into r5
 
 ### Arena
 
-It is the *arena* where Warriors engage in combat. Obviously, the virtual machine, also know as Memory Array Redcode Simulator (*MARS*), is able to run several processes simultaneously.
+It is the *arena* where Warriors engage in combat. Obviously, the virtual machine, also known as Memory Array Redcode Simulator (*MARS*), is able to run several processes simultaneously.
 
 #### Warriors
 Each warriors contain the following :
@@ -87,18 +86,15 @@ The projet is subject to interpretation. To help us an example of an Assembler a
 |:------:|:-------:|:----:|:----:|:----:|:-----------:|:-----:|:------:|
 | **live** | *0x01*  | T_DIR | | |  No argument's coding byte. Its only argument is on 4 bytes. Indicate the player *called by the live instruction*. Each time the instruction is executed NRB_LIVE is incremented, even if the instruction fails | No | 10 |
 | **ld** | *0x02*  | T_DIR or T_IND | T_REG | |  Load the value of the first parameter into the second one, which has to be a valid register. This operation changes the carry. | Yes | 5 |
-| **st** | *0x03*  | T_REG | T_IND or T_REG | | It stores the first parameter’s value (which is a register) into the second (whether a
-register or a number). | Yes | 5 |
+| **st** | *0x03*  | T_REG | T_IND or T_REG | | It stores the first parameter’s value (which is a register) into the second (whether a register or a number). | Yes | 5 |
 | **add** | *0x04*  | T_REG | T_REG | T_REG | Take three registries, add the first two, and place the result in the third, right before modifying the carry. | Yes | 10 |
 | **sub** | *0x05*  | T_REG | T_REG | T_REG | Take three registries, substract the first two, and place the result in the third, right before modifying the carry. | Yes | 10 |
 | **and** | *0x06*  | T_REG or T_DIR or T_IND | T_REG or T_IND or T_DIR | T_REG | Performs a binary AND between the first two parameter and stores the result into the third one (a register). It will change the carry. | Yes | 6 |
 | **or** | *0x07*  | T_REG or T_DIR or T_IND | T_REG or T_IND or T_DIR | T_REG | Performs a binary OR between the first two parameter and stores the result into the third one (a register). Modify the carry. | Yes | 6 |
 | **xor** | *0x08*  | T_REG or T_DIR or T_IND | T_REG or T_IND or T_DIR | T_REG | Performs an exclusive binary OR between the first two parameter and stores the result into the third one (a register). Modify the carry. | No | 6 |
-| **zjmp** | *0x09*  | T_DIR | | | The parameter must be an index. It jumps to this index if the carry is worth 1. Otherwise, it
-does nothing but consumes the same time. | No | 20 |
+| **zjmp** | *0x09*  | T_DIR | | | The parameter must be an index. It jumps to this index if the carry is worth 1. Otherwise, it does nothing but consumes the same time. | No | 20 |
 | **ldi** | *0x0A*  | T_REG or T_DIR or T_IND | T_DIR or T_REG | T_REG | The first two parameters must be indexes and their content are added, the third one is a register where the result is stored. This operation *DOESN'T CHANGE* the carry. | No | 25 |
-| **sti** | *0x0B*  | T_REG | T_REG or T_DIR or T_IND | T_DIR or T_REG | Take a registry and 2 indexes (potentially registries). A variable (called S) needs to be computed to find the location (index = PC + S % IDX), where the 1st parameter is going be be copied. IND argument are referenced with IDX_MOD.
-| No | 25 |
+| **sti** | *0x0B*  | T_REG | T_REG or T_DIR or T_IND | T_DIR or T_REG | Take a registry and 2 indexes (potentially registries). A variable (called S) needs to be computed to find the location (index = PC + S % IDX), where the 1st parameter is going be be copied. IND argument are referenced with IDX_MOD. | No | 25 |
 | **fork** | *0x0C*  | T_DIR | | | Create a new process that will inherit the different states of its father, except its PC, which will be put at (PC + (1st parameter % IDX_MOD)). | No | 800 |
 | **lld** | *0x0D*  | T_DIR or T_IND | T_REG | | Same as **ld**, but without % IDX_MOD. It will change the carry. | Yes | 10 |
 | **lldi** | *0x0E*  | T_REG or T_DIR or T_IND | T_DIR or T_REG | T_REG | Same as **ldi**, but does not apply any modulo to the addresses. It will change the carry. | Yes | 50 |
