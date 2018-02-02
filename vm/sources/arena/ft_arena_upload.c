@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 16:39:58 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/31 15:53:05 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/02/02 16:18:56 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void			ft_arena_upload(t_vm *vm)
 	int			index;
 	int			i;
 
-	i = 0;
+	i = -1;
 	index = 0;
 	step = MEM_SIZE / vm->nb_proc;
-	while (i < MAX_PLAYERS)
+	while (++i < MAX_PLAYERS)
 	{
 		if (vm->fd[i])
 		{
@@ -50,7 +50,6 @@ void			ft_arena_upload(t_vm *vm)
 			/* Move the starting point for the next process */
 			index += step;
 		}
-		++i;
 	}
 	/* If no process executes the live instruction during the 1st round,
 		the last one parsed wins */
