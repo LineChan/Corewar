@@ -75,10 +75,9 @@ When a player wins, the machine must display **"The player NB_OF_PLAYER(NAME_OF_
 
 # Method
 
-The projet is subject to interpretation. To help us an example of an Assembler and the Corewar were given. To be rigorous, our team decided to *mirror the outputs* of the model. Furthermore, it allowed us to generate *unit tests* for the correction. But while we were working, we found *several difference* between the subject and the model we had to reproduce. For clarity you will found in the next chapter all the adjustments we made.
+The projet is subject to interpretation. To help us an example of an Assembler and the Corewar were given. To be rigorous, our team decided to *mirror the outputs* of the model. Furthermore, it allowed us to generate *unit tests* for the correction. But while we were working, we found *several difference* between the subject and the model we had to reproduce. For clarity you will found in the next chapter some adjustments we made.
 
-## Adjusments
-- Carry : it only changes to 1 when the *result's value* of the instruction *is equal to zero*.
+## Adjustments
 - Warriors numbers are negative.
 - Only the parents process can benefit from the live instruction, so all the kids are deleted after CYCLE_TO_DIE cycles.
 ### Instructions
@@ -119,5 +118,4 @@ The projet is subject to interpretation. To help us an example of an Assembler a
 # Credits
 =======
 - *[42 profile](https://profile.intra.42.fr/users/mvillemi) - [Linkedin](https://www.linkedin.com/in/mai-line-villemin-549773a5/) - [Github](https://github.com/LineChan)* - Villemin Mai Line
-- *[42 profile](https://profile.intra.42.fr/users/frenaud) - [Linkedin](https://www.linkedin.com/in/f%C3%A9licien-renaud-0bb691131/) - [Github](https://github.com/Hohenfels)* - Renaud Félicien
 - *[42 profile](https://profile.intra.42.fr/users/igomez) - [Linkedin](https://www.linkedin.com/in/illan-gomez-821a85b0/) - [Github](https://github.com/Zoellingam)* - Gomez Illan
