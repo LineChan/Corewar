@@ -6,7 +6,7 @@
 /*   By: mvillemi <mvillemi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 15:48:49 by mvillemi          #+#    #+#             */
-/*   Updated: 2018/01/27 16:41:00 by mvillemi         ###   ########.fr       */
+/*   Updated: 2018/02/02 22:46:25 by mvillemi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void			ft_instr_lldi(t_vm *vm, t_proc *proc)
 		else if (proc->instr->args[i].type == T_IND)
 		{
 			proc->instr->args[i].data =
-				ft_arena_get_int32(vm, LOOP(proc->pc + proc->instr->args[i].data));
+				ft_arena_get_int32(vm, LOOP(proc->pc + proc->instr->args[i].data % IDX_MOD));
 		}
 		++i;
 	}
