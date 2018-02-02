@@ -77,10 +77,19 @@ When a player wins, the machine must display **"The player NB_OF_PLAYER(NAME_OF_
 
 The projet is subject to interpretation. To help us an example of an Assembler and the Corewar were given. To be rigorous, our team decided to *mirror the outputs* of the model. Furthermore, it allowed us to generate *unit tests* for the correction. But while we were working, we found *several difference* between the subject and the model we had to reproduce. For clarity you will found in the next chapter some adjustments we made.
 
+### Arena
+
+We build a state machine for the parsing. The virtual machine is a simple array of size MEM_SIZE, where the Warriors data are copied.
+Then a loop is running until there is no process left. Each one of them is stored in a circular doubly linked list. At each cycle a routine is applied and a Warrior can execute its instruction when its exec_cycle meets the current cycle. At each *CYCLE_TO_DIE* cycle, a round check is made : every Warrior who did not declared they are alive is killed. Then the next cycle to die is updated if necessary.
+
+
 ## Adjustments
+
 - Warriors numbers are negative.
 - Only the parents process can benefit from the live instruction, so all the kids are deleted after CYCLE_TO_DIE cycles.
+
 ### Instructions
+
 | OpName | OpCode  | Arg1 | Arg2 | Arg3 | Description | Carry | Cycles |
 |:------:|:-------:|:----:|:----:|:----:|:-----------:|:-----:|:------:|
 | **live** | *0x01*  | T_DIR | | |  No argument's coding byte. Its only argument is on 4 bytes. Indicate the player *called by the live instruction*. Each time the instruction is executed NRB_LIVE is incremented, even if the instruction fails | No | 10 |
@@ -101,6 +110,7 @@ The projet is subject to interpretation. To help us an example of an Assembler a
 | **aff** | *0x10*  | T_REG | | | The registry content is interpreted by the character's ASCII value to display on the standard output (% 256).  | No | 2 |
 
 ### Arguments
+
 | Name | Sign | Binary Code | Encode |
 |:----:|:----:|:-----------:|:------:|
 | T_REG | **r** | 0b01 | 1 byte |
