@@ -16,7 +16,7 @@ The arena is an enclosed system, once Warriors are loaded into memory at a rando
 
 It consists of pitting little programs (called *Warriors*) against one another in a virtual arena.
 They are written in a simple Assembly dialect inspired from *Redcode*.
-The arena is an enclosed system with a circular memory , once Warriors are loaded into memory at a random location, each one execute one instruction in turn.
+The arena is an enclosed system with a circular memory , once Warriors are loaded into memory at a specific location, each one execute one instruction in turn.
 Each program’s objective is to "survive", that is to say executing a special instruction ("live") that means "**I’m still alive**".
 These programs simultaneously execute in the virtual machine and in the same memory zone, which enables them to write on one another.
 The winner of the game is the last one to have executed the "live" instruction.
