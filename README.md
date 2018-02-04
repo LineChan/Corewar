@@ -2,6 +2,8 @@
 * [Subject](#subject)
 * [Method](#method)
 * [Help](#help)
+* Final Grade:
+<img src="img/grade.png" width="100" height="100" />
 
 # Subject   :pushpin:
 
@@ -16,7 +18,7 @@ The arena is an enclosed system, once Warriors are loaded into memory at a rando
 
 It consists of pitting little programs (called *Warriors*) against one another in a virtual arena.
 They are written in a simple Assembly dialect inspired from *Redcode*.
-The arena is an enclosed system with a circular memory , once Warriors are loaded into memory at a specific location, each one execute one instruction in turn.
+The arena is an enclosed system with a circular memory , once Warriors are loaded into memory at a fixed location based from their insertion number or specified with commande line options, each one execute one instruction in turn.
 Each program’s objective is to "survive", that is to say executing a special instruction ("live") that means "**I’m still alive**".
 These programs simultaneously execute in the virtual machine and in the same memory zone, which enables them to write on one another.
 The winner of the game is the last one to have executed the "live" instruction.
@@ -25,7 +27,8 @@ The winner of the game is the last one to have executed the "live" instruction.
 
 ### Assembler
 
-Warriors are written a simple language called *assembly code*, with only one instruction per line. In this way, compiled programs (.s extensions) are translated to *Bytecode* (.cor), directly interpreted by the virtual machine.
+Warriors are written a simple language called *assembly code*, higly inspired from *redcode*, with only one instruction per line. In this way, compiled programs (.s extensions) are translated to *Bytecode* (.cor), directly interpreted by the virtual machine. 
+
 
 #### Instructions
 
@@ -75,59 +78,17 @@ When a player wins, the machine must display **"The player NB_OF_PLAYER(NAME_OF_
 
 # Method
 
-The projet is subject to interpretation. To help us an example of an Assembler and the Corewar were given. To be rigorous, our team decided to *mirror the outputs* of the model. Furthermore, it allowed us to generate *unit tests* for the correction. But while we were working, we found *several difference* between the subject and the model we had to reproduce. For clarity you will found in the next chapter some adjustments we made.
+The projet is subject to interpretation. To help us an example of an Assembler and the Corewar were given. To be rigorous, our team decided to *mirror the outputs* of the model. Furthermore, it allowed us to generate *unit tests* for the correction. But while we were working, we found *several difference* between the subject and the model we had to reproduce.
+The current version of the project is full of comments for better understanding.
 
 ### Arena
 
 We build a state machine for the parsing. The virtual machine is a simple array of size MEM_SIZE, where the Warriors data are copied.
 Then a loop is running until there is no process left. Each one of them is stored in a circular doubly linked list. At each cycle a routine is applied and a Warrior can execute its instruction when its exec_cycle meets the current cycle. At each *CYCLE_TO_DIE* cycle, a round check is made : every Warrior who did not declared they are alive is killed. Then the next cycle to die is updated if necessary.
 
+<img src="img/arena.gif" width="900" height="600" />
 
-## Adjustments
+## Credits
 
-- Warriors numbers are negative.
-- Only the parents process can benefit from the live instruction, so all the kids are deleted after CYCLE_TO_DIE cycles.
-
-### Instructions
-
-| OpName | OpCode  | Arg1 | Arg2 | Arg3 | Description | Carry | Cycles |
-|:------:|:-------:|:----:|:----:|:----:|:-----------:|:-----:|:------:|
-| **live** | *0x01*  | T_DIR | | |  No argument's coding byte. Its only argument is on 4 bytes. Indicate the player *called by the live instruction*. Each time the instruction is executed NRB_LIVE is incremented, even if the instruction fails | No | 10 |
-| **ld** | *0x02*  | T_DIR or T_IND | T_REG | |  Load the value of the first parameter into the second one, which has to be a valid register. This operation changes the carry. | Yes | 5 |
-| **st** | *0x03*  | T_REG | T_IND or T_REG | | It stores the first parameter’s value (which is a register) into the second (whether a register or a number). | Yes | 5 |
-| **add** | *0x04*  | T_REG | T_REG | T_REG | Take three registries, add the first two, and place the result in the third, right before modifying the carry. | Yes | 10 |
-| **sub** | *0x05*  | T_REG | T_REG | T_REG | Take three registries, substract the first two, and place the result in the third, right before modifying the carry. | Yes | 10 |
-| **and** | *0x06*  | T_REG or T_DIR or T_IND | T_REG or T_IND or T_DIR | T_REG | Performs a binary AND between the first two parameter and stores the result into the third one (a register). It will change the carry. | Yes | 6 |
-| **or** | *0x07*  | T_REG or T_DIR or T_IND | T_REG or T_IND or T_DIR | T_REG | Performs a binary OR between the first two parameter and stores the result into the third one (a register). Modify the carry. | Yes | 6 |
-| **xor** | *0x08*  | T_REG or T_DIR or T_IND | T_REG or T_IND or T_DIR | T_REG | Performs an exclusive binary OR between the first two parameter and stores the result into the third one (a register). Modify the carry. | No | 6 |
-| **zjmp** | *0x09*  | T_DIR | | | The parameter must be an index. It jumps to this index if the carry is worth 1. Otherwise, it does nothing but consumes the same time. | No | 20 |
-| **ldi** | *0x0A*  | T_REG or T_DIR or T_IND | T_DIR or T_REG | T_REG | The first two parameters must be indexes and their content are added, the third one is a register where the result is stored. This operation *DOESN'T CHANGE* the carry. | No | 25 |
-| **sti** | *0x0B*  | T_REG | T_REG or T_DIR or T_IND | T_DIR or T_REG | Take a registry and 2 indexes (potentially registries). A variable (called S) needs to be computed to find the location (index = PC + S % IDX), where the 1st parameter is going be be copied. IND argument are referenced with IDX_MOD. | No | 25 |
-| **fork** | *0x0C*  | T_DIR | | | Create a new process that will inherit the different states of its father, except its PC, which will be put at (PC + (1st parameter % IDX_MOD)). | No | 800 |
-| **lld** | *0x0D*  | T_DIR or T_IND | T_REG | | Same as **ld**, but without % IDX_MOD. It will change the carry. | Yes | 10 |
-| **lldi** | *0x0E*  | T_REG or T_DIR or T_IND | T_DIR or T_REG | T_REG | Same as **ldi**, but does not apply any modulo to the addresses. It will change the carry. | Yes | 50 |
-| **lfork** | *0x0F*  | T_DIR | | | Same as **fork** without modulo in the address. | No | 1000 |
-| **aff** | *0x10*  | T_REG | | | The registry content is interpreted by the character's ASCII value to display on the standard output (% 256).  | No | 2 |
-
-### Arguments
-
-| Name | Sign | Binary Code | Encode |
-|:----:|:----:|:-----------:|:------:|
-| T_REG | **r** | 0b01 | 1 byte |
-| T_DIR | **%** | 0b10 | 2 bytes or 4 bytes |
-| T_IND | **%** or Value | 0b11 | 2 bytes |
-
-### Libraries :books:
-- [x] **libstr** - Contains most of the functions from *string.h* and *stdlib.h*. It is thought to be faster than naives replacements findable everywhere. It also implements a *std::string* like structure.
-- [x] **libctype** - It implements every functions of *ctype.h*. It is garanted to be fast, using lookup-tables.
-- [x] **liblist** - Higly inspired from [*Linux-like linked lists*](https://github.com/torvalds/linux/blob/master/include/linux/list.h). It implements a type oblivious, easy-to-use, doubly circularly list.
-- [x] **libprintf** - replaces the C(89) printf. Supports : 64-bit integers, float/double, field parameters
-	- *bonus* : binary and adresses conversions (%b and %a), time (%t), boolean (%k), [roman numerals](https://en.wikipedia.org/wiki/Roman_numerals) (%r). *Dependencies* : libstr, libctype.
-
-# Bonuses
-![visual](/img/visual.gif)
-
-# Credits
-=======
 - *[42 profile](https://profile.intra.42.fr/users/mvillemi) - [Linkedin](https://www.linkedin.com/in/mai-line-villemin-549773a5/) - [Github](https://github.com/LineChan)* - Villemin Mai Line
 - *[42 profile](https://profile.intra.42.fr/users/igomez) - [Linkedin](https://www.linkedin.com/in/illan-gomez-821a85b0/) - [Github](https://github.com/Zoellingam)* - Gomez Illan
