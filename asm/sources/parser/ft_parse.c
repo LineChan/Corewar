@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disass_del.c                                    :+:      :+:    :+:   */
+/*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/02/03 13:00:23 by igomez           ###   ########.fr       */
+/*   Updated: 2018/02/03 17:38:41 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_disass.h"
-#include "ft_string.h"
-#include <unistd.h>
+# include "ft_label.h"
+# include "ft_string.h"
+# include "ft_printf.h"
+# include "ft_parser.h"
+# include "endian.h"
 
-static void	ft_disass_del_label(t_list *it)
+int		ft_parse(t_parser *parser, char const *file, char const *file_content)
 {
-	t_label	*label;
-
-	label = C_LABEL(it);
-	ft_memdel((void **)&label);
+	ft_lexer_init(&parser->lexer, file, file_content);
+	/* Read header, check for correctness and set magic number */
+	if (0 == ft_lexer_read_header(&parser->lexer, &parser->header))
+		++parser->lexer.error;
+	/* Loop over known instructions */
+	else
+		ft_parse_loop(parser, &parser->lexer);
+	return (parser->lexer.error);
 }
 
-static void	ft_disass_del_instr(t_list *it)
-{
-	t_instr_node	*instr;
-
-	instr = C_INSTR(it);
-	ft_instruction_del(&instr->instr);
-	ft_memdel((void **)&instr);
-}
-
-void 		ft_disass_del(t_disass *dsm)
-{
-	close(dsm->fd_in);
-	close(dsm->fd_out);
-	ft_list_apply(&dsm->label_head, &ft_disass_del_label);
-	ft_list_apply(&dsm->instr_head, &ft_disass_del_instr);
-}

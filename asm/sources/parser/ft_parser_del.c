@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_disass_del.c                                    :+:      :+:    :+:   */
+/*   ft_parser_del.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2018/02/03 13:00:23 by igomez           ###   ########.fr       */
+/*   Updated: 2018/01/13 15:57:22 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_disass.h"
-#include "ft_string.h"
-#include <unistd.h>
+# include "ft_string.h"
+# include "ft_parser.h"
 
-static void	ft_disass_del_label(t_list *it)
+static void	ft_parser_del_statement(t_list *it)
 {
-	t_label	*label;
+	t_statement *st;
 
-	label = C_LABEL(it);
-	ft_memdel((void **)&label);
+	st = C_STATEMENT(it);
+	ft_instruction_del(&st->instr);
+	ft_memdel((void **)&st);
+	ft_list_del(it);
 }
 
-static void	ft_disass_del_instr(t_list *it)
+void		ft_parser_del(t_parser *parser)
 {
-	t_instr_node	*instr;
-
-	instr = C_INSTR(it);
-	ft_instruction_del(&instr->instr);
-	ft_memdel((void **)&instr);
+	ft_lexer_del(&parser->lexer);
+	ft_list_apply(&parser->statement_head, &ft_parser_del_statement);
 }
 
-void 		ft_disass_del(t_disass *dsm)
-{
-	close(dsm->fd_in);
-	close(dsm->fd_out);
-	ft_list_apply(&dsm->label_head, &ft_disass_del_label);
-	ft_list_apply(&dsm->instr_head, &ft_disass_del_instr);
-}

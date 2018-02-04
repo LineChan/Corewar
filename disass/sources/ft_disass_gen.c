@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_disass_gen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/16 21:01:36 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 15:10:21 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ static void	ft_disass_gen_instr(t_disass *dsm, t_instr_node *ist)
 	while (i < ist->instr->op->nb_args)
 	{
 		/* Print register: r%d */
-		if (T_REG == ist->instr->args.decode[i].type)
-			ft_fprintf(dsm->fd_out, "r%d", ist->instr->args.decode[i].data);
+		if (T_REG == ist->instr->args[i].type)
+			ft_fprintf(dsm->fd_out, "r%d", ist->instr->args[i].data);
 		/* Print direct: %<label> or %<value> */
-		else if (T_DIR == ist->instr->args.decode[i].type)
+		else if (T_DIR == ist->instr->args[i].type)
 		{
 			ft_fprintf(dsm->fd_out, "%c", DIRECT_CHAR);
 			if (0 != ist->label_ref[i])
 				ft_fprintf(dsm->fd_out, "%cl_%d", LABEL_CHAR, ist->label_ref[i]->name);
 			else
-				ft_fprintf(dsm->fd_out, "%d", ist->instr->args.decode[i].data);
+				ft_fprintf(dsm->fd_out, "%d", ist->instr->args[i].data);
 		}
 		/* Print indirect: <value> */
 		else
-			ft_fprintf(dsm->fd_out, "%d", ist->instr->args.decode[i].data);
+			ft_fprintf(dsm->fd_out, "%d", ist->instr->args[i].data);
 		/* Handle coma/endline */
 		if (i + 1 == ist->instr->op->nb_args)
 			ft_fprintf(dsm->fd_out, "\n");
@@ -72,7 +72,6 @@ void		ft_disass_gen(t_disass *dsm)
 	t_list 			*it_instr;
 	t_instr_node	*ist;
 
-	ft_timer_start(&dsm->benchmark[2]);
 	/* Print header */
 	ft_fprintf(dsm->fd_out, "%s\t\t\"%s\"\n", NAME_CMD_STRING, dsm->header.prog_name);
 	ft_fprintf(dsm->fd_out, "%s\t\"%s\"\n", COMMENT_CMD_STRING, dsm->header.comment);
@@ -89,5 +88,4 @@ void		ft_disass_gen(t_disass *dsm)
 	}
 	/* Signature */
 	ft_fprintf(dsm->fd_out, "\n; generated ;\n");
-	ft_timer_stop(&dsm->benchmark[2]);
 }

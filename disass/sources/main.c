@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/16 21:01:51 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 15:01:07 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ static void	ft_exec(char const *file_in)
 	ft_disass(&dsm);
 	ft_disass_label(&dsm);
 	ft_disass_gen(&dsm);
-	ft_printf("Disassembler:   %f\n", ft_timer_diff(&dsm.benchmark[0]));
-	ft_printf("Label Builder:  %f\n", ft_timer_diff(&dsm.benchmark[1]));
-	ft_printf("Code generator: %f\n", ft_timer_diff(&dsm.benchmark[2]));
 	ft_disass_del(&dsm);
 	ft_printf("SUCCESS\n");
 }

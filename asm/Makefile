@@ -6,7 +6,7 @@
 #    By: igomez <igomez@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/09/30 20:03:48 by igomez            #+#    #+#              #
-#    Updated: 2018/02/04 14:50:38 by igomez           ###   ########.fr        #
+#    Updated: 2018/02/04 14:50:25 by igomez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ ifndef CUR_PROJECT_PWD
  export CUR_PROJECT_PWD := $(shell /bin/pwd)
 endif
 
-NAME 			:= disass
+NAME 			:= asm
 
 INCS 			:= includes
 SRCS 			:= sources
@@ -22,10 +22,7 @@ DLIB 			:= $(CUR_PROJECT_PWD)/libft
 COMN			:= $(CUR_PROJECT_PWD)/common
 OBJS 			:= objs
 
-INCLUDES 		:= -I$(COMN) 
-INCLUDES        += -I$(COMN)/instruction/$(INCS)
-INCLUDES        += -I$(INCS)
-INCLUDES        += -I$(DLIB)/$(INCS)
+INCLUDES 		:= -I$(COMN) -I$(INCS) -I$(DLIB)/$(INCS)
 
 LIBS			:= -lncurses -L $(DLIB) -lft
 
@@ -74,7 +71,7 @@ clean:
 	@rm -rf $(O_FILES) $(OBJS) 2> /dev/null
 
 fclean: clean
-	@rm -f "$(NAME)";
+	@rm -f "$(NAME)"
 
 re: fclean all
 

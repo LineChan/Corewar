@@ -3,19 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_disass.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Zoellingam <illan91@hotmail.com>           +#+  +:+       +#+        */
+/*   By: igomez <igomez@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/15 11:17:11 by Zoellingam        #+#    #+#             */
-/*   Updated: 2017/11/12 23:21:20 by Zoellingam       ###   ########.fr       */
+/*   Updated: 2018/02/03 12:58:39 by igomez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DISASS_H
 # define FT_DISASS_H
 
-# include "instruction.h"
-# include "timer.h"
-
+# include "ft_instruction.h"
 # include "ft_list.h"
 
 # ifdef DEBUG
@@ -83,7 +81,6 @@ typedef struct		s_instr_node
  */
 typedef struct		s_disass
 {
-	t_timer			benchmark[3];
 	int				fd_in;
 	int				fd_out;
 	t_header		header;
