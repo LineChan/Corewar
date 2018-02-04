@@ -16,7 +16,7 @@ The arena is an enclosed system, once Warriors are loaded into memory at a rando
 
 It consists of pitting little programs (called *Warriors*) against one another in a virtual arena.
 They are written in a simple Assembly dialect inspired from *Redcode*.
-The arena is an enclosed system with a circular memory , once Warriors are loaded into memory at a random location, each one execute one instruction in turn.
+The arena is an enclosed system with a circular memory , once Warriors are loaded into memory at a specific location, each one execute one instruction in turn.
 Each program’s objective is to "survive", that is to say executing a special instruction ("live") that means "**I’m still alive**".
 These programs simultaneously execute in the virtual machine and in the same memory zone, which enables them to write on one another.
 The winner of the game is the last one to have executed the "live" instruction.
@@ -124,7 +124,9 @@ Then a loop is running until there is no process left. Each one of them is store
 - [x] **libprintf** - replaces the C(89) printf. Supports : 64-bit integers, float/double, field parameters
 	- *bonus* : binary and adresses conversions (%b and %a), time (%t), boolean (%k), [roman numerals](https://en.wikipedia.org/wiki/Roman_numerals) (%r). *Dependencies* : libstr, libctype.
 
-# Help
+# Bonuses
+![visual](/img/visual.gif)
+
 # Credits
 =======
 - *[42 profile](https://profile.intra.42.fr/users/mvillemi) - [Linkedin](https://www.linkedin.com/in/mai-line-villemin-549773a5/) - [Github](https://github.com/LineChan)* - Villemin Mai Line
