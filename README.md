@@ -124,7 +124,9 @@ Then a loop is running until there is no process left. Each one of them is store
 - [x] **libprintf** - replaces the C(89) printf. Supports : 64-bit integers, float/double, field parameters
 	- *bonus* : binary and adresses conversions (%b and %a), time (%t), boolean (%k), [roman numerals](https://en.wikipedia.org/wiki/Roman_numerals) (%r). *Dependencies* : libstr, libctype.
 
-# Help
+# Bonuses
+![visual](/img/visual.gif)
+
 # Credits
 =======
 - *[42 profile](https://profile.intra.42.fr/users/mvillemi) - [Linkedin](https://www.linkedin.com/in/mai-line-villemin-549773a5/) - [Github](https://github.com/LineChan)* - Villemin Mai Line
